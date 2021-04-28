@@ -1,0 +1,9 @@
+name: stratumsurvival
+version: ${project.version}
+main: tech.quilldev.stratumsurvival
+api-version: 1.16
+
+commands:
+  rtp:
+    usage: /<command>
+    description: Random Teleport
