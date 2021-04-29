@@ -4,6 +4,5 @@ main: tech.quilldev.stratumsurvival
 api-version: 1.16
 
 commands:
-  rtp:
+  dev:
     usage: /<command>
-    description: Random Teleport
