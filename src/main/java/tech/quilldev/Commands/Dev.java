@@ -1,7 +1,6 @@
 package tech.quilldev.Commands;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -33,15 +32,18 @@ public class Dev implements CommandExecutor {
         var meta = zeus.getItemMeta();
         meta.setLocalizedName("Zeus's Axe");
         meta.lore(Arrays.asList(
-                Component.text("Test"),
-                Component.text("Magic").color(TextColor.color(200, 100, 200))
+                Component.text("Developer Item"),
+                Component.text("Zeus's Blessing").color(TextColor.color(200, 100, 200)),
+                Component.text("Demonic").color(TextColor.color(83, 14, 22))
         ));
 
         //Get the data container
         final var data = meta.getPersistentDataContainer();
 
-        NamespacedKey key = new NamespacedKey(plugin, "doesLightning");
+        NamespacedKey key = new NamespacedKey(plugin, "zeus");
+        NamespacedKey key2 = new NamespacedKey(plugin, "demonic");
         data.set(key, PersistentDataType.STRING, "TRUE");
+        data.set(key2, PersistentDataType.STRING, "TRUE");
         zeus.setItemMeta(meta);
 
         Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);

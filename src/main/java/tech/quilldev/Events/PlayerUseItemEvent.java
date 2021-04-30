@@ -1,32 +1,36 @@
 package tech.quilldev.Events;
 
-import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.Plugin;
+import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
+
+import java.util.ArrayList;
 
 public class PlayerUseItemEvent implements Listener {
 
-    private final Plugin plugin;
+    private final ArrayList<UseAttribute> attributes;
 
-    public PlayerUseItemEvent(Plugin plugin) {
-        this.plugin = plugin;
+    public PlayerUseItemEvent(ArrayList<UseAttribute> useAttributes) {
+        this.attributes = useAttributes;
     }
 
     @EventHandler
     public void onPlayerUseItem(PlayerInteractEvent event) {
         final var player = event.getPlayer();
-        final var target = player.getTargetBlock(50);
         final var holding = player.getInventory().getItemInMainHand();
+        if (!holding.hasItemMeta()) return; //if the item has no meta, ignore it
 
-        NamespacedKey key = new NamespacedKey(plugin, "doesLightning");
+        final var data = holding.getItemMeta().getPersistentDataContainer();
+        if (data.getKeys().size() <= 0) return; //If we don't have any special data keys, ignore this item use
 
-        if (holding.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING)){
-            assert target != null;
-            player.getWorld().strikeLightning(target.getLocation());
-        }
+        data.getKeys().forEach(namespacedKey -> {
+            final var match = attributes
+                    .stream()
+                    .filter(attr -> attr.key.getKey().equals(namespacedKey.getKey()))
+                    .findFirst();
+            assert match.isPresent();
+            match.get().execute(player);
+        });
     }
 }
