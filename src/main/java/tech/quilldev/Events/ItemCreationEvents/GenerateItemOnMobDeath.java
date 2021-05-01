@@ -1,4 +1,4 @@
-package tech.quilldev.Events;
+package tech.quilldev.Events.ItemCreationEvents;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,4 +1,4 @@
-package tech.quilldev.Events;
+package tech.quilldev.Events.AnimalEvents;
 
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
