@@ -4,6 +4,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
 import tech.quilldev.ItemAttributes.UseAttribute.DemonicAttribute;
+import tech.quilldev.ItemAttributes.UseAttribute.RegenUseEffect;
 import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
 import tech.quilldev.ItemAttributes.UseAttribute.ZeusEffect;
 
@@ -22,7 +23,8 @@ public class ItemAttributes {
         useAttributes.addAll(
                 Arrays.asList(
                         new ZeusEffect(new NamespacedKey(plugin, "zeus")),
-                        new DemonicAttribute(new NamespacedKey(plugin, "demonic"))
+                        new DemonicAttribute(new NamespacedKey(plugin, "demonic")),
+                        new RegenUseEffect(new NamespacedKey(plugin, "regen"))
                 )
         );
     }

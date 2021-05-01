@@ -34,7 +34,8 @@ public class Dev implements CommandExecutor {
         meta.lore(Arrays.asList(
                 Component.text("Developer Item"),
                 Component.text("Zeus's Blessing").color(TextColor.color(200, 100, 200)),
-                Component.text("Demonic").color(TextColor.color(83, 14, 22))
+                Component.text("Demonic").color(TextColor.color(83, 14, 22)),
+                Component.text("regen").color(TextColor.color(40, 83, 44))
         ));
 
         //Get the data container
@@ -42,8 +43,10 @@ public class Dev implements CommandExecutor {
 
         NamespacedKey key = new NamespacedKey(plugin, "zeus");
         NamespacedKey key2 = new NamespacedKey(plugin, "demonic");
+        NamespacedKey key3 = new NamespacedKey(plugin, "regen");
         data.set(key, PersistentDataType.STRING, "TRUE");
         data.set(key2, PersistentDataType.STRING, "TRUE");
+        data.set(key3, PersistentDataType.STRING,"TRUE");
         zeus.setItemMeta(meta);
 
         Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);
