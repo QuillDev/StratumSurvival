@@ -1,14 +1,19 @@
 package tech.quilldev.ItemAttributes;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
-import tech.quilldev.ItemAttributes.UseAttribute.ZeusEffect;
+
+import java.util.Random;
+
 
 public abstract class Attribute {
 
+    public final Random rand = new Random();
+    public final NamespacedKey key;
+    public final Component displayText;
 
-    protected NamespacedKey key;
-
-    public Attribute(NamespacedKey key) {
+    public Attribute(NamespacedKey key, Component displayText) {
         this.key = key;
+        this.displayText = displayText;
     }
 }

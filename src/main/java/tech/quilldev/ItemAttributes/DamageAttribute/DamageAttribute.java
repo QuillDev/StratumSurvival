@@ -1,14 +1,14 @@
 package tech.quilldev.ItemAttributes.DamageAttribute;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import tech.quilldev.ItemAttributes.Attribute;
 
 public abstract class DamageAttribute extends Attribute {
-    public DamageAttribute(NamespacedKey key) {
-        super(key);
+    public DamageAttribute(NamespacedKey key, Component displayText) {
+        super(key, displayText);
     }
 
-    public abstract void execute(Player player, Entity target);
+    public abstract void execute(EntityDamageByEntityEvent event, float modifier);
 }
