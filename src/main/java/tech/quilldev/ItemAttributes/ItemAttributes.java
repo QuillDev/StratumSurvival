@@ -8,6 +8,7 @@ import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.BonusDamageAt
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.CritAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.VampirismAttribute;
+import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.AscendAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.VenomAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.WitherAttribute;
 import tech.quilldev.ItemAttributes.UseAttribute.DemonicAttribute;
@@ -64,6 +65,10 @@ public class ItemAttributes {
                                 new NamespacedKey(plugin, "venomous"),
                                 Component.text("Venomous").color(TextColor.color(0xAC32))
                         ),
+                        new AscendAttribute(
+                                new NamespacedKey(plugin, "ascend"),
+                                Component.text("Ascend Chance").color(TextColor.color(0xAC32))
+                        ),
                         new VampirismAttribute(
                                 new NamespacedKey(plugin, "vampirism"),
                                 Component.text("Vampiric").color(TextColor.color(0xFF4836))
@@ -89,6 +94,6 @@ public class ItemAttributes {
                 .filter(attr -> attr.key.value().equalsIgnoreCase(query))
                 .findFirst();
 
-        return null;
+        return match.orElse(null);
     }
 }

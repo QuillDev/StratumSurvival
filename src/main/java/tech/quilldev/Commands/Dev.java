@@ -35,6 +35,9 @@ public class Dev implements CommandExecutor {
 
         final var zeusKey = attributes.getUseAttribute("zeus").key;
         data.set(zeusKey, PersistentDataType.STRING, "TRUE");
+
+        final var ascendKey = attributes.getDamageAttribute("ascend").key;
+        data.set(ascendKey, PersistentDataType.FLOAT, .5f);
         zeus.setItemMeta(meta);
 
         Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);
