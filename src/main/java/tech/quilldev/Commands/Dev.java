@@ -34,7 +34,9 @@ public class Dev implements CommandExecutor {
         final var data = meta.getPersistentDataContainer();
 
         final var zeusKey = attributes.getUseAttribute("zeus").key;
+        final var ratKey = attributes.getDeathAttribute("death_rat").key;
         data.set(zeusKey, PersistentDataType.STRING, "TRUE");
+        data.set(ratKey, PersistentDataType.STRING, "TRUE");
         zeus.setItemMeta(meta);
 
         Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);

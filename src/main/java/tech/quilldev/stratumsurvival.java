@@ -5,6 +5,7 @@ import tech.quilldev.Commands.Dev;
 import tech.quilldev.CustomItems.ItemGenerator;
 import tech.quilldev.Events.HandleDamageAttributeEvent;
 import tech.quilldev.Events.GenerateItemOnMobDeath;
+import tech.quilldev.Events.HandleDeathAttributeEvent;
 import tech.quilldev.Events.HandleUseAttributeEvent;
 import tech.quilldev.ItemAttributes.ItemAttributes;
 
@@ -29,6 +30,7 @@ public final class stratumsurvival extends JavaPlugin {
         //Handle item usage
         pluginManager.registerEvents(new HandleUseAttributeEvent(attributes.useAttributes), this);
         pluginManager.registerEvents(new HandleDamageAttributeEvent(attributes.damageAttributes), this);
+        pluginManager.registerEvents(new HandleDeathAttributeEvent(attributes.deathAttributes), this);
         // Plugin startup logic
         Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev(attributes));
     }
