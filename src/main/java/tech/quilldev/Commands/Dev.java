@@ -35,13 +35,11 @@ public class Dev implements CommandExecutor {
 
         final var zeusKey = attributes.getUseAttribute("zeus").key;
         final var ratKey = attributes.getDeathAttribute("death_rat").key;
-        data.set(zeusKey, PersistentDataType.STRING, "TRUE");
-
-
         final var ascendKey = attributes.getDamageAttribute("ascend").key;
-        data.set(ascendKey, PersistentDataType.FLOAT, .5f);
 
+        data.set(zeusKey, PersistentDataType.STRING, "TRUE");
         data.set(ratKey, PersistentDataType.STRING, "TRUE");
+        data.set(ascendKey, PersistentDataType.FLOAT, .5f);
 
         zeus.setItemMeta(meta);
 

@@ -9,7 +9,7 @@ import org.bukkit.potion.PotionEffectType;
 public class AscendAttribute extends PotionAttribute{
     public AscendAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText,
-                new PotionEffect(PotionEffectType.LEVITATION, 80, 1),
+                new PotionEffect(PotionEffectType.LEVITATION, 30, 1),
                 Component.text("LEVITATED").color(TextColor.color(0x36C61)));
     }
 }
