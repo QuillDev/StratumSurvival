@@ -8,9 +8,7 @@ import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.BonusDamageAt
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.CritAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.VampirismAttribute;
-import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.AscendAttribute;
-import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.VenomAttribute;
-import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.WitherAttribute;
+import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.*;
 import tech.quilldev.ItemAttributes.DeathAttributes.DeathAttribute;
 import tech.quilldev.ItemAttributes.DeathAttributes.DeathToRat;
 import tech.quilldev.ItemAttributes.UseAttribute.DemonicAttribute;
@@ -70,7 +68,23 @@ public class ItemAttributes {
                         ),
                         new AscendAttribute(
                                 new NamespacedKey(plugin, "ascend"),
-                                Component.text("Ascend Chance").color(TextColor.color(0xAC32))
+                                Component.text("Ascend Chance").color(TextColor.color(0x36C61))
+                        ),
+                        new WeaknessAttribute(
+                                new NamespacedKey(plugin, "weakness"),
+                                Component.text("Weakness Chance").color(TextColor.color(0x6C2C33))
+                        ),
+                        new SlowAttribute(
+                                new NamespacedKey(plugin, "slow"),
+                                Component.text("Slow Chance").color(TextColor.color(0xB0C3))
+                        ),
+                        new GlowAttribute(
+                                new NamespacedKey(plugin, "glow"),
+                                Component.text("Glow Chance").color(TextColor.color(0xDABE41))
+                        ),
+                        new ShadowRealmAttribute(
+                                new NamespacedKey(plugin, "shadow"),
+                                Component.text("Shadow Laced").color(TextColor.color(0x2E0E84))
                         ),
                         new VampirismAttribute(
                                 new NamespacedKey(plugin, "vampirism"),
