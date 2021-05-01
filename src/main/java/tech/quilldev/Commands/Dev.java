@@ -12,6 +12,8 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import tech.quilldev.ItemAttributes.ItemAttributes;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 
 public class Dev implements CommandExecutor {
@@ -35,14 +37,13 @@ public class Dev implements CommandExecutor {
 
         final var zeusKey = attributes.getUseAttribute("zeus").key;
         final var ratKey = attributes.getDeathAttribute("death_rat").key;
+        final var damageKey = attributes.getDamageAttribute("damage").key;
 
 
         data.set(zeusKey, PersistentDataType.STRING, "TRUE");
         data.set(ratKey, PersistentDataType.STRING, "TRUE");
-
-
+        data.set(damageKey, PersistentDataType.FLOAT, 200f);
         zeus.setItemMeta(meta);
-
         Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);
         return true;
     }
