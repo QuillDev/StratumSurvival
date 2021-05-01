@@ -16,7 +16,6 @@ Custom plugin for Stratum Survival server
 ## Dependencies
 
 * [JDK 15](https://jdk.java.net/)
-* [Vault](https://github.com/MilkBowl/Vault/)
 
 ## TODO
 
