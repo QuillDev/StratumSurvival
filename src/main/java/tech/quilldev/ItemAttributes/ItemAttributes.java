@@ -7,14 +7,13 @@ import org.bukkit.plugin.Plugin;
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.BonusDamageAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.CritAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.ChainDamageEffect;
+import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.FireHitEffect;
 import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.VampirismAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.*;
 import tech.quilldev.ItemAttributes.DeathAttributes.DeathAttribute;
 import tech.quilldev.ItemAttributes.DeathAttributes.DeathToRat;
-import tech.quilldev.ItemAttributes.UseAttribute.DemonicAttribute;
-import tech.quilldev.ItemAttributes.UseAttribute.RegenUseEffect;
-import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
-import tech.quilldev.ItemAttributes.UseAttribute.ZeusEffect;
+import tech.quilldev.ItemAttributes.UseAttribute.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +43,14 @@ public class ItemAttributes {
                         new RegenUseEffect(
                                 new NamespacedKey(plugin, "regen"),
                                 Component.text("Regen").color(TextColor.color(0xFF5227))
+                        ),
+                        new CloakUseAttribute(
+                                new NamespacedKey(plugin, "cloak"),
+                                Component.text("Cloak").color(TextColor.color(0xFF5227))
+                        ),
+                        new FireballUseEffect(
+                                new NamespacedKey(plugin, "fireball"),
+                                Component.text("Fireball").color(TextColor.color(0xFF5227))
                         )
                 )
         );
@@ -89,6 +96,10 @@ public class ItemAttributes {
                         new VampirismAttribute(
                                 new NamespacedKey(plugin, "vampirism"),
                                 Component.text("Vampiric").color(TextColor.color(0xFF4836))
+                        ),
+                        new FireHitEffect(
+                                new NamespacedKey(plugin, "firehit"),
+                                Component.text("Burn Chance").color(TextColor.color(0xFF1610))
                         )
 
                         //TODO: More...
