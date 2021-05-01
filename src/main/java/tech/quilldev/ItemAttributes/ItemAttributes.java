@@ -11,6 +11,8 @@ import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.VampirismAttr
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.AscendAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.VenomAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.WitherAttribute;
+import tech.quilldev.ItemAttributes.DeathAttributes.DeathAttribute;
+import tech.quilldev.ItemAttributes.DeathAttributes.DeathToRat;
 import tech.quilldev.ItemAttributes.UseAttribute.DemonicAttribute;
 import tech.quilldev.ItemAttributes.UseAttribute.RegenUseEffect;
 import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
@@ -22,6 +24,7 @@ import java.util.Arrays;
 public class ItemAttributes {
     public ArrayList<UseAttribute> useAttributes = new ArrayList<>();
     public ArrayList<DamageAttribute> damageAttributes = new ArrayList<>();
+    public ArrayList<DeathAttribute> deathAttributes = new ArrayList<>();
     public NamespacedKey levelKey;
 
     public ItemAttributes(Plugin plugin) {
@@ -77,6 +80,15 @@ public class ItemAttributes {
                         //TODO: More...
                 )
         );
+
+        deathAttributes.addAll(
+                Arrays.asList(
+                        new DeathToRat(
+                                new NamespacedKey(plugin, "death_rat"),
+                                Component.text("Rat Lord").color(TextColor.color(0x5906))
+                        )
+                )
+        );
     }
 
     public UseAttribute getUseAttribute(String query) {
@@ -84,7 +96,6 @@ public class ItemAttributes {
                 .stream()
                 .filter(attr -> attr.key.getKey().equalsIgnoreCase(query))
                 .findFirst();
-
         return match.orElse(null);
     }
 
@@ -93,7 +104,15 @@ public class ItemAttributes {
                 .stream()
                 .filter(attr -> attr.key.value().equalsIgnoreCase(query))
                 .findFirst();
+        return match.orElse(null);
+    }
 
+
+    public DeathAttribute getDeathAttribute(String query) {
+        final var match = this.deathAttributes
+                .stream()
+                .filter(attr -> attr.key.value().equalsIgnoreCase(query))
+                .findFirst();
         return match.orElse(null);
     }
 }
