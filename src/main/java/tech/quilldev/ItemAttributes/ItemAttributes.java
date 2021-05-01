@@ -73,4 +73,22 @@ public class ItemAttributes {
                 )
         );
     }
+
+    public UseAttribute getUseAttribute(String query) {
+        final var match = this.useAttributes
+                .stream()
+                .filter(attr -> attr.key.getKey().equalsIgnoreCase(query))
+                .findFirst();
+
+        return match.orElse(null);
+    }
+
+    public DamageAttribute getDamageAttribute(String query) {
+        final var match = this.damageAttributes
+                .stream()
+                .filter(attr -> attr.key.value().equalsIgnoreCase(query))
+                .findFirst();
+
+        return null;
+    }
 }

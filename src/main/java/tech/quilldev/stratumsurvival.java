@@ -30,7 +30,7 @@ public final class stratumsurvival extends JavaPlugin {
         pluginManager.registerEvents(new PlayerUseItemEvent(attributes.useAttributes), this);
         pluginManager.registerEvents(new OnEntityDamage(attributes.damageAttributes), this);
         // Plugin startup logic
-        Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev(this));
+        Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev(attributes));
     }
 
     @Override
