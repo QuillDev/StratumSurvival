@@ -1,13 +1,13 @@
-package tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect;
+package tech.quilldev.ItemAttributes.OnHitAttributes.ExternalEffect;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
-public class FireHitEffect extends DamageAttribute {
-    public FireHitEffect(NamespacedKey key, Component displayText) {
+public class FireOnHitAttribute extends OnHitAttribute {
+    public FireOnHitAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

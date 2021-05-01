@@ -1,4 +1,4 @@
-package tech.quilldev.ItemAttributes.DamageAttribute.PotionBased;
+package tech.quilldev.ItemAttributes.OnHitAttributes.PotionBased;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -6,17 +6,17 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
-public class PotionAttribute extends DamageAttribute {
+public class PotionOnHitAttribute extends OnHitAttribute {
 
     private final Component flavorText;
     private final PotionEffect effect;
 
-    public PotionAttribute(NamespacedKey key,
-                           Component displayText,
-                           PotionEffect effect,
-                           Component flavorText
+    public PotionOnHitAttribute(NamespacedKey key,
+                                Component displayText,
+                                PotionEffect effect,
+                                Component flavorText
     ) {
         super(key, displayText);
         this.flavorText = flavorText;

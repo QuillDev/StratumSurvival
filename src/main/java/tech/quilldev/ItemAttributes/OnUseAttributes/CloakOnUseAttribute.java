@@ -1,14 +1,13 @@
-package tech.quilldev.ItemAttributes.UseAttribute;
+package tech.quilldev.ItemAttributes.OnUseAttributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class CloakUseAttribute extends UseAttribute{
-    public CloakUseAttribute(NamespacedKey key, Component displayText) {
+public class CloakOnUseAttribute extends OnUseAttribute {
+    public CloakOnUseAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

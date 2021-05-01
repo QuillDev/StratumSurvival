@@ -3,15 +3,15 @@ package tech.quilldev.Events.AttributeEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import tech.quilldev.ItemAttributes.DeathAttributes.DeathAttribute;
+import tech.quilldev.ItemAttributes.OnDeathAttributes.OnDeathAttribute;
 
 import java.util.ArrayList;
 
-public class HandleDeathAttributeEvent implements Listener {
+public class HandleOnDeathAttributeEvent implements Listener {
 
-    private final ArrayList<DeathAttribute> attributes;
+    private final ArrayList<OnDeathAttribute> attributes;
 
-    public HandleDeathAttributeEvent(ArrayList<DeathAttribute> attributes) {
+    public HandleOnDeathAttributeEvent(ArrayList<OnDeathAttribute> attributes) {
         this.attributes = attributes;
     }
 

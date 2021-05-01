@@ -6,9 +6,9 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 import tech.quilldev.ItemAttributes.ItemAttributes;
-import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
+import tech.quilldev.ItemAttributes.OnUseAttributes.OnUseAttribute;
 import tech.quilldev.Names.Names;
 
 import java.util.ArrayList;
@@ -30,13 +30,13 @@ public class ItemGenerator {
             Material.WOODEN_SWORD
     ));
 
-    private final ArrayList<DamageAttribute> damageAttributes;
-    private final ArrayList<UseAttribute> useAttributes;
+    private final ArrayList<OnHitAttribute> onHitAttributes;
+    private final ArrayList<OnUseAttribute> onUseAttributes;
     private final NamespacedKey levelKey;
 
     public ItemGenerator(ItemAttributes attributes) {
-        this.damageAttributes = attributes.damageAttributes;
-        this.useAttributes = attributes.useAttributes;
+        this.onHitAttributes = attributes.onHitAttributes;
+        this.onUseAttributes = attributes.onUseAttributes;
         this.levelKey = attributes.levelKey;
     }
 
@@ -63,7 +63,7 @@ public class ItemGenerator {
         data.set(levelKey, PersistentDataType.INTEGER, level);
 
         //Clone the array to one we can safely modify
-        var mods = new ArrayList<>(damageAttributes);
+        var mods = new ArrayList<>(onHitAttributes);
 
         var rarityLore = Component.text("Rarity Level: " + level);
 

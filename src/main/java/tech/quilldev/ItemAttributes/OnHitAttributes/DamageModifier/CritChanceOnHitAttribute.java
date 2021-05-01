@@ -1,21 +1,19 @@
-package tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier;
+package tech.quilldev.ItemAttributes.OnHitAttributes.DamageModifier;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
-import java.util.Random;
-
-public class CritAttribute extends DamageAttribute {
+public class CritChanceOnHitAttribute extends OnHitAttribute {
 
     //Critical text component
     private final Component critText = Component.text("CRITICALY STRUCK")
             .color(TextColor.color(0x832C24));
 
-    public CritAttribute(NamespacedKey key, Component displayText) {
+    public CritChanceOnHitAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

@@ -1,4 +1,4 @@
-package tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect;
+package tech.quilldev.ItemAttributes.OnHitAttributes.ExternalEffect;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -6,14 +6,14 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
-public class VampirismAttribute extends DamageAttribute {
+public class VampirismOnHitAttribute extends OnHitAttribute {
 
     final Component flavorText = Component.text("VAMPIRISM")
             .color(TextColor.color(0xFF513E));
 
-    public VampirismAttribute(NamespacedKey key, Component displayText) {
+    public VampirismOnHitAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

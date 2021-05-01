@@ -1,4 +1,4 @@
-package tech.quilldev.ItemAttributes.UseAttribute;
+package tech.quilldev.ItemAttributes.OnUseAttributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class RegenUseEffect extends UseAttribute{
-    public RegenUseEffect(NamespacedKey key, Component component) {
+public class RegenOnUseAtrribute extends OnUseAttribute {
+    public RegenOnUseAtrribute(NamespacedKey key, Component component) {
         super(key, component);
     }
 

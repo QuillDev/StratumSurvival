@@ -1,12 +1,12 @@
-package tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier;
+package tech.quilldev.ItemAttributes.OnHitAttributes.DamageModifier;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
-public class BonusDamageAttribute extends DamageAttribute {
-    public BonusDamageAttribute(NamespacedKey key, Component displayText) {
+public class BonusDamageOnHitAttribute extends OnHitAttribute {
+    public BonusDamageOnHitAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

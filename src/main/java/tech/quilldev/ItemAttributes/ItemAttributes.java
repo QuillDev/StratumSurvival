@@ -4,24 +4,24 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.BonusDamageAttribute;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageModifier.CritAttribute;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
-import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.ChainDamageEffect;
-import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.FireHitEffect;
-import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.VampirismAttribute;
-import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.*;
-import tech.quilldev.ItemAttributes.DeathAttributes.DeathAttribute;
-import tech.quilldev.ItemAttributes.DeathAttributes.DeathToRat;
-import tech.quilldev.ItemAttributes.UseAttribute.*;
+import tech.quilldev.ItemAttributes.OnHitAttributes.DamageModifier.BonusDamageOnHitAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.DamageModifier.CritChanceOnHitAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.ExternalEffect.ChainOnHitAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.ExternalEffect.FireOnHitAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.ExternalEffect.VampirismOnHitAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.PotionBased.*;
+import tech.quilldev.ItemAttributes.OnDeathAttributes.OnDeathAttribute;
+import tech.quilldev.ItemAttributes.OnDeathAttributes.RatOnDeathAttribute;
+import tech.quilldev.ItemAttributes.OnUseAttributes.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ItemAttributes {
-    public ArrayList<UseAttribute> useAttributes = new ArrayList<>();
-    public ArrayList<DamageAttribute> damageAttributes = new ArrayList<>();
-    public ArrayList<DeathAttribute> deathAttributes = new ArrayList<>();
+    public ArrayList<OnUseAttribute> onUseAttributes = new ArrayList<>();
+    public ArrayList<OnHitAttribute> onHitAttributes = new ArrayList<>();
+    public ArrayList<OnDeathAttribute> onDeathAttributes = new ArrayList<>();
     public NamespacedKey levelKey;
 
     public ItemAttributes(Plugin plugin) {
@@ -30,78 +30,78 @@ public class ItemAttributes {
     }
 
     public void initialize(Plugin plugin) {
-        useAttributes.addAll(
+        onUseAttributes.addAll(
                 Arrays.asList(
-                        new ZeusEffect(
+                        new ZeusOnUseAttribute(
                                 new NamespacedKey(plugin, "zeus"),
                                 Component.text("Zeus").color(TextColor.color(0x15E1FF))
                         ),
-                        new DemonicAttribute(
+                        new DemonicOnUseAttribute(
                                 new NamespacedKey(plugin, "demonic"),
                                 Component.text("Demonic").color(TextColor.color(0x7C251A))
                         ),
-                        new RegenUseEffect(
+                        new RegenOnUseAtrribute(
                                 new NamespacedKey(plugin, "regen"),
                                 Component.text("Regen").color(TextColor.color(0xFF5227))
                         ),
-                        new CloakUseAttribute(
+                        new CloakOnUseAttribute(
                                 new NamespacedKey(plugin, "cloak"),
                                 Component.text("Cloak").color(TextColor.color(0xFF5227))
                         ),
-                        new FireballUseEffect(
+                        new FireballOnUseAttribute(
                                 new NamespacedKey(plugin, "fireball"),
                                 Component.text("Fireball").color(TextColor.color(0xFF5227))
                         )
                 )
         );
 
-        damageAttributes.addAll(
+        onHitAttributes.addAll(
                 Arrays.asList(
-                        new BonusDamageAttribute(
+                        new BonusDamageOnHitAttribute(
                                 new NamespacedKey(plugin, "damage"),
                                 Component.text("Bonus Damage").color(TextColor.color(0xD45B3D))
                         ),
-                        new CritAttribute(
+                        new CritChanceOnHitAttribute(
                                 new NamespacedKey(plugin, "critrate"),
                                 Component.text("Crit Rate").color(TextColor.color(0xD45B3D))
                         ),
-                        new WitherAttribute(
+                        new WitherOnHitAttribute(
                                 new NamespacedKey(plugin, "withering"),
                                 Component.text("Withering").color(TextColor.color(0x575757))
                         ),
-                        new VenomAttribute(
+                        new VenomOnHitAttribute(
                                 new NamespacedKey(plugin, "venomous"),
                                 Component.text("Venomous").color(TextColor.color(0xAC32))
                         ),
-                        new AscendAttribute(
+                        new AscendOnHitAttribute(
                                 new NamespacedKey(plugin, "ascend"),
                                 Component.text("Ascend Chance").color(TextColor.color(0x36C61))
                         ),
-                        new WeaknessAttribute(
+                        new WeaknessOnHitAttribute(
                                 new NamespacedKey(plugin, "weakness"),
                                 Component.text("Weakness Chance").color(TextColor.color(0x6C2C33))
                         ),
-                        new SlowAttribute(
+                        new SlowOnHitAttribute(
                                 new NamespacedKey(plugin, "slow"),
                                 Component.text("Slow Chance").color(TextColor.color(0xB0C3))
                         ),
-                        new GlowAttribute(
+                        new GlowOnHitAttribute(
                                 new NamespacedKey(plugin, "glow"),
                                 Component.text("Glow Chance").color(TextColor.color(0xDABE41))
                         ),
-                        new ShadowRealmAttribute(
+                        new ShadowRealmOnHitAttribute(
                                 new NamespacedKey(plugin, "shadow"),
                                 Component.text("Shadow Laced").color(TextColor.color(0x2E0E84))
                         ),
-                        new VampirismAttribute(
+                        new VampirismOnHitAttribute(
                                 new NamespacedKey(plugin, "vampirism"),
                                 Component.text("Vampiric").color(TextColor.color(0xFF4836))
                         ),
-                        new FireHitEffect(
+                        new FireOnHitAttribute(
                                 new NamespacedKey(plugin, "firehit"),
                                 Component.text("Burn Chance").color(TextColor.color(0xFF1610))
                         ),
-                        new ChainDamageEffect(
+                        new ChainOnHitAttribute(
                                 new NamespacedKey(plugin, "chaindamage"),
                                 Component.text("Chain Damage").color(TextColor.color(0x832294))
                         )
@@ -110,9 +110,9 @@ public class ItemAttributes {
                 )
         );
 
-        deathAttributes.addAll(
+        onDeathAttributes.addAll(
                 Arrays.asList(
-                        new DeathToRat(
+                        new RatOnDeathAttribute(
                                 new NamespacedKey(plugin, "death_rat"),
                                 Component.text("Rat Lord").color(TextColor.color(0x5906))
                         )
@@ -120,16 +120,16 @@ public class ItemAttributes {
         );
     }
 
-    public UseAttribute getUseAttribute(String query) {
-        final var match = this.useAttributes
+    public OnUseAttribute getUseAttribute(String query) {
+        final var match = this.onUseAttributes
                 .stream()
                 .filter(attr -> attr.key.getKey().equalsIgnoreCase(query))
                 .findFirst();
         return match.orElse(null);
     }
 
-    public DamageAttribute getDamageAttribute(String query) {
-        final var match = this.damageAttributes
+    public OnHitAttribute getDamageAttribute(String query) {
+        final var match = this.onHitAttributes
                 .stream()
                 .filter(attr -> attr.key.value().equalsIgnoreCase(query))
                 .findFirst();
@@ -137,8 +137,8 @@ public class ItemAttributes {
     }
 
 
-    public DeathAttribute getDeathAttribute(String query) {
-        final var match = this.deathAttributes
+    public OnDeathAttribute getDeathAttribute(String query) {
+        final var match = this.onDeathAttributes
                 .stream()
                 .filter(attr -> attr.key.value().equalsIgnoreCase(query))
                 .findFirst();

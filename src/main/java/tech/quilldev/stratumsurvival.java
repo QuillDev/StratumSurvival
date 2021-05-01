@@ -4,9 +4,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.Dev;
 import tech.quilldev.CustomItems.ItemGenerator;
 import tech.quilldev.Events.AnimalEvents.RatsCantSitEvent;
-import tech.quilldev.Events.AttributeEvents.HandleDamageAttributeEvent;
-import tech.quilldev.Events.AttributeEvents.HandleDeathAttributeEvent;
-import tech.quilldev.Events.AttributeEvents.HandleUseAttributeEvent;
+import tech.quilldev.Events.AttributeEvents.HandleOnHitAttributeEvent;
+import tech.quilldev.Events.AttributeEvents.HandleOnDeathAttributeEvent;
+import tech.quilldev.Events.AttributeEvents.HandleOnUseAttributeEvent;
 import tech.quilldev.Events.ItemCreationEvents.GenerateItemOnMobDeath;
 import tech.quilldev.ItemAttributes.ItemAttributes;
 
@@ -32,9 +32,9 @@ public final class stratumsurvival extends JavaPlugin {
         pluginManager.registerEvents(new GenerateItemOnMobDeath(itemGenerator), this);
 
         //Handle item usage
-        pluginManager.registerEvents(new HandleUseAttributeEvent(attributes.useAttributes), this);
-        pluginManager.registerEvents(new HandleDamageAttributeEvent(attributes.damageAttributes), this);
-        pluginManager.registerEvents(new HandleDeathAttributeEvent(attributes.deathAttributes), this);
+        pluginManager.registerEvents(new HandleOnUseAttributeEvent(attributes.onUseAttributes), this);
+        pluginManager.registerEvents(new HandleOnHitAttributeEvent(attributes.onHitAttributes), this);
+        pluginManager.registerEvents(new HandleOnDeathAttributeEvent(attributes.onDeathAttributes), this);
 
         //Handle Rat stuff
         pluginManager.registerEvents(new RatsCantSitEvent(), this);

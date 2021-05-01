@@ -5,15 +5,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
 import java.util.ArrayList;
 
-public class HandleDamageAttributeEvent implements Listener {
+public class HandleOnHitAttributeEvent implements Listener {
 
-    public final ArrayList<DamageAttribute> attributes;
+    public final ArrayList<OnHitAttribute> attributes;
 
-    public HandleDamageAttributeEvent(ArrayList<DamageAttribute> attributes) {
+    public HandleOnHitAttributeEvent(ArrayList<OnHitAttribute> attributes) {
         this.attributes = attributes;
     }
 

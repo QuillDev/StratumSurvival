@@ -1,12 +1,12 @@
-package tech.quilldev.ItemAttributes.UseAttribute;
+package tech.quilldev.ItemAttributes.OnUseAttributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 
-public class ZeusEffect extends UseAttribute {
+public class ZeusOnUseAttribute extends OnUseAttribute {
 
-    public ZeusEffect(NamespacedKey key, Component displayText) {
+    public ZeusOnUseAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

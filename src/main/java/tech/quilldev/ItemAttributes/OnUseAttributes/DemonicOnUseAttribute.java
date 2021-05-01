@@ -1,12 +1,12 @@
-package tech.quilldev.ItemAttributes.UseAttribute;
+package tech.quilldev.ItemAttributes.OnUseAttributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 
-public class DemonicAttribute extends UseAttribute {
+public class DemonicOnUseAttribute extends OnUseAttribute {
 
-    public DemonicAttribute(NamespacedKey key, Component displayText) {
+    public DemonicOnUseAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

@@ -1,20 +1,16 @@
-package tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect;
+package tech.quilldev.ItemAttributes.OnHitAttributes.ExternalEffect;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Damageable;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.w3c.dom.Text;
-import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
 import java.util.stream.Collectors;
 
-public class ChainDamageEffect extends DamageAttribute {
-    public ChainDamageEffect(NamespacedKey key, Component displayText) {
+public class ChainOnHitAttribute extends OnHitAttribute {
+    public ChainOnHitAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 

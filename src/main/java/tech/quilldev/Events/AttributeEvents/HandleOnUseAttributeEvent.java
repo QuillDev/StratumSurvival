@@ -4,16 +4,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
+import tech.quilldev.ItemAttributes.OnUseAttributes.OnUseAttribute;
 
 import java.util.ArrayList;
 
-public class HandleUseAttributeEvent implements Listener {
+public class HandleOnUseAttributeEvent implements Listener {
 
-    private final ArrayList<UseAttribute> attributes;
+    private final ArrayList<OnUseAttribute> attributes;
 
-    public HandleUseAttributeEvent(ArrayList<UseAttribute> useAttributes) {
-        this.attributes = useAttributes;
+    public HandleOnUseAttributeEvent(ArrayList<OnUseAttribute> onUseAttributes) {
+        this.attributes = onUseAttributes;
     }
 
     @EventHandler

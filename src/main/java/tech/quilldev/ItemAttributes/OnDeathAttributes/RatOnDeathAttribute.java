@@ -1,15 +1,14 @@
-package tech.quilldev.ItemAttributes.DeathAttributes;
+package tech.quilldev.ItemAttributes.OnDeathAttributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Chicken;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-public class DeathToRat extends DeathAttribute {
+public class RatOnDeathAttribute extends OnDeathAttribute {
 
-    public DeathToRat(NamespacedKey key, Component displayText) {
+    public RatOnDeathAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
 
