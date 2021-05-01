@@ -11,6 +11,7 @@ import tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect.VampirismAttr
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.VenomAttribute;
 import tech.quilldev.ItemAttributes.DamageAttribute.PotionBased.WitherAttribute;
 import tech.quilldev.ItemAttributes.UseAttribute.DemonicAttribute;
+import tech.quilldev.ItemAttributes.UseAttribute.RegenUseEffect;
 import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
 import tech.quilldev.ItemAttributes.UseAttribute.ZeusEffect;
 
@@ -37,6 +38,10 @@ public class ItemAttributes {
                         new DemonicAttribute(
                                 new NamespacedKey(plugin, "demonic"),
                                 Component.text("Demonic").color(TextColor.color(0x7C251A))
+                        ),
+                        new RegenUseEffect(
+                                new NamespacedKey(plugin, "regen"),
+                                Component.text("Regen").color(TextColor.color(0xFF5227))
                         )
                 )
         );
