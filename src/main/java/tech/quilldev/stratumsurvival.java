@@ -3,10 +3,7 @@ package tech.quilldev;
 import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.Dev;
 import tech.quilldev.CustomItems.ItemGenerator;
-import tech.quilldev.Events.HandleDamageAttributeEvent;
-import tech.quilldev.Events.GenerateItemOnMobDeath;
-import tech.quilldev.Events.HandleDeathAttributeEvent;
-import tech.quilldev.Events.HandleUseAttributeEvent;
+import tech.quilldev.Events.*;
 import tech.quilldev.ItemAttributes.ItemAttributes;
 
 import java.util.Objects;
@@ -31,6 +28,8 @@ public final class stratumsurvival extends JavaPlugin {
         pluginManager.registerEvents(new HandleUseAttributeEvent(attributes.useAttributes), this);
         pluginManager.registerEvents(new HandleDamageAttributeEvent(attributes.damageAttributes), this);
         pluginManager.registerEvents(new HandleDeathAttributeEvent(attributes.deathAttributes), this);
+
+        pluginManager.registerEvents(new RatsCantSitEvent(), this);
         // Plugin startup logic
         Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev(attributes));
     }
