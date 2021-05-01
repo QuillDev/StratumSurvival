@@ -24,7 +24,7 @@ public class OnEntityDamage implements Listener {
         final var player = ((Player) event.getDamager()).getPlayer(); //get the player
 
         //Make sure the player exists then manage their attributes
-        assert player != null;
+        if (player == null) return;
         final var holding = player.getInventory().getItemInMainHand();
         if (!holding.hasItemMeta()) return; //if the item has no meta, ignore it
 
@@ -38,11 +38,11 @@ public class OnEntityDamage implements Listener {
                     .stream()
                     .filter(attr -> attr.key.getKey().equals(namespacedKey.getKey()))
                     .findFirst();
-            assert match.isPresent();
+            if (!match.isPresent()) return;
 
             //Get the keys double value
             final var modifier = data.get(match.get().key, PersistentDataType.FLOAT);
-            assert modifier != null;
+            if (modifier == null) return;
             match.get().execute(event, modifier); //Execute matches
         });
     }

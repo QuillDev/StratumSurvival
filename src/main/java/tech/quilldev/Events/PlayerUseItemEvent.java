@@ -37,7 +37,7 @@ public class PlayerUseItemEvent implements Listener {
                     .stream()
                     .filter(attr -> attr.key.getKey().equals(namespacedKey.getKey()))
                     .findFirst();
-            assert match.isPresent();
+            if (!match.isPresent()) return;
             match.get().execute(player); //Execute matches
         });
     }

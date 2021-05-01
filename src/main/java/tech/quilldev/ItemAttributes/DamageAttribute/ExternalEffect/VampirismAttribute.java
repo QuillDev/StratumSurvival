@@ -21,18 +21,24 @@ public class VampirismAttribute extends DamageAttribute {
     public void execute(EntityDamageByEntityEvent event, float modifier) {
         if (modifier < rand.nextFloat()) return;
         if (!(event.getDamager() instanceof Player)) return;
+
+
         //Get the player
         final var player = ((Player) event.getDamager()).getPlayer();
         if (player == null) return;
-        final var amount = Math.max((event.getFinalDamage() * .25), 1);
+
+        final var amount = Math.max((event.getDamage() * .25), 1);
         final var amountText = Component.text(amount)
                 .color(TextColor.color(0xFF513E))
                 .append(Component.text("HP"));
 
         final var maxHP = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
         if (maxHP == null) return;
-        if ((player.getHealth() + amount) >= maxHP.getValue()) return; //Make it so you can't overheal
-        player.setHealth(player.getHealth() + amount);
+        var hpToSet = player.getHealth() + amount;
+        if ((player.getHealth() + amount) >= maxHP.getValue()){
+            hpToSet = maxHP.getValue();
+        }; //Make it so you can't overheal
+        player.setHealth(hpToSet);
         player.sendMessage(
                 Component.text("Your")
                         .append(Component.space())
