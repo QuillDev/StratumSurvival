@@ -8,11 +8,11 @@ import tech.quilldev.ItemAttributes.UseAttribute.UseAttribute;
 
 import java.util.ArrayList;
 
-public class PlayerUseItemEvent implements Listener {
+public class HandleUseAttributeEvent implements Listener {
 
     private final ArrayList<UseAttribute> attributes;
 
-    public PlayerUseItemEvent(ArrayList<UseAttribute> useAttributes) {
+    public HandleUseAttributeEvent(ArrayList<UseAttribute> useAttributes) {
         this.attributes = useAttributes;
     }
 

@@ -9,11 +9,11 @@ import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
 
 import java.util.ArrayList;
 
-public class OnEntityDamage implements Listener {
+public class HandleDamageAttributeEvent implements Listener {
 
     public final ArrayList<DamageAttribute> attributes;
 
-    public OnEntityDamage(ArrayList<DamageAttribute> attributes) {
+    public HandleDamageAttributeEvent(ArrayList<DamageAttribute> attributes) {
         this.attributes = attributes;
     }
 
