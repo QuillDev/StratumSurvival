@@ -26,7 +26,7 @@ public class CritAttribute extends DamageAttribute {
         final var player = ((Player) event.getDamager()).getPlayer();
         if (player == null) return;
 
-        if (rand.nextFloat() > modifier) return; //check if we got a critical roll
+        if (modifier < rand.nextFloat()) return; //check if we got a critical roll
         event.setDamage(event.getDamage() * 2);
         player.sendMessage(
                 Component.text("You")

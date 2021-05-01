@@ -3,11 +3,15 @@ package tech.quilldev.ItemAttributes.DamageAttribute.ExternalEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Mob;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.w3c.dom.Text;
 import tech.quilldev.ItemAttributes.DamageAttribute.DamageAttribute;
+
+import java.util.stream.Collectors;
 
 public class ChainDamageEffect extends DamageAttribute {
     public ChainDamageEffect(NamespacedKey key, Component displayText) {
@@ -16,28 +20,36 @@ public class ChainDamageEffect extends DamageAttribute {
 
     @Override
     public void execute(EntityDamageByEntityEvent event, float modifier) {
-        if(rand.nextFloat() > modifier) return;
+        if (!(event.getDamager() instanceof Player)) return;
+        if (modifier < rand.nextFloat()) return;
 
-        var entityList = event.getEntity().getNearbyEntities(10,10,10);
-        final var size = Component.text(entityList.size());
-        final var flavorText = Component.text("Chained").color(TextColor.color(0xFF1610));
+        //Get the player and the target entity
+        final var player = ((Player) event.getDamager()).getPlayer();
+        if (player == null) return;
+        final var entity = event.getEntity();
 
-        for ( Entity entity : entityList) {
-            if (!(entity instanceof Mob)) return;
+        //Get valid targets
+        final var targets = entity
+                .getNearbyEntities(5, 5, 5)
+                .stream()
+                .filter(target -> (target instanceof Damageable))
+                .map(target -> (Damageable) target)
+                .collect(Collectors.toList());
 
-            ((Mob) entity).damage(event.getDamage());
-        }
+        if (targets.size() <= 0) return; //make sure there are targets to chain
+        final var damage = Math.round(Math.max(event.getDamage() * .25f, 2));
+        targets.forEach((target) -> target.damage(damage));
 
-        //send a message that you effected the opponent
-        event.getDamager().sendMessage(
-                Component.text("You")
+        player.sendMessage(
+                Component.text("You chained")
                         .append(Component.space())
-                        .append(flavorText)
+                        .append(Component.text(targets.size()))
                         .append(Component.space())
-                        .append(Component.text("damage to ")
-                        .append(size)
-                        .append(Component.text( " Enemies!"))
-                        )
+                        .append(Component.text("for"))
+                        .append(Component.space())
+                        .append(Component.text(damage))
+                        .append(Component.space())
+                        .append(Component.text("!"))
         );
     }
 }

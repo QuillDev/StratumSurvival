@@ -13,7 +13,7 @@ public class FireHitEffect extends DamageAttribute {
 
     @Override
     public void execute(EntityDamageByEntityEvent event, float modifier) {
-        if(rand.nextFloat() > modifier) return;
+        if (modifier < rand.nextFloat()) return;
 
         event.getEntity().setFireTicks(60);
 

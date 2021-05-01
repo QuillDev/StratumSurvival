@@ -100,6 +100,10 @@ public class ItemAttributes {
                         new FireHitEffect(
                                 new NamespacedKey(plugin, "firehit"),
                                 Component.text("Burn Chance").color(TextColor.color(0xFF1610))
+                        ),
+                        new ChainDamageEffect(
+                                new NamespacedKey(plugin, "chaindamage"),
+                                Component.text("Chain Damage").color(TextColor.color(0x832294))
                         )
 
                         //TODO: More...
