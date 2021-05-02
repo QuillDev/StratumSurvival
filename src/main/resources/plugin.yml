@@ -7,3 +7,6 @@ commands:
   dev:
     usage: /<command>
     permission: stratumsurvival.developer.dev
+  playinggod:
+    usage: /<command>
+    permission: stratumsurvival.developer.playinggod

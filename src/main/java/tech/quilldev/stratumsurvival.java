@@ -2,6 +2,7 @@ package tech.quilldev;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.Dev;
+import tech.quilldev.Commands.SpawnCustomMob;
 import tech.quilldev.CustomItems.ItemGenerator;
 import tech.quilldev.Events.AnimalEvents.RatsCantSitEvent;
 import tech.quilldev.Events.AttributeEvents.HandleOnHitAttributeEvent;
@@ -38,8 +39,10 @@ public final class stratumsurvival extends JavaPlugin {
 
         //Handle Rat stuff
         pluginManager.registerEvents(new RatsCantSitEvent(), this);
+
         // Plugin startup logic
         Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev(attributes));
+        Objects.requireNonNull(this.getCommand("playinggod")).setExecutor(new SpawnCustomMob());
     }
 
     @Override
