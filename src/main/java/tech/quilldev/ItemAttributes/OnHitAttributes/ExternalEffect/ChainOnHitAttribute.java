@@ -36,28 +36,36 @@ public class ChainOnHitAttribute extends OnHitAttribute {
         var entity = event.getEntity(); //Get the first entity we struck
 
         final var damage = Math.max(event.getDamage() * .25, 2);
-        for (var i = 0; i < maxBounces; i++) {
+        var bounces = 0;
+        for (; bounces < maxBounces; bounces++) {
             final var target = getCloseEnemies(entity, previousTargets);
             if (target == null) break;
-
-            final var lastVector = entity.getLocation().toVector();
-            final var currentVector = target.getLocation().toVector();
-            final var midPoint = lastVector.midpoint(currentVector).toLocation(player.getWorld());
 
             final var particle = Particle.FIREWORKS_SPARK;
             createParticles(entity.getLocation(), target.getLocation(), particle, player.getWorld());
             target.damage(damage);
             previousTargets.add(target);
             entity = target;
-
         }
+
+        player.sendMessage(
+                Component.text("You chained")
+                        .append(Component.space())
+                        .append(Component.text(bounces + 1))
+                        .append(Component.space())
+                        .append(Component.text("for"))
+                        .append(Component.space())
+                        .append(Component.text(damage))
+                        .append(Component.space())
+                        .append(Component.text("!"))
+        );
     }
 
     private void createParticles(Location start, Location end, Particle particle, World world) {
         final var mid = end.toVector().midpoint(start.toVector()).toLocation(world);
-        var builder = new ParticleBuilder(Particle.REDSTONE)
+        new ParticleBuilder(Particle.REDSTONE)
                 .color(Color.fromRGB(177, 156, 217))
-                .count(3)
+                .count(7)
                 .extra(0)
                 .location(new Location(world, start.getX(), start.getY() + 1, start.getZ()))
                 .spawn()
@@ -78,39 +86,4 @@ public class ChainOnHitAttribute extends OnHitAttribute {
         System.out.println(targets);
         return targets;
     }
-
-//    @Override
-//    public void execute(EntityDamageByEntityEvent event, float modifier) {
-//        if (!(event.getDamager() instanceof Player)) return;
-//        if (modifier < rand.nextFloat()) return;
-//
-//        //Get the player and the target entity
-//        final var player = ((Player) event.getDamager()).getPlayer();
-//        if (player == null) return;
-//        final var entity = event.getEntity();
-//
-//        //Get valid targets
-//        final var targets = entity
-//                .getNearbyEntities(5, 5, 5)
-//                .stream()
-//                .filter(target -> (target instanceof Damageable))
-//                .map(target -> (Damageable) target)
-//                .collect(Collectors.toList());
-//
-//        if (targets.size() <= 0) return; //make sure there are targets to chain
-//        final var damage = Math.round(Math.max(event.getDamage() * .25f, 2));
-//        targets.forEach((target) -> target.damage(damage));
-//
-//        player.sendMessage(
-//                Component.text("You chained")
-//                        .append(Component.space())
-//                        .append(Component.text(targets.size()))
-//                        .append(Component.space())
-//                        .append(Component.text("for"))
-//                        .append(Component.space())
-//                        .append(Component.text(damage))
-//                        .append(Component.space())
-//                        .append(Component.text("!"))
-//        );
-//    }
 }
