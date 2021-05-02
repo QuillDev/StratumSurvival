@@ -4,6 +4,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.checkerframework.checker.units.qual.A;
+import tech.quilldev.ItemAttributes.Attribute;
 import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
 public class FireOnHitAttribute extends OnHitAttribute {
@@ -18,7 +20,6 @@ public class FireOnHitAttribute extends OnHitAttribute {
         event.getEntity().setFireTicks(60);
 
         final var flavorText = Component.text("BURNED").color(TextColor.color(0xFF1610));
-
         //send a message that you effected the opponent
         event.getDamager().sendMessage(
                 Component.text("You")

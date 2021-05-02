@@ -7,8 +7,6 @@ import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.util.Vector;
 import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ public class ChainOnHitAttribute extends OnHitAttribute {
         super(key, displayText);
     }
 
-    private final int maxBounces = 5;
+    private final int maxBounces = 20;
 
 
     @Override
@@ -47,10 +45,18 @@ public class ChainOnHitAttribute extends OnHitAttribute {
             previousTargets.add(target);
             entity = target;
         }
+
+        final var theWorldIsEndingLocation = previousTargets.get(previousTargets.size() - 1).getLocation();
+        player.getWorld().strikeLightning(theWorldIsEndingLocation);
     }
 
     private void createParticles(Location start, Location end, Particle particle, World world) {
         final var mid = end.toVector().midpoint(start.toVector()).toLocation(world);
+        final var topMid = mid.toVector().midpoint(end.toVector()).toLocation(world);
+        final var bottomMid = mid.toVector().midpoint(start.toVector()).toLocation(world);
+        final var closestTopMid = topMid.toVector().midpoint(end.toVector());
+        final var closestBottompMid = bottomMid.toVector().midpoint(start.toVector());
+
         new ParticleBuilder(Particle.REDSTONE)
                 .color(Color.fromRGB(177, 156, 217))
                 .count(7)
@@ -60,11 +66,19 @@ public class ChainOnHitAttribute extends OnHitAttribute {
                 .location(new Location(world, end.getX(), end.getY() + 1, end.getZ()))
                 .spawn()
                 .location(new Location(world, mid.getX(), mid.getY() + 1, mid.getZ()))
+                .spawn()
+                .location(new Location(world, topMid.getX(), topMid.getY() + 1, topMid.getZ()))
+                .spawn()
+                .location(new Location(world, bottomMid.getX(), bottomMid.getY() + 1, bottomMid.getZ()))
+                .spawn()
+                .location(new Location(world, closestBottompMid.getX(), closestBottompMid.getY() + 1, closestTopMid.getZ()))
+                .spawn()
+                .location(new Location(world, closestTopMid.getX(), closestTopMid.getY() + 1, closestTopMid.getZ()))
                 .spawn();
     }
 
     private Damageable getCloseEnemies(Entity entity, ArrayList<Entity> previousTargets) {
-        var targets = entity.getNearbyEntities(5, 5, 5)
+        var targets = entity.getNearbyEntities(8, 8, 8)
                 .stream()
                 .filter(e -> e instanceof Damageable)
                 .filter(e -> !previousTargets.contains(e))

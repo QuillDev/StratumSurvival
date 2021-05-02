@@ -9,6 +9,7 @@ import tech.quilldev.Events.AttributeEvents.HandleOnHitAttributeEvent;
 import tech.quilldev.Events.AttributeEvents.HandleOnDeathAttributeEvent;
 import tech.quilldev.Events.AttributeEvents.HandleOnUseAttributeEvent;
 import tech.quilldev.Events.ItemCreationEvents.GenerateItemOnMobDeath;
+import tech.quilldev.ItemAttributes.Attribute;
 import tech.quilldev.ItemAttributes.ItemAttributes;
 
 import java.util.Objects;
@@ -36,7 +37,6 @@ public final class stratumsurvival extends JavaPlugin {
         pluginManager.registerEvents(new HandleOnUseAttributeEvent(attributes.onUseAttributes), this);
         pluginManager.registerEvents(new HandleOnHitAttributeEvent(attributes.onHitAttributes), this);
         pluginManager.registerEvents(new HandleOnDeathAttributeEvent(attributes.onDeathAttributes), this);
-
         //Handle Rat stuff
         pluginManager.registerEvents(new RatsCantSitEvent(), this);
 
