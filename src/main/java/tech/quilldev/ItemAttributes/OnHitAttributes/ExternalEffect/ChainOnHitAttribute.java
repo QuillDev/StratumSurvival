@@ -47,18 +47,6 @@ public class ChainOnHitAttribute extends OnHitAttribute {
             previousTargets.add(target);
             entity = target;
         }
-
-        player.sendMessage(
-                Component.text("You chained")
-                        .append(Component.space())
-                        .append(Component.text(bounces + 1))
-                        .append(Component.space())
-                        .append(Component.text("for"))
-                        .append(Component.space())
-                        .append(Component.text(damage))
-                        .append(Component.space())
-                        .append(Component.text("!"))
-        );
     }
 
     private void createParticles(Location start, Location end, Particle particle, World world) {
@@ -83,7 +71,6 @@ public class ChainOnHitAttribute extends OnHitAttribute {
                 .map(e -> (Damageable) e)
                 .findFirst()
                 .orElse(null);
-        System.out.println(targets);
         return targets;
     }
 }
