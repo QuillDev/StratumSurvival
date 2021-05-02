@@ -1,6 +1,5 @@
 package tech.quilldev.ItemAttributes.OnHitAttributes.ExternalEffect;
 
-import com.destroystokyo.paper.ParticleBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.entity.Damageable;
@@ -8,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
+import tech.quilldev.Particles.ParticleFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,9 +38,7 @@ public class ChainOnHitAttribute extends OnHitAttribute {
         for (; bounces < maxBounces; bounces++) {
             final var target = getCloseEnemies(entity, previousTargets);
             if (target == null) break;
-
-            final var particle = Particle.FIREWORKS_SPARK;
-            createParticles(entity.getLocation(), target.getLocation(), particle, player.getWorld());
+            createParticles(entity.getLocation(), target.getLocation(), player.getWorld());
             target.damage(damage);
             previousTargets.add(target);
             entity = target;
@@ -50,35 +48,16 @@ public class ChainOnHitAttribute extends OnHitAttribute {
         player.getWorld().strikeLightning(theWorldIsEndingLocation);
     }
 
-    private void createParticles(Location start, Location end, Particle particle, World world) {
-        final var mid = end.toVector().midpoint(start.toVector()).toLocation(world);
-        final var topMid = mid.toVector().midpoint(end.toVector()).toLocation(world);
-        final var bottomMid = mid.toVector().midpoint(start.toVector()).toLocation(world);
-        final var closestTopMid = topMid.toVector().midpoint(end.toVector());
-        final var closestBottompMid = bottomMid.toVector().midpoint(start.toVector());
-
-        new ParticleBuilder(Particle.REDSTONE)
-                .color(Color.fromRGB(177, 156, 217))
-                .count(7)
-                .extra(0)
-                .location(new Location(world, start.getX(), start.getY() + 1, start.getZ()))
-                .spawn()
-                .location(new Location(world, end.getX(), end.getY() + 1, end.getZ()))
-                .spawn()
-                .location(new Location(world, mid.getX(), mid.getY() + 1, mid.getZ()))
-                .spawn()
-                .location(new Location(world, topMid.getX(), topMid.getY() + 1, topMid.getZ()))
-                .spawn()
-                .location(new Location(world, bottomMid.getX(), bottomMid.getY() + 1, bottomMid.getZ()))
-                .spawn()
-                .location(new Location(world, closestBottompMid.getX(), closestBottompMid.getY() + 1, closestTopMid.getZ()))
-                .spawn()
-                .location(new Location(world, closestTopMid.getX(), closestTopMid.getY() + 1, closestTopMid.getZ()))
-                .spawn();
+    private void createParticles(Location start, Location end, World world) {
+        final var factory = new ParticleFactory();
+        factory.constructParticleGeometry(
+                factory.createParticleLine(start, end, 5, 1),
+                Color.fromRGB(255, 255, 0),
+                world);
     }
 
     private Damageable getCloseEnemies(Entity entity, ArrayList<Entity> previousTargets) {
-        var targets = entity.getNearbyEntities(8, 8, 8)
+        var targets = entity.getNearbyEntities(6, 6, 6)
                 .stream()
                 .filter(e -> e instanceof Damageable)
                 .filter(e -> !previousTargets.contains(e))

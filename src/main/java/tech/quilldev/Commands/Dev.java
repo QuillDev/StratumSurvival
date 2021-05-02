@@ -38,7 +38,6 @@ public class Dev implements CommandExecutor {
         final var chainKey = attributes.getDamageAttribute("chaindamage").key;
 
 //        data.set(damageKey, PersistentDataType.FLOAT, 200f);
-        data.set(venomKey, PersistentDataType.FLOAT, 1f);
         data.set(chainKey, PersistentDataType.FLOAT, 1f);
 
         zeus.setItemMeta(meta);
