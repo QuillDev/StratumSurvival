@@ -4,6 +4,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
+import tech.quilldev.ItemAttributes.OnDeathAttributes.GoldOnDeathAttribute;
+import tech.quilldev.ItemAttributes.OnDeathAttributes.RandomBuffOnDeathAttribute;
 import tech.quilldev.ItemAttributes.OnHitAttributes.DamageModifier.BonusDamageOnHitAttribute;
 import tech.quilldev.ItemAttributes.OnHitAttributes.DamageModifier.CritChanceOnHitAttribute;
 import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
@@ -24,33 +26,36 @@ public class ItemAttributes {
     public ArrayList<OnDeathAttribute> onDeathAttributes = new ArrayList<>();
     public NamespacedKey levelKey;
 
+
+
     public ItemAttributes(Plugin plugin) {
         this.levelKey = new NamespacedKey(plugin, "rarity");
         this.initialize(plugin);
     }
 
     public void initialize(Plugin plugin) {
+
         onUseAttributes.addAll(
                 Arrays.asList(
                         new ZeusOnUseAttribute(
                                 new NamespacedKey(plugin, "zeus"),
-                                Component.text("Zeus").color(TextColor.color(0x15E1FF))
+                                Component.text("Zeus").color(TextColor.color(0xDABE41))
                         ),
                         new DemonicOnUseAttribute(
                                 new NamespacedKey(plugin, "demonic"),
-                                Component.text("Demonic").color(TextColor.color(0x7C251A))
+                                Component.text("Demonic").color(TextColor.color(0x2E0E84))
                         ),
                         new RegenOnUseAtrribute(
                                 new NamespacedKey(plugin, "regen"),
-                                Component.text("Regen").color(TextColor.color(0xFF5227))
+                                Component.text("Regen").color(TextColor.color(0xFF3824))
                         ),
                         new CloakOnUseAttribute(
                                 new NamespacedKey(plugin, "cloak"),
-                                Component.text("Cloak").color(TextColor.color(0xFF5227))
+                                Component.text("Cloak").color(TextColor.color(0x2E0E84))
                         ),
                         new FireballOnUseAttribute(
                                 new NamespacedKey(plugin, "fireball"),
-                                Component.text("Fireball").color(TextColor.color(0xFF5227))
+                                Component.text("Fireball").color(TextColor.color(0xFF3824))
                         )
                 )
         );
@@ -59,35 +64,35 @@ public class ItemAttributes {
                 Arrays.asList(
                         new BonusDamageOnHitAttribute(
                                 new NamespacedKey(plugin, "damage"),
-                                Component.text("Bonus Damage").color(TextColor.color(0xD45B3D))
+                                Component.text("Bonus Damage").color(TextColor.color(0xFF3824))
                         ),
                         new CritChanceOnHitAttribute(
                                 new NamespacedKey(plugin, "critrate"),
-                                Component.text("Crit Rate").color(TextColor.color(0xD45B3D))
+                                Component.text("Crit Rate").color(TextColor.color(0xDAAF00))
                         ),
                         new WitherOnHitAttribute(
                                 new NamespacedKey(plugin, "withering"),
-                                Component.text("Withering").color(TextColor.color(0x575757))
+                                Component.text("Withering").color(TextColor.color(0x2E0E84))
                         ),
                         new VenomOnHitAttribute(
                                 new NamespacedKey(plugin, "venomous"),
-                                Component.text("Venomous").color(TextColor.color(0xAC32))
+                                Component.text("Venomous").color(TextColor.color(0x8807))
                         ),
                         new AscendOnHitAttribute(
                                 new NamespacedKey(plugin, "ascend"),
-                                Component.text("Ascend Chance").color(TextColor.color(0x36C61))
+                                Component.text("Ascend Chance").color(TextColor.color(0xDAAF00))
                         ),
                         new WeaknessOnHitAttribute(
                                 new NamespacedKey(plugin, "weakness"),
-                                Component.text("Weakness Chance").color(TextColor.color(0x6C2C33))
+                                Component.text("Weakness Chance").color(TextColor.color(0x2E0E84))
                         ),
                         new SlowOnHitAttribute(
                                 new NamespacedKey(plugin, "slow"),
-                                Component.text("Slow Chance").color(TextColor.color(0xB0C3))
+                                Component.text("Slow Chance").color(TextColor.color(0x2E0E84))
                         ),
                         new GlowOnHitAttribute(
                                 new NamespacedKey(plugin, "glow"),
-                                Component.text("Glow Chance").color(TextColor.color(0xDABE41))
+                                Component.text("Glow Chance").color(TextColor.color(0xDAAF00))
                         ),
                         new ShadowRealmOnHitAttribute(
                                 new NamespacedKey(plugin, "shadow"),
@@ -95,15 +100,15 @@ public class ItemAttributes {
                         ),
                         new VampirismOnHitAttribute(
                                 new NamespacedKey(plugin, "vampirism"),
-                                Component.text("Vampiric").color(TextColor.color(0xFF4836))
+                                Component.text("Vampiric").color(TextColor.color(0xFF3824))
                         ),
                         new FireOnHitAttribute(
                                 new NamespacedKey(plugin, "firehit"),
-                                Component.text("Burn Chance").color(TextColor.color(0xFF1610))
+                                Component.text("Burn Chance").color(TextColor.color(0xFF3824))
                         ),
                         new ChainOnHitAttribute(
                                 new NamespacedKey(plugin, "chaindamage"),
-                                Component.text("Chain Damage").color(TextColor.color(0x832294))
+                                Component.text("Chain Damage").color(TextColor.color(0xFF3824))
                         )
 
                         //TODO: More...
@@ -114,7 +119,15 @@ public class ItemAttributes {
                 Arrays.asList(
                         new RatOnDeathAttribute(
                                 new NamespacedKey(plugin, "death_rat"),
-                                Component.text("Rat Lord").color(TextColor.color(0x5906))
+                                Component.text("Rat Lord").color(TextColor.color(0x2E0E84))
+                        ),
+                        new GoldOnDeathAttribute(
+                                new NamespacedKey(plugin, "death_gold"),
+                                Component.text("Midas Touch").color(TextColor.color(0xDAAF00))
+                        ),
+                        new RandomBuffOnDeathAttribute(
+                                new NamespacedKey(plugin, "random_effect"),
+                                Component.text("Gamblers Heart")
                         )
                 )
         );
