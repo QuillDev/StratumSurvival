@@ -1,26 +1,32 @@
 package tech.quilldev.ItemAttributes.OnHitAttributes.PotionBased;
 
+import com.destroystokyo.paper.ParticleBuilder;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Color;
+import org.bukkit.Effect;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
-public class PotionOnHitAttribute extends OnHitAttribute {
-
+public class PotionOnHitAttributeWithParticle extends OnHitAttribute {
     private final Component flavorText;
     private final PotionEffect effect;
+    private final Particle particle;
 
-    public PotionOnHitAttribute(NamespacedKey key,
+    public PotionOnHitAttributeWithParticle(NamespacedKey key,
                                 Component displayText,
                                 PotionEffect effect,
-                                Component flavorText
+                                Component flavorText,
+                                Particle particle
     ) {
         super(key, displayText);
         this.flavorText = flavorText;
         this.effect = effect;
+        this.particle = particle;
     }
 
     @Override
@@ -36,7 +42,15 @@ public class PotionOnHitAttribute extends OnHitAttribute {
         final var entity = ((LivingEntity) event.getEntity());
         entity.addPotionEffect(this.effect);
 
-
+        var builder = new ParticleBuilder(particle)
+                .location(entity.getLocation())
+                .count(60)
+                .spawn()
+                .count(15)
+                .particle(Particle.REDSTONE)
+                .color(Color.LIME)
+                .spawn()
+                ;
 
         //send a message that you withered the opponent
         player.sendMessage(
@@ -48,3 +62,4 @@ public class PotionOnHitAttribute extends OnHitAttribute {
         );
     }
 }
+
