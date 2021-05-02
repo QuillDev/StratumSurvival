@@ -9,6 +9,5 @@ public abstract class OnHitAttribute extends Attribute {
     public OnHitAttribute(NamespacedKey key, Component displayText) {
         super(key, displayText);
     }
-
     public abstract void execute(EntityDamageByEntityEvent event, float modifier);
 }

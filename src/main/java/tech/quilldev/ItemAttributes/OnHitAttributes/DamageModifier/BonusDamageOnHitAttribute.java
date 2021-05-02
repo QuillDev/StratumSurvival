@@ -12,7 +12,6 @@ public class BonusDamageOnHitAttribute extends OnHitAttribute {
 
     @Override
     public void execute(EntityDamageByEntityEvent event, float modifier) {
-        System.out.println("Tried to use damage modifier");
         event.setDamage(event.getDamage() * (1 + modifier));
     }
 }
