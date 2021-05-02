@@ -34,11 +34,8 @@ public class Dev implements CommandExecutor {
         final var data = meta.getPersistentDataContainer();
 
         final var damageKey = attributes.getDamageAttribute("damage").key;
-        final var chainKey = attributes.getDamageAttribute("chaindamage").key;
 
         data.set(damageKey, PersistentDataType.FLOAT, 200f);
-        data.set(chainKey, PersistentDataType.FLOAT, 1f);
-
 
         zeus.setItemMeta(meta);
         Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);
