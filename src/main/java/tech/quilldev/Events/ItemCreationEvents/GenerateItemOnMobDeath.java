@@ -19,7 +19,7 @@ public class GenerateItemOnMobDeath implements Listener {
         final var player = entity.getKiller();
         if (player == null) return;
 
-        final var item = itemGenerator.generateRandomItem(.05f, .38f);
+        final var item = itemGenerator.generateRandomWeapon(.05f, .38f);
         if (item == null) return;
         player.getWorld().dropItemNaturally(entity.getLocation(), item);
     }

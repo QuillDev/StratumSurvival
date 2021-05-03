@@ -14,11 +14,11 @@ import tech.quilldev.ItemAttributes.ItemAttributes;
 
 import java.util.Objects;
 
-public class Dev implements CommandExecutor {
+public class DevTool implements CommandExecutor {
 
     private final ItemAttributes attributes;
 
-    public Dev(ItemAttributes attributes) {
+    public DevTool(ItemAttributes attributes) {
         this.attributes = attributes;
     }
 
@@ -26,18 +26,15 @@ public class Dev implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) return false;
 
-        var zeus = new ItemStack(Material.NETHERITE_AXE);
+        var zeus = new ItemStack(Material.NETHERITE_PICKAXE);
         var meta = zeus.getItemMeta();
-        meta.displayName(Component.text("Quill's Battleaxe").color(TextColor.color(0xDCDA55)));
+        meta.displayName(Component.text("Quill's Hyper Pickaxe").color(TextColor.color(0xDCDA55)));
 
         //Get the data container
         final var data = meta.getPersistentDataContainer();
-        final var chainKey = attributes.getDamageAttribute("chaindamage").key;
-        final var ratKey = attributes.getDeathAttribute("death_rat").key;
+        final var veinKey = attributes.getToolAttribute("tool_veinmine").key;
 
-//        data.set(damageKey, PersistentDataType.FLOAT, 200f);
-        data.set(chainKey, PersistentDataType.FLOAT, 1f);
-        data.set(ratKey, PersistentDataType.STRING, "TRUE");
+        data.set(veinKey, PersistentDataType.STRING, "TRUE");
 
         zeus.setItemMeta(meta);
         Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);

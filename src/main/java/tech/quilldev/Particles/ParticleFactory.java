@@ -4,30 +4,36 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class ParticleFactory {
     private static StratumMath3d smath3d = new StratumMath3d();
 
     /**
      * Create a line of particles and return all locations on that line
+     *
      * @param locA       line start location
      * @param locB       line end location
      * @param resolution determines how many points will be in the line
-     * @param yOffset    how far to offset the Y axis of the line
+     * @param offset     how far to offset the Y axis of the line
      * @return all locations that comprise the given line attributes
      */
-    public ArrayList<Location> createParticleLine(Location locA, Location locB, int resolution, int yOffset) {
+    public ArrayList<Location> createParticleLine(Location locA, Location locB, int resolution, Vector offset) {
         final var linePoints = smath3d.constructLine(locA.toVector(), locB.toVector(), resolution);
-        linePoints.forEach(System.out::println);
-        return linePoints
-                .stream()
-                .map(point -> new Location(locA.getWorld(), point.getX(), point.getY() + yOffset, point.getZ()))
-                .collect(Collectors.toCollection(ArrayList::new));
+        return smath3d.convertVectorsToLocations(locA.getWorld(), linePoints, offset);
+    }
+
+    /**
+     * @param boundingBox box to generate geometry from
+     * @param world       to generate geometry in
+     * @return the geometry of the shape
+     */
+    public ArrayList<Location> createHitboxGeometry(BoundingBox boundingBox, World world) {
+        final var points = smath3d.constructBoundingBox(boundingBox, 5);
+        return smath3d.convertVectorsToLocations(world, points, new Vector());
     }
 
     /**
@@ -49,7 +55,8 @@ public class ParticleFactory {
      * @param noise    amount of noise on each particle
      * @param world    to spawn in
      */
-    public void constructParticleGeometry(ArrayList<Location> points, Particle particle, Vector noise, World world) {
+    public void constructParticleGeometry(ArrayList<Location> points, Particle particle, Vector noise, World
+            world) {
         points.forEach(p -> world.spawnParticle(particle, p, 1, noise.getX(), noise.getY(), noise.getZ()));
     }
 
@@ -62,7 +69,7 @@ public class ParticleFactory {
      */
     public void constructParticleGeometry(ArrayList<Location> points, Color color, World world) {
         Particle.DustOptions dust = new Particle.DustOptions(color, 1);
-        points.forEach(p -> world.spawnParticle(Particle.REDSTONE, p, 1, .3, .3, .3, dust));
+        points.forEach(p -> world.spawnParticle(Particle.REDSTONE, p, 1, 0, 0, 0, dust));
     }
 
     /**

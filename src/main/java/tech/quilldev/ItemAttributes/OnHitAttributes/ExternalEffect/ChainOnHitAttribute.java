@@ -6,6 +6,7 @@ import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.util.Vector;
 import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 import tech.quilldev.Particles.ParticleFactory;
 
@@ -17,8 +18,7 @@ public class ChainOnHitAttribute extends OnHitAttribute {
         super(key, displayText);
     }
 
-    private final int maxBounces = 20;
-
+    private static final int maxBounces = 5;
 
     @Override
     public void execute(EntityDamageByEntityEvent event, float modifier) {
@@ -51,19 +51,18 @@ public class ChainOnHitAttribute extends OnHitAttribute {
     private void createParticles(Location start, Location end, World world) {
         final var factory = new ParticleFactory();
         factory.constructParticleGeometry(
-                factory.createParticleLine(start, end, 5, 1),
+                factory.createParticleLine(start, end, 5, new Vector(0, 1, 0)),
                 Color.fromRGB(255, 255, 0),
                 world);
     }
 
     private Damageable getCloseEnemies(Entity entity, ArrayList<Entity> previousTargets) {
-        var targets = entity.getNearbyEntities(6, 6, 6)
+        return entity.getNearbyEntities(6, 6, 6)
                 .stream()
                 .filter(e -> e instanceof Damageable)
                 .filter(e -> !previousTargets.contains(e))
                 .map(e -> (Damageable) e)
                 .findFirst()
                 .orElse(null);
-        return targets;
     }
 }

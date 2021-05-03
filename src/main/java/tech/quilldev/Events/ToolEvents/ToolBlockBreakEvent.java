@@ -1,28 +1,24 @@
-package tech.quilldev.Events.AttributeEvents;
+package tech.quilldev.Events.ToolEvents;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
-import tech.quilldev.ItemAttributes.OnUseAttributes.OnUseAttribute;
+import org.bukkit.event.block.BlockBreakEvent;
+import tech.quilldev.ItemAttributes.ToolAttributes.ToolAttribute;
 
+import javax.tools.Tool;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class HandleOnUseAttributeEvent implements Listener {
+public class ToolBlockBreakEvent implements Listener {
 
-    private final ArrayList<OnUseAttribute> attributes;
+    private final ArrayList<ToolAttribute> attributes;
 
-    public HandleOnUseAttributeEvent(ArrayList<OnUseAttribute> onUseAttributes) {
-        this.attributes = onUseAttributes;
+    public ToolBlockBreakEvent(ArrayList<ToolAttribute> attributes) {
+        this.attributes = attributes;
     }
 
     @EventHandler
-    public void onPlayerUseItem(PlayerInteractEvent event) {
-        //Make sure it only triggers on right clicks
-        final var action = event.getAction();
-        if (!(action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK))) return;
-
-        //Get the player and what they're holding
+    public void toolBlockBreakEvent(BlockBreakEvent event) {
         final var player = event.getPlayer();
         final var holding = player.getInventory().getItemInMainHand();
         if (!holding.hasItemMeta()) return; //if the item has no meta, ignore it
@@ -38,7 +34,7 @@ public class HandleOnUseAttributeEvent implements Listener {
                     .filter(attr -> attr.key.getKey().equals(namespacedKey.getKey()))
                     .findFirst();
             if (match.isEmpty()) return;
-            match.get().execute(player); //Execute matches
+            match.get().execute(event); //Execute matches
         });
     }
 }

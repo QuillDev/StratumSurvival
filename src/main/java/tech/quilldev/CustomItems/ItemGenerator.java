@@ -6,43 +6,40 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import tech.quilldev.ItemAttributes.Attribute;
 import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
 import tech.quilldev.ItemAttributes.ItemAttributes;
 import tech.quilldev.ItemAttributes.OnUseAttributes.OnUseAttribute;
+import tech.quilldev.ItemAttributes.ToolAttributes.ToolAttribute;
 import tech.quilldev.Names.Names;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class ItemGenerator {
 
     //static elements
     private final static Random rand = new Random();
 
-    //Valid items that can be generated
-    private final static ArrayList<Material> mats = new ArrayList<>(Arrays.asList(
-            Material.DIAMOND_SWORD,
-            Material.IRON_SWORD,
-            Material.IRON_AXE,
-            Material.WOODEN_AXE,
-            Material.WOODEN_SWORD
-    ));
-
     private final ArrayList<OnHitAttribute> onHitAttributes;
     private final ArrayList<OnUseAttribute> onUseAttributes;
+    private final ArrayList<ToolAttribute> toolAttributes;
     private final NamespacedKey levelKey;
 
     public ItemGenerator(ItemAttributes attributes) {
         this.onHitAttributes = attributes.onHitAttributes;
         this.onUseAttributes = attributes.onUseAttributes;
+        this.toolAttributes = attributes.toolAttributes;
         this.levelKey = attributes.levelKey;
     }
 
-    public ItemStack generateRandomItem(float oddsPerEnemy, float oddsPerRarity) {
-        if (oddsPerEnemy < rand.nextFloat()) return null;
+    public ItemStack generateItem(ArrayList<Attribute> attributes, int level) {
         //Create the item
+        if (attributes.isEmpty()) return null;
+        final var mats = attributes.get(0).materials;
         final var material = mats.get(rand.nextInt(mats.size()));
         final var item = new ItemStack(material); //create a new item stack
         final var meta = item.getItemMeta();
@@ -59,11 +56,10 @@ public class ItemGenerator {
 
         //Start applying attributes
         final var data = meta.getPersistentDataContainer(); //Get the data container
-        final var level = rollRarityLevel(6, oddsPerRarity);
         data.set(levelKey, PersistentDataType.INTEGER, level);
 
         //Clone the array to one we can safely modify
-        var mods = new ArrayList<>(onHitAttributes);
+        var mods = new ArrayList<>(attributes);
 
         var rarityLore = Component.text("Rarity Level: " + level);
 
@@ -72,17 +68,31 @@ public class ItemGenerator {
 
         //Start generating modifiers
         for (var i = 0; i < level; i++) {
+            if (mods.isEmpty()) break;
             //Set the key for the given attribute
             final var attr = mods.get(rand.nextInt(mods.size()));
             final var key = attr.key;
             final var multiplier = rand.nextFloat();
-            data.set(key, PersistentDataType.FLOAT, multiplier);
+
+            //Ugly way to handle but fuggit, we're getting dirty
+            if (PersistentDataType.STRING.equals(attr.dataType)) {
+                data.set(key, PersistentDataType.STRING, "TRUE");
+            } else if (PersistentDataType.FLOAT.equals(attr.dataType)) {
+                data.set(key, PersistentDataType.FLOAT, multiplier);
+            } else {
+                System.out.println("Unexpected Data Type!");
+            }
 
             //remove the attribute we found from the mod list so we don't get dupes
             mods.remove(attr);
 
             //Create the lore for the given item
-            var modifierLore = attr.displayText.append(Component.text(": +" + Math.round((multiplier * 100)) + "%"));
+            var modifierLore = attr.displayText
+                    .append(
+                            (PersistentDataType.FLOAT.equals(attr.dataType) ?
+                                    Component.text(":" + Math.round((multiplier * 100)) + "%")
+                                    : Component.text("")
+                            ));
             loreList.add(modifierLore);
         }
 
@@ -92,6 +102,27 @@ public class ItemGenerator {
         item.setItemMeta(meta);
 
         return item;
+    }
+
+    public ItemStack generateRandomItem(ArrayList<Attribute> attributes, float oddsPerEnemy, float oddsPerRarity) {
+        if (oddsPerEnemy < rand.nextFloat()) return null;
+        return generateItem(attributes, rollRarityLevel(6, oddsPerRarity));
+    }
+
+
+    public ItemStack generateRandomWeapon(float oddsPerEnemy, float oddsPerRarity) {
+        return generateRandomItem(generifyAttributeList(onHitAttributes), oddsPerEnemy, oddsPerRarity);
+    }
+
+    public ItemStack generateRandomTool(float oddsPerEnemy, float oddsPerRarity) {
+        return generateRandomItem(generifyAttributeList(toolAttributes), oddsPerEnemy, oddsPerRarity);
+    }
+
+    private ArrayList<Attribute> generifyAttributeList(ArrayList<?> objects) {
+        return objects
+                .stream()
+                .map(obj -> (Attribute) obj)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     private int rollRarityLevel(int maxLevel, float chance) {

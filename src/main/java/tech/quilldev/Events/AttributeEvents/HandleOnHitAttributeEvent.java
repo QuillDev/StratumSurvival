@@ -38,7 +38,7 @@ public class HandleOnHitAttributeEvent implements Listener {
                     .stream()
                     .filter(attr -> attr.key.getKey().equals(namespacedKey.getKey()))
                     .findFirst();
-            if (!match.isPresent()) return;
+            if (match.isEmpty()) return;
 
             //Get the keys double value
             final var modifier = data.get(match.get().key, PersistentDataType.FLOAT);

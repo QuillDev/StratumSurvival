@@ -16,7 +16,12 @@ import tech.quilldev.ItemAttributes.OnHitAttributes.PotionBased.*;
 import tech.quilldev.ItemAttributes.OnDeathAttributes.OnDeathAttribute;
 import tech.quilldev.ItemAttributes.OnDeathAttributes.RatOnDeathAttribute;
 import tech.quilldev.ItemAttributes.OnUseAttributes.*;
+import tech.quilldev.ItemAttributes.ToolAttributes.ToolAttribute;
+import tech.quilldev.ItemAttributes.ToolAttributes.VeinMineAttributes.LumberjackToolAttribute;
+import tech.quilldev.ItemAttributes.ToolAttributes.VeinMineAttributes.VeinMineAttribute;
+import tech.quilldev.ItemAttributes.ToolAttributes.VeinMineAttributes.VeinMineToolAttribute;
 
+import javax.xml.stream.events.Namespace;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,8 +29,8 @@ public class ItemAttributes {
     public ArrayList<OnUseAttribute> onUseAttributes = new ArrayList<>();
     public ArrayList<OnHitAttribute> onHitAttributes = new ArrayList<>();
     public ArrayList<OnDeathAttribute> onDeathAttributes = new ArrayList<>();
+    public ArrayList<ToolAttribute> toolAttributes = new ArrayList<>();
     public NamespacedKey levelKey;
-
 
 
     public ItemAttributes(Plugin plugin) {
@@ -131,6 +136,18 @@ public class ItemAttributes {
                         )
                 )
         );
+
+        toolAttributes.addAll(
+                Arrays.asList(
+                        new LumberjackToolAttribute(
+                                new NamespacedKey(plugin, "tool_lumberjack"),
+                                Component.text("Lumberjack")),
+                        new VeinMineToolAttribute(
+                                new NamespacedKey(plugin, "tool_veinmine"),
+                                Component.text("Vein Miner")
+                        )
+                )
+        );
     }
 
     public OnUseAttribute getUseAttribute(String query) {
@@ -152,6 +169,14 @@ public class ItemAttributes {
 
     public OnDeathAttribute getDeathAttribute(String query) {
         final var match = this.onDeathAttributes
+                .stream()
+                .filter(attr -> attr.key.value().equalsIgnoreCase(query))
+                .findFirst();
+        return match.orElse(null);
+    }
+
+    public ToolAttribute getToolAttribute(String query) {
+        final var match = this.toolAttributes
                 .stream()
                 .filter(attr -> attr.key.value().equalsIgnoreCase(query))
                 .findFirst();

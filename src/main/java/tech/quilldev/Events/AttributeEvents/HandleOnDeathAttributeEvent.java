@@ -34,7 +34,7 @@ public class HandleOnDeathAttributeEvent implements Listener {
                     .stream()
                     .filter(attr -> attr.key.getKey().equals(namespacedKey.getKey()))
                     .findFirst();
-            if (!match.isPresent()) return;
+            if (match.isEmpty()) return;
             match.get().execute(event); //Execute matches
         });
 
