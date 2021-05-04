@@ -3,10 +3,8 @@ package tech.quilldev.Events.ToolEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import tech.quilldev.ItemAttributes.ToolAttributes.ToolAttribute;
+import tech.quilldev.CustomItemsV1.ItemAttributes.ToolAttributes.ToolAttribute;
 
-import javax.tools.Tool;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ToolBlockBreakEvent implements Listener {

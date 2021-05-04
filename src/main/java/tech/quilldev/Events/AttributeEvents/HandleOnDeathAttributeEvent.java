@@ -3,7 +3,7 @@ package tech.quilldev.Events.AttributeEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import tech.quilldev.ItemAttributes.OnDeathAttributes.OnDeathAttribute;
+import tech.quilldev.CustomItemsV1.ItemAttributes.OnDeathAttributes.OnDeathAttribute;
 
 import java.util.ArrayList;
 

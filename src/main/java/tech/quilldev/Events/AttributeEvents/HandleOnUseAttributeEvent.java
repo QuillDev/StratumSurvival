@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import tech.quilldev.ItemAttributes.OnUseAttributes.OnUseAttribute;
+import tech.quilldev.CustomItemsV1.ItemAttributes.OnUseAttributes.OnUseAttribute;
 
 import java.util.ArrayList;
 

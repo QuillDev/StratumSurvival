@@ -3,7 +3,7 @@ package tech.quilldev.Events.ItemCreationEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import tech.quilldev.CustomItems.ItemGenerator;
+import tech.quilldev.CustomItemsV1.ItemGenerator;
 
 public class GenerateItemOnMobDeath implements Listener {
 

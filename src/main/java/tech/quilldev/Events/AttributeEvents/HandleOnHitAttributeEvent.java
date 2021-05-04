@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.ItemAttributes.OnHitAttributes.OnHitAttribute;
+import tech.quilldev.CustomItemsV1.ItemAttributes.OnHitAttributes.OnHitAttribute;
 
 import java.util.ArrayList;
 

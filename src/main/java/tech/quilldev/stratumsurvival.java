@@ -1,19 +1,13 @@
 package tech.quilldev;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
-import tech.quilldev.Commands.ItemGeneration.CreateRandomItemCommand;
 import tech.quilldev.Commands.Dev;
-import tech.quilldev.Commands.DevTool;
-import tech.quilldev.Commands.ItemGeneration.CreateRandomItemCommandTabs;
-import tech.quilldev.Commands.SpawnCustomMob;
-import tech.quilldev.CustomItems.ItemGenerator;
-import tech.quilldev.Events.AnimalEvents.RatsCantSitEvent;
-import tech.quilldev.Events.AttributeEvents.HandleOnHitAttributeEvent;
-import tech.quilldev.Events.AttributeEvents.HandleOnDeathAttributeEvent;
-import tech.quilldev.Events.AttributeEvents.HandleOnUseAttributeEvent;
-import tech.quilldev.Events.ItemCreationEvents.GenerateItemOnMobDeath;
-import tech.quilldev.Events.ToolEvents.ToolBlockBreakEvent;
-import tech.quilldev.ItemAttributes.ItemAttributes;
+import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponChainAttribute;
+import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponFlatDamageAttribute;
+import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponWhisperAttribute;
+import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
+import tech.quilldev.CustomItemsv2.ItemAttributes;
 
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -25,35 +19,37 @@ public final class stratumsurvival extends JavaPlugin {
     @Override
     public void onEnable() {
 
-
-        //Create unique generators etc.
-        final var attributes = new ItemAttributes(this);
-        final var itemGenerator = new ItemGenerator(attributes);
+        //Regiser the attribute with the Item Attribute manager
+        ItemAttributes.register(new BluntWeaponWhisperAttribute(new NamespacedKey(this, "blunt_weapon_whisper")));
+        ItemAttributes.register(new BluntWeaponFlatDamageAttribute(new NamespacedKey(this, "blunt_weapon_flat_damage")));
+        ItemAttributes.register(new BluntWeaponChainAttribute(new NamespacedKey(this, "blunt_weapon_chain_damage")));
 
         //Register Plugins
         var pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new HandleAttributeEvents(), this);
 
-        //Handle item generation
-        pluginManager.registerEvents(new GenerateItemOnMobDeath(itemGenerator), this);
+        Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev());
 
-        //Handle item usage
-        pluginManager.registerEvents(new HandleOnUseAttributeEvent(attributes.onUseAttributes), this);
-        pluginManager.registerEvents(new HandleOnHitAttributeEvent(attributes.onHitAttributes), this);
-        pluginManager.registerEvents(new HandleOnDeathAttributeEvent(attributes.onDeathAttributes), this);
-        pluginManager.registerEvents(new ToolBlockBreakEvent(attributes.toolAttributes), this);
-        //Handle Rat stuff
-        pluginManager.registerEvents(new RatsCantSitEvent(), this);
-
-        // Plugin startup logic
-        Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev(attributes));
-        Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(attributes));
-        Objects.requireNonNull(this.getCommand("playinggod")).setExecutor(new SpawnCustomMob());
-
-        final var createRandomItemCommand = this.getCommand("createrandomitem");
-        if (createRandomItemCommand != null) {
-            createRandomItemCommand.setExecutor(new CreateRandomItemCommand(itemGenerator));
-            createRandomItemCommand.setTabCompleter(new CreateRandomItemCommandTabs());
-        }
+//        TODO: REWRITE LEGACY ITEM SYSTEM
+//        pluginManager.registerEvents(new GenerateItemOnMobDeath(itemGenerator), this);
+//
+//        //Handle item usage
+//        pluginManager.registerEvents(new HandleOnUseAttributeEvent(attributes.onUseAttributes), this);
+//        pluginManager.registerEvents(new HandleOnHitAttributeEvent(attributes.onHitAttributes), this);
+//        pluginManager.registerEvents(new HandleOnDeathAttributeEvent(attributes.onDeathAttributes), this);
+//        pluginManager.registerEvents(new ToolBlockBreakEvent(attributes.toolAttributes), this);
+//        //Handle Rat stuff
+//        pluginManager.registerEvents(new RatsCantSitEvent(), this);
+//
+//        // Plugin startup logic
+//        Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(attributes));
+//        Objects.requireNonNull(this.getCommand("playinggod")).setExecutor(new SpawnCustomMob());
+//
+//        final var createRandomItemCommand = this.getCommand("createrandomitem");
+//        if (createRandomItemCommand != null) {
+//            createRandomItemCommand.setExecutor(new CreateRandomItemCommand(itemGenerator));
+//            createRandomItemCommand.setTabCompleter(new CreateRandomItemCommandTabs());
+//        }
     }
 
     @Override

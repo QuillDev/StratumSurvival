@@ -6,8 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import tech.quilldev.CustomItems.ItemAttributeType;
-import tech.quilldev.CustomItems.ItemGenerator;
+import tech.quilldev.CustomItemsV1.ItemAttributeType;
+import tech.quilldev.CustomItemsV1.ItemGenerator;
 
 public class CreateRandomItemCommand implements CommandExecutor {
 

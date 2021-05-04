@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
-import tech.quilldev.ItemAttributes.ItemAttributes;
+import tech.quilldev.CustomItemsV1.ItemAttributes.ItemAttributes;
 
 import java.util.Objects;
 

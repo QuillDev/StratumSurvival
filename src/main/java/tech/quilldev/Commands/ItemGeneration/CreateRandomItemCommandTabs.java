@@ -5,8 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import tech.quilldev.CustomItems.ItemAttributeType;
-import tech.quilldev.ItemAttributes.ItemAttributes;
+import tech.quilldev.CustomItemsV1.ItemAttributeType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -10,17 +10,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
-import tech.quilldev.ItemAttributes.ItemAttributes;
-
-import java.util.Objects;
+import tech.quilldev.CustomItemsv2.ItemAttributes;
+import tech.quilldev.Serialization.StratumSerialization;
 
 public class Dev implements CommandExecutor {
-
-    private final ItemAttributes attributes;
-
-    public Dev(ItemAttributes attributes) {
-        this.attributes = attributes;
-    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -32,15 +25,14 @@ public class Dev implements CommandExecutor {
 
         //Get the data container
         final var data = meta.getPersistentDataContainer();
-        final var chainKey = attributes.getDamageAttribute("chaindamage").key;
-        final var ratKey = attributes.getDeathAttribute("death_rat").key;
-
-//        data.set(damageKey, PersistentDataType.FLOAT, 200f);
-        data.set(chainKey, PersistentDataType.FLOAT, 1f);
-        data.set(ratKey, PersistentDataType.STRING, "TRUE");
-
+        final var attr = ItemAttributes.getAttribute("blunt_weapon_whisper");
+        final var bdamage = ItemAttributes.getAttribute("blunt_weapon_flat_damage");
+        final var cdamage = ItemAttributes.getAttribute("blunt_weapon_chain_damage");
+        data.set(attr.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(12124f));
+        data.set(bdamage.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(11f));
+        data.set(cdamage.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(1f));
         zeus.setItemMeta(meta);
-        Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(zeus);
+        ((Player) sender).getInventory().addItem(zeus);
         return true;
     }
 }
