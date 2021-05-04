@@ -11,7 +11,7 @@ public class BluntWeaponChainAttribute extends BluntWeaponAttribute {
     private static ChainDamageEffect chainDamageEffect = new ChainDamageEffect();
 
     public BluntWeaponChainAttribute(NamespacedKey key) {
-        super(key, new Component.text("test"));
+        super(key, Component.text("test"));
     }
 
     @Override
