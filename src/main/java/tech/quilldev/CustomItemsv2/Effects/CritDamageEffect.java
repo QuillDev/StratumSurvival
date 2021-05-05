@@ -23,12 +23,5 @@ public class CritDamageEffect extends Effect {
 
         //TODO: replace with particles for CritDamageEffect
 
-        player.sendMessage(
-                Component.text("You")
-                        .append(Component.space())
-                        .append(Component.text("CRIT"))
-                        .append(Component.space())
-                        .append(Component.text("your opponent."))
-        );
     }
 }
