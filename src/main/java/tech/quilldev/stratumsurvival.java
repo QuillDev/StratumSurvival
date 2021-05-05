@@ -4,10 +4,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
-import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponChainAttribute;
-import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponCritAttribute;
-import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponFlameAttribute;
-import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponFlatDamageAttribute;
+import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Effects.CritDamageEffect;
 import tech.quilldev.CustomItemsv2.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
@@ -31,6 +28,7 @@ public final class stratumsurvival extends JavaPlugin {
         ItemAttributes.register(new CloakUseWeaponAttribute(new NamespacedKey(this,"cloak")));
         ItemAttributes.register(new BluntWeaponCritAttribute(new NamespacedKey( this, "blunt_weapon_crit")));
         ItemAttributes.register(new BluntWeaponFlameAttribute(new NamespacedKey(this, "blunt_weapon_flame")));
+        ItemAttributes.register(new BluntWeaponPercentDamageAttribute(new NamespacedKey(this, "blunt_weapon_percent_damage")));
 
         //Register Plugins
         var pluginManager = getServer().getPluginManager();

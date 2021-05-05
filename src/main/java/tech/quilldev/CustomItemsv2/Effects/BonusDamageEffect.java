@@ -1,5 +1,6 @@
 package tech.quilldev.CustomItemsv2.Effects;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
@@ -8,6 +9,7 @@ public class BonusDamageEffect extends Effect {
         if (!(sourceEvent instanceof EntityDamageByEntityEvent)) return;
         final var event = (EntityDamageByEntityEvent) sourceEvent;
         event.setDamage(event.getDamage() + modifier);
+
     }
 }
 
