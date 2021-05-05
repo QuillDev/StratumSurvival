@@ -29,6 +29,24 @@ public class GenerateItem implements CommandExecutor {
             item = generator.generateItem(category);
         }
 
+        if (args.length == 2) {
+            final var category = ItemAttributes.getWeaponCategory(args[0]);
+            int itemCount;
+            try {
+                itemCount = Integer.parseInt(args[1]);
+            } catch (NumberFormatException exception)
+            {
+                return false;
+            }
+
+            itemCount = (itemCount == 0 ? 1 : itemCount );
+            for (int i = 0; i < itemCount || i == 35; i++ ) {
+                item = generator.generateItem(category);
+                player.getInventory().addItem(item);
+            }
+            item = null;
+        }
+
         if (item == null) return false; //if the item is null, return
         player.getInventory().addItem(item); //add the item to the inventory
         return false;
