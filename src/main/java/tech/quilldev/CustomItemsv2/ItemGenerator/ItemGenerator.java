@@ -4,10 +4,9 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.w3c.dom.Attr;
-import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
+import tech.quilldev.CustomItemsv2.UseAttributes.UseAttribute;
 import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
@@ -27,8 +26,11 @@ public class ItemGenerator {
         final var attributes = ItemAttributes.getAttributesOfType(type);
         final var materials = getEligibleMaterials(attributes);
         final var mat = materials.get(rand.nextInt(materials.size()));
-        final var level = getRandomLevel(.38f, 6);
-
+        final var level = getRandomLevel(.38f, 6); //TODO: Change back to .38f
+        //If the item is level 4+ it can have use attributes
+        if (level >= 4) {
+            attributes.addAll(ItemAttributes.getAttributesOfType(UseAttribute.class));
+        }
         //Create the item
         final var item = new ItemStack(mat);
         final var meta = item.getItemMeta();

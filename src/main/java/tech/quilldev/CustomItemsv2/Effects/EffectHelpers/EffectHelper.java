@@ -5,12 +5,14 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class EffectHelper {
 
     public LivingEntity getLivingEntity(Event event) {
+
         // Handle entity damaged by entity event
         if (event instanceof EntityDamageByEntityEvent) {
             return (LivingEntity) ((EntityDamageByEntityEvent) event).getDamager();
@@ -18,10 +20,9 @@ public class EffectHelper {
         if (event instanceof EntityDeathEvent) {
             return ((EntityDeathEvent) event).getEntity().getKiller();
         }
-        if (event instanceof EntityInteractEvent) {
-            return (LivingEntity) ((EntityInteractEvent) event).getEntity();
+        if (event instanceof PlayerInteractEvent) {
+            return ((PlayerInteractEvent) event).getPlayer();
         }
-
         return null;
     }
 

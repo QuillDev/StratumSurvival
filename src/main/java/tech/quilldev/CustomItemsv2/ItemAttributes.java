@@ -2,6 +2,7 @@ package tech.quilldev.CustomItemsv2;
 
 import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
+import tech.quilldev.CustomItemsv2.UseAttributes.UseAttribute;
 
 import java.util.ArrayList;
 import java.util.HashMap;

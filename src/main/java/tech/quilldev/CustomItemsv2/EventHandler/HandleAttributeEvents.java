@@ -24,8 +24,8 @@ public class HandleAttributeEvents implements Listener {
     @EventHandler
     public void onUseEvent(PlayerInteractEvent event) {
         final var action = event.getAction();
-        if (!(action.equals(Action.RIGHT_CLICK_BLOCK) || action.equals(Action.RIGHT_CLICK_AIR)))
-            handleItemAttributes(event.getPlayer(), event);
+        if (!(action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK))) return;
+        handleItemAttributes(event.getPlayer(), event);
     }
 
     @EventHandler

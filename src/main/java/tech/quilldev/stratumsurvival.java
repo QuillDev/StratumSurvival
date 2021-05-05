@@ -2,19 +2,16 @@ package tech.quilldev;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
-import tech.quilldev.Commands.Dev;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponChainAttribute;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponFlatDamageAttribute;
-import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.CloakUseWeaponAttribute;
+import tech.quilldev.CustomItemsv2.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
 import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
-import tech.quilldev.Names.Names;
 
-import java.util.Objects;
 import java.util.logging.Logger;
 
 public final class stratumsurvival extends JavaPlugin {
