@@ -1,6 +1,7 @@
 package tech.quilldev;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Item;
 import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
@@ -29,6 +30,7 @@ public final class stratumsurvival extends JavaPlugin {
         ItemAttributes.register(new BluntWeaponCritAttribute(new NamespacedKey( this, "blunt_weapon_crit")));
         ItemAttributes.register(new BluntWeaponFlameAttribute(new NamespacedKey(this, "blunt_weapon_flame")));
         ItemAttributes.register(new BluntWeaponPercentDamageAttribute(new NamespacedKey(this, "blunt_weapon_percent_damage")));
+        ItemAttributes.register(new BluntWeaponLifeStealAttribute(new NamespacedKey(this, "blunt_weapon_lifesteal")));
 
         //Register Plugins
         var pluginManager = getServer().getPluginManager();
