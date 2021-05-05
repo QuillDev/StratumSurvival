@@ -6,6 +6,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.util.Vector;
 import tech.quilldev.Particles.ParticleFactory;
@@ -15,17 +16,18 @@ import java.util.Collections;
 
 public class ChainDamageEffect extends Effect {
 
-    public void execute(EntityDamageByEntityEvent event, float modifier, int maxBounces) {
-        if (!(event.getDamager() instanceof Player)) return;
-        //Get the player and the target entity
-        final var player = ((Player) event.getDamager()).getPlayer();
-        if (player == null) return;
+    public void execute(Event event, int maxBounces, float damageMulti) {
+        //Get all of the data we need for to execute the event
+        final var player = helper.getLivingEntity(event);
+        final var baseDamage = helper.getEventDamage(event);
+        var entity = helper.getTargetLivingEntity(event); //Get the first entity we struck
+        if (player == null || baseDamage == null || entity == null) return;
 
-        //Keep track of previous targets
+        //Keep track of previous targets & get damage for teh event
+        final var damage = Math.max(baseDamage * damageMulti, 2);
         final var previousTargets = new ArrayList<Entity>(Collections.singletonList(player));
-        var entity = event.getEntity(); //Get the first entity we struck
 
-        final var damage = Math.max(event.getDamage() * .25, 2);
+        //Calculate bounces
         var bounces = 0;
         for (; bounces < maxBounces; bounces++) {
             final var target = getCloseEnemies(entity, previousTargets);

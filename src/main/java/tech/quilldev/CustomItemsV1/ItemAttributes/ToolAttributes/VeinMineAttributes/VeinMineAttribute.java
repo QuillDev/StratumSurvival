@@ -38,8 +38,6 @@ public abstract class VeinMineAttribute extends ToolAttribute {
             if (curBlocks.isEmpty()) break;
             totalBlocks.addAll(lastBlocks);
             lastBlocks = curBlocks;
-            System.out.println(curBlocks.size());
-            System.out.println(i);
         }
         return totalBlocks;
     }

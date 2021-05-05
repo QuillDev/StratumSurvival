@@ -7,12 +7,5 @@ commands:
   dev:
     usage: /<command>
     permission: stratumsurvival.developer.dev
-  devtool:
+  generateitem:
     usage: /<command>
-    permission: stratumsurvival.developer.dev
-  playinggod:
-    usage: /<command>
-    permission: stratumsurvival.developer.playinggod
-  createrandomitem:
-    usage: /<command>
-    permission: stratumsurvival.developer.dev

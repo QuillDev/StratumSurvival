@@ -1,22 +1,30 @@
 package tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import tech.quilldev.CustomItemsv2.Effects.ChainDamageEffect;
 
 public class BluntWeaponChainAttribute extends BluntWeaponAttribute {
 
-    private static ChainDamageEffect chainDamageEffect = new ChainDamageEffect();
+    private static final ChainDamageEffect chainDamageEffect = new ChainDamageEffect();
 
     public BluntWeaponChainAttribute(NamespacedKey key) {
-        super(key, Component.text("test"));
+        super(key,
+                Component.text("Chain Damage").color(TextColor.color(0xe04bfa)),
+                .17f
+        );
+    }
+
+    @Override
+    public String dataFormat(float value) {
+        return ": " + Math.round(value * 100) + "%";
     }
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-        if (!(sourceEvent instanceof EntityDamageByEntityEvent)) return;
-        chainDamageEffect.execute((EntityDamageByEntityEvent) sourceEvent, modifier, 5);
+        if (modifier < rand.nextFloat()) return;
+        chainDamageEffect.execute(sourceEvent, 5, modifier / 2f);
     }
 }

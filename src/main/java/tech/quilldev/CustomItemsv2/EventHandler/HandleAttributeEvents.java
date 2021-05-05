@@ -5,6 +5,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -22,7 +23,9 @@ public class HandleAttributeEvents implements Listener {
 
     @EventHandler
     public void onUseEvent(PlayerInteractEvent event) {
-        handleItemAttributes(event.getPlayer(), event);
+        final var action = event.getAction();
+        if (!(action.equals(Action.RIGHT_CLICK_BLOCK) || action.equals(Action.RIGHT_CLICK_AIR)))
+            handleItemAttributes(event.getPlayer(), event);
     }
 
     @EventHandler
@@ -46,7 +49,6 @@ public class HandleAttributeEvents implements Listener {
             final var attr = ItemAttributes.getAttribute(key.getKey());
             final var modBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
             final var modifier = StratumSerialization.deserializeFloat(modBytes);
-            System.out.println(event.getEventName());
             attr.execute(event, modifier);
         });
     }
