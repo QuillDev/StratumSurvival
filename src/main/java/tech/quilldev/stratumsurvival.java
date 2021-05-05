@@ -7,10 +7,12 @@ import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponChainAttribute;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.BluntWeaponFlatDamageAttribute;
+import tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
 import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
+import tech.quilldev.Names.Names;
 
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -26,6 +28,7 @@ public final class stratumsurvival extends JavaPlugin {
         ItemAttributes.register(new BluntWeaponFlatDamageAttribute(new NamespacedKey(this, "blunt_weapon_flat_damage")));
         ItemAttributes.register(new BluntWeaponChainAttribute(new NamespacedKey(this, "blunt_weapon_chain_damage")));
         ItemAttributes.register(new BowWeaponAttributeWhisper(new NamespacedKey(this, "bow_weapon_whisper")));
+        ItemAttributes.register(new CloakUseWeaponAttribute(new NamespacedKey(this,"cloak")));
 
         //Register Plugins
         var pluginManager = getServer().getPluginManager();
