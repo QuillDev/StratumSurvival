@@ -16,7 +16,9 @@ public class BluntWeaponPercentDamageAttribute extends BluntWeaponAttribute {
     public BluntWeaponPercentDamageAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Damage Multiplier").color(TextColor.color(0xf75134)),
-                .2f
+                .2f,
+                .1f,
+                1f
         );
     }
 

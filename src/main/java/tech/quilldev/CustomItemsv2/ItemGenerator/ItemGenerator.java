@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.Attribute;
+import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.Serialization.StratumSerialization;
 
@@ -25,7 +26,7 @@ public class ItemGenerator {
     public ItemStack generateItem(Class<?> type) {
         final var level = getRandomLevel(.38f, 6); //TODO: Change back to .38f
         final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(type), level);
-        attributes.forEach(attr -> System.out.println(attr.getMinLevel() + " " + attr.getClass().getSimpleName()));
+        final var useAttributes = getUseAttributes(attributes);
         final var materials = getEligibleMaterials(attributes);
         final var mat = materials.get(rand.nextInt(materials.size()));
 
@@ -34,7 +35,7 @@ public class ItemGenerator {
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
         final var lore = new ArrayList<Component>();
-        lore.add(Component.text("Level: " + level)); //TODO: Map levels to cool text components
+        lore.add(ItemRarity.getRarity(level).getName()); //TODO: Map levels to cool text components
 
         //Add item attributes to the item
         final var maxIndex = Math.min(attributes.size(), level);
@@ -44,7 +45,13 @@ public class ItemGenerator {
             data.set(curAttr.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
             lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
             attributes.remove(curAttr); //remove the attribute we used
+
+            //If the attribute just added was a use attribute, make it so we can't get any more
+            if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
+                attributes.removeAll(useAttributes);
+            }
         }
+        data.set(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;
@@ -57,10 +64,19 @@ public class ItemGenerator {
     }
 
     private float generateDataValue(Attribute attribute, int level) {
-        final var maxValue = attribute.scaleValue * level;
-        final var minValue = Math.max(attribute.scaleValue * .1f, .1f);
-        final var value = (rand.nextFloat() * (maxValue - minValue)) + minValue;
-        return Math.round(value * 10) / 10.f;
+        final var tempMax = attribute.scaleValue * level;
+        final var min = attribute.minRoll;
+        final var max = attribute.maxRoll;
+        final var value = (float) Math.min(Math.max((Math.random() * tempMax - min) + min, min), max);
+        System.out.println(tempMax + " " + min + " " + max + " " + value);
+        return value;
+    }
+
+    public ArrayList<Attribute> getUseAttributes(ArrayList<Attribute> attributes) {
+        return attributes
+                .stream()
+                .filter(attr -> UseAttribute.class.isAssignableFrom(attr.getClass()))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -78,7 +94,7 @@ public class ItemGenerator {
      * @return the item category that was randomly chosen
      */
     public Class<?> getRandomCategory() {
-        final var categories = ItemAttributes.itemCategories;
+        final var categories = ItemAttributes.attributeCategories;
         final var keys = new ArrayList<>(categories.keySet());
         return categories.get(keys.get(rand.nextInt(keys.size())));
     }

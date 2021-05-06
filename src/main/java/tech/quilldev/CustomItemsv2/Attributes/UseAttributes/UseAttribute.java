@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public abstract class UseAttribute extends Attribute {
     public UseAttribute(NamespacedKey key, Component lore, float scaleValue) {
-        super(key, lore, new ArrayList<>(), scaleValue, new ArrayList<>());
+        super(key, lore, new ArrayList<>(), scaleValue, 0, 0, new ArrayList<>());
     }
 
     @Override

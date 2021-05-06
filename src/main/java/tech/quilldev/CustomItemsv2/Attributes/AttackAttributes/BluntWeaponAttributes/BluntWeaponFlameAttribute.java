@@ -13,7 +13,9 @@ public class BluntWeaponFlameAttribute extends BluntWeaponAttribute {
     public BluntWeaponFlameAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Burn Chance").color(TextColor.color(0xFF3824)),
-                .2f
+                .2f,
+                .1f,
+                1f
         );
     }
 

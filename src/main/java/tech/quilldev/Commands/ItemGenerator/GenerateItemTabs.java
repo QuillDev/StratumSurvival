@@ -14,7 +14,7 @@ public class GenerateItemTabs implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if (args.length == 0) {
-            return new ArrayList<>(ItemAttributes.itemCategories.keySet());
+            return new ArrayList<>(ItemAttributes.attributeCategories.keySet());
         }
         return null;
     }

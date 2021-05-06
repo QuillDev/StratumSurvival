@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class AttackAttribute extends Attribute {
-    public AttackAttribute(NamespacedKey key, Component lore, ArrayList<Material> materials, float scaleValue) {
+    public AttackAttribute(NamespacedKey key, Component lore, ArrayList<Material> materials, float scaleValue, float minRoll, float maxRoll) {
         super(
                 key,
                 lore,
                 materials,
                 scaleValue,
+                minRoll,
+                maxRoll,
                 new ArrayList<>(Collections.singletonList(
                         UseAttribute.class
                 )));

@@ -8,7 +8,7 @@ import tech.quilldev.CustomItemsv2.WeaponLists;
 import java.util.ArrayList;
 
 public abstract class BowWeaponAttribute extends Attribute {
-    public BowWeaponAttribute(NamespacedKey key, Component lore, float scaleValue) {
-        super(key, lore, WeaponLists.BOW_WEAPONS, scaleValue, new ArrayList<>());
+    public BowWeaponAttribute(NamespacedKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
+        super(key, lore, WeaponLists.BOW_WEAPONS, scaleValue, minRoll, maxRoll, new ArrayList<>());
     }
 }

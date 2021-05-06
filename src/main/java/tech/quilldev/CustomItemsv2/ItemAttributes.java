@@ -1,5 +1,7 @@
 package tech.quilldev.CustomItemsv2;
 
+import org.bukkit.NamespacedKey;
+import org.bukkit.plugin.Plugin;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
 
@@ -9,12 +11,21 @@ import java.util.HashMap;
 
 public class ItemAttributes {
 
+    //Public keys
+    public static NamespacedKey levelKey = null;
+
+    //list of attributes
     private static final ArrayList<Attribute> attributes = new ArrayList<>();
 
-    public static final HashMap<String, Class<?>> itemCategories = new HashMap<>() {{
+    //Attribute categories
+    public static final HashMap<String, Class<?>> attributeCategories = new HashMap<>() {{
         put("WEAPON_BLUNT", BluntWeaponAttribute.class);
         put("WEAPON_BOW", BowWeaponAttribute.class);
     }};
+
+    public static void init(Plugin plugin) {
+        levelKey = new NamespacedKey(plugin, "item_level");
+    }
 
     /**
      * Register all of the given attributes to the
@@ -73,12 +84,12 @@ public class ItemAttributes {
      * @return the weapon category for the given string
      */
     public static Class<?> getWeaponCategory(String query) {
-        final var key = itemCategories
+        final var key = attributeCategories
                 .keySet()
                 .stream()
                 .filter(weaponKey -> weaponKey.equalsIgnoreCase(query))
                 .findFirst()
                 .orElse("");
-        return itemCategories.get(key);
+        return attributeCategories.get(key);
     }
 }

@@ -13,7 +13,9 @@ public class BluntWeaponChainAttribute extends BluntWeaponAttribute {
     public BluntWeaponChainAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Chain Damage").color(TextColor.color(0xe04bfa)),
-                .17f
+                .17f,
+                .1f,
+                1f
         );
     }
 

@@ -14,7 +14,9 @@ public class BluntWeaponLifeStealAttribute extends BluntWeaponAttribute {
     public BluntWeaponLifeStealAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Life Steal").color(TextColor.color(0xf75134)),
-                .08f
+                .08f,
+                .05f,
+                .4f
         );
     }
 

@@ -13,13 +13,15 @@ public class BluntWeaponFlatDamageAttribute extends BluntWeaponAttribute {
     public BluntWeaponFlatDamageAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Bonus Damage").color(TextColor.color(0xf75134)),
-                1f
+                1f,
+                .5f,
+                5f
         );
     }
 
     @Override
     public String dataFormat(float data) {
-        return ": +" + data;
+        return ": +" + Math.round(data * 10) / 10.f;
     }
 
     @Override

@@ -47,6 +47,7 @@ public class HandleAttributeEvents implements Listener {
         // Run the event over all keys on this item and see if any match
         data.getKeys().forEach(key -> {
             final var attr = ItemAttributes.getAttribute(key.getKey());
+            if (attr == null) return;
             final var modBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
             final var modifier = StratumSerialization.deserializeFloat(modBytes);
             attr.execute(event, modifier);

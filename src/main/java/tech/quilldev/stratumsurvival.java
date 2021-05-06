@@ -2,16 +2,20 @@ package tech.quilldev;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
+import tech.quilldev.Commands.Dev;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
+import tech.quilldev.Crafting.CraftTest;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
 import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.ShadowDodgeUseWeaponAttribute;
+import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public final class stratumsurvival extends JavaPlugin {
@@ -20,6 +24,9 @@ public final class stratumsurvival extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        //Init the item attributes manager
+        ItemAttributes.init(this);
 
         //Register the attribute with the Item Attribute manager
         ItemAttributes.registerAll(
@@ -41,6 +48,7 @@ public final class stratumsurvival extends JavaPlugin {
         var pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new HandleAttributeEvents(), this);
         pluginManager.registerEvents(new GenerateItemOnMobDeath(), this);
+        pluginManager.registerEvents(new InjectChatItemEvent(), this);
 
         //Setup any commands
         final var generateItemCommand = this.getCommand("generateitem");
@@ -48,6 +56,8 @@ public final class stratumsurvival extends JavaPlugin {
             generateItemCommand.setExecutor(new GenerateItem());
             generateItemCommand.setTabCompleter(new GenerateItemTabs());
         }
+
+        Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev());
     }
 
     @Override

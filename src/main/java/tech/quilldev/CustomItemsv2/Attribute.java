@@ -17,6 +17,8 @@ public abstract class Attribute {
     public ArrayList<Material> materials;
     public Component lore;
     public ArrayList<Class<?>> childAttributes;
+    public float minRoll;
+    public float maxRoll;
 
     // Stats for determining item characteristics when generating the item
     public float scaleValue;
@@ -25,6 +27,8 @@ public abstract class Attribute {
                      Component lore,
                      ArrayList<Material> materials,
                      float scaleValue,
+                     float minRoll,
+                     float maxRoll,
                      ArrayList<Class<?>> childAttributes
     ) {
         this.key = key;
@@ -32,10 +36,13 @@ public abstract class Attribute {
         this.lore = lore;
         this.scaleValue = scaleValue;
         this.childAttributes = childAttributes;
+        this.minRoll = minRoll;
+        this.maxRoll = maxRoll;
     }
 
     /**
      * Get the minimum level the attribute can appear at
+     *
      * @return get the minimum level for this enchantment
      */
     public int getMinLevel() {

@@ -14,7 +14,9 @@ public class BluntWeaponCritAttribute extends BluntWeaponAttribute {
     public BluntWeaponCritAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Critical Strike").color(TextColor.color(0xDAAF00)),
-                .2f
+                .2f,
+                .05f,
+                1f
         );
     }
 
