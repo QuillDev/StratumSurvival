@@ -6,7 +6,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import tech.quilldev.CustomItemsv2.Effects.FlameEffect;
 
-public class BluntWeaponFlameAttribute extends BluntWeaponAttribute{
+public class BluntWeaponFlameAttribute extends BluntWeaponAttribute {
 
     private final static FlameEffect flameEffect = new FlameEffect();
 

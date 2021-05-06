@@ -10,6 +10,7 @@ import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class ItemGenerator {
 
@@ -22,11 +23,12 @@ public class ItemGenerator {
      * @return an item created from that type
      */
     public ItemStack generateItem(Class<?> type) {
-        final var attributes = ItemAttributes.getAttributesOfType(type);
+        final var level = getRandomLevel(.38f, 6); //TODO: Change back to .38f
+        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(type), level);
+        attributes.forEach(attr -> System.out.println(attr.getMinLevel() + " " + attr.getClass().getSimpleName()));
         final var materials = getEligibleMaterials(attributes);
         final var mat = materials.get(rand.nextInt(materials.size()));
-        final var level = getRandomLevel(.38f, 6); //TODO: Change back to .38f
-        
+
         //Create the item
         final var item = new ItemStack(mat);
         final var meta = item.getItemMeta();
@@ -46,6 +48,12 @@ public class ItemGenerator {
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;
+    }
+
+    public ArrayList<Attribute> getEligibleAttributes(ArrayList<Attribute> attributes, int level) {
+        return attributes.stream()
+                .filter(attr -> level >= attr.getMinLevel())
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     private float generateDataValue(Attribute attribute, int level) {

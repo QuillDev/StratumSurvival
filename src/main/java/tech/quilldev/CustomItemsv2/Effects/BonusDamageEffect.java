@@ -1,6 +1,5 @@
 package tech.quilldev.CustomItemsv2.Effects;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 

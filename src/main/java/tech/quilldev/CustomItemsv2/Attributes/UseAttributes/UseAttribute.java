@@ -10,4 +10,9 @@ public abstract class UseAttribute extends Attribute {
     public UseAttribute(NamespacedKey key, Component lore, float scaleValue) {
         super(key, lore, new ArrayList<>(), scaleValue, new ArrayList<>());
     }
+
+    @Override
+    public int getMinLevel() {
+        return 4;
+    }
 }

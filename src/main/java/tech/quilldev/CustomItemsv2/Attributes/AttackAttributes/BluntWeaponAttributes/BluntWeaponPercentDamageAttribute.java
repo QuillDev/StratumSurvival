@@ -7,7 +7,9 @@ import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import tech.quilldev.CustomItemsv2.Effects.BonusDamageEffect;
 
-public class BluntWeaponPercentDamageAttribute extends BluntWeaponAttribute{
+import javax.swing.text.html.parser.Entity;
+
+public class BluntWeaponPercentDamageAttribute extends BluntWeaponAttribute {
 
     private static final BonusDamageEffect bonusDamageEffect = new BonusDamageEffect();
 
@@ -25,9 +27,9 @@ public class BluntWeaponPercentDamageAttribute extends BluntWeaponAttribute{
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-
+        if (!(sourceEvent instanceof EntityDamageByEntityEvent)) return;
         final var event = (EntityDamageByEntityEvent) sourceEvent;
 
-        bonusDamageEffect.execute(sourceEvent, ((float)event.getDamage() * modifier));
+        bonusDamageEffect.execute(sourceEvent, ((float) event.getDamage() * modifier));
     }
 }

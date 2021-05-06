@@ -33,7 +33,7 @@ public class ItemAttributes {
      */
     public static ArrayList<Attribute> getAttributesOfType(Class<?> type) {
         final var attributeList = new ArrayList<Attribute>();
-
+        final var uniqueList = new ArrayList<Attribute>();
         //Get all attributes and their children that are eligible to be added from this class
         attributes.forEach((attr) -> {
             if (!(type.isAssignableFrom(attr.getClass()))) return;
@@ -43,7 +43,13 @@ public class ItemAttributes {
             });
         });
 
-        return attributeList;
+        //Get only unique attributes
+        attributeList.forEach(attr -> {
+            if (uniqueList.contains(attr)) return;
+            uniqueList.add(attr);
+        });
+
+        return uniqueList;
     }
 
     /**

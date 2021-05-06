@@ -9,6 +9,7 @@ import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttrib
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
 import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
+import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.ShadowDodgeUseWeaponAttribute;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 
 import java.util.logging.Logger;
@@ -22,14 +23,18 @@ public final class stratumsurvival extends JavaPlugin {
 
         //Register the attribute with the Item Attribute manager
         ItemAttributes.registerAll(
+                //Blunt Weapon Attributes
                 new BluntWeaponFlatDamageAttribute(new NamespacedKey(this, "blunt_weapon_flat_damage")),
                 new BluntWeaponChainAttribute(new NamespacedKey(this, "blunt_weapon_chain_damage")),
-                new BowWeaponAttributeWhisper(new NamespacedKey(this, "bow_weapon_whisper")),
-                new CloakUseWeaponAttribute(new NamespacedKey(this, "use_cloak")),
                 new BluntWeaponCritAttribute(new NamespacedKey(this, "blunt_weapon_critical")),
                 new BluntWeaponFlameAttribute(new NamespacedKey(this, "blunt_weapon_flame")),
                 new BluntWeaponPercentDamageAttribute(new NamespacedKey(this, "blunt_weapon_percent_damage")),
-                new BluntWeaponLifeStealAttribute(new NamespacedKey(this, "blunt_weapon_lifesteal"))
+                new BluntWeaponLifeStealAttribute(new NamespacedKey(this, "blunt_weapon_lifesteal")),
+                //Bow Weapon Attributes
+                new BowWeaponAttributeWhisper(new NamespacedKey(this, "bow_weapon_whisper")),
+                //Use Attributes
+                new CloakUseWeaponAttribute(new NamespacedKey(this, "use_cloak")),
+                new ShadowDodgeUseWeaponAttribute(new NamespacedKey(this, "use_shadow_dodge"))
         );
 
         //Register Plugins

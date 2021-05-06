@@ -9,7 +9,7 @@ import tech.quilldev.CustomItemsv2.Effects.Effect;
 public class FlameEffect extends Effect {
 
     public void execute(Event sourceEvent) {
-
+        if (!(sourceEvent instanceof EntityDamageByEntityEvent)) return;
         final var event = (EntityDamageByEntityEvent) sourceEvent;
 
         event.getEntity().setFireTicks(60);
