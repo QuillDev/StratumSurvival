@@ -18,9 +18,11 @@ public enum ItemRarity {
 
     private final int level;
     private final Component name;
+    public TextColor color;
 
     ItemRarity(int level, String name, TextColor color) {
         this.level = level;
+        this.color = color;
         this.name = Component.text(name).style(Style.style(TextDecoration.BOLD)).color(color);//.style(Style.style(TextDecoration.BOLD));
     }
 
@@ -30,6 +32,10 @@ public enum ItemRarity {
 
     public Component getName() {
         return name;
+    }
+
+    public TextColor getColor() {
+        return color;
     }
 
     public static ItemRarity getRarity(int level) {

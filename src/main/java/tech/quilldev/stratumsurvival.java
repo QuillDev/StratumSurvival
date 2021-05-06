@@ -5,7 +5,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.Dev;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
-import tech.quilldev.Crafting.CraftTest;
+import tech.quilldev.Crafting.CraftItem;
+import tech.quilldev.Crafting.CraftingManager;
+import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
@@ -28,6 +30,9 @@ public final class stratumsurvival extends JavaPlugin {
         //Init the item attributes manager
         ItemAttributes.init(this);
 
+        //Setup Crafting Items
+        CraftItem.init();
+
         //Register the attribute with the Item Attribute manager
         ItemAttributes.registerAll(
                 //Blunt Weapon Attributes
@@ -49,6 +54,7 @@ public final class stratumsurvival extends JavaPlugin {
         pluginManager.registerEvents(new HandleAttributeEvents(), this);
         pluginManager.registerEvents(new GenerateItemOnMobDeath(), this);
         pluginManager.registerEvents(new InjectChatItemEvent(), this);
+        pluginManager.registerEvents(new GrindCustomWeaponEvent(), this);
 
         //Setup any commands
         final var generateItemCommand = this.getCommand("generateitem");
