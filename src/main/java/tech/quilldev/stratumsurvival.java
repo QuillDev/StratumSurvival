@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.Dev;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
-import tech.quilldev.Crafting.CraftTest;
+import tech.quilldev.Crafting.CustomCrafting;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
@@ -49,6 +49,10 @@ public final class stratumsurvival extends JavaPlugin {
         pluginManager.registerEvents(new HandleAttributeEvents(), this);
         pluginManager.registerEvents(new GenerateItemOnMobDeath(), this);
         pluginManager.registerEvents(new InjectChatItemEvent(), this);
+
+        //Register Custom Crafting
+        final CustomCrafting customCrafting = new CustomCrafting();
+        customCrafting.registerCrafting(this);
 
         //Setup any commands
         final var generateItemCommand = this.getCommand("generateitem");
