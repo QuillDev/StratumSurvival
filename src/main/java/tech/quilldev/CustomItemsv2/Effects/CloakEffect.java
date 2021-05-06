@@ -8,9 +8,8 @@ import org.bukkit.potion.PotionEffectType;
 
 public class CloakEffect extends Effect {
 
-    public void execute(Event event) {
+    public void execute(Event event, int duration) {
         if (!(event instanceof PlayerInteractEvent)) return;
-        final var duration = 45;
         final var player = helper.getLivingEntity(event);
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, duration, 2));
         player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, duration, 1));

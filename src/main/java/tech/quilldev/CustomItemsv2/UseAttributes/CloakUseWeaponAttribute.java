@@ -19,6 +19,6 @@ public class CloakUseWeaponAttribute extends UseAttribute {
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-        cloakEffect.execute(sourceEvent);
+        cloakEffect.execute(sourceEvent, 45);
     }
 }
