@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItemsv2.AttackAttributes.BluntWeaponAttributes;
+package tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -7,7 +7,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import tech.quilldev.CustomItemsv2.Effects.HealPlayerEffect;
 
-public class BluntWeaponLifeStealAttribute extends BluntWeaponAttribute{
+public class BluntWeaponLifeStealAttribute extends BluntWeaponAttribute {
 
     public static final HealPlayerEffect healPlayerEffect = new HealPlayerEffect();
 
@@ -25,8 +25,8 @@ public class BluntWeaponLifeStealAttribute extends BluntWeaponAttribute{
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
+        if (!(sourceEvent instanceof EntityDamageByEntityEvent)) return;
         final var event = (EntityDamageByEntityEvent) sourceEvent;
-
-        healPlayerEffect.execute(sourceEvent, ((float)event.getDamage() * modifier));
+        healPlayerEffect.execute(sourceEvent, ((float) event.getDamage() * modifier));
     }
 }

@@ -1,12 +1,7 @@
 package tech.quilldev.CustomItemsv2.Effects;
 
-import net.kyori.adventure.text.Component;
-import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-
-import java.util.Random;
 
 public class CritDamageEffect extends Effect {
     public void execute(Event sourceEvent, float modifier) {
@@ -16,6 +11,7 @@ public class CritDamageEffect extends Effect {
         var entity = helper.getTargetLivingEntity(sourceEvent);
         if (player == null || baseDamage == null || entity == null) return;
 
+        if (!(sourceEvent instanceof EntityDamageByEntityEvent)) return;
         final var event = (EntityDamageByEntityEvent) sourceEvent;
 
         event.setDamage(event.getDamage() * 2);

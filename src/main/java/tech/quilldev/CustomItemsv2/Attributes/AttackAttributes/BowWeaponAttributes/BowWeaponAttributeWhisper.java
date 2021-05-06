@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItemsv2.AttackAttributes.BowWeaponAttributes;
+package tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;

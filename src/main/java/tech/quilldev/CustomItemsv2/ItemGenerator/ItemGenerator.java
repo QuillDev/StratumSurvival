@@ -6,7 +6,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
-import tech.quilldev.CustomItemsv2.UseAttributes.UseAttribute;
 import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
@@ -27,10 +26,7 @@ public class ItemGenerator {
         final var materials = getEligibleMaterials(attributes);
         final var mat = materials.get(rand.nextInt(materials.size()));
         final var level = getRandomLevel(.38f, 6); //TODO: Change back to .38f
-        //If the item is level 4+ it can have use attributes
-        if (level >= 4) {
-            attributes.addAll(ItemAttributes.getAttributesOfType(UseAttribute.class));
-        }
+        
         //Create the item
         final var item = new ItemStack(mat);
         final var meta = item.getItemMeta();
@@ -74,7 +70,7 @@ public class ItemGenerator {
      * @return the item category that was randomly chosen
      */
     public Class<?> getRandomCategory() {
-        final var categories = ItemAttributes.weaponCategories;
+        final var categories = ItemAttributes.itemCategories;
         final var keys = new ArrayList<>(categories.keySet());
         return categories.get(keys.get(rand.nextInt(keys.size())));
     }

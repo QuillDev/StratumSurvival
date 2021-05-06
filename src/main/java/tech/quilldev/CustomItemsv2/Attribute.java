@@ -11,16 +11,35 @@ import java.util.Random;
 public abstract class Attribute {
 
     protected static final Random rand = new Random();
+
+    // Item Data Attributes
     public NamespacedKey key;
     public ArrayList<Material> materials;
     public Component lore;
+    public ArrayList<Class<?>> childAttributes;
+
+    // Stats for determining item characteristics when generating the item
     public float scaleValue;
 
-    public Attribute(NamespacedKey key, Component lore, ArrayList<Material> materials, float scaleValue) {
+    public Attribute(NamespacedKey key,
+                     Component lore,
+                     ArrayList<Material> materials,
+                     float scaleValue,
+                     ArrayList<Class<?>> childAttributes
+    ) {
         this.key = key;
         this.materials = materials;
         this.lore = lore;
         this.scaleValue = scaleValue;
+        this.childAttributes = childAttributes;
+    }
+
+    /**
+     * Get the minimum level the attribute can appear at
+     * @return get the minimum level for this enchantment
+     */
+    public int getMinLevel() {
+        return 0;
     }
 
     /**

@@ -13,6 +13,9 @@ import java.util.List;
 public class GenerateItemTabs implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        return new ArrayList<>(ItemAttributes.weaponCategories.keySet());
+        if (args.length == 0) {
+            return new ArrayList<>(ItemAttributes.itemCategories.keySet());
+        }
+        return null;
     }
 }
