@@ -5,7 +5,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemHelper;
 
 public class RerollItem implements CommandExecutor {
@@ -19,7 +18,7 @@ public class RerollItem implements CommandExecutor {
         if (player == null) return true;
 
         final var heldItem = player.getInventory().getItemInMainHand();
-        itemHelper.rerollItem(heldItem);
+        itemHelper.reRollItem(heldItem);
         return false;
     }
 }

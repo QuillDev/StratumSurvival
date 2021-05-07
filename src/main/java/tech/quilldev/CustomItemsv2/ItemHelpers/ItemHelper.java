@@ -14,7 +14,12 @@ import java.util.Collections;
 
 public class ItemHelper {
 
-    public void rerollItem(ItemStack item) {
+    /**
+     * Re-roll the stats on the given item
+     *
+     * @param item to re-roll stats on
+     */
+    public void reRollItem(ItemStack item) {
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
         data.getKeys().forEach((key) -> {
@@ -23,8 +28,9 @@ public class ItemHelper {
             //Get the level of the item
             final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
             var level = (int) StratumSerialization.deserializeFloat(levelBytes);
-
             if (attribute == null) return;
+
+            //Get the data and set each key with new values
             final var dataValue = generateDataValue(attribute, level);
             data.set(attribute.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
             setLoreFromItemKeys(meta);
@@ -32,6 +38,13 @@ public class ItemHelper {
         });
     }
 
+    /**
+     * Generate a valid data value using the level of the item and the attribute
+     *
+     * @param attribute to generate values for
+     * @param level     of the attribute
+     * @return a valid value for that item
+     */
     public float generateDataValue(Attribute attribute, int level) {
         final var tempMax = attribute.scaleValue * level;
         final var min = attribute.minRoll;
@@ -39,6 +52,11 @@ public class ItemHelper {
         return (float) Math.min(Math.max((Math.random() * tempMax - min) + min, min), max);
     }
 
+    /**
+     * Set lore of the item from the keys on that item
+     *
+     * @param meta of the item to set the lore of
+     */
     public void setLoreFromItemKeys(ItemMeta meta) {
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
@@ -57,9 +75,17 @@ public class ItemHelper {
         meta.lore(lore);
     }
 
+    /**
+     * Decrypt the given item and re-enable the attributes on it
+     *
+     * @param itemStack to decrypt
+     */
     public void decryptItem(ItemStack itemStack) {
+        //Get the meta from the item
         final var meta = itemStack.getItemMeta();
         setLoreFromItemKeys(meta);
+
+        //Set the data on the item from the data keys
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
         data.remove(ItemAttributes.obfuscatedKey);
@@ -71,6 +97,11 @@ public class ItemHelper {
         itemStack.setItemMeta(meta);
     }
 
+    /**
+     * Encrypt the given item hiding the name/lore and disabling all item keys
+     *
+     * @param itemStack to encrypt
+     */
     public void encryptItem(ItemStack itemStack) {
         final var meta = itemStack.getItemMeta();
         meta.lore(Collections.singletonList(Component.text("????????").decorate(TextDecoration.OBFUSCATED)));
