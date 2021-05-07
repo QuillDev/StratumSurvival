@@ -43,7 +43,7 @@ public class HandleAttributeEvents implements Listener {
         if (meta == null) return;
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
-
+        if (data.has(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
         // Run the event over all keys on this item and see if any match
         data.getKeys().forEach(key -> {
             final var attr = ItemAttributes.getAttribute(key.getKey());
