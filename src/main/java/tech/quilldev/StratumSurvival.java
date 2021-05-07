@@ -1,9 +1,5 @@
 package tech.quilldev;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Commands.Dev;
@@ -46,7 +42,7 @@ public final class StratumSurvival extends JavaPlugin {
         //Init the item attributes manager
         StratumSerialization.init();
         ItemAttributes.init(this);
-        StratumMaterial.init();
+        StratumMaterial.init(this);
 
         //Register the attribute with the Item Attribute manager
         ItemAttributes.registerAll(

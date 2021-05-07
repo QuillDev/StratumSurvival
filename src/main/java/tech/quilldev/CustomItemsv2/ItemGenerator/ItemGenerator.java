@@ -63,6 +63,7 @@ public class ItemGenerator {
         }
         data.set(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
         data.set(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponent(name));
+        data.set(ItemAttributes.customItemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;
@@ -114,8 +115,8 @@ public class ItemGenerator {
 
     public void encryptItem(ItemStack itemStack) {
         final var meta = itemStack.getItemMeta();
-        meta.lore(Collections.singletonList(Component.text("???").decorate(TextDecoration.OBFUSCATED)));
-        meta.displayName(Component.text("???").decorate(TextDecoration.OBFUSCATED));
+        meta.lore(Collections.singletonList(Component.text("????????").decorate(TextDecoration.OBFUSCATED)));
+        meta.displayName(Component.text("?????????").decorate(TextDecoration.OBFUSCATED));
         final var data = meta.getPersistentDataContainer();
         data.set(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         itemStack.setItemMeta(meta);

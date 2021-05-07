@@ -29,15 +29,16 @@ public class InteractCryptologistEvent implements Listener {
         if (!(entity instanceof Villager)) return;
         final var player = event.getPlayer();
         final var heldItem = player.getInventory().getItemInMainHand();
-        final var meta = heldItem.getItemMeta();
-        if (meta == null) return;
 
         //Make sure that the target we're interacting with is a cryptologist
         final var entityData = entity.getPersistentDataContainer();
         if (!(entityData.has(cryptoKey, PersistentDataType.BYTE_ARRAY))) return;
         event.setCancelled(true); //cancel interactions if this is a special villages
 
+
         //Make sure that the item is obfuscated
+        final var meta = heldItem.getItemMeta();
+        if (meta == null) return;
         final var itemData = meta.getPersistentDataContainer();
         if (!itemData.has(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
         generator.decryptItem(heldItem);

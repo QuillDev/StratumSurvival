@@ -17,6 +17,7 @@ public class ItemAttributes {
     public static NamespacedKey levelKey = null;
     public static NamespacedKey obfuscatedKey = null;
     public static NamespacedKey nameKey = null;
+    public static NamespacedKey customItemKey = null;
 
     //list of attributes
     private static final ArrayList<Attribute> attributes = new ArrayList<>();
@@ -31,6 +32,7 @@ public class ItemAttributes {
         levelKey = new NamespacedKey(plugin, "item_level");
         obfuscatedKey = new NamespacedKey(plugin, "item_obfuscated");
         nameKey = new NamespacedKey(plugin, "item_name");
+        customItemKey = new NamespacedKey(plugin, "item_is_custom");
     }
 
     /**
