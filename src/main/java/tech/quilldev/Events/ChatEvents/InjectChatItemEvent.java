@@ -74,6 +74,7 @@ public class InjectChatItemEvent implements Listener {
 
     /**
      * Get the text content from the given component
+     *
      * @param component to get text from
      * @return the raw text from that component
      */
@@ -81,9 +82,12 @@ public class InjectChatItemEvent implements Listener {
         return ((TextComponent) component).content();
     }
 
+    //TODO: Abstract this
+
     /**
      * Get the item display for the given string (parse it up)
-     * @param query the query to check an item for
+     *
+     * @param query  the query to check an item for
      * @param player to check the item of
      * @return the component containing data for that item
      */

@@ -1,15 +1,21 @@
 package tech.quilldev.CustomItemsv2.ItemGenerator;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
+import tech.quilldev.Names.Names;
 import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -24,7 +30,7 @@ public class ItemGenerator {
      * @return an item created from that type
      */
     public ItemStack generateItem(Class<?> type) {
-        final var level = getRandomLevel(.38f, 6); //TODO: Change back to .38f
+        final var level = getRandomLevel(.38f, 6);
         final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(type), level);
         final var useAttributes = getUseAttributes(attributes);
         final var materials = getEligibleMaterials(attributes);
@@ -35,7 +41,11 @@ public class ItemGenerator {
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
         final var lore = new ArrayList<Component>();
-        lore.add(ItemRarity.getRarity(level).getName()); //TODO: Map levels to cool text components
+        final var rarity = ItemRarity.getRarity(level);
+        // Set the name of the item
+        final var name = generateRandomItemName(item).color(rarity.getColor());
+        meta.displayName(name);
+        lore.add(rarity.getName());
 
         //Add item attributes to the item
         final var maxIndex = Math.min(attributes.size(), level);
@@ -52,9 +62,63 @@ public class ItemGenerator {
             }
         }
         data.set(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
+        data.set(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponent(name));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;
+    }
+
+    public Component generateRandomItemName(ItemStack item) {
+        final var nameCount = rand.nextInt(2) + 1;
+        StringBuilder name = new StringBuilder();
+        for (int index = 0; index < nameCount; index++) {
+            name.append(Names.adjectives[rand.nextInt(Names.adjectives.length)]).append(" ");
+        }
+        name.append(item.getI18NDisplayName());
+
+        return Component.text(name.toString());
+    }
+
+    //TODO: Move these to "ItemHelper" they don't belong here!
+    public void setLoreFromItemKeys(ItemMeta meta) {
+        final var data = meta.getPersistentDataContainer();
+        if (data.getKeys().size() == 0) return;
+        final var lore = new ArrayList<Component>();
+        final var level = (int) StratumSerialization.deserializeFloat(data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY));
+        lore.add(ItemRarity.getRarity(level).getName());
+        for (final var key : data.getKeys()) {
+            final var attr = ItemAttributes.getAttribute(key.getKey());
+            if (attr == null) continue;
+            //Get the value off of the item for the given attribute
+            final var valueBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
+            final var value = StratumSerialization.deserializeFloat(valueBytes);
+            if (Float.isNaN(value)) continue;
+            lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
+        }
+        meta.lore(lore);
+    }
+
+    public void decryptItem(ItemStack itemStack) {
+        final var meta = itemStack.getItemMeta();
+        setLoreFromItemKeys(meta);
+        final var data = meta.getPersistentDataContainer();
+        if (data.getKeys().size() == 0) return;
+        data.remove(ItemAttributes.obfuscatedKey);
+        if (data.has(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY)) {
+            final var nameBytes = data.get(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY);
+            final var name = StratumSerialization.deserializeComponent(nameBytes);
+            meta.displayName(name);
+        }
+        itemStack.setItemMeta(meta);
+    }
+
+    public void encryptItem(ItemStack itemStack) {
+        final var meta = itemStack.getItemMeta();
+        meta.lore(Collections.singletonList(Component.text("???").decorate(TextDecoration.OBFUSCATED)));
+        meta.displayName(Component.text("???").decorate(TextDecoration.OBFUSCATED));
+        final var data = meta.getPersistentDataContainer();
+        data.set(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        itemStack.setItemMeta(meta);
     }
 
     public ArrayList<Attribute> getEligibleAttributes(ArrayList<Attribute> attributes, int level) {
@@ -67,11 +131,15 @@ public class ItemGenerator {
         final var tempMax = attribute.scaleValue * level;
         final var min = attribute.minRoll;
         final var max = attribute.maxRoll;
-        final var value = (float) Math.min(Math.max((Math.random() * tempMax - min) + min, min), max);
-        System.out.println(tempMax + " " + min + " " + max + " " + value);
-        return value;
+        return (float) Math.min(Math.max((Math.random() * tempMax - min) + min, min), max);
     }
 
+    /**
+     * Get use attributes from the given list
+     *
+     * @param attributes to get use attributes from
+     * @return a list of use attributes
+     */
     public ArrayList<Attribute> getUseAttributes(ArrayList<Attribute> attributes) {
         return attributes
                 .stream()
@@ -129,5 +197,18 @@ public class ItemGenerator {
         });
 
         return uniqueMaterials;
+    }
+
+    /**
+     * Get the name of the item, choosing the display name first
+     *
+     * @param item to get the name of
+     * @return the name of the item
+     */
+    public Component getItemName(ItemStack item) {
+        final var meta = item.getItemMeta();
+        final var displayName = meta.displayName();
+        if (displayName == null) return Component.text(item.getI18NDisplayName());
+        return displayName;
     }
 }

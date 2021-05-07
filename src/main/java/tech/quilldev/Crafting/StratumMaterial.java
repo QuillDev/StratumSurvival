@@ -1,20 +1,17 @@
 package tech.quilldev.Crafting;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import net.minecraft.server.v1_16_R3.Enchantment;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.ItemGenerator.ItemRarity;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class CraftItem {
+public class StratumMaterial {
 
     public static ItemStack SHARD_COMMON = null;
     public static ItemStack SHARD_UNCOMMON = null;

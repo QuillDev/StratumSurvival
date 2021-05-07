@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.Crafting.CraftItem;
+import tech.quilldev.Crafting.StratumMaterial;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.Serialization.StratumSerialization;
 
@@ -32,11 +32,11 @@ public class GrindCustomWeaponEvent implements Listener {
 
         // Get the corresponding item based on the level
         final var item = switch (level) {
-            case 1 -> CraftItem.SHARD_COMMON;
-            case 2 -> CraftItem.SHARD_UNCOMMON;
-            case 3 -> CraftItem.SHARD_RARE;
-            case 4 -> CraftItem.SHARD_EPIC;
-            case 5, 6 -> CraftItem.SHARD_LEGENDARY;
+            case 1 -> StratumMaterial.SHARD_COMMON;
+            case 2 -> StratumMaterial.SHARD_UNCOMMON;
+            case 3 -> StratumMaterial.SHARD_RARE;
+            case 4 -> StratumMaterial.SHARD_EPIC;
+            case 5, 6 -> StratumMaterial.SHARD_LEGENDARY;
             default -> null;
         };
         if (item == null) return;

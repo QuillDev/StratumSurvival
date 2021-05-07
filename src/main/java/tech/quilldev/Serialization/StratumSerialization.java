@@ -4,6 +4,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.serializers.DefaultSerializers;
+import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
 
 public class StratumSerialization {
@@ -14,6 +15,19 @@ public class StratumSerialization {
         kryo.addDefaultSerializer(Float.class, DefaultSerializers.FloatSerializer.class);
         kryo.addDefaultSerializer(String.class, DefaultSerializers.StringSerializer.class);
         kryo.addDefaultSerializer(Boolean.class, DefaultSerializers.BooleanSerializer.class);
+        kryo.addDefaultSerializer(Component.class, new ComponentSerializer());
+        kryo.register(Component.class);
+    }
+
+    public static byte[] serializeComponent(Component component) {
+        final var output = new Output(2048);
+        kryo.writeObject(output, component);
+        return output.getBuffer();
+    }
+
+    public static Component deserializeComponent(byte[] bytes) {
+        final var input = new Input(bytes);
+        return kryo.readObject(input, Component.class);
     }
 
     /**

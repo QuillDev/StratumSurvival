@@ -1,9 +1,11 @@
 package tech.quilldev.CustomItemsv2;
 
+import net.kyori.adventure.key.Namespaced;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
+import tech.quilldev.StratumSurvival;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,8 @@ public class ItemAttributes {
 
     //Public keys
     public static NamespacedKey levelKey = null;
+    public static NamespacedKey obfuscatedKey = null;
+    public static NamespacedKey nameKey = null;
 
     //list of attributes
     private static final ArrayList<Attribute> attributes = new ArrayList<>();
@@ -25,6 +29,8 @@ public class ItemAttributes {
 
     public static void init(Plugin plugin) {
         levelKey = new NamespacedKey(plugin, "item_level");
+        obfuscatedKey = new NamespacedKey(plugin, "item_obfuscated");
+        nameKey = new NamespacedKey(plugin, "item_name");
     }
 
     /**
@@ -34,6 +40,10 @@ public class ItemAttributes {
      */
     public static void registerAll(Attribute... newAttributes) {
         attributes.addAll(Arrays.asList(newAttributes));
+        //Log the attributes that we just loaded
+        Arrays.stream(newAttributes).forEach(attr -> {
+            StratumSurvival.log(ItemAttributes.class, "Loaded attribute " + attr.key.getKey() + "!");
+        });
     }
 
     /**

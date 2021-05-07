@@ -1,6 +1,6 @@
-name: stratumsurvival
+name: StratumSurvival
 version: ${project.version}
-main: tech.quilldev.stratumsurvival
+main: tech.quilldev.StratumSurvival
 api-version: 1.16
 
 commands:
@@ -9,3 +9,9 @@ commands:
     permission: stratumsurvival.developer.dev
   generateitem:
     usage: /<command> <level>
+  obfuscate:
+    usage: /<command>
+  deobfuscate:
+    usage: /<command>
+  spawnnpc:
+    usage: /<command> <type>
