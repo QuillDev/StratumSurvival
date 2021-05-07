@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
-import tech.quilldev.CustomItemsv2.ItemGenerator.ItemGenerator;
+import tech.quilldev.CustomItemsv2.ItemHelpers.ItemHelper;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.NPCManager.NPCs.NPCType;
 import tech.quilldev.PlayerHelpers.PlayerInventoryHelper;
@@ -16,8 +16,8 @@ import tech.quilldev.PlayerHelpers.PlayerInventoryHelper;
 public class InteractCryptologistEvent implements Listener {
 
     private final NamespacedKey cryptoKey;
-    private static final ItemGenerator generator = new ItemGenerator();
-    private static final PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
+    private final ItemHelper itemHelper = new ItemHelper();
+    private final PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
 
     public InteractCryptologistEvent(NPCManager npcManager) {
         this.cryptoKey = npcManager.getNPCByType(NPCType.CRYPTOLOGIST).getKey();
@@ -41,7 +41,7 @@ public class InteractCryptologistEvent implements Listener {
         if (meta == null) return;
         final var itemData = meta.getPersistentDataContainer();
         if (!itemData.has(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
-        generator.decryptItem(heldItem);
+        itemHelper.decryptItem(heldItem);
         player.sendMessage(
                 Component.text("The cryptologist studies your item and finds")
                         .append(Component.space())

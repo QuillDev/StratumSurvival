@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
-import tech.quilldev.CustomItemsv2.ItemGenerator.ItemGenerator;
+import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 
 public class GenerateItem implements CommandExecutor {
 

@@ -2,18 +2,14 @@ package tech.quilldev.Crafting;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import net.minecraft.world.item.Items;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
-import tech.quilldev.CustomItemsv2.ItemGenerator.ItemRarity;
+import tech.quilldev.CustomItemsv2.ItemHelpers.ItemRarity;
 
 import java.util.Collections;
 

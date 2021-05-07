@@ -1,12 +1,8 @@
-package tech.quilldev.CustomItemsv2.ItemGenerator;
+package tech.quilldev.CustomItemsv2.ItemHelpers;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
@@ -15,13 +11,13 @@ import tech.quilldev.Names.Names;
 import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class ItemGenerator {
 
     private final static Random rand = new Random();
+    private final static ItemHelper itemHelper = new ItemHelper();
 
     /**
      * Generates an item based on the given category
@@ -51,7 +47,7 @@ public class ItemGenerator {
         final var maxIndex = Math.min(attributes.size(), level);
         for (var i = 0; (i < maxIndex); i++) {
             final var curAttr = attributes.get(rand.nextInt(attributes.size()));
-            final var dataValue = generateDataValue(curAttr, level);
+            final var dataValue = itemHelper.generateDataValue(curAttr, level);
             data.set(curAttr.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
             lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
             attributes.remove(curAttr); //remove the attribute we used
@@ -80,77 +76,10 @@ public class ItemGenerator {
         return Component.text(name.toString());
     }
 
-    //TODO: Move these to "ItemHelper" they don't belong here!
-    public void setLoreFromItemKeys(ItemMeta meta) {
-        final var data = meta.getPersistentDataContainer();
-        if (data.getKeys().size() == 0) return;
-        final var lore = new ArrayList<Component>();
-        final var level = (int) StratumSerialization.deserializeFloat(data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY));
-        lore.add(ItemRarity.getRarity(level).getName());
-        for (final var key : data.getKeys()) {
-            final var attr = ItemAttributes.getAttribute(key.getKey());
-            if (attr == null) continue;
-            //Get the value off of the item for the given attribute
-            final var valueBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
-            final var value = StratumSerialization.deserializeFloat(valueBytes);
-            if (Float.isNaN(value)) continue;
-            lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
-        }
-        meta.lore(lore);
-    }
-
-    public void decryptItem(ItemStack itemStack) {
-        final var meta = itemStack.getItemMeta();
-        setLoreFromItemKeys(meta);
-        final var data = meta.getPersistentDataContainer();
-        if (data.getKeys().size() == 0) return;
-        data.remove(ItemAttributes.obfuscatedKey);
-        if (data.has(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY)) {
-            final var nameBytes = data.get(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY);
-            final var name = StratumSerialization.deserializeComponent(nameBytes);
-            meta.displayName(name);
-        }
-        itemStack.setItemMeta(meta);
-    }
-
-    public void encryptItem(ItemStack itemStack) {
-        final var meta = itemStack.getItemMeta();
-        meta.lore(Collections.singletonList(Component.text("????????").decorate(TextDecoration.OBFUSCATED)));
-        meta.displayName(Component.text("?????????").decorate(TextDecoration.OBFUSCATED));
-        final var data = meta.getPersistentDataContainer();
-        data.set(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
-        itemStack.setItemMeta(meta);
-    }
-
     public ArrayList<Attribute> getEligibleAttributes(ArrayList<Attribute> attributes, int level) {
         return attributes.stream()
                 .filter(attr -> level >= attr.getMinLevel())
                 .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    private float generateDataValue(Attribute attribute, int level) {
-        final var tempMax = attribute.scaleValue * level;
-        final var min = attribute.minRoll;
-        final var max = attribute.maxRoll;
-        return (float) Math.min(Math.max((Math.random() * tempMax - min) + min, min), max);
-    }
-
-    public void rerollItem(ItemStack item) {
-        final var meta = item.getItemMeta();
-        final var data = meta.getPersistentDataContainer();
-        data.getKeys().forEach((key) -> {
-            final var attribute = ItemAttributes.getAttribute(key.getKey());
-
-            //Get the level of the item
-            final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
-            var level = (int) StratumSerialization.deserializeFloat(levelBytes);
-
-            if (attribute == null) return;
-            final var dataValue = generateDataValue(attribute, level);
-            data.set(attribute.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
-            setLoreFromItemKeys(meta);
-            item.setItemMeta(meta);
-        });
     }
 
     /**

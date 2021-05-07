@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItemsv2.ItemGenerator;
+package tech.quilldev.CustomItemsv2.ItemHelpers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
