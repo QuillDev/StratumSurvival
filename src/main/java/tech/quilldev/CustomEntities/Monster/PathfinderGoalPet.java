@@ -49,7 +49,7 @@ public class PathfinderGoalPet extends PathfinderGoal {
         } else if (!(this.a.getDisplayName().toString().contains(this.b.getName()))) { // Checks if the pet's name contains the owners name.
             return false;                                                              // This is how we tell the pet who to follow.
 
-        } else if (this.b.h(this.a) > (double) (this.g * this.g)) { // Checks the pets distance from the player.
+        } else if (this.b.h(this.a) > (this.g * this.g)) { // Checks the pets distance from the player.
             a.setPosition(this.b.locX(), this.b.locY(), this.b.locZ()); // Teleport the pet to the player if he gets to far away.
             return false;
         } else { // Makes pet follow the player
@@ -80,7 +80,7 @@ public class PathfinderGoalPet extends PathfinderGoal {
     public boolean b() {
         // runs after c()
         // runs every tick as long as its true (repeats c)
-        return !this.a.getNavigation().m() && this.b.h(this.a) < (double) (this.g * this.g);
+        return !this.a.getNavigation().m() && this.b.h(this.a) < (this.g * this.g);
     }
 
     @Override

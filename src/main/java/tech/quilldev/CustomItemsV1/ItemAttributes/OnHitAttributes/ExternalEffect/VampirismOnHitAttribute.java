@@ -38,7 +38,7 @@ public class VampirismOnHitAttribute extends OnHitAttribute {
         if ((player.getHealth() + amount) >= maxHP.getValue()) {
             hpToSet = maxHP.getValue();
         }
-        ; //Make it so you can't overheal
+        //Make it so you can't overheal
         player.setHealth(hpToSet);
         player.sendMessage(
                 Component.text("Your")

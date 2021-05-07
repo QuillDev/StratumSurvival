@@ -22,7 +22,7 @@ public class Monster extends EntityZombie {
         this.setCustomNameVisible(true);
 
         // Confirms target (NEW add this)
-        this.setGoalTarget((EntityLiving) ((CraftPlayer) player).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
+        this.setGoalTarget(((CraftPlayer) player).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
         this.player = player;
     }
 

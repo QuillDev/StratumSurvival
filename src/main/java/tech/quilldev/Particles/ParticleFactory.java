@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 
 public class ParticleFactory {
-    private static StratumMath3d smath3d = new StratumMath3d();
+    private static final StratumMath3d smath3d = new StratumMath3d();
 
     /**
      * Create a line of particles and return all locations on that line
