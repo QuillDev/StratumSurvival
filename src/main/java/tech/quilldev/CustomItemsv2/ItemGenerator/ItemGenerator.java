@@ -135,6 +135,24 @@ public class ItemGenerator {
         return (float) Math.min(Math.max((Math.random() * tempMax - min) + min, min), max);
     }
 
+    public void rerollItem(ItemStack item) {
+        final var meta = item.getItemMeta();
+        final var data = meta.getPersistentDataContainer();
+        data.getKeys().forEach((key) -> {
+            final var attribute = ItemAttributes.getAttribute(key.getKey());
+
+            //Get the level of the item
+            final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
+            var level = (int) StratumSerialization.deserializeFloat(levelBytes);
+
+            if (attribute == null) return;
+            final var dataValue = generateDataValue(attribute, level);
+            data.set(attribute.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
+            setLoreFromItemKeys(meta);
+            item.setItemMeta(meta);
+        });
+    }
+
     /**
      * Get use attributes from the given list
      *

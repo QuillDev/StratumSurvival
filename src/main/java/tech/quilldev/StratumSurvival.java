@@ -7,6 +7,7 @@ import tech.quilldev.Commands.ItemGenerator.DeobfuscateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
 import tech.quilldev.Commands.ItemGenerator.ObfuscateItem;
+import tech.quilldev.Commands.RerollItem;
 import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
@@ -85,6 +86,7 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("obfuscate")).setExecutor(new ObfuscateItem());
         Objects.requireNonNull(this.getCommand("deobfuscate")).setExecutor(new DeobfuscateItem());
         Objects.requireNonNull(this.getCommand("spawnnpc")).setExecutor(new SpawnNPCCommand(npcManager));
+        Objects.requireNonNull(this.getCommand("reroll")).setExecutor(new RerollItem());
     }
 
     @Override

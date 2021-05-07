@@ -15,3 +15,5 @@ commands:
     usage: /<command>
   spawnnpc:
     usage: /<command> <type>
+  reroll:
+    usage: /<command>
