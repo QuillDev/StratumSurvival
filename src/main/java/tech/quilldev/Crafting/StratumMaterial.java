@@ -1,9 +1,14 @@
 package tech.quilldev.Crafting;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.Style;
+import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import net.minecraft.world.item.Items;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
@@ -22,13 +27,23 @@ public class StratumMaterial {
     public static ItemStack SHARD_EPIC = null;
     public static ItemStack SHARD_LEGENDARY = null;
 
+    public static ItemStack BATTLEAXE_WOODEN = null;
+    public static ItemStack BATTLEAXE_STONE = null;
+    public static ItemStack BATTLEAXE_IRON = null;
+    public static ItemStack BATTLEAXE_GOLDEN = null;
+    public static ItemStack BATTLEAXE_DIAMOND = null;
+    public static ItemStack BATTLEAXE_NETHERITE = null;
+
     //Material Item Keys
     public static NamespacedKey crystalKey = null;
-    private static final Component crystalLore = Component.text("Used for common crafting");
+
+    //Material Lore
+    private static final Component crystalLore = Component.text("Used for crafting");
 
     public static void init(Plugin plugin) {
         crystalKey = new NamespacedKey(plugin, "itemtype_crystal");
         setupShards(); //Setup Crafting Shards
+        setupBattleaxes(); // Setup Battleaxe items
     }
 
     /**
@@ -90,5 +105,50 @@ public class StratumMaterial {
         SHARD_LEGENDARY_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 5f);
         SHARD_LEGENDARY_META.getPersistentDataContainer().set(crystalKey, PersistentDataType.FLOAT, 1f);
         SHARD_LEGENDARY.setItemMeta(SHARD_LEGENDARY_META);
+    }
+
+    private static void setupBattleaxes() {
+
+        //setup wooden battleaxe
+        BATTLEAXE_WOODEN = new ItemStack(Material.WOODEN_AXE);
+        final var BATTLEAXE_WOODEN_META = BATTLEAXE_WOODEN.getItemMeta();
+        BATTLEAXE_WOODEN_META.setCustomModelData(1);
+        BATTLEAXE_WOODEN_META.displayName(Component.text("\u00A7fWooden Battleaxe"));
+        BATTLEAXE_WOODEN.setItemMeta(BATTLEAXE_WOODEN_META);
+
+        //setup stone battleaxe
+        BATTLEAXE_STONE = new ItemStack(Material.STONE_AXE);
+        final var BATTLEAXE_STONE_META = BATTLEAXE_STONE.getItemMeta();
+        BATTLEAXE_STONE_META.setCustomModelData(1);
+        BATTLEAXE_STONE_META.displayName(Component.text("\u00A7fStone Battleaxe"));
+        BATTLEAXE_STONE.setItemMeta(BATTLEAXE_STONE_META);
+
+        //setup iron battleaxe
+        BATTLEAXE_IRON = new ItemStack(Material.IRON_AXE);
+        final var BATTLEAXE_IRON_META = BATTLEAXE_IRON.getItemMeta();
+        BATTLEAXE_IRON_META.setCustomModelData(1);
+        BATTLEAXE_IRON_META.displayName(Component.text("\u00A7fIron Battleaxe").style(Style.empty()));
+        BATTLEAXE_IRON.setItemMeta(BATTLEAXE_IRON_META);
+
+        //setup golden battleaxe
+        BATTLEAXE_GOLDEN = new ItemStack(Material.GOLDEN_AXE);
+        final var BATTLEAXE_GOLDEN_META = BATTLEAXE_GOLDEN.getItemMeta();
+        BATTLEAXE_GOLDEN_META.setCustomModelData(1);
+        BATTLEAXE_GOLDEN_META.displayName(Component.text("\u00A7fGolden Battleaxe"));
+        BATTLEAXE_GOLDEN.setItemMeta(BATTLEAXE_GOLDEN_META);
+
+        //setup diamond battleaxe
+        BATTLEAXE_DIAMOND = new ItemStack(Material.DIAMOND_AXE);
+        final var BATTLEAXE_DIAMOND_META = BATTLEAXE_IRON.getItemMeta();
+        BATTLEAXE_DIAMOND_META.setCustomModelData(1);
+        BATTLEAXE_DIAMOND_META.displayName(Component.text("\u00A7fDiamond Battleaxe"));
+        BATTLEAXE_DIAMOND.setItemMeta(BATTLEAXE_DIAMOND_META);
+
+        //setup netherite battleaxe
+        BATTLEAXE_NETHERITE = new ItemStack(Material.NETHERITE_AXE);
+        final var BATTLEAXE_NETHERITE_META = BATTLEAXE_NETHERITE.getItemMeta();
+        BATTLEAXE_NETHERITE_META.setCustomModelData(1);
+        BATTLEAXE_NETHERITE_META.displayName(Component.text("\u00A7fNetherite Battleaxe"));
+        BATTLEAXE_NETHERITE.setItemMeta(BATTLEAXE_NETHERITE_META);
     }
 }

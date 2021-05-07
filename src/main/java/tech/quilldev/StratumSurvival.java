@@ -12,7 +12,7 @@ import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumMaterial;
-import tech.quilldev.Crafting.StratumRecipes.CraftBattleAxe;
+import tech.quilldev.Crafting.StratumRecipes.CraftIronBattleAxe;
 import tech.quilldev.Crafting.StratumRecipes.TestRecipe;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
@@ -72,7 +72,7 @@ public final class StratumSurvival extends JavaPlugin {
         //Register crafting
         craftingManager.registerAll(
                 new TestRecipe(new NamespacedKey(this, "craft_test_recipe")),
-                new CraftBattleAxe(new NamespacedKey(this, "craft_battleaxe_netherite"))
+                new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_netherite"))
         );
 
         //Setup any commands
