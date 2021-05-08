@@ -26,7 +26,7 @@ public class SpawnNPCCommand implements CommandExecutor {
         if (player == null) return true;
 
         //Get the NPC matching the given key
-        final var npc = npcManager.getNPCByType(NPCType.CRYPTOLOGIST);
+        final var npc = npcManager.getNPCByType(NPCType.valueOf(args[0]));
         if (npc == null) return true;
 
         //Spawn the NPC at the players location

@@ -2,9 +2,11 @@ package tech.quilldev.CustomItemsv2.ItemHelpers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import tech.quilldev.Crafting.StratumMaterial;
 import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.Serialization.StratumSerialization;
@@ -109,5 +111,47 @@ public class ItemHelper {
         final var data = meta.getPersistentDataContainer();
         data.set(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         itemStack.setItemMeta(meta);
+    }
+
+    //TODO: This HAS to have a more suitable place....
+
+    /**
+     * Get the crystal corresponding with the given item level
+     *
+     * @param level to match crystals with
+     * @return the crystal matching the given level
+     */
+    public ItemStack getCrystalForLevel(int level) {
+        // Get the corresponding item based on the level
+        return switch (level) {
+            case 1 -> StratumMaterial.SHARD_COMMON;
+            case 2 -> StratumMaterial.SHARD_UNCOMMON;
+            case 3 -> StratumMaterial.SHARD_RARE;
+            case 4 -> StratumMaterial.SHARD_EPIC;
+            case 5, 6 -> StratumMaterial.SHARD_LEGENDARY;
+            default -> null;
+        };
+    }
+
+    /**
+     * Get the first inventory item that matches the given item
+     *
+     * @param inventory to find first match in
+     * @param itemQuery item to compare with the base item
+     * @return the matching item if it's not null
+     */
+    public ItemStack getFirstInventoryMatch(Inventory inventory, ItemStack itemQuery) {
+        final var items = inventory.getContents();
+        for (final var item : items) {
+            if (item == null) continue;
+            final var itemClone = item.clone();
+            itemClone.setAmount(itemQuery.getAmount());
+
+            if (!(itemClone.equals(itemQuery))) continue;
+            System.out.println("GOT MATCH!");
+            return item;
+        }
+
+        return null;
     }
 }

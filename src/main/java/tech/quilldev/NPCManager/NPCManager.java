@@ -2,6 +2,7 @@ package tech.quilldev.NPCManager;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
+import tech.quilldev.NPCManager.NPCs.Blacksmith;
 import tech.quilldev.NPCManager.NPCs.Cryptologist;
 import tech.quilldev.NPCManager.NPCs.NPC;
 import tech.quilldev.NPCManager.NPCs.NPCType;
@@ -16,7 +17,8 @@ public class NPCManager {
     public NPCManager(Plugin plugin) {
         npcs.addAll(
                 Arrays.asList(
-                        new Cryptologist(new NamespacedKey(plugin, NPCType.CRYPTOLOGIST.key))
+                        new Cryptologist(new NamespacedKey(plugin, NPCType.CRYPTOLOGIST.key)),
+                        new Blacksmith(new NamespacedKey(plugin, NPCType.BLACKSMITH.key))
                 )
         );
     }
@@ -34,4 +36,5 @@ public class NPCManager {
                 .findFirst()
                 .orElse(null);
     }
+
 }

@@ -22,6 +22,7 @@ import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.ShadowDodgeUseWeaponAttribute;
 import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
+import tech.quilldev.NPCManager.NPCEvents.InteractBlacksmithEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.Serialization.StratumSerialization;
@@ -68,6 +69,7 @@ public final class StratumSurvival extends JavaPlugin {
         pluginManager.registerEvents(new InjectChatItemEvent(), this);
         pluginManager.registerEvents(new GrindCustomWeaponEvent(), this);
         pluginManager.registerEvents(new InteractCryptologistEvent(npcManager), this);
+        pluginManager.registerEvents(new InteractBlacksmithEvent(npcManager), this);
 
         //Register crafting
         craftingManager.registerAll(
