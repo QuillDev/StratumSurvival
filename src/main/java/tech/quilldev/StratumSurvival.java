@@ -9,6 +9,7 @@ import tech.quilldev.Commands.ItemGenerator.ObfuscateItem;
 import tech.quilldev.Commands.RerollItem;
 import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
+import tech.quilldev.Crafting.CustomCraftingEvents.SmithCustomItemEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftBattleaxeWooden;
@@ -87,6 +88,8 @@ public final class StratumSurvival extends JavaPlugin {
         pluginManager.registerEvents(new GrindCustomWeaponEvent(materialManager), this);
         pluginManager.registerEvents(new InteractCryptologistEvent(npcManager), this);
         pluginManager.registerEvents(new InteractBlacksmithEvent(npcManager, materialManager), this);
+        //test events
+        pluginManager.registerEvents(new SmithCustomItemEvent(itemGenerator), this);
 
         //Register crafting
         craftingManager.registerAll(
