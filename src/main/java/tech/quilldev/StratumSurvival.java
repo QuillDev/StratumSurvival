@@ -11,7 +11,14 @@ import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumMaterialManager;
-import tech.quilldev.Crafting.StratumRecipes.*;
+import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftBattleaxeWooden;
+import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftDiamondBattleAxe;
+import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftIronBattleAxe;
+import tech.quilldev.Crafting.StratumRecipes.Battleaxes.SmithNetheriteBattleAxe;
+import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardCommonToUncommonRecipe;
+import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardEpicToLegendary;
+import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardRareToEpicRecipe;
+import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardUncommonToRareRecipe;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
@@ -27,6 +34,7 @@ import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.Serialization.StratumSerialization;
 
+import javax.naming.Name;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,8 +93,12 @@ public final class StratumSurvival extends JavaPlugin {
                 new SmithNetheriteBattleAxe(new NamespacedKey(this, "smith_battleaxe_netherite"), materialManager),
                 new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_iron"), materialManager),
                 new CraftDiamondBattleAxe(new NamespacedKey(this, "craft_battleaxe_diamond"), materialManager),
-                new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"), materialManager)
-
+                new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"), materialManager),
+                // Add shard crafting recipes
+                new ShardCommonToUncommonRecipe(new NamespacedKey(this, "craft_shard_common_to_uncommon"), materialManager),
+                new ShardUncommonToRareRecipe(new NamespacedKey(this, "craft_shard_uncommon_to_rare"), materialManager),
+                new ShardRareToEpicRecipe(new NamespacedKey(this, "craft_shard_rare_to_epic"), materialManager),
+                new ShardEpicToLegendary(new NamespacedKey(this, "craft_shard_epic_to_legendary"), materialManager)
         );
 
         //Setup any commands

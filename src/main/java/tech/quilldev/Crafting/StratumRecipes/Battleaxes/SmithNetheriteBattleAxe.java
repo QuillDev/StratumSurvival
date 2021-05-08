@@ -1,4 +1,4 @@
-package tech.quilldev.Crafting.StratumRecipes;
+package tech.quilldev.Crafting.StratumRecipes.Battleaxes;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -7,6 +7,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.SmithingRecipe;
 import tech.quilldev.Crafting.StratumMaterial;
 import tech.quilldev.Crafting.StratumMaterialManager;
+import tech.quilldev.Crafting.StratumRecipes.StratumRecipe;
 
 public class SmithNetheriteBattleAxe extends StratumRecipe {
     public SmithNetheriteBattleAxe(NamespacedKey key, StratumMaterialManager materialManager) {
