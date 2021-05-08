@@ -1,7 +1,9 @@
 package tech.quilldev.NPCManager.NPCs;
 
 public enum NPCType {
-    CRYPTOLOGIST("npc_cryptologist");
+    CRYPTOLOGIST("npc_cryptologist"),
+    BLACKSMITH("npc_blacksmith")
+    ;
 
     public String key;
 
