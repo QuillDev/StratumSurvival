@@ -127,7 +127,6 @@ public class ItemHelper {
             itemClone.setAmount(itemQuery.getAmount());
 
             if (!(itemClone.equals(itemQuery))) continue;
-            System.out.println("GOT MATCH!");
             return item;
         }
 
