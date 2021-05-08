@@ -1,7 +1,6 @@
 package tech.quilldev.Particles;
 
 import com.mojang.datafixers.util.Pair;
-
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.BoundingBox;

@@ -44,6 +44,7 @@ public class ItemGenerator {
         final var data = meta.getPersistentDataContainer();
         final var lore = new ArrayList<Component>();
         final var rarity = ItemRarity.getRarity(level);
+
         // Set the name of the item
         final var name = generateRandomItemName(item).color(rarity.getColor());
         meta.displayName(name);
