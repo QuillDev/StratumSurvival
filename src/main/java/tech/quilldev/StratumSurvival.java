@@ -56,6 +56,7 @@ public final class StratumSurvival extends JavaPlugin {
         final var materialManager = new StratumMaterialManager(this);
         new WeaponLists(materialManager);
         itemAttributes.init(materialManager);
+
         StratumSerialization.init();
 
         //Create a material manager
