@@ -30,7 +30,7 @@ public class WeaponLists {
                 materialManager.getItem(StratumMaterial.BATTLEAXE_NETHERITE),
                 materialManager.getItem(Material.WOODEN_SWORD),
                 materialManager.getItem(Material.STONE_SWORD),
-                materialManager.getItem(Material.IRON_AXE),
+                materialManager.getItem(Material.IRON_SWORD),
                 materialManager.getItem(Material.GOLDEN_SWORD),
                 materialManager.getItem(Material.DIAMOND_SWORD),
                 materialManager.getItem(Material.NETHERITE_SWORD)

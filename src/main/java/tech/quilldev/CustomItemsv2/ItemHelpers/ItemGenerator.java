@@ -77,7 +77,14 @@ public class ItemGenerator {
         for (int index = 0; index < nameCount; index++) {
             name.append(Names.adjectives[rand.nextInt(Names.adjectives.length)]).append(" ");
         }
-        name.append(item.getItemMeta().getLocalizedName());
+        final var meta = item.getItemMeta();
+
+        if (meta.hasLocalizedName()) {
+            name.append(meta.getLocalizedName());
+        } else {
+            name.append(item.getI18NDisplayName());
+        }
+
 
         return Component.text(name.toString());
     }
@@ -142,13 +149,11 @@ public class ItemGenerator {
      * @return a list of eligible materials for those attributes
      */
     public ArrayList<ItemStack> getEligibleItems(ArrayList<Attribute> attributes) {
-        System.out.println(attributes.size());
         final var materialBuffer = new ArrayList<ItemStack>();
         final var uniqueItems = new ArrayList<ItemStack>();
         attributes.forEach(attr -> {
             materialBuffer.addAll(attr.materials);
             final var mats = attr.materials;
-            System.out.println(mats.size());
         });
         materialBuffer.forEach(material -> {
             if (uniqueItems.contains(material)) return;
