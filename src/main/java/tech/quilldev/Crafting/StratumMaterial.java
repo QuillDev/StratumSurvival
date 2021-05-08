@@ -123,7 +123,7 @@ public class StratumMaterial {
         BATTLEAXE_IRON = new ItemStack(Material.IRON_AXE);
         final var BATTLEAXE_IRON_META = BATTLEAXE_IRON.getItemMeta();
         BATTLEAXE_IRON_META.setCustomModelData(1);
-        BATTLEAXE_IRON_META.displayName(Component.text("\u00A7fIron Battleaxe").style(Style.empty()));
+        BATTLEAXE_IRON_META.displayName(Component.text("\u00A7fIron Battleaxe"));
         BATTLEAXE_IRON.setItemMeta(BATTLEAXE_IRON_META);
 
         //setup golden battleaxe
@@ -135,7 +135,7 @@ public class StratumMaterial {
 
         //setup diamond battleaxe
         BATTLEAXE_DIAMOND = new ItemStack(Material.DIAMOND_AXE);
-        final var BATTLEAXE_DIAMOND_META = BATTLEAXE_IRON.getItemMeta();
+        final var BATTLEAXE_DIAMOND_META = BATTLEAXE_DIAMOND.getItemMeta();
         BATTLEAXE_DIAMOND_META.setCustomModelData(1);
         BATTLEAXE_DIAMOND_META.displayName(Component.text("\u00A7fDiamond Battleaxe"));
         BATTLEAXE_DIAMOND.setItemMeta(BATTLEAXE_DIAMOND_META);

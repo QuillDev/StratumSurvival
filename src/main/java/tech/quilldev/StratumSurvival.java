@@ -12,8 +12,7 @@ import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumMaterial;
-import tech.quilldev.Crafting.StratumRecipes.CraftIronBattleAxe;
-import tech.quilldev.Crafting.StratumRecipes.TestRecipe;
+import tech.quilldev.Crafting.StratumRecipes.*;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
@@ -24,6 +23,7 @@ import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCManager;
+import tech.quilldev.Names.Names;
 import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.Objects;
@@ -71,8 +71,11 @@ public final class StratumSurvival extends JavaPlugin {
 
         //Register crafting
         craftingManager.registerAll(
-                new TestRecipe(new NamespacedKey(this, "craft_test_recipe")),
-                new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_netherite"))
+                new SmithNetheriteBattleAxe(new NamespacedKey(this,"smith_battleaxe_netherite")),
+                new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_iron")),
+                new CraftDiamondBattleAxe(new NamespacedKey(this, "craft_battleaxe_diamond")),
+                new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"))
+
         );
 
         //Setup any commands
