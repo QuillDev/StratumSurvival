@@ -1,12 +1,13 @@
 package tech.quilldev.CustomItemsv2.ItemHelpers;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
+import tech.quilldev.CustomItemsv2.WeaponType;
 import tech.quilldev.Names.Names;
 import tech.quilldev.Serialization.StratumSerialization;
 
@@ -18,18 +19,23 @@ public class ItemGenerator {
 
     private final static Random rand = new Random();
     private final static ItemHelper itemHelper = new ItemHelper();
+    private final StratumMaterialManager materialManager;
+
+    public ItemGenerator(StratumMaterialManager materialManager) {
+        this.materialManager = materialManager;
+    }
 
     /**
      * Generates an item based on the given category
      *
-     * @param type of attributes to be generated
+     * @param weaponType of attributes to be generated
      * @return an item created from that type
      */
-    public ItemStack generateItem(Class<?> type) {
+    public ItemStack generateItem(WeaponType weaponType) {
         final var level = getRandomLevel(.38f, 6);
-        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(type), level);
+        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(weaponType.type), level);
         final var useAttributes = getUseAttributes(attributes);
-        final var materials = getEligibleMaterials(attributes);
+        final var materials = getEligibleItems(attributes);
         final var mat = materials.get(rand.nextInt(materials.size()));
 
         //Create the item
@@ -71,7 +77,7 @@ public class ItemGenerator {
         for (int index = 0; index < nameCount; index++) {
             name.append(Names.adjectives[rand.nextInt(Names.adjectives.length)]).append(" ");
         }
-        name.append(item.getI18NDisplayName());
+        name.append(item.getItemMeta().getLocalizedName());
 
         return Component.text(name.toString());
     }
@@ -109,7 +115,7 @@ public class ItemGenerator {
      *
      * @return the item category that was randomly chosen
      */
-    public Class<?> getRandomCategory() {
+    public WeaponType getRandomCategory() {
         final var categories = ItemAttributes.attributeCategories;
         final var keys = new ArrayList<>(categories.keySet());
         return categories.get(keys.get(rand.nextInt(keys.size())));
@@ -135,16 +141,21 @@ public class ItemGenerator {
      * @param attributes to get materials from
      * @return a list of eligible materials for those attributes
      */
-    public ArrayList<Material> getEligibleMaterials(ArrayList<Attribute> attributes) {
-        final var materialBuffer = new ArrayList<Material>();
-        final var uniqueMaterials = new ArrayList<Material>();
-        attributes.forEach(attr -> materialBuffer.addAll(attr.materials));
+    public ArrayList<ItemStack> getEligibleItems(ArrayList<Attribute> attributes) {
+        System.out.println(attributes.size());
+        final var materialBuffer = new ArrayList<ItemStack>();
+        final var uniqueItems = new ArrayList<ItemStack>();
+        attributes.forEach(attr -> {
+            materialBuffer.addAll(attr.materials);
+            final var mats = attr.materials;
+            System.out.println(mats.size());
+        });
         materialBuffer.forEach(material -> {
-            if (uniqueMaterials.contains(material)) return;
-            uniqueMaterials.add(material);
+            if (uniqueItems.contains(material)) return;
+            uniqueItems.add(material);
         });
 
-        return uniqueMaterials;
+        return uniqueItems;
     }
 
     /**

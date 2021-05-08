@@ -1,8 +1,8 @@
 package tech.quilldev.CustomItemsv2;
 
-import net.kyori.adventure.key.Namespaced;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
+import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
 import tech.quilldev.StratumSurvival;
@@ -23,16 +23,18 @@ public class ItemAttributes {
     private static final ArrayList<Attribute> attributes = new ArrayList<>();
 
     //Attribute categories
-    public static final HashMap<String, Class<?>> attributeCategories = new HashMap<>() {{
-        put("WEAPON_BLUNT", BluntWeaponAttribute.class);
-        put("WEAPON_BOW", BowWeaponAttribute.class);
-    }};
+    public static final HashMap<String, WeaponType> attributeCategories = new HashMap<>();
 
-    public static void init(Plugin plugin) {
+    public ItemAttributes(Plugin plugin) {
         levelKey = new NamespacedKey(plugin, "item_level");
         obfuscatedKey = new NamespacedKey(plugin, "item_obfuscated");
         nameKey = new NamespacedKey(plugin, "item_name");
         customItemKey = new NamespacedKey(plugin, "item_is_custom");
+    }
+
+    public void init(StratumMaterialManager materialManager) {
+        attributeCategories.putIfAbsent("WEAPON_BLUNT", new WeaponType(WeaponLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
+        attributeCategories.putIfAbsent("WEAPON_BOW", new WeaponType(WeaponLists.WEAPONS_BOW, BowWeaponAttribute.class));
     }
 
     /**
@@ -95,7 +97,7 @@ public class ItemAttributes {
      * @param query to match with the category
      * @return the weapon category for the given string
      */
-    public static Class<?> getWeaponCategory(String query) {
+    public static WeaponType getWeaponCategory(String query) {
         final var key = attributeCategories
                 .keySet()
                 .stream()

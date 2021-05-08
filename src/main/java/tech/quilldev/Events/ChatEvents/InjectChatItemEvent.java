@@ -82,8 +82,6 @@ public class InjectChatItemEvent implements Listener {
         return ((TextComponent) component).content();
     }
 
-    //TODO: Abstract this
-
     /**
      * Get the item display for the given string (parse it up)
      *

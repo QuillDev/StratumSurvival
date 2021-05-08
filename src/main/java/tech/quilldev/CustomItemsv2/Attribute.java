@@ -1,9 +1,9 @@
 package tech.quilldev.CustomItemsv2;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,7 +14,7 @@ public abstract class Attribute {
 
     // Item Data Attributes
     public NamespacedKey key;
-    public ArrayList<Material> materials;
+    public ArrayList<ItemStack> materials;
     public Component lore;
     public ArrayList<Class<?>> childAttributes;
     public float minRoll;
@@ -25,14 +25,14 @@ public abstract class Attribute {
 
     public Attribute(NamespacedKey key,
                      Component lore,
-                     ArrayList<Material> materials,
+                     ArrayList<ItemStack> items,
                      float scaleValue,
                      float minRoll,
                      float maxRoll,
                      ArrayList<Class<?>> childAttributes
     ) {
         this.key = key;
-        this.materials = materials;
+        this.materials = items;
         this.lore = lore;
         this.scaleValue = scaleValue;
         this.childAttributes = childAttributes;

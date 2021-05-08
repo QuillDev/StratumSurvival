@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
+import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemHelper;
 import tech.quilldev.NPCManager.NPCManager;
@@ -19,9 +20,11 @@ public class InteractBlacksmithEvent implements Listener {
     private final NamespacedKey blacksmithKey;
     private final ItemHelper itemHelper = new ItemHelper();
     private final PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
+    private final StratumMaterialManager materialManager;
 
-    public InteractBlacksmithEvent(NPCManager npcManager) {
+    public InteractBlacksmithEvent(NPCManager npcManager, StratumMaterialManager materialManager) {
         this.blacksmithKey = npcManager.getNPCByType(NPCType.BLACKSMITH).getKey();
+        this.materialManager = materialManager;
     }
 
     @EventHandler
@@ -46,7 +49,7 @@ public class InteractBlacksmithEvent implements Listener {
         var level = (int) StratumSerialization.deserializeFloat(levelBytes);
 
         // Get the corresponding item based on the level
-        final var crystalItem = itemHelper.getCrystalForLevel(level);
+        final var crystalItem = materialManager.getCrystalForLevel(level);
         final var inventory = player.getInventory();
 
         //Make sure they have the given item, then remove it from their inventory

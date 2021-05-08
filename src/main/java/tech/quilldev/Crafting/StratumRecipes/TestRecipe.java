@@ -6,10 +6,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import tech.quilldev.Crafting.StratumMaterial;
+import tech.quilldev.Crafting.StratumMaterialManager;
 
 public class TestRecipe extends StratumRecipe {
-    public TestRecipe(NamespacedKey key) {
-        super(key);
+    public TestRecipe(NamespacedKey key, StratumMaterialManager materialManager) {
+        super(key, materialManager);
     }
 
     @Override
@@ -18,7 +19,7 @@ public class TestRecipe extends StratumRecipe {
         recipe.shape("III", ".SD", ".S.");
         recipe.setIngredient('I', Material.IRON_INGOT);
         recipe.setIngredient('S', Material.STICK);
-        recipe.setIngredient('D', StratumMaterial.SHARD_COMMON);
+        recipe.setIngredient('D', materialManager.getItem(StratumMaterial.SHARD_COMMON));
         return recipe;
     }
 }

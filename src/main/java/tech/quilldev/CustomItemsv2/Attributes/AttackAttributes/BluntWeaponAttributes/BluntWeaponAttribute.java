@@ -7,6 +7,6 @@ import tech.quilldev.CustomItemsv2.WeaponLists;
 
 public abstract class BluntWeaponAttribute extends AttackAttribute {
     public BluntWeaponAttribute(NamespacedKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
-        super(key, lore, WeaponLists.BLUNT_WEAPONS, scaleValue, minRoll, maxRoll);
+        super(key, lore, WeaponLists.WEAPONS_BLUNT, scaleValue, minRoll, maxRoll);
     }
 }

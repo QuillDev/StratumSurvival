@@ -6,13 +6,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
+import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
-import tech.quilldev.CustomItemsv2.ItemHelpers.ItemHelper;
 import tech.quilldev.Serialization.StratumSerialization;
 
 public class GrindCustomWeaponEvent implements Listener {
 
-    private final ItemHelper itemHelper = new ItemHelper();
+    private final StratumMaterialManager materialManager;
+
+    public GrindCustomWeaponEvent(StratumMaterialManager materialManager) {
+        this.materialManager = materialManager;
+    }
 
     @EventHandler
     public void grindCustomItemEvent(PlayerInteractEvent event) {
@@ -32,7 +36,7 @@ public class GrindCustomWeaponEvent implements Listener {
         final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
         var level = (int) StratumSerialization.deserializeFloat(levelBytes);
         // Get the corresponding item based on the level
-        final var item = itemHelper.getCrystalForLevel(level);
+        final var item = materialManager.getCrystalForLevel(level);
         if (item == null) return;
         final var inventory = event.getPlayer().getInventory();
         inventory.remove(heldItem);

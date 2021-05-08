@@ -10,12 +10,20 @@ import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 import java.util.Random;
 
 public class GenerateItemOnMobDeath implements Listener {
-
-    private final ItemGenerator generator = new ItemGenerator();
     private final Random rand = new Random();
 
     private static final float playerDropRate = 1 / 20f;
     private static final float naturalDropRate = 1 / 200f;
+    private final ItemGenerator generator;
+
+    /**
+     * Generate the given item on mob death
+     *
+     * @param generator to use
+     */
+    public GenerateItemOnMobDeath(ItemGenerator generator) {
+        this.generator = generator;
+    }
 
     @EventHandler
     public void onMobDeath(EntityDeathEvent event) {

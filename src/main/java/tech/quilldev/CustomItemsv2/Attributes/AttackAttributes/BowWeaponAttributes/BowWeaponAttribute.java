@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 public abstract class BowWeaponAttribute extends Attribute {
     public BowWeaponAttribute(NamespacedKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
-        super(key, lore, WeaponLists.BOW_WEAPONS, scaleValue, minRoll, maxRoll, new ArrayList<>());
+        super(key, lore, WeaponLists.WEAPONS_BOW, scaleValue, minRoll, maxRoll, new ArrayList<>());
     }
 }

@@ -6,7 +6,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.Crafting.StratumMaterial;
 import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.Serialization.StratumSerialization;
@@ -113,26 +112,6 @@ public class ItemHelper {
         itemStack.setItemMeta(meta);
     }
 
-    //TODO: This HAS to have a more suitable place....
-
-    /**
-     * Get the crystal corresponding with the given item level
-     *
-     * @param level to match crystals with
-     * @return the crystal matching the given level
-     */
-    public ItemStack getCrystalForLevel(int level) {
-        // Get the corresponding item based on the level
-        return switch (level) {
-            case 1 -> StratumMaterial.SHARD_COMMON;
-            case 2 -> StratumMaterial.SHARD_UNCOMMON;
-            case 3 -> StratumMaterial.SHARD_RARE;
-            case 4 -> StratumMaterial.SHARD_EPIC;
-            case 5, 6 -> StratumMaterial.SHARD_LEGENDARY;
-            default -> null;
-        };
-    }
-
     /**
      * Get the first inventory item that matches the given item
      *
@@ -153,5 +132,12 @@ public class ItemHelper {
         }
 
         return null;
+    }
+
+    public ItemStack setCraftFormatting(ItemStack itemStack) {
+        final var meta = itemStack.getItemMeta();
+        meta.displayName(Component.text("\u00A7f" + meta.getLocalizedName()));
+        itemStack.setItemMeta(meta);
+        return itemStack;
     }
 }

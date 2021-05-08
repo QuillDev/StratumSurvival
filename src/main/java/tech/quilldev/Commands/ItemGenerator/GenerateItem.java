@@ -11,7 +11,11 @@ import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 
 public class GenerateItem implements CommandExecutor {
 
-    private final static ItemGenerator generator = new ItemGenerator();
+    private final ItemGenerator itemGenerator;
+
+    public GenerateItem(ItemGenerator itemGenerator) {
+        this.itemGenerator = itemGenerator;
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -22,11 +26,11 @@ public class GenerateItem implements CommandExecutor {
 
         ItemStack item = null;
         if (args.length == 0) {
-            item = generator.generateItem();
+            item = itemGenerator.generateItem();
         }
         if (args.length == 1) {
             final var category = ItemAttributes.getWeaponCategory(args[0]);
-            item = generator.generateItem(category);
+            item = itemGenerator.generateItem(category);
         }
 
         if (args.length == 2) {
@@ -34,14 +38,13 @@ public class GenerateItem implements CommandExecutor {
             int itemCount;
             try {
                 itemCount = Integer.parseInt(args[1]);
-            } catch (NumberFormatException exception)
-            {
+            } catch (NumberFormatException exception) {
                 return false;
             }
 
-            itemCount = (itemCount == 0 ? 1 : itemCount );
-            for (int i = 0; i < itemCount || i == 35; i++ ) {
-                item = generator.generateItem(category);
+            itemCount = (itemCount == 0 ? 1 : itemCount);
+            for (int i = 0; i < itemCount || i == 35; i++) {
+                item = itemGenerator.generateItem(category);
                 player.getInventory().addItem(item);
             }
             item = null;

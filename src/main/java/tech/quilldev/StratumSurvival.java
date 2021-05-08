@@ -2,7 +2,6 @@ package tech.quilldev;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
-import tech.quilldev.Commands.Dev;
 import tech.quilldev.Commands.ItemGenerator.DeobfuscateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
@@ -11,7 +10,7 @@ import tech.quilldev.Commands.RerollItem;
 import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
-import tech.quilldev.Crafting.StratumMaterial;
+import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.*;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
@@ -19,12 +18,13 @@ import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttribut
 import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.ShadowDodgeUseWeaponAttribute;
+import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
+import tech.quilldev.CustomItemsv2.WeaponLists;
 import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 import tech.quilldev.NPCManager.NPCEvents.InteractBlacksmithEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCManager;
-import tech.quilldev.Names.Names;
 import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.Objects;
@@ -37,14 +37,23 @@ public final class StratumSurvival extends JavaPlugin {
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(getServer());
     private final NPCManager npcManager = new NPCManager(this);
 
+
     @Override
     public void onEnable() {
         log(getClass(), "Enabled!");
 
         //Init the item attributes manager
+        final var itemAttributes = new ItemAttributes(this);
+        final var materialManager = new StratumMaterialManager(this);
+        new WeaponLists(materialManager);
+        itemAttributes.init(materialManager);
         StratumSerialization.init();
-        ItemAttributes.init(this);
-        StratumMaterial.init(this);
+
+        //Create a material manager
+
+        final var itemGenerator = new ItemGenerator(materialManager);
+        //TODO: Load+Cache all materials we're going to be using here
+
 
         //Register the attribute with the Item Attribute manager
         ItemAttributes.registerAll(
@@ -65,29 +74,29 @@ public final class StratumSurvival extends JavaPlugin {
         //Register Events
         var pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new HandleAttributeEvents(), this);
-        pluginManager.registerEvents(new GenerateItemOnMobDeath(), this);
+        pluginManager.registerEvents(new GenerateItemOnMobDeath(itemGenerator), this);
         pluginManager.registerEvents(new InjectChatItemEvent(), this);
-        pluginManager.registerEvents(new GrindCustomWeaponEvent(), this);
+        pluginManager.registerEvents(new GrindCustomWeaponEvent(materialManager), this);
         pluginManager.registerEvents(new InteractCryptologistEvent(npcManager), this);
-        pluginManager.registerEvents(new InteractBlacksmithEvent(npcManager), this);
+        pluginManager.registerEvents(new InteractBlacksmithEvent(npcManager, materialManager), this);
 
         //Register crafting
         craftingManager.registerAll(
-                new SmithNetheriteBattleAxe(new NamespacedKey(this,"smith_battleaxe_netherite")),
-                new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_iron")),
-                new CraftDiamondBattleAxe(new NamespacedKey(this, "craft_battleaxe_diamond")),
-                new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"))
+                new SmithNetheriteBattleAxe(new NamespacedKey(this, "smith_battleaxe_netherite"), materialManager),
+                new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_iron"), materialManager),
+                new CraftDiamondBattleAxe(new NamespacedKey(this, "craft_battleaxe_diamond"), materialManager),
+                new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"), materialManager)
 
         );
 
         //Setup any commands
         final var generateItemCommand = this.getCommand("generateitem");
         if (generateItemCommand != null) {
-            generateItemCommand.setExecutor(new GenerateItem());
+            generateItemCommand.setExecutor(new GenerateItem(itemGenerator));
             generateItemCommand.setTabCompleter(new GenerateItemTabs());
         }
 
-        Objects.requireNonNull(this.getCommand("dev")).setExecutor(new Dev());
+
         Objects.requireNonNull(this.getCommand("obfuscate")).setExecutor(new ObfuscateItem());
         Objects.requireNonNull(this.getCommand("deobfuscate")).setExecutor(new DeobfuscateItem());
         Objects.requireNonNull(this.getCommand("spawnnpc")).setExecutor(new SpawnNPCCommand(npcManager));
