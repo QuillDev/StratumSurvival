@@ -134,9 +134,9 @@ public class ItemHelper {
     }
 
     public ItemStack setCraftFormatting(ItemStack itemStack) {
-        final var meta = itemStack.getItemMeta();
-        meta.displayName(Component.text("\u00A7f" + meta.getLocalizedName()));
-        itemStack.setItemMeta(meta);
+//        final var meta = itemStack.getItemMeta();
+//        meta.displayName(Component.text("\u00A7f" + meta.getLocalizedName()));
+//        itemStack.setItemMeta(meta);
         return itemStack;
     }
 }

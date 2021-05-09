@@ -1,6 +1,7 @@
 package tech.quilldev.CustomItemsv2;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
@@ -105,5 +106,23 @@ public class ItemAttributes {
                 .findFirst()
                 .orElse("");
         return attributeCategories.get(key);
+    }
+
+    public static WeaponType getWeaponTypeFromItemStack(ItemStack queryStack) {
+
+        for (final var key : attributeCategories.keySet()) {
+            //Get the current entry
+            final var entry = attributeCategories.get(key);
+
+            //Loop through the item list
+            for (final var item : entry.itemStacks) {
+                //If the item is the same as the query stack, return it
+                if (!item.equals(queryStack)) continue;
+                return entry;
+            }
+        }
+
+        //Otherwise return nothing
+        return null;
     }
 }

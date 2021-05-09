@@ -25,21 +25,13 @@ public class ItemGenerator {
         this.materialManager = materialManager;
     }
 
-    /**
-     * Generates an item based on the given category
-     *
-     * @param weaponType of attributes to be generated
-     * @return an item created from that type
-     */
-    public ItemStack generateItem(WeaponType weaponType) {
-        final var level = getRandomLevel(.38f, 6);
+    public ItemStack generateItem(ItemStack item, int level) {
+        final var weaponType = ItemAttributes.getWeaponTypeFromItemStack(item);
+        if (weaponType == null) return null;
+
         final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(weaponType.type), level);
         final var useAttributes = getUseAttributes(attributes);
-        final var materials = getEligibleItems(attributes);
-        final var mat = materials.get(rand.nextInt(materials.size()));
 
-        //Create the item
-        final var item = new ItemStack(mat);
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
         final var lore = new ArrayList<Component>();
@@ -71,6 +63,30 @@ public class ItemGenerator {
         item.setItemMeta(meta);
         return item;
     }
+
+    public ItemStack generateItem(WeaponType weaponType) {
+        return generateItem(weaponType, getRandomLevel(.38f, 6));
+    }
+
+    /**
+     * Generates an item based on the given category
+     *
+     * @param weaponType of attributes to be generated
+     * @return an item created from that type
+     */
+    public ItemStack generateItem(WeaponType weaponType, int level) {
+        final var materials = getMaterialsFromWeaponType(weaponType, level);
+        final var mat = materials.get(rand.nextInt(materials.size()));
+        //Create the item
+        final var item = new ItemStack(mat);
+        return generateItem(item, level);
+    }
+
+    public ArrayList<ItemStack> getMaterialsFromWeaponType(WeaponType weaponType, int level) {
+        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(weaponType.type), level);
+        return getEligibleItems(attributes);
+    }
+
 
     public Component generateRandomItemName(ItemStack item) {
         final var nameCount = rand.nextInt(2) + 1;

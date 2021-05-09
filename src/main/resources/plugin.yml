@@ -7,6 +7,8 @@ commands:
   dev:
     usage: /<command>
     permission: stratumsurvival.developer.dev
+  devtool:
+    usage: /<command>
   generateitem:
     usage: /<command> <level>
   obfuscate:

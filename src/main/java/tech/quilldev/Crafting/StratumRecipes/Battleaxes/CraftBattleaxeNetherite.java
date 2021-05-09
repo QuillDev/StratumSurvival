@@ -9,8 +9,8 @@ import tech.quilldev.Crafting.StratumMaterial;
 import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.StratumRecipe;
 
-public class SmithNetheriteBattleAxe extends StratumRecipe {
-    public SmithNetheriteBattleAxe(NamespacedKey key, StratumMaterialManager materialManager) {
+public class CraftBattleaxeNetherite extends StratumRecipe {
+    public CraftBattleaxeNetherite(NamespacedKey key, StratumMaterialManager materialManager) {
         super(key, materialManager);
     }
 

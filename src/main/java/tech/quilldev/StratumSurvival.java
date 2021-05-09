@@ -2,24 +2,26 @@ package tech.quilldev;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
+import tech.quilldev.Commands.DevTool;
 import tech.quilldev.Commands.ItemGenerator.DeobfuscateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
 import tech.quilldev.Commands.ItemGenerator.ObfuscateItem;
 import tech.quilldev.Commands.RerollItem;
 import tech.quilldev.Commands.SpawnNPCCommand;
+import tech.quilldev.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
-import tech.quilldev.Crafting.CustomCraftingEvents.SmithCustomItemEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftBattleaxeWooden;
 import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftDiamondBattleAxe;
 import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftIronBattleAxe;
-import tech.quilldev.Crafting.StratumRecipes.Battleaxes.SmithNetheriteBattleAxe;
+import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftBattleaxeNetherite;
 import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardCommonToUncommonRecipe;
 import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardEpicToLegendary;
 import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardRareToEpicRecipe;
 import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardUncommonToRareRecipe;
+import tech.quilldev.Crafting.StratumRecipes.TestRecipe;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
@@ -35,7 +37,6 @@ import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.Serialization.StratumSerialization;
 
-import javax.naming.Name;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +44,7 @@ import java.util.logging.Logger;
 public final class StratumSurvival extends JavaPlugin {
 
     private static final Logger logger = Logger.getLogger("Minecraft");
-    private final StratumCraftingManager craftingManager = new StratumCraftingManager(getServer());
+    private StratumCraftingManager craftingManager = new StratumCraftingManager(this);
     private final NPCManager npcManager = new NPCManager(this);
 
 
@@ -56,6 +57,7 @@ public final class StratumSurvival extends JavaPlugin {
         final var materialManager = new StratumMaterialManager(this);
         new WeaponLists(materialManager);
         itemAttributes.init(materialManager);
+
 
         StratumSerialization.init();
 
@@ -89,12 +91,11 @@ public final class StratumSurvival extends JavaPlugin {
         pluginManager.registerEvents(new GrindCustomWeaponEvent(materialManager), this);
         pluginManager.registerEvents(new InteractCryptologistEvent(npcManager), this);
         pluginManager.registerEvents(new InteractBlacksmithEvent(npcManager, materialManager), this);
-        //test events
-        pluginManager.registerEvents(new SmithCustomItemEvent(itemGenerator), this);
+        pluginManager.registerEvents(new CraftCustomItemEvent(itemGenerator, materialManager), this);
 
         //Register crafting
         craftingManager.registerAll(
-                new SmithNetheriteBattleAxe(new NamespacedKey(this, "smith_battleaxe_netherite"), materialManager),
+                new CraftBattleaxeNetherite(new NamespacedKey(this, "smith_battleaxe_netherite"), materialManager),
                 new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_iron"), materialManager),
                 new CraftDiamondBattleAxe(new NamespacedKey(this, "craft_battleaxe_diamond"), materialManager),
                 new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"), materialManager),
@@ -102,7 +103,8 @@ public final class StratumSurvival extends JavaPlugin {
                 new ShardCommonToUncommonRecipe(new NamespacedKey(this, "craft_shard_common_to_uncommon"), materialManager),
                 new ShardUncommonToRareRecipe(new NamespacedKey(this, "craft_shard_uncommon_to_rare"), materialManager),
                 new ShardRareToEpicRecipe(new NamespacedKey(this, "craft_shard_rare_to_epic"), materialManager),
-                new ShardEpicToLegendary(new NamespacedKey(this, "craft_shard_epic_to_legendary"), materialManager)
+                new ShardEpicToLegendary(new NamespacedKey(this, "craft_shard_epic_to_legendary"), materialManager),
+                new TestRecipe(new NamespacedKey(this, "craft_test_recipe"), materialManager)
         );
 
         //Setup any commands
@@ -117,6 +119,9 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("deobfuscate")).setExecutor(new DeobfuscateItem());
         Objects.requireNonNull(this.getCommand("spawnnpc")).setExecutor(new SpawnNPCCommand(npcManager));
         Objects.requireNonNull(this.getCommand("reroll")).setExecutor(new RerollItem());
+        Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(materialManager));
+        craftingManager.registerDynamicRecipes(materialManager);
+
     }
 
     @Override

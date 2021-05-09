@@ -7,11 +7,13 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import org.checkerframework.checker.units.qual.A;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemRarity;
 import tech.quilldev.StratumSurvival;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -19,13 +21,11 @@ import java.util.HashMap;
 public class StratumMaterialManager {
 
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
+    private final ArrayList<ItemStack> geodeMaterials = new ArrayList<>();
 
     //Material Item Keys
     public NamespacedKey crystalKey;
     public NamespacedKey geodeKey;
-
-    //Material Lore
-    private final Component crystalLore = Component.text("Used for crafting");
 
     public StratumMaterialManager(Plugin plugin) {
         this.crystalKey = new NamespacedKey(plugin, "itemtype_crystal");
@@ -35,11 +35,12 @@ public class StratumMaterialManager {
         registerGeodes(); // Setup Geodes
     }
 
+
     /**
      * Setup crafting crystals
      */
     private void registerShards() {
-
+        final Component crystalLore = Component.text("Used for crafting");
         // Setup the common crystal
         final var SHARD_COMMON = new ItemStack(Material.EMERALD);
         final var SHARD_COMMON_META = SHARD_COMMON.getItemMeta();
@@ -104,7 +105,7 @@ public class StratumMaterialManager {
 
     }
 
-    private void registerGeodes(){
+    private void registerGeodes() {
 
         final var geodeLore = Component.text("Click to reveal item");
 
@@ -169,6 +170,15 @@ public class StratumMaterialManager {
         stratumMaterials.putIfAbsent(StratumMaterial.GEODE_RARE.name(), GEODE_RARE);
         stratumMaterials.putIfAbsent(StratumMaterial.GEODE_EPIC.name(), GEODE_EPIC);
         stratumMaterials.putIfAbsent(StratumMaterial.GEODE_LEGENDARY.name(), GEODE_LEGENDARY);
+        geodeMaterials.addAll(
+                Arrays.asList(
+                        GEODE_COMMON,
+                        GEODE_UNCOMMON,
+                        GEODE_RARE,
+                        GEODE_EPIC,
+                        GEODE_LEGENDARY
+                )
+        );
     }
 
 
@@ -240,6 +250,7 @@ public class StratumMaterialManager {
     }
 
     public ItemStack getItem(String key) {
+
         var item = stratumMaterials.get(key);
 
         //If the item does not exist yet, try to cache it
@@ -252,7 +263,12 @@ public class StratumMaterialManager {
             }
             item = new ItemStack(material);
             stratumMaterials.putIfAbsent(key, item); //Cache the item
+
             StratumSurvival.log(getClass(), "Cached material " + key);
+        }
+
+        if (item.getItemMeta().hasCustomModelData()) {
+            System.out.println("SEARCHED FOR " + key + " " + item.getItemMeta().getCustomModelData());
         }
 
         return item.clone();
@@ -274,5 +290,9 @@ public class StratumMaterialManager {
             case 5, 6 -> getItem(StratumMaterial.SHARD_LEGENDARY);
             default -> null;
         };
+    }
+
+    public ArrayList<ItemStack> getGeodeMaterials() {
+        return geodeMaterials;
     }
 }
