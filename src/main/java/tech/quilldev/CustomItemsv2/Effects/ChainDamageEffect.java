@@ -5,9 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.util.Vector;
 import tech.quilldev.Particles.ParticleFactory;
 
@@ -25,7 +23,7 @@ public class ChainDamageEffect extends Effect {
 
         //Keep track of previous targets & get damage for teh event
         final var damage = Math.max(baseDamage * damageMulti, 2);
-        final var previousTargets = new ArrayList<Entity>(Collections.singletonList(player));
+        var previousTargets = new ArrayList<Entity>(Collections.singletonList(player));
 
         //Calculate bounces
         var bounces = 0;
@@ -38,10 +36,43 @@ public class ChainDamageEffect extends Effect {
             entity = target;
         }
 
-        final var theWorldIsEndingLocation = previousTargets.get(previousTargets.size() - 1).getLocation();
-        player.getWorld().strikeLightning(theWorldIsEndingLocation);
+        //TODO: Sort bounces by distance too
+        sortByDistance(player, previousTargets);
+
+
+        //If the size of the previous targets list is equal to the max bounces, summon lightning at the last target
+        if (previousTargets.size() > Math.ceil(maxBounces / 2f)) {
+            final var strikeLocation = previousTargets.get(previousTargets.size() - 1).getLocation();
+            player.getWorld().strikeLightning(strikeLocation);
+        }
+
     }
 
+    private void sortByDistance(Entity base, ArrayList<Entity> targets) {
+        final var pVec = base.getLocation().toVector();
+        targets.sort((a, b) -> {
+            final var aVec = a.getLocation().toVector();
+            final var bVec = b.getLocation().toVector();
+            final var aDistance = aVec.distance(pVec);
+            final var bDistance = bVec.distance(pVec);
+
+            if (aDistance > bDistance) {
+                return 1;
+            } else if (aDistance == bDistance) {
+                return 0;
+            }
+            return -1;
+        });
+
+    }
+
+    /**
+     * Create particles between the start and end point
+     *
+     * @param start location (a location to draw line at)
+     * @param end   location (b location to draw the line at)
+     * @param world to do location math in
+     */
     private void createParticles(Location start, Location end, World world) {
         final var factory = new ParticleFactory();
         factory.constructParticleGeometry(
@@ -50,6 +81,13 @@ public class ChainDamageEffect extends Effect {
                 world);
     }
 
+    /**
+     * Get the closest damageable entity to the given entity
+     *
+     * @param entity          to get close entities from
+     * @param previousTargets a list of previous targets (makes sure future targets are unique)
+     * @return the closest damageable entity
+     */
     private Damageable getCloseEnemies(Entity entity, ArrayList<Entity> previousTargets) {
         return entity.getNearbyEntities(6, 6, 6)
                 .stream()
