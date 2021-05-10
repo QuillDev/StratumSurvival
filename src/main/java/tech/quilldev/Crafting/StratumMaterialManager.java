@@ -12,6 +12,7 @@ import tech.quilldev.CustomItemsv2.BaseWeaponAttributes.BaseAttributesBattleaxes
 import tech.quilldev.CustomItemsv2.BaseWeaponAttributes.BaseAttributesDaggers;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemRarity;
+import tech.quilldev.Serialization.StratumSerialization;
 import tech.quilldev.StratumSurvival;
 
 import java.util.*;
@@ -25,10 +26,12 @@ public class StratumMaterialManager {
     //Material Item Keys
     public NamespacedKey crystalKey;
     public NamespacedKey geodeKey;
+    public NamespacedKey daggerKey;
 
     public StratumMaterialManager(Plugin plugin) {
         this.crystalKey = new NamespacedKey(plugin, "itemtype_crystal");
         this.geodeKey = new NamespacedKey(plugin, "itemtype_geode");
+        this.daggerKey = new NamespacedKey(plugin, "itemtype_dagger");
         registerShards(); //Setup Crafting Shards
         registerBattleaxes(); // Setup Battleaxe items
         registerGeodes(); // Setup Geodes
@@ -192,6 +195,7 @@ public class StratumMaterialManager {
         DAGGER_WOODEN_META.displayName(Component.text(DAGGER_WOODEN_META.getLocalizedName()));
         DAGGER_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_WOOD);
         DAGGER_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_WOODEN_META.getPersistentDataContainer().set(daggerKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         DAGGER_WOODEN.setItemMeta(DAGGER_WOODEN_META);
 
         //setup stone battleaxe
@@ -202,6 +206,7 @@ public class StratumMaterialManager {
         DAGGER_STONE_META.displayName(Component.text(DAGGER_STONE_META.getLocalizedName()));
         DAGGER_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_STONE);
         DAGGER_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_STONE_META.getPersistentDataContainer().set(daggerKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         DAGGER_STONE.setItemMeta(DAGGER_STONE_META);
 
         //setup iron battleaxe
@@ -212,6 +217,7 @@ public class StratumMaterialManager {
         DAGGER_IRON_META.displayName(Component.text(DAGGER_IRON_META.getLocalizedName()));
         DAGGER_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_IRON);
         DAGGER_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_IRON_META.getPersistentDataContainer().set(daggerKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         DAGGER_IRON.setItemMeta(DAGGER_IRON_META);
 
         //setup golden battleaxe
@@ -222,6 +228,7 @@ public class StratumMaterialManager {
         DAGGER_GOLDEN_META.displayName(Component.text(DAGGER_GOLDEN_META.getLocalizedName()));
         DAGGER_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_GOLD);
         DAGGER_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_GOLDEN_META.getPersistentDataContainer().set(daggerKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         DAGGER_GOLDEN.setItemMeta(DAGGER_GOLDEN_META);
 
         //setup diamond battleaxe
@@ -232,6 +239,7 @@ public class StratumMaterialManager {
         DAGGER_DIAMOND_META.displayName(Component.text(DAGGER_DIAMOND_META.getLocalizedName()));
         DAGGER_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_DIAMOND);
         DAGGER_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_DIAMOND_META.getPersistentDataContainer().set(daggerKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         DAGGER_DIAMOND.setItemMeta(DAGGER_DIAMOND_META);
 
         //setup Netherite battleaxe
@@ -242,6 +250,7 @@ public class StratumMaterialManager {
         DAGGER_NETHERITE_META.displayName(Component.text(DAGGER_NETHERITE_META.getLocalizedName()));
         DAGGER_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_NETHERITE);
         DAGGER_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_NETHERITE_META.getPersistentDataContainer().set(daggerKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         DAGGER_NETHERITE.setItemMeta(DAGGER_NETHERITE_META);
 
         //Add battle axes to the stratum material manager

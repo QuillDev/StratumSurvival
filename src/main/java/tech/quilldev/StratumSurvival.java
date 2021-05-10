@@ -32,6 +32,7 @@ import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 import tech.quilldev.CustomItemsv2.WeaponLists;
 import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
+import tech.quilldev.Events.TestEvents.DaggerBackstabEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractBlacksmithEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCEvents.NPCTransformWitchCancel;
@@ -94,6 +95,7 @@ public final class StratumSurvival extends JavaPlugin {
         pluginManager.registerEvents(new InteractBlacksmithEvent(npcManager, materialManager), this);
         pluginManager.registerEvents(new CraftCustomItemEvent(itemGenerator, materialManager), this);
         pluginManager.registerEvents(new NPCTransformWitchCancel(), this);
+        pluginManager.registerEvents(new DaggerBackstabEvent(materialManager), this);
 
         //Register crafting
         craftingManager.registerAll(
