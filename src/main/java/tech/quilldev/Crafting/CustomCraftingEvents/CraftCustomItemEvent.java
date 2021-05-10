@@ -1,13 +1,10 @@
 package tech.quilldev.Crafting.CustomCraftingEvents;
 
-import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.Crafting.StratumMaterialManager;
-import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 
 

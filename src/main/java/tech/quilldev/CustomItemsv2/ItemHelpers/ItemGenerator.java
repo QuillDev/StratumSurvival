@@ -8,7 +8,7 @@ import tech.quilldev.CustomItemsv2.Attribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.WeaponType;
-import tech.quilldev.Names.Names;
+import tech.quilldev.CustomItemsv2.ItemHelpers.ItemNames.ItemAdjectives;
 import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
@@ -92,7 +92,7 @@ public class ItemGenerator {
         final var nameCount = rand.nextInt(2) + 1;
         StringBuilder name = new StringBuilder();
         for (int index = 0; index < nameCount; index++) {
-            name.append(Names.adjectives[rand.nextInt(Names.adjectives.length)]).append(" ");
+            name.append(ItemAdjectives.adjectives[rand.nextInt(ItemAdjectives.adjectives.length)]).append(" ");
         }
         final var meta = item.getItemMeta();
 

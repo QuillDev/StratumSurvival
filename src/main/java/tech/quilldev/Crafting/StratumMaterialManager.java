@@ -4,18 +4,17 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-import org.checkerframework.checker.units.qual.A;
+import tech.quilldev.CustomItemsv2.BaseWeaponAttributes.BaseAttributesBattleaxes;
+import tech.quilldev.CustomItemsv2.BaseWeaponAttributes.BaseAttributesDaggers;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemRarity;
 import tech.quilldev.StratumSurvival;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 
 public class StratumMaterialManager {
@@ -31,10 +30,12 @@ public class StratumMaterialManager {
         this.crystalKey = new NamespacedKey(plugin, "itemtype_crystal");
         this.geodeKey = new NamespacedKey(plugin, "itemtype_geode");
         registerShards(); //Setup Crafting Shards
-        setupBattleaxes(); // Setup Battleaxe items
+        registerBattleaxes(); // Setup Battleaxe items
         registerGeodes(); // Setup Geodes
+        registerDaggers(); // Setup daggers
     }
 
+    //TODO: Break these up into different "WeaponRegistry" classes
 
     /**
      * Setup crafting crystals
@@ -181,8 +182,78 @@ public class StratumMaterialManager {
         );
     }
 
+    private void registerDaggers() {
 
-    private void setupBattleaxes() {
+        //setup wooden battleaxe
+        final var DAGGER_WOODEN = new ItemStack(Material.WOODEN_SWORD);
+        final var DAGGER_WOODEN_META = DAGGER_WOODEN.getItemMeta();
+        DAGGER_WOODEN_META.setCustomModelData(1);
+        DAGGER_WOODEN_META.setLocalizedName("Wooden Dagger");
+        DAGGER_WOODEN_META.displayName(Component.text(DAGGER_WOODEN_META.getLocalizedName()));
+        DAGGER_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_WOOD);
+        DAGGER_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_WOODEN.setItemMeta(DAGGER_WOODEN_META);
+
+        //setup stone battleaxe
+        final var DAGGER_STONE = new ItemStack(Material.STONE_SWORD);
+        final var DAGGER_STONE_META = DAGGER_STONE.getItemMeta();
+        DAGGER_STONE_META.setCustomModelData(1);
+        DAGGER_STONE_META.setLocalizedName("Stone Dagger");
+        DAGGER_STONE_META.displayName(Component.text(DAGGER_STONE_META.getLocalizedName()));
+        DAGGER_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_STONE);
+        DAGGER_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_STONE.setItemMeta(DAGGER_STONE_META);
+
+        //setup iron battleaxe
+        final var DAGGER_IRON = new ItemStack(Material.IRON_SWORD);
+        final var DAGGER_IRON_META = DAGGER_IRON.getItemMeta();
+        DAGGER_IRON_META.setCustomModelData(1);
+        DAGGER_IRON_META.setLocalizedName("Iron Dagger");
+        DAGGER_IRON_META.displayName(Component.text(DAGGER_IRON_META.getLocalizedName()));
+        DAGGER_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_IRON);
+        DAGGER_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_IRON.setItemMeta(DAGGER_IRON_META);
+
+        //setup golden battleaxe
+        final var DAGGER_GOLDEN = new ItemStack(Material.GOLDEN_SWORD);
+        final var DAGGER_GOLDEN_META = DAGGER_GOLDEN.getItemMeta();
+        DAGGER_GOLDEN_META.setCustomModelData(1);
+        DAGGER_GOLDEN_META.setLocalizedName("Golden Dagger");
+        DAGGER_GOLDEN_META.displayName(Component.text(DAGGER_GOLDEN_META.getLocalizedName()));
+        DAGGER_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_GOLD);
+        DAGGER_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_GOLDEN.setItemMeta(DAGGER_GOLDEN_META);
+
+        //setup diamond battleaxe
+        final var DAGGER_DIAMOND = new ItemStack(Material.DIAMOND_SWORD);
+        final var DAGGER_DIAMOND_META = DAGGER_DIAMOND.getItemMeta();
+        DAGGER_DIAMOND_META.setCustomModelData(1);
+        DAGGER_DIAMOND_META.setLocalizedName("Diamond Dagger");
+        DAGGER_DIAMOND_META.displayName(Component.text(DAGGER_DIAMOND_META.getLocalizedName()));
+        DAGGER_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_DIAMOND);
+        DAGGER_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_DIAMOND.setItemMeta(DAGGER_DIAMOND_META);
+
+        //setup Netherite battleaxe
+        final var DAGGER_NETHERITE = new ItemStack(Material.NETHERITE_SWORD);
+        final var DAGGER_NETHERITE_META = DAGGER_NETHERITE.getItemMeta();
+        DAGGER_NETHERITE_META.setCustomModelData(1);
+        DAGGER_NETHERITE_META.setLocalizedName("Netherite Dagger");
+        DAGGER_NETHERITE_META.displayName(Component.text(DAGGER_NETHERITE_META.getLocalizedName()));
+        DAGGER_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_NETHERITE);
+        DAGGER_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
+        DAGGER_NETHERITE.setItemMeta(DAGGER_NETHERITE_META);
+
+        //Add battle axes to the stratum material manager
+        stratumMaterials.putIfAbsent(StratumMaterial.DAGGER_WOODEN.name(), DAGGER_WOODEN);
+        stratumMaterials.putIfAbsent(StratumMaterial.DAGGER_STONE.name(), DAGGER_STONE);
+        stratumMaterials.putIfAbsent(StratumMaterial.DAGGER_IRON.name(), DAGGER_IRON);
+        stratumMaterials.putIfAbsent(StratumMaterial.DAGGER_GOLDEN.name(), DAGGER_GOLDEN);
+        stratumMaterials.putIfAbsent(StratumMaterial.DAGGER_DIAMOND.name(), DAGGER_DIAMOND);
+        stratumMaterials.putIfAbsent(StratumMaterial.DAGGER_NETHERITE.name(), DAGGER_NETHERITE);
+    }
+
+    private void registerBattleaxes() {
 
         //setup wooden battleaxe
         final var BATTLEAXE_WOODEN = new ItemStack(Material.WOODEN_AXE);
@@ -190,6 +261,8 @@ public class StratumMaterialManager {
         BATTLEAXE_WOODEN_META.setCustomModelData(1);
         BATTLEAXE_WOODEN_META.setLocalizedName("Wooden Battleaxe");
         BATTLEAXE_WOODEN_META.displayName(Component.text(BATTLEAXE_WOODEN_META.getLocalizedName()));
+        BATTLEAXE_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesBattleaxes.ATTACK_DAMAGE_WOOD);
+        BATTLEAXE_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesBattleaxes.ATTACK_SPEED);
         BATTLEAXE_WOODEN.setItemMeta(BATTLEAXE_WOODEN_META);
 
         //setup stone battleaxe
@@ -198,6 +271,8 @@ public class StratumMaterialManager {
         BATTLEAXE_STONE_META.setCustomModelData(1);
         BATTLEAXE_STONE_META.setLocalizedName("Stone Battleaxe");
         BATTLEAXE_STONE_META.displayName(Component.text(BATTLEAXE_STONE_META.getLocalizedName()));
+        BATTLEAXE_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesBattleaxes.ATTACK_DAMAGE_STONE);
+        BATTLEAXE_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesBattleaxes.ATTACK_SPEED);
         BATTLEAXE_STONE.setItemMeta(BATTLEAXE_STONE_META);
 
         //setup iron battleaxe
@@ -206,6 +281,8 @@ public class StratumMaterialManager {
         BATTLEAXE_IRON_META.setCustomModelData(1);
         BATTLEAXE_IRON_META.setLocalizedName("Iron Battleaxe");
         BATTLEAXE_IRON_META.displayName(Component.text(BATTLEAXE_IRON_META.getLocalizedName()));
+        BATTLEAXE_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesBattleaxes.ATTACK_DAMAGE_IRON);
+        BATTLEAXE_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesBattleaxes.ATTACK_SPEED);
         BATTLEAXE_IRON.setItemMeta(BATTLEAXE_IRON_META);
 
         //setup golden battleaxe
@@ -214,6 +291,8 @@ public class StratumMaterialManager {
         BATTLEAXE_GOLDEN_META.setCustomModelData(1);
         BATTLEAXE_GOLDEN_META.setLocalizedName("Golden Battleaxe");
         BATTLEAXE_GOLDEN_META.displayName(Component.text(BATTLEAXE_GOLDEN_META.getLocalizedName()));
+        BATTLEAXE_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesBattleaxes.ATTACK_DAMAGE_GOLD);
+        BATTLEAXE_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesBattleaxes.ATTACK_SPEED);
         BATTLEAXE_GOLDEN.setItemMeta(BATTLEAXE_GOLDEN_META);
 
         //setup diamond battleaxe
@@ -222,6 +301,8 @@ public class StratumMaterialManager {
         BATTLEAXE_DIAMOND_META.setCustomModelData(1);
         BATTLEAXE_DIAMOND_META.setLocalizedName("Diamond Battleaxe");
         BATTLEAXE_DIAMOND_META.displayName(Component.text(BATTLEAXE_DIAMOND_META.getLocalizedName()));
+        BATTLEAXE_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesBattleaxes.ATTACK_DAMAGE_DIAMOND);
+        BATTLEAXE_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesBattleaxes.ATTACK_SPEED);
         BATTLEAXE_DIAMOND.setItemMeta(BATTLEAXE_DIAMOND_META);
 
         //setup Netherite battleaxe
@@ -230,6 +311,8 @@ public class StratumMaterialManager {
         BATTLEAXE_NETHERITE_META.setCustomModelData(1);
         BATTLEAXE_NETHERITE_META.setLocalizedName("Netherite Battleaxe");
         BATTLEAXE_NETHERITE_META.displayName(Component.text(BATTLEAXE_NETHERITE_META.getLocalizedName()));
+        BATTLEAXE_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesBattleaxes.ATTACK_DAMAGE_NETHERITE);
+        BATTLEAXE_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesBattleaxes.ATTACK_SPEED);
         BATTLEAXE_NETHERITE.setItemMeta(BATTLEAXE_NETHERITE_META);
 
         //Add battle axes to the stratum material manager

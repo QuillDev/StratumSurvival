@@ -10,7 +10,7 @@ import tech.quilldev.CustomItemsV1.ItemAttributes.OnHitAttributes.OnHitAttribute
 import tech.quilldev.CustomItemsV1.ItemAttributes.ItemAttributes;
 import tech.quilldev.CustomItemsV1.ItemAttributes.OnUseAttributes.OnUseAttribute;
 import tech.quilldev.CustomItemsV1.ItemAttributes.ToolAttributes.ToolAttribute;
-import tech.quilldev.Names.Names;
+import tech.quilldev.CustomItemsv2.ItemHelpers.ItemNames.ItemAdjectives;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +47,7 @@ public class ItemGenerator {
         final var nameCount = rand.nextInt(2) + 1;
         StringBuilder name = new StringBuilder();
         for (int index = 0; index < nameCount; index++) {
-            name.append(Names.adjectives[rand.nextInt(Names.adjectives.length)]).append(" ");
+            name.append(ItemAdjectives.adjectives[rand.nextInt(ItemAdjectives.adjectives.length)]).append(" ");
         }
         name.append(item.getI18NDisplayName());
         meta.displayName(Component.text(name.toString()).color(TextColor.color(0xFF5E46)));

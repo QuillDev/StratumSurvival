@@ -1,6 +1,6 @@
-package tech.quilldev.Names;
+package tech.quilldev.CustomItemsv2.ItemHelpers.ItemNames;
 
-public class Names {
+public class ItemAdjectives {
 
     public static String[] adjectives = new String[]
             {
