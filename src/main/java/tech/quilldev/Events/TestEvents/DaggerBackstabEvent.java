@@ -32,8 +32,8 @@ public class DaggerBackstabEvent implements Listener {
             return;
         }
 
-        final var playerRotation = player.getLocation().getYaw();
-        final var targetRotation = target.getLocation().getYaw();
+        final var playerRotation = player.getLocation().getYaw(); //get the rotation of the player
+        final var targetRotation = target.getLocation().getYaw(); //get the rotation of the
         final var deltaRotation = Math.abs(playerRotation - targetRotation);
         if (!(deltaRotation < range || deltaRotation > (360 - range))) return;
         event.setDamage(event.getDamage() * 1.5);

@@ -1,9 +1,10 @@
-package tech.quilldev.CustomItemsv2;
+package tech.quilldev.CustomItemsv2.Attributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
+import tech.quilldev.CustomItemsv2.Attributes.AttributeHelpers.AttributeFormatter;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,7 +12,8 @@ import java.util.Random;
 public abstract class Attribute {
 
     protected static final Random rand = new Random();
-
+    protected static final AttributeFormatter attributeFormatter = new AttributeFormatter();
+    
     // Item Data Attributes
     public NamespacedKey key;
     public ArrayList<ItemStack> materials;

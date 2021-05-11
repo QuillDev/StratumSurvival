@@ -359,10 +359,6 @@ public class StratumMaterialManager {
             StratumSurvival.log(getClass(), "Cached material " + key);
         }
 
-        if (item.getItemMeta().hasCustomModelData()) {
-            System.out.println("SEARCHED FOR " + key + " " + item.getItemMeta().getCustomModelData());
-        }
-
         return item.clone();
     }
 

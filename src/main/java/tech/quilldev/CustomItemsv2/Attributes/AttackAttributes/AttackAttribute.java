@@ -1,11 +1,10 @@
 package tech.quilldev.CustomItemsv2.Attributes.AttackAttributes;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
-import tech.quilldev.CustomItemsv2.Attribute;
+import tech.quilldev.CustomItemsv2.Attributes.Attribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
 
 import java.util.ArrayList;

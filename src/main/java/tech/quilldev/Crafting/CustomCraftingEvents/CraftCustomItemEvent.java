@@ -50,10 +50,9 @@ public class CraftCustomItemEvent implements Listener {
             item = slotItem;
         }
 
-        System.out.println("CHECK A");
+
         if (item == null) return;
         if (crystal == null) return;
-        System.out.println("CHECK B");
         //Set the item to have the same properties as the rolled item
         final var level = geodeMeta.getCustomModelData();
         final var rolledItem = generator.generateItem(item, level); //TODO: Make the item match the original one

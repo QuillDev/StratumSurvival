@@ -2,7 +2,7 @@ package tech.quilldev.CustomItemsv2.Attributes.UseAttributes;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
-import tech.quilldev.CustomItemsv2.Attribute;
+import tech.quilldev.CustomItemsv2.Attributes.Attribute;
 
 import java.util.ArrayList;
 

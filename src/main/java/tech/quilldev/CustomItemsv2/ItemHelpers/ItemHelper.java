@@ -6,7 +6,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItemsv2.Attribute;
+import tech.quilldev.CustomItemsv2.Attributes.Attribute;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.Serialization.StratumSerialization;
 

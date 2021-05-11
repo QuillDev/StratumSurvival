@@ -20,8 +20,8 @@ public class BluntWeaponFlatDamageAttribute extends BluntWeaponAttribute {
     }
 
     @Override
-    public String dataFormat(float data) {
-        return ": +" + Math.round(data * 10) / 10.f;
+    public String dataFormat(float value) {
+        return attributeFormatter.formatFloat(value);
     }
 
     @Override

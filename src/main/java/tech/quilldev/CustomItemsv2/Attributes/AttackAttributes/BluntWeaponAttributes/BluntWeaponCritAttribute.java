@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
-import tech.quilldev.CustomItemsv2.Attribute;
+import tech.quilldev.CustomItemsv2.Attributes.Attribute;
 import tech.quilldev.CustomItemsv2.Effects.CritDamageEffect;
 
 public class BluntWeaponCritAttribute extends BluntWeaponAttribute {
@@ -22,7 +22,7 @@ public class BluntWeaponCritAttribute extends BluntWeaponAttribute {
 
     @Override
     public String dataFormat(float value) {
-        return ": " + Math.round(value * 100) + "%";
+        return attributeFormatter.formatPercent(value);
     }
 
     @Override

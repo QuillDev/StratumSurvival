@@ -21,7 +21,7 @@ public class BluntWeaponFlameAttribute extends BluntWeaponAttribute {
 
     @Override
     public String dataFormat(float value) {
-        return ": " + Math.round(value * 100) + "%";
+        return attributeFormatter.formatPercent(value);
     }
 
     @Override

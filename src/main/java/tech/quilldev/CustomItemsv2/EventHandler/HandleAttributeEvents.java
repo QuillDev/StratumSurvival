@@ -1,7 +1,9 @@
 package tech.quilldev.CustomItemsv2.EventHandler;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +21,15 @@ public class HandleAttributeEvents implements Listener {
     public void onDamageEvent(EntityDamageByEntityEvent event) {
         if (!(event.getDamager() instanceof LivingEntity)) return;
         handleItemAttributes((LivingEntity) event.getDamager(), event);
+    }
+
+    @EventHandler
+    public void onArrowDamageEvent(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Arrow)) return; //if the damager is not an arrow, return
+        final var arrow = (Arrow) event.getDamager();
+        if (!(arrow.getShooter() instanceof Player)) return;
+        final var shooter = (Player) arrow.getShooter();
+        handleItemAttributes(shooter, event);
     }
 
     @EventHandler

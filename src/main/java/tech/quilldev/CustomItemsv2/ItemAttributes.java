@@ -6,6 +6,7 @@ import org.bukkit.plugin.Plugin;
 import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
+import tech.quilldev.CustomItemsv2.Attributes.Attribute;
 import tech.quilldev.StratumSurvival;
 
 import java.util.ArrayList;

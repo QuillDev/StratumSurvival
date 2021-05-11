@@ -23,8 +23,8 @@ import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardRareToEpicRecip
 import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardUncommonToRareRecipe;
 import tech.quilldev.Crafting.StratumRecipes.TestRecipe;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
+import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeDamage;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
-import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeWhisper;
 import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItemsv2.ItemAttributes;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.ShadowDodgeUseWeaponAttribute;
@@ -32,6 +32,7 @@ import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 import tech.quilldev.CustomItemsv2.WeaponLists;
 import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
+import tech.quilldev.Events.SpellEvents.UseRailgun;
 import tech.quilldev.Events.TestEvents.DaggerBackstabEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractBlacksmithEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
@@ -79,7 +80,7 @@ public final class StratumSurvival extends JavaPlugin {
                 new BluntWeaponPercentDamageAttribute(new NamespacedKey(this, "blunt_weapon_percent_damage")),
                 new BluntWeaponLifeStealAttribute(new NamespacedKey(this, "blunt_weapon_lifesteal")),
                 //Bow Weapon Attributes
-                new BowWeaponAttributeWhisper(new NamespacedKey(this, "bow_weapon_whisper")),
+                new BowWeaponAttributeDamage(new NamespacedKey(this, "bow_damage")),
                 //Use Attributes
                 new CloakUseWeaponAttribute(new NamespacedKey(this, "use_cloak")),
                 new ShadowDodgeUseWeaponAttribute(new NamespacedKey(this, "use_shadow_dodge"))
@@ -96,6 +97,7 @@ public final class StratumSurvival extends JavaPlugin {
         pluginManager.registerEvents(new CraftCustomItemEvent(itemGenerator, materialManager), this);
         pluginManager.registerEvents(new NPCTransformWitchCancel(), this);
         pluginManager.registerEvents(new DaggerBackstabEvent(materialManager), this);
+        pluginManager.registerEvents(new UseRailgun(), this);
 
         //Register crafting
         craftingManager.registerAll(
