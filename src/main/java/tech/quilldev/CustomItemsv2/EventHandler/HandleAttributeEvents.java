@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItemsv2.ItemAttributes;
+import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
 import tech.quilldev.Serialization.StratumSerialization;
 
 public class HandleAttributeEvents implements Listener {

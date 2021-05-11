@@ -1,9 +1,7 @@
-package tech.quilldev.CustomItemsv2;
+package tech.quilldev.CustomItemsv2.MaterialManager;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import tech.quilldev.Crafting.StratumMaterial;
-import tech.quilldev.Crafting.StratumMaterialManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;

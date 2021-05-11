@@ -3,11 +3,11 @@ package tech.quilldev.CustomItemsv2.ItemHelpers;
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.Crafting.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.Attribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
-import tech.quilldev.CustomItemsv2.ItemAttributes;
-import tech.quilldev.CustomItemsv2.WeaponType;
+import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
+import tech.quilldev.CustomItemsv2.MaterialManager.WeaponType;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemNames.ItemAdjectives;
 import tech.quilldev.Serialization.StratumSerialization;
 

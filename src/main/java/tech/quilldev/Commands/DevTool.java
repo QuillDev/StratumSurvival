@@ -3,12 +3,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
-import tech.quilldev.Crafting.StratumMaterial;
-import tech.quilldev.Crafting.StratumMaterialManager;
-import tech.quilldev.CustomItemsV1.ItemAttributes.ItemAttributes;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterial;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
 
 import java.util.Objects;
 

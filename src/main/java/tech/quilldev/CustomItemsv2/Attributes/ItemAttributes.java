@@ -1,12 +1,13 @@
-package tech.quilldev.CustomItemsv2;
+package tech.quilldev.CustomItemsv2.Attributes;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
-import tech.quilldev.Crafting.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
-import tech.quilldev.CustomItemsv2.Attributes.Attribute;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.WeaponLists;
+import tech.quilldev.CustomItemsv2.MaterialManager.WeaponType;
 import tech.quilldev.StratumSurvival;
 
 import java.util.ArrayList;

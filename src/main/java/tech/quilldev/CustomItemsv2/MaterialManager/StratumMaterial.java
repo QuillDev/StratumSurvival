@@ -1,22 +1,36 @@
-package tech.quilldev.Crafting;
+package tech.quilldev.CustomItemsv2.MaterialManager;
 
 public enum StratumMaterial {
+    //SHARDS
     SHARD_COMMON,
     SHARD_UNCOMMON,
     SHARD_RARE,
     SHARD_EPIC,
     SHARD_LEGENDARY,
+
+    //FRAGMENTS
+    FRAGMENT_COMMON,
+    FRAGMENT_UNCOMMON,
+    FRAGMENT_RARE,
+    FRAGMENT_EPIC,
+    FRAGMENT_LEGENDARY,
+
+    //GEODES
     GEODE_COMMON,
     GEODE_UNCOMMON,
     GEODE_RARE,
     GEODE_EPIC,
     GEODE_LEGENDARY,
+
+    //BATTLEAXES
     BATTLEAXE_WOODEN,
     BATTLEAXE_STONE,
     BATTLEAXE_IRON,
     BATTLEAXE_GOLDEN,
     BATTLEAXE_DIAMOND,
     BATTLEAXE_NETHERITE,
+
+    //DAGGERS
     DAGGER_WOODEN,
     DAGGER_STONE,
     DAGGER_IRON,

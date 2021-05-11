@@ -6,7 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.Crafting.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
 
 public class DaggerBackstabEvent implements Listener {
 

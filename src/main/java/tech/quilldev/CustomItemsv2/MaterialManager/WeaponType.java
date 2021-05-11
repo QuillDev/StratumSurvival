@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItemsv2;
+package tech.quilldev.CustomItemsv2.MaterialManager;
 
 import org.bukkit.inventory.ItemStack;
 

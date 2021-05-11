@@ -3,7 +3,7 @@ package tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttribu
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import tech.quilldev.CustomItemsv2.Attributes.Attribute;
-import tech.quilldev.CustomItemsv2.WeaponLists;
+import tech.quilldev.CustomItemsv2.MaterialManager.WeaponLists;
 
 import java.util.ArrayList;
 

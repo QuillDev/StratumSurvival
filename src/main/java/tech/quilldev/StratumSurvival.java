@@ -12,28 +12,26 @@ import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
-import tech.quilldev.Crafting.StratumMaterialManager;
-import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftBattleaxeWooden;
-import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftDiamondBattleAxe;
-import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftIronBattleAxe;
-import tech.quilldev.Crafting.StratumRecipes.Battleaxes.CraftBattleaxeNetherite;
-import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardCommonToUncommonRecipe;
-import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardEpicToLegendary;
-import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardRareToEpicRecipe;
-import tech.quilldev.Crafting.StratumRecipes.CrystalRecipes.ShardUncommonToRareRecipe;
-import tech.quilldev.Crafting.StratumRecipes.TestRecipe;
+import tech.quilldev.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
+import tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes.*;
+import tech.quilldev.Crafting.StratumRecipes.Weapons.Daggers.*;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
+import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
+import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardRareToEpicRecipe;
+import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardUncommonToRareRecipe;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeDamage;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.EventHandler.HandleAttributeEvents;
-import tech.quilldev.CustomItemsv2.ItemAttributes;
+import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.ShadowDodgeUseWeaponAttribute;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
-import tech.quilldev.CustomItemsv2.WeaponLists;
+import tech.quilldev.CustomItemsv2.MaterialManager.WeaponLists;
 import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
-import tech.quilldev.Events.SpellEvents.UseRailgun;
 import tech.quilldev.Events.TestEvents.DaggerBackstabEvent;
+import tech.quilldev.Events.ToolEvents.ToolBreakBlockDropShard;
 import tech.quilldev.NPCManager.NPCEvents.InteractBlacksmithEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCEvents.NPCTransformWitchCancel;
@@ -97,20 +95,37 @@ public final class StratumSurvival extends JavaPlugin {
         pluginManager.registerEvents(new CraftCustomItemEvent(itemGenerator, materialManager), this);
         pluginManager.registerEvents(new NPCTransformWitchCancel(), this);
         pluginManager.registerEvents(new DaggerBackstabEvent(materialManager), this);
-        pluginManager.registerEvents(new UseRailgun(), this);
+        pluginManager.registerEvents(new ToolBreakBlockDropShard(materialManager), this);
 
         //Register crafting
         craftingManager.registerAll(
-                new CraftBattleaxeNetherite(new NamespacedKey(this, "smith_battleaxe_netherite"), materialManager),
-                new CraftIronBattleAxe(new NamespacedKey(this, "craft_battleaxe_iron"), materialManager),
-                new CraftDiamondBattleAxe(new NamespacedKey(this, "craft_battleaxe_diamond"), materialManager),
+                //BATTLEAXE RECIPES
                 new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"), materialManager),
+                new CraftBattleaxeStone(new NamespacedKey(this, "craft_battleaxe_stone"), materialManager),
+                new CraftBattleaxeGolden(new NamespacedKey(this, "craft_battleaxe_golden"), materialManager),
+                new CraftBattleaxeIron(new NamespacedKey(this, "craft_battleaxe_iron"), materialManager),
+                new CraftBattleaxeDiamond(new NamespacedKey(this, "craft_battleaxe_diamond"), materialManager),
+                new CraftBattleaxeNetherite(new NamespacedKey(this, "smith_battleaxe_netherite"), materialManager),
+                //DAGGER RECIPES
+                new CraftDaggerWooden(new NamespacedKey(this, "craft_dagger_wooden"), materialManager),
+                new CraftDaggerStone(new NamespacedKey(this, "craft_dagger_stone"), materialManager),
+                new CraftDaggerGolden(new NamespacedKey(this, "craft_dagger_golden"), materialManager),
+                new CraftDaggerIron(new NamespacedKey(this, "craft_dagger_iron"), materialManager),
+                new CraftDaggerDiamond(new NamespacedKey(this, "craft_dagger_diamond"), materialManager),
+                new CraftDaggerNetherite(new NamespacedKey(this, "smith_dagger_netherite"), materialManager),
                 // Add shard crafting recipes
                 new ShardCommonToUncommonRecipe(new NamespacedKey(this, "craft_shard_common_to_uncommon"), materialManager),
                 new ShardUncommonToRareRecipe(new NamespacedKey(this, "craft_shard_uncommon_to_rare"), materialManager),
                 new ShardRareToEpicRecipe(new NamespacedKey(this, "craft_shard_rare_to_epic"), materialManager),
                 new ShardEpicToLegendary(new NamespacedKey(this, "craft_shard_epic_to_legendary"), materialManager),
-                new TestRecipe(new NamespacedKey(this, "craft_test_recipe"), materialManager)
+
+                //Add Fragment Crafting Recipes
+                new FragmentToShardCommon(new NamespacedKey(this, "craft_fragment_to_shard_common"), materialManager),
+                new FragmentToShardUncommon(new NamespacedKey(this, "craft_fragment_to_shard_uncommon"), materialManager),
+                new FragmentToShardRare(new NamespacedKey(this, "craft_fragment_to_shard_rare"), materialManager),
+                new FragmentToShardEpic(new NamespacedKey(this, "craft_fragment_to_shard_epic"), materialManager),
+                new FragmentToShardLegendary(new NamespacedKey(this, "craft_fragment_to_shard_legendary"), materialManager)
+
         );
 
         //Setup any commands

@@ -4,7 +4,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
-import tech.quilldev.Crafting.StratumMaterialManager;
+import org.bukkit.persistence.PersistentDataType;
+import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 
 
@@ -43,7 +45,7 @@ public class CraftCustomItemEvent implements Listener {
             if (slotItem == null) continue;
             final var slotMeta = slotItem.getItemMeta();
             final var data = slotMeta.getPersistentDataContainer();
-            if (data.getKeys().size() > 0) {
+            if (data.has(materialManager.crystalKey, PersistentDataType.FLOAT)) {
                 crystal = slotItem;
                 continue;
             }
@@ -55,15 +57,9 @@ public class CraftCustomItemEvent implements Listener {
         if (crystal == null) return;
         //Set the item to have the same properties as the rolled item
         final var level = geodeMeta.getCustomModelData();
-        final var rolledItem = generator.generateItem(item, level); //TODO: Make the item match the original one
-//        craftSlotItem.setType(item.getType());
-//        if (item.getItemMeta().hasCustomModelData()) {
-//
-//            craftSlotItem.getItemMeta().setCustomModelData(item.getItemMeta().getCustomModelData());
-//        }
+        final var rolledItem = generator.generateItem(item, level);
 
-        //TODO: BUG, WHY
-//        craftSlotItem.setItemMeta(rolledItem.getItemMeta());
+        //TODO: See if there's a "more organic" way to do this
         crystal.setAmount(crystal.getAmount() - 1);
         item.setItemMeta(rolledItem.getItemMeta());
         if (rolledItem.getItemMeta().hasCustomModelData()) {

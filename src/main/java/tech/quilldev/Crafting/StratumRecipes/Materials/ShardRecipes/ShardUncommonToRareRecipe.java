@@ -1,8 +1,8 @@
-package tech.quilldev.Crafting.StratumRecipes.CrystalRecipes;
+package tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes;
 
 import org.bukkit.NamespacedKey;
-import tech.quilldev.Crafting.StratumMaterial;
-import tech.quilldev.Crafting.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterial;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
 
 public class ShardUncommonToRareRecipe extends ShardRecipe {
     public ShardUncommonToRareRecipe(NamespacedKey key, StratumMaterialManager materialManager) {
