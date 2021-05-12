@@ -26,9 +26,11 @@ public class DaggerBackstabEvent implements Listener {
         final var player = ((Player) damager).getPlayer();
         if (player == null) return;
         final var item = player.getInventory().getItemInMainHand();
+        final var meta = item.getItemMeta();
+        if (meta == null) return;
 
         //If the item is not a dagger, return
-        if (!item.getItemMeta().getPersistentDataContainer().has(materialManager.daggerKey, PersistentDataType.BYTE_ARRAY)) {
+        if (!meta.getPersistentDataContainer().has(materialManager.daggerKey, PersistentDataType.BYTE_ARRAY)) {
             return;
         }
 
