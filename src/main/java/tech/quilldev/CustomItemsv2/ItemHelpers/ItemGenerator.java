@@ -65,7 +65,7 @@ public class ItemGenerator {
     }
 
     public ItemStack generateItem(WeaponType weaponType) {
-        return generateItem(weaponType, getRandomLevel(.38f, 6));
+        return generateItem(weaponType, itemHelper.getRandomLevel(.38f, 6));
     }
 
     /**
@@ -143,20 +143,6 @@ public class ItemGenerator {
         final var categories = ItemAttributes.attributeCategories;
         final var keys = new ArrayList<>(categories.keySet());
         return categories.get(keys.get(rand.nextInt(keys.size())));
-    }
-
-    /**
-     * Get a random level for the item
-     *
-     * @return the level for the item
-     */
-    public int getRandomLevel(float levelRate, float maxLevel) {
-        var level = 1;
-        for (; level < maxLevel; level++) {
-            if (levelRate < rand.nextFloat()) return level;
-        }
-        //TODO: Scale random levels (old model)
-        return level;
     }
 
     /**

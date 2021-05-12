@@ -441,6 +441,24 @@ public class StratumMaterialManager {
         };
     }
 
+    /**
+     * Get the crystal corresponding with the given item level
+     *
+     * @param level to match crystals with
+     * @return the crystal matching the given level
+     */
+    public ItemStack getFragmentForLevel(int level) {
+        // Get the corresponding item based on the level
+        return switch (level) {
+            case 1 -> getItem(StratumMaterial.FRAGMENT_COMMON);
+            case 2 -> getItem(StratumMaterial.FRAGMENT_UNCOMMON);
+            case 3 -> getItem(StratumMaterial.FRAGMENT_RARE);
+            case 4 -> getItem(StratumMaterial.FRAGMENT_EPIC);
+            case 5, 6 -> getItem(StratumMaterial.FRAGMENT_LEGENDARY);
+            default -> null;
+        };
+    }
+
     public ArrayList<ItemStack> getGeodeMaterials() {
         return geodeMaterials;
     }

@@ -12,8 +12,11 @@ import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class ItemHelper {
+
+    private static final Random rand = new Random();
 
     /**
      * Re-roll the stats on the given item
@@ -51,6 +54,20 @@ public class ItemHelper {
         final var min = attribute.minRoll;
         final var max = attribute.maxRoll;
         return (float) Math.min(Math.max((Math.random() * tempMax - min) + min, min), max);
+    }
+
+    /**
+     * Get a random level for the item
+     *
+     * @return the level for the item
+     */
+    public int getRandomLevel(float levelRate, float maxLevel) {
+        var level = 1;
+        for (; level < maxLevel; level++) {
+            if (levelRate < rand.nextFloat()) return level;
+        }
+        //TODO: Scale random levels (old model)
+        return level;
     }
 
     /**
