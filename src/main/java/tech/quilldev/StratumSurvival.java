@@ -15,7 +15,7 @@ import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Daggers.*;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardRareToEpicRecipe;

@@ -3,11 +3,10 @@ package tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.AbstractRecipes.WoodRecipe;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterial;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterial;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.StratumRecipe;
 
 public class CraftBattleaxeWooden extends StratumRecipe implements WoodRecipe {

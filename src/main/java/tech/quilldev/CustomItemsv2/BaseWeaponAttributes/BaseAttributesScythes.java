@@ -5,28 +5,28 @@ import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.UUID;
 
-public class BaseAttributesDaggers {
+public class BaseAttributesScythes {
 
     public static AttributeModifier ATTACK_SPEED = new AttributeModifier(
             UUID.randomUUID(),
-            "quickblade",
-            -.2f,
+            "sluggish",
+            -.7f,
             AttributeModifier.Operation.MULTIPLY_SCALAR_1,
             EquipmentSlot.HAND
     );
 
-    public static AttributeModifier MOVE_SPEED = new AttributeModifier(
+    public static AttributeModifier ATTACK_KNOCKBACK = new AttributeModifier(
             UUID.randomUUID(),
-            "quickblade",
-            .3f,
-            AttributeModifier.Operation.MULTIPLY_SCALAR_1,
+            "sluggish",
+            5,
+            AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
 
     public static AttributeModifier ATTACK_DAMAGE_WOOD = new AttributeModifier(
             UUID.randomUUID(),
             "bonusDamage",
-            2f,
+            8f,
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
@@ -34,7 +34,7 @@ public class BaseAttributesDaggers {
     public static AttributeModifier ATTACK_DAMAGE_GOLD = new AttributeModifier(
             UUID.randomUUID(),
             "bonusDamage",
-            2f,
+            8f,
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
@@ -42,7 +42,7 @@ public class BaseAttributesDaggers {
     public static AttributeModifier ATTACK_DAMAGE_STONE = new AttributeModifier(
             UUID.randomUUID(),
             "bonusDamage",
-            2.5f,
+            9f,
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
@@ -50,7 +50,7 @@ public class BaseAttributesDaggers {
     public static AttributeModifier ATTACK_DAMAGE_IRON = new AttributeModifier(
             UUID.randomUUID(),
             "bonusDamage",
-            3f,
+            10f,
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
@@ -58,7 +58,7 @@ public class BaseAttributesDaggers {
     public static AttributeModifier ATTACK_DAMAGE_DIAMOND = new AttributeModifier(
             UUID.randomUUID(),
             "bonusDamage",
-            3.5f,
+            11f,
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
@@ -66,8 +66,9 @@ public class BaseAttributesDaggers {
     public static AttributeModifier ATTACK_DAMAGE_NETHERITE = new AttributeModifier(
             UUID.randomUUID(),
             "bonusDamage",
-            4f,
+            12f,
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
+
 }

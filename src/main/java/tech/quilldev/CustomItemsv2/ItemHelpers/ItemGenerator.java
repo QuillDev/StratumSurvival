@@ -3,7 +3,7 @@ package tech.quilldev.CustomItemsv2.ItemHelpers;
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.Attribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;

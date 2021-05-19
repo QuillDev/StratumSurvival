@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemHelper;
 import tech.quilldev.NPCManager.NPCManager;

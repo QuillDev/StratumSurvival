@@ -5,8 +5,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.MaterialKey;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemGenerator;
 
 
@@ -40,13 +40,13 @@ public class CraftCustomItemEvent implements Listener {
         final var slots = event.getInventory().getMatrix();
 
         ItemStack item = null;
-        ItemStack crystal = null;
+        ItemStack shard = null;
         for (final var slotItem : slots) {
             if (slotItem == null) continue;
             final var slotMeta = slotItem.getItemMeta();
             final var data = slotMeta.getPersistentDataContainer();
-            if (data.has(materialManager.crystalKey, PersistentDataType.FLOAT)) {
-                crystal = slotItem;
+            if (data.has(materialManager.getNamespacedMaterialKey(MaterialKey.SHARD_KEY), PersistentDataType.FLOAT)) {
+                shard = slotItem;
                 continue;
             }
             item = slotItem;
@@ -54,20 +54,20 @@ public class CraftCustomItemEvent implements Listener {
 
 
         if (item == null) return;
-        if (crystal == null) return;
+        if (shard == null) return;
         //Set the item to have the same properties as the rolled item
         final var level = geodeMeta.getCustomModelData();
         final var rolledItem = generator.generateItem(item, level);
 
         //TODO: See if there's a "more organic" way to do this
-        crystal.setAmount(crystal.getAmount() - 1);
+        shard.setAmount(shard.getAmount() - 1);
         item.setItemMeta(rolledItem.getItemMeta());
         if (rolledItem.getItemMeta().hasCustomModelData()) {
             item.getItemMeta().setCustomModelData(rolledItem.getItemMeta().getCustomModelData());
         }
 
         event.getInventory().clear();
-        event.getInventory().getViewers().get(0).getInventory().addItem(crystal);
+        event.getInventory().getViewers().get(0).getInventory().addItem(shard);
         event.getInventory().getViewers().get(0).getInventory().addItem(item);
         event.setCancelled(true);
     }

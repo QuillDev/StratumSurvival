@@ -6,7 +6,7 @@ import tech.quilldev.Crafting.StratumRecipes.Materials.GeodeRecipes.GeodeRecipeG
 import tech.quilldev.Crafting.StratumRecipes.Materials.GeodeRecipes.RecipeGeode;
 import tech.quilldev.Crafting.StratumRecipes.StratumRecipe;
 import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.StratumSurvival;
 
 import java.util.ArrayList;
