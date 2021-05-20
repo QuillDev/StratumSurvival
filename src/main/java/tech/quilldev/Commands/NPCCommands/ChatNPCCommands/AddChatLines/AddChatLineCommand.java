@@ -1,4 +1,4 @@
-package tech.quilldev.Commands;
+package tech.quilldev.Commands.NPCCommands.ChatNPCCommands.AddChatLines;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
@@ -10,11 +10,11 @@ import tech.quilldev.NPCManager.ChatNPC.ChatNPCManager;
 
 import java.util.Arrays;
 
-public class AddLineToChatNpcCommand implements CommandExecutor {
+public class AddChatLineCommand implements CommandExecutor {
 
     private final ChatNPCManager chatNPCManager;
 
-    public AddLineToChatNpcCommand(ChatNPCManager chatNPCManager) {
+    public AddChatLineCommand(ChatNPCManager chatNPCManager) {
         this.chatNPCManager = chatNPCManager;
     }
 

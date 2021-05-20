@@ -48,6 +48,11 @@ public class ChatNPC {
                 ));
     }
 
+    public void removeChatLine(int index) {
+        chatLines.remove(index);
+        updatePersistentChatData();
+    }
+
     public void addLine(Component component) {
         chatLines.add(component);
         updatePersistentChatData();
@@ -66,9 +71,17 @@ public class ChatNPC {
         data.set(chatDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponentList(chatLines));
     }
 
+    public ArrayList<Component> getChatLines() {
+        return chatLines;
+    }
+
+    public Villager getVillager() {
+        return villager;
+    }
+
     public int startChatting() {
         if (this.chatEventId == -1) {
-            this.chatEventId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::chatNearbyPlayers, 80L, 100L);
+            return this.chatEventId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::chatNearbyPlayers, 80L, 100L);
         }
         return -1;
     }

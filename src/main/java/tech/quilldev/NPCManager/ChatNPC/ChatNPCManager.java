@@ -42,6 +42,19 @@ public class ChatNPCManager {
         npc.addLine(line);
     }
 
+    /**
+     * Delete the npc with the given name
+     *
+     * @param name of the entity to delete
+     */
+    public void delete(String name) {
+        final var npc = chatNPCs.get(name);
+        npc.getVillager().remove();
+        npc.stopChatting();
+        chatNPCs.remove(name);
+
+    }
+
     public void spawnNPC(String name, Location location) {
         final var npc = (Villager) location.getWorld().spawnEntity(location, EntityType.VILLAGER);
         final var npcData = npc.getPersistentDataContainer();
@@ -68,6 +81,10 @@ public class ChatNPCManager {
                                 chatNPCs.putIfAbsent(npc.getCustomName(), new ChatNPC(npc, plugin, npcChatDataKey));
                             });
                 });
+    }
+
+    public HashMap<String, ChatNPC> getChatNPCs() {
+        return chatNPCs;
     }
 
 }

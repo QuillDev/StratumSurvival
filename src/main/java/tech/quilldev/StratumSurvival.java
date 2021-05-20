@@ -7,6 +7,14 @@ import tech.quilldev.Commands.ItemGenerator.DeobfuscateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
 import tech.quilldev.Commands.ItemGenerator.ObfuscateItem;
+import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.AddChatLines.AddChatLineTabs;
+import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.AddChatLines.AddChatLineCommand;
+import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.DeleteChatNpc.DeleteChatNpcCommand;
+import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.DeleteChatNpc.DeleteChatNpcTabs;
+import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveChatLineCommand;
+import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveChatLineRawCommand;
+import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.SpawnChatNpcCommand;
+import tech.quilldev.Commands.NPCCommands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
@@ -38,7 +46,6 @@ import tech.quilldev.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.Serialization.StratumSerialization;
 
-import javax.naming.Name;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -141,14 +148,38 @@ public final class StratumSurvival extends JavaPlugin {
             generateItemCommand.setTabCompleter(new GenerateItemTabs());
         }
 
+        final var addChatLineCommand = this.getCommand("addchatline");
+        if (addChatLineCommand != null) {
+            addChatLineCommand.setExecutor(new AddChatLineCommand(chatNpcManager));
+            addChatLineCommand.setTabCompleter(new AddChatLineTabs(chatNpcManager));
+        }
+
+        final var deleteChatNpc = this.getCommand("deletechatnpc");
+        if (deleteChatNpc != null) {
+            deleteChatNpc.setExecutor(new DeleteChatNpcCommand(chatNpcManager));
+            deleteChatNpc.setTabCompleter(new DeleteChatNpcTabs(chatNpcManager));
+        }
+
+        //Register the chat line command
+        final var removeChatLine = this.getCommand("removechatline");
+        if (removeChatLine != null) {
+            removeChatLine.setExecutor(new RemoveChatLineCommand(chatNpcManager));
+            removeChatLine.setTabCompleter(new DeleteChatNpcTabs(chatNpcManager));
+        }
+
+        //Register the raw chat line command
+        final var removeChatLineRaw = this.getCommand("removechatlineraw");
+        if (removeChatLineRaw != null) {
+            removeChatLineRaw.setExecutor(new RemoveChatLineRawCommand(chatNpcManager));
+        }
 
         Objects.requireNonNull(this.getCommand("obfuscate")).setExecutor(new ObfuscateItem());
         Objects.requireNonNull(this.getCommand("deobfuscate")).setExecutor(new DeobfuscateItem());
         Objects.requireNonNull(this.getCommand("spawnnpc")).setExecutor(new SpawnNPCCommand(npcManager));
         Objects.requireNonNull(this.getCommand("reroll")).setExecutor(new RerollItem());
         Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(materialManager));
-        Objects.requireNonNull(this.getCommand("spawnchatnpc")).setExecutor(new SpawnChatNPC(chatNpcManager));
-        Objects.requireNonNull(this.getCommand("addnpcline")).setExecutor(new AddLineToChatNpcCommand(chatNpcManager));
+        Objects.requireNonNull(this.getCommand("spawnchatnpc")).setExecutor(new SpawnChatNpcCommand(chatNpcManager));
+
         craftingManager.registerDynamicRecipes(materialManager);
 
     }

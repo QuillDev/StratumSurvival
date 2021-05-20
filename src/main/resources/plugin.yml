@@ -9,17 +9,36 @@ commands:
     permission: stratumsurvival.developer.dev
   devtool:
     usage: /<command>
+    permission: stratumsurvival.developer.devtool
+
+  #Item Permissions
   generateitem:
-    usage: /<command> <level>
+    usage: /<command> <WEAPON_TYPE> <AMT>
+    permission: stratumsurvival.items.generateitem
   obfuscate:
     usage: /<command>
+    permission: stratumsurvival.items.obfuscate
   deobfuscate:
     usage: /<command>
-  spawnnpc:
-    usage: /<command> <type>
+    permission: stratumsurvival.items.deobfuscate
   reroll:
     usage: /<command>
-  addnpcline:
+    permission: stratumsurvival.items.reroll
+
+  #NPC Permissions
+  addchatline:
     usage: /<command> <npcname> <line>
+    permission: stratumsurvival.npcs.addchatline
   spawnchatnpc:
     usage: /<command> <npcname>
+    permission: stratumsurvival.npcs.spawnchatnpc
+  spawnnpc:
+    usage: /<command> <type>
+    permission: stratumsurvival.npcs.spawnnpc
+  deletechatnpc:
+    usage: /<command> <npcname>
+    permission: stratumsurvival.npcs.deletechatnpc
+  removechatline:
+    usage: /<command>
+  removechatlineraw:
+    usage: /<command> <index>
