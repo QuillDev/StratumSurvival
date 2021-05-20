@@ -5,9 +5,11 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import tech.quilldev.CustomItemsv2.Attributes.Attribute;
+import tech.quilldev.CustomItemsv2.Attributes.OnDeathAttributes.OnDeathAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public abstract class AttackAttribute extends Attribute {
@@ -19,8 +21,9 @@ public abstract class AttackAttribute extends Attribute {
                 scaleValue,
                 minRoll,
                 maxRoll,
-                new ArrayList<>(Collections.singletonList(
-                        UseAttribute.class
+                new ArrayList<>(Arrays.asList(
+                        UseAttribute.class,
+                        OnDeathAttribute.class
                 )));
     }
 

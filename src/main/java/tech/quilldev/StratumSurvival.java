@@ -13,6 +13,7 @@ import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Daggers.*;
+import tech.quilldev.CustomItemsv2.Attributes.OnDeathAttributes.WhisperOnDeath;
 import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
@@ -82,7 +83,10 @@ public final class StratumSurvival extends JavaPlugin {
                 new BowWeaponAttributeDamage(new NamespacedKey(this, "bow_damage")),
                 //Use Attributes
                 new CloakUseWeaponAttribute(new NamespacedKey(this, "use_cloak")),
-                new ShadowDodgeUseWeaponAttribute(new NamespacedKey(this, "use_shadow_dodge"))
+                new ShadowDodgeUseWeaponAttribute(new NamespacedKey(this, "use_shadow_dodge")),
+
+                //Death Attributes
+                new WhisperOnDeath(new NamespacedKey(this, "on_death_whisper"))
         );
 
         //Register Events
