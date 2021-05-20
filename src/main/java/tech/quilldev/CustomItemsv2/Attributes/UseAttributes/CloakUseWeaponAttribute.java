@@ -14,11 +14,14 @@ public class CloakUseWeaponAttribute extends UseAttribute {
     public CloakUseWeaponAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Cloaking Mist").color(TextColor.color(0x3F0BCB)),
-                0f);
+                0f,
+                15 * 20);
     }
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-        cloakEffect.execute(sourceEvent, 45);
+        final var eventData = getEventData(sourceEvent, true, true);
+        if (eventData == null) return;
+        cloakEffect.execute(eventData.getEvent(), 45);
     }
 }

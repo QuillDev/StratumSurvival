@@ -53,6 +53,7 @@ public class ItemGenerator {
 
             //If the attribute just added was a use attribute, make it so we can't get any more
             if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
+                data.set(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(0L));
                 attributes.removeAll(useAttributes);
             }
         }

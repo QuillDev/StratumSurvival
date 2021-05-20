@@ -1,13 +1,17 @@
 package tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttributeHelpers;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.Attributes.Attribute;
+import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
+import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +54,30 @@ public abstract class UseAttribute extends Attribute {
         final var event = (PlayerInteractEvent) sourceEvent;
         final var player = event.getPlayer();
         final var action = event.getAction();
+        final var heldItem = player.getInventory().getItemInMainHand();
+        final var heldItemMeta = heldItem.getItemMeta();
+        final var heldItemData = heldItemMeta.getPersistentDataContainer();
+
+        //If the held item has no cooldown key, return null
+        if (!heldItemData.has(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY)) return null;
+
+        //Do cool down calculations
+        final var lastTickBytes = heldItemData.get(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY);
+        final var lastTick = StratumSerialization.deserializeLong(lastTickBytes);
+        final var curTick = Bukkit.getCurrentTick();
+        final var deltaTicks = curTick - lastTick;
+
+        //If cool down is not over yet, return null
+        if (deltaTicks <= cooldown) {
+            final var ticksLeft = (cooldown - deltaTicks) / 20;
+            player.sendActionBar(
+                    Component.text("This attribute is not yet off cooldown!")
+                            .append(Component.space())
+                            .append(Component.text(ticksLeft + "s"))
+                            .color(TextColor.color(0xFF5C4B))
+            );
+            return null;
+        }
 
         //If we're not allowing air clicks and the action is a air click, return null
         if (!allowAirClicks && action.equals(Action.RIGHT_CLICK_AIR)) return null;
@@ -64,6 +92,9 @@ public abstract class UseAttribute extends Attribute {
             if (blacklistedMaterials.contains(clickedBlock.getType())) return null;
         }
 
+        //Write the new cool down to the key
+        heldItemData.set(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(curTick));
+        heldItem.setItemMeta(heldItemMeta);
         return new UseEventData(event, player, action);
     }
 }

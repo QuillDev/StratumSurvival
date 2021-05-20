@@ -16,10 +16,6 @@ public class UseEventData {
         this.action = action;
     }
 
-    public Action getAction() {
-        return action;
-    }
-
     public PlayerInteractEvent getEvent() {
         return event;
     }

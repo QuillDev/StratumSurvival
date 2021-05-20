@@ -16,7 +16,8 @@ public class ShadowDodgeUseWeaponAttribute extends UseAttribute {
     public ShadowDodgeUseWeaponAttribute(NamespacedKey key) {
         super(key,
                 Component.text("Shadow Dodge").color(TextColor.color(0x3F0BCB)),
-                0f);
+                0f,
+                100L);
     }
 
     @Override
