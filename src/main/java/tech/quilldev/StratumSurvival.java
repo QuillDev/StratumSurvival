@@ -52,6 +52,7 @@ public final class StratumSurvival extends JavaPlugin {
     @Override
     public void onEnable() {
         log(getClass(), "Enabled!");
+        StratumSerialization.init();
 
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
@@ -59,9 +60,6 @@ public final class StratumSurvival extends JavaPlugin {
         final var chatNpcManager = new ChatNPCManager(this);
         new WeaponLists(materialManager);
         itemAttributes.init(materialManager);
-
-
-        StratumSerialization.init();
 
         //Create a material manager
 
