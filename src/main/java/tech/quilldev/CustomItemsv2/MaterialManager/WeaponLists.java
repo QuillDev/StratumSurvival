@@ -2,6 +2,8 @@ package tech.quilldev.CustomItemsv2.MaterialManager;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterial;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +22,12 @@ public class WeaponLists {
 
     private void registerBluntWeapons() {
         WEAPONS_BLUNT.addAll(Arrays.asList(
+                materialManager.getItem(StratumMaterial.SCYTHE_WOODEN),
+                materialManager.getItem(StratumMaterial.SCYTHE_STONE),
+                materialManager.getItem(StratumMaterial.SCYTHE_IRON),
+                materialManager.getItem(StratumMaterial.SCYTHE_GOLDEN),
+                materialManager.getItem(StratumMaterial.SCYTHE_DIAMOND),
+                materialManager.getItem(StratumMaterial.SCYTHE_NETHERITE),
                 materialManager.getItem(StratumMaterial.BATTLEAXE_WOODEN),
                 materialManager.getItem(StratumMaterial.BATTLEAXE_STONE),
                 materialManager.getItem(StratumMaterial.BATTLEAXE_IRON),
@@ -38,6 +46,7 @@ public class WeaponLists {
                 materialManager.getItem(Material.GOLDEN_SWORD),
                 materialManager.getItem(Material.DIAMOND_SWORD),
                 materialManager.getItem(Material.NETHERITE_SWORD)
+
         ));
     }
 

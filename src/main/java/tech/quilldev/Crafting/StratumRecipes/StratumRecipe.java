@@ -2,7 +2,7 @@ package tech.quilldev.Crafting.StratumRecipes;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemHelper;
 
 public abstract class StratumRecipe {

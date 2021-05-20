@@ -6,8 +6,8 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import tech.quilldev.Crafting.StratumRecipes.StratumRecipe;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.AbstractRecipes.CobbleRecipe;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterial;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterial;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 public class CraftDaggerStone extends StratumRecipe implements CobbleRecipe {
     public CraftDaggerStone(NamespacedKey key, StratumMaterialManager materialManager) {

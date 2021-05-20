@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.MaterialManager.WeaponLists;
 import tech.quilldev.CustomItemsv2.MaterialManager.WeaponType;
 import tech.quilldev.StratumSurvival;

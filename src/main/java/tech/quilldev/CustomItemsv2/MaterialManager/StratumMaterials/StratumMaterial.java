@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItemsv2.MaterialManager;
+package tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials;
 
 public enum StratumMaterial {
     //SHARDS
@@ -30,6 +30,14 @@ public enum StratumMaterial {
     BATTLEAXE_DIAMOND,
     BATTLEAXE_NETHERITE,
 
+    //Scythes
+    SCYTHE_WOODEN,
+    SCYTHE_STONE,
+    SCYTHE_IRON,
+    SCYTHE_GOLDEN,
+    SCYTHE_DIAMOND,
+    SCYTHE_NETHERITE,
+
     //DAGGERS
     DAGGER_WOODEN,
     DAGGER_STONE,
@@ -37,4 +45,5 @@ public enum StratumMaterial {
     DAGGER_GOLDEN,
     DAGGER_DIAMOND,
     DAGGER_NETHERITE;
+
 }

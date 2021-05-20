@@ -1,12 +1,15 @@
 package tech.quilldev.Events.TestEvents;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.MaterialKey;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 public class DaggerBackstabEvent implements Listener {
 
@@ -29,8 +32,11 @@ public class DaggerBackstabEvent implements Listener {
         final var meta = item.getItemMeta();
         if (meta == null) return;
 
+        //Get the dagger key and the data container for the held item
+        final var daggerKey = materialManager.getNamespacedMaterialKey(MaterialKey.DAGGER_KEY);
+        final var data = meta.getPersistentDataContainer();
         //If the item is not a dagger, return
-        if (!meta.getPersistentDataContainer().has(materialManager.daggerKey, PersistentDataType.BYTE_ARRAY)) {
+        if (!data.has(daggerKey, PersistentDataType.BYTE_ARRAY)) {
             return;
         }
 
@@ -39,5 +45,7 @@ public class DaggerBackstabEvent implements Listener {
         final var deltaRotation = Math.abs(playerRotation - targetRotation);
         if (!(deltaRotation < range || deltaRotation > (360 - range))) return;
         event.setDamage(event.getDamage() * 1.5);
+        player.sendMessage(Component.text("You backstabbed your opponent!").color(TextColor.color(0xFF544D)));
+
     }
 }

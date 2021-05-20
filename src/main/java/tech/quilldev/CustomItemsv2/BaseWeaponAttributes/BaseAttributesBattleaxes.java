@@ -14,6 +14,14 @@ public class BaseAttributesBattleaxes {
             EquipmentSlot.HAND
     );
 
+    public static AttributeModifier MOVE_SPEED = new AttributeModifier(
+            UUID.randomUUID(),
+            "sluggish",
+            -.2f,
+            AttributeModifier.Operation.MULTIPLY_SCALAR_1,
+            EquipmentSlot.HAND
+    );
+
     public static AttributeModifier ATTACK_DAMAGE_WOOD = new AttributeModifier(
             UUID.randomUUID(),
             "bonusDamage",

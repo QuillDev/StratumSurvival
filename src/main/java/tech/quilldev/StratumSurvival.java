@@ -2,20 +2,18 @@ package tech.quilldev;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
-import tech.quilldev.Commands.DevTool;
+import tech.quilldev.Commands.*;
 import tech.quilldev.Commands.ItemGenerator.DeobfuscateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
 import tech.quilldev.Commands.ItemGenerator.ObfuscateItem;
-import tech.quilldev.Commands.RerollItem;
-import tech.quilldev.Commands.SpawnNPCCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Daggers.*;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardRareToEpicRecipe;
@@ -32,6 +30,7 @@ import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 import tech.quilldev.Events.TestEvents.DaggerBackstabEvent;
 import tech.quilldev.Events.ToolEvents.ToolBreakBlockDropShard;
+import tech.quilldev.NPCManager.ChatNPC.ChatNPCManager;
 import tech.quilldev.NPCManager.NPCEvents.InteractBlacksmithEvent;
 import tech.quilldev.NPCManager.NPCEvents.InteractCryptologistEvent;
 import tech.quilldev.NPCManager.NPCEvents.NPCTransformWitchCancel;
@@ -56,6 +55,7 @@ public final class StratumSurvival extends JavaPlugin {
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
         final var materialManager = new StratumMaterialManager(this);
+        final var chatNpcManager = new ChatNPCManager(this);
         new WeaponLists(materialManager);
         itemAttributes.init(materialManager);
 
@@ -142,6 +142,8 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("spawnnpc")).setExecutor(new SpawnNPCCommand(npcManager));
         Objects.requireNonNull(this.getCommand("reroll")).setExecutor(new RerollItem());
         Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(materialManager));
+        Objects.requireNonNull(this.getCommand("spawnchatnpc")).setExecutor(new SpawnChatNPC(chatNpcManager));
+        Objects.requireNonNull(this.getCommand("addnpcline")).setExecutor(new AddLineToChatNpcCommand(chatNpcManager));
         craftingManager.registerDynamicRecipes(materialManager);
 
     }

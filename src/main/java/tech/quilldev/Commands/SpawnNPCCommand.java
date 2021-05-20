@@ -20,7 +20,7 @@ public class SpawnNPCCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         //Make sure the args and sender are valid
-        if (args.length == 0) return true;
+        if (args.length != 2) return true;
         if (!(sender instanceof Player)) return true;
         final var player = ((Player) sender).getPlayer();
         if (player == null) return true;
@@ -30,7 +30,7 @@ public class SpawnNPCCommand implements CommandExecutor {
         if (npc == null) return true;
 
         //Spawn the NPC at the players location
-        npc.spawn(player.getLocation(), Component.text("POGGERS"));
+        npc.spawn(player.getLocation(), Component.text(args[1]));
         return false;
     }
 }

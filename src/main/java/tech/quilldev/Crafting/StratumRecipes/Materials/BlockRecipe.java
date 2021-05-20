@@ -4,8 +4,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import tech.quilldev.Crafting.StratumRecipes.StratumRecipe;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterial;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterialManager;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterial;
+import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 public class BlockRecipe extends StratumRecipe {
 
