@@ -26,7 +26,9 @@ public class BluntWeaponChainAttribute extends BluntWeaponAttribute {
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
+        final var eventData = getEventData(sourceEvent);
+        if (eventData == null) return;
         if (modifier < rand.nextFloat()) return;
-        chainDamageEffect.execute(sourceEvent, 5, modifier / 2f);
+        chainDamageEffect.execute(eventData.getEvent(), 5, modifier / 2f);
     }
 }

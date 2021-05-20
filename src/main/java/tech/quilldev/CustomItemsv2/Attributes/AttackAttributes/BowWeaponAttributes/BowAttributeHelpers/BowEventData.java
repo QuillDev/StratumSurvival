@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes;
+package tech.quilldev.CustomItemsv2.Attributes.AttackAttributes.BowWeaponAttributes.BowAttributeHelpers;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;

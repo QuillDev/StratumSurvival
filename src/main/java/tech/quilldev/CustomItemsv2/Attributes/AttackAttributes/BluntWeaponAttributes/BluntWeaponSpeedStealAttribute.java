@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffectTypeWrapper;
 import tech.quilldev.CustomItemsv2.Effects.EffectHelpers.EffectHelper;
 import tech.quilldev.CustomItemsv2.Effects.PotionBasedEffect;
 
-public class BluntWeaponSpeedStealAttribute extends BluntWeaponAttribute{
+public class BluntWeaponSpeedStealAttribute extends BluntWeaponAttribute {
 
     public static PotionBasedEffect potionBasedEffect = new PotionBasedEffect();
 
@@ -28,11 +28,10 @@ public class BluntWeaponSpeedStealAttribute extends BluntWeaponAttribute{
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
+        final var event = getEventData(sourceEvent);
+        if (event == null) return;
 
-        var player = helper.getLivingEntity(sourceEvent);
-        var target = helper.getTargetLivingEntity(sourceEvent);
-
-        potionBasedEffect.execute(sourceEvent,PotionEffectType.SPEED,player,25);
-        potionBasedEffect.execute(sourceEvent,PotionEffectType.SLOW,(LivingEntity) target,25);
+        potionBasedEffect.execute(sourceEvent, PotionEffectType.SPEED, event.getPlayer(), 25);
+        potionBasedEffect.execute(sourceEvent, PotionEffectType.SLOW, event.getTarget(), 25);
     }
 }

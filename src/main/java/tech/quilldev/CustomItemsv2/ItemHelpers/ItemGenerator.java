@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.CustomItemsv2.Attributes.Attribute;
-import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttribute;
+import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
 import tech.quilldev.CustomItemsv2.MaterialManager.WeaponType;
 import tech.quilldev.CustomItemsv2.ItemHelpers.ItemNames.ItemAdjectives;

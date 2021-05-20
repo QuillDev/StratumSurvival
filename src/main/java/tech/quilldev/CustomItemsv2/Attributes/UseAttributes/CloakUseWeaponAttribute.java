@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
+import tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import tech.quilldev.CustomItemsv2.Effects.CloakEffect;
 
 public class CloakUseWeaponAttribute extends UseAttribute {
