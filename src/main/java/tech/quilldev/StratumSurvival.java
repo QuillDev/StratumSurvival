@@ -85,8 +85,9 @@ public final class StratumSurvival extends JavaPlugin {
                 new BluntWeaponPercentDamageAttribute(new NamespacedKey(this, "blunt_weapon_percent_damage")),
                 new BluntWeaponLifeStealAttribute(new NamespacedKey(this, "blunt_weapon_lifesteal")),
                 new BluntWeaponSpeedStealAttribute(new NamespacedKey(this, "blunt_weapon_speedsteal")),
+                new BluntWeaponBackstepAttribute(new NamespacedKey(this, "blunt_weapon_backstab")),
+                new BluntWeaponEvokerStrikeAttribute(new NamespacedKey(this, "blunt_weapon_evokerstrike")),
                 new BluntWeaponBackstepAttribute(new NamespacedKey(this, "blunt_weapon_backstep")),
-
                 //Bow Weapon Attributes
                 new BowWeaponAttributeDamage(new NamespacedKey(this, "bow_damage")),
                 //Use Attributes
