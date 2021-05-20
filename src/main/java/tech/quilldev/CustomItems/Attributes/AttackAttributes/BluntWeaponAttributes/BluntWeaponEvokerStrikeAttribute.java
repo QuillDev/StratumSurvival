@@ -3,12 +3,13 @@ package tech.quilldev.CustomItems.Attributes.AttackAttributes.BluntWeaponAttribu
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.Event;
-import tech.quilldev.CustomItems.Effects.EvokerFangEffect;
+import tech.quilldev.CustomItems.Effects.SpawnEntityEffect;
 
 public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute {
 
-    EvokerFangEffect evokerFangEffect = new EvokerFangEffect();
+    SpawnEntityEffect evokerFangEffect = new SpawnEntityEffect();
 
     public BluntWeaponEvokerStrikeAttribute(NamespacedKey key) {
         super(key,
@@ -28,7 +29,10 @@ public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute {
     public void execute(Event sourceEvent, float modifier) {
         final var eventData = getEventData(sourceEvent);
         if (eventData == null) return;
+
+        var target = eventData.getTarget();
+
         if (modifier < rand.nextFloat()) return;
-        evokerFangEffect.execute(eventData.getEvent());
+        evokerFangEffect.execute(eventData.getEvent(), target.getLocation(), EntityType.EVOKER_FANGS);
     }
 }
