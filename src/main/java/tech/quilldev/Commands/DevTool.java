@@ -1,4 +1,5 @@
 package tech.quilldev.Commands;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,8 +21,9 @@ public class DevTool implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) return false;
+        final var player = ((Player) sender).getPlayer();
 
-        Objects.requireNonNull(((Player) sender).getPlayer()).getInventory().addItem(materialManager.getItem(StratumMaterial.GEODE_COMMON));
+
         return true;
     }
 }

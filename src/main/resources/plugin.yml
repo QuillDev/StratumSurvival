@@ -25,6 +25,13 @@ commands:
     usage: /<command>
     permission: stratumsurvival.items.reroll
 
+  #Bosses
+  spawnworldboss:
+    usage: /<command>
+    permission: stratumsurvival.bosses.summon
+  spawnworldbossdelayed:
+    usage: /<command>
+    permission: stratumsurvival.bosses.summon
   #NPC Permissions
   addchatline:
     usage: /<command> <npcname> <line>

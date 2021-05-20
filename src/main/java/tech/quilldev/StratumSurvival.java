@@ -2,6 +2,7 @@ package tech.quilldev;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
+import tech.quilldev.Bosses.WorldBossManager;
 import tech.quilldev.Commands.*;
 import tech.quilldev.Commands.ItemGenerator.DeobfuscateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
@@ -15,6 +16,8 @@ import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveC
 import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveChatLineRawCommand;
 import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.SpawnChatNpcCommand;
 import tech.quilldev.Commands.NPCCommands.SpawnNPCCommand;
+import tech.quilldev.Commands.WorldBossCommands.SummonWorldBoss;
+import tech.quilldev.Commands.WorldBossCommands.SummonWorldBossDelayed;
 import tech.quilldev.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
@@ -66,6 +69,7 @@ public final class StratumSurvival extends JavaPlugin {
         final var itemAttributes = new ItemAttributes(this);
         final var materialManager = new StratumMaterialManager(this);
         final var chatNpcManager = new ChatNPCManager(this);
+        final var worldBossManager = new WorldBossManager(this);
         new WeaponLists(materialManager);
         itemAttributes.init(materialManager);
 
@@ -179,6 +183,9 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("reroll")).setExecutor(new RerollItem());
         Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(materialManager));
         Objects.requireNonNull(this.getCommand("spawnchatnpc")).setExecutor(new SpawnChatNpcCommand(chatNpcManager));
+        Objects.requireNonNull(this.getCommand("spawnworldboss")).setExecutor(new SummonWorldBoss(worldBossManager));
+        Objects.requireNonNull(this.getCommand("spawnworldbossdelayed")).setExecutor(new SummonWorldBossDelayed(worldBossManager));
+
 
         craftingManager.registerDynamicRecipes(materialManager);
 

@@ -36,7 +36,7 @@ public class ChatNPC {
     public void chatNearbyPlayers() {
         if (chatLines.size() == 0) return;
         final var line = chatLines.get(rand.nextInt(chatLines.size()));
-        villager.getNearbyEntities(5, 5, 5)
+        villager.getNearbyEntities(3.5, 3.5, 3.5)
                 .stream()
                 .filter(entity -> entity instanceof Player)
                 .map(entity -> (Player) entity)
