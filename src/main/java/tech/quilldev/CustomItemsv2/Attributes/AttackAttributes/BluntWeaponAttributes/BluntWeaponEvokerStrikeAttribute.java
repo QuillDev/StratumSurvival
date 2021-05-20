@@ -6,7 +6,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import tech.quilldev.CustomItemsv2.Effects.EvokerFangEffect;
 
-public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute{
+public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute {
 
     EvokerFangEffect evokerFangEffect = new EvokerFangEffect();
 
@@ -26,7 +26,9 @@ public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute{
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
+        final var eventData = getEventData(sourceEvent);
+        if (eventData == null) return;
         if (modifier < rand.nextFloat()) return;
-        evokerFangEffect.execute(sourceEvent);
+        evokerFangEffect.execute(eventData.getEvent());
     }
 }

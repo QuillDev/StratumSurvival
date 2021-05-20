@@ -6,13 +6,13 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import tech.quilldev.CustomItemsv2.Effects.KnockbackEffect;
 
-public class BluntWeaponBackstepAttribute extends BluntWeaponAttribute{
+public class BluntWeaponFeintAttribute extends BluntWeaponAttribute{
 
     public final static KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    public BluntWeaponBackstepAttribute(NamespacedKey key) {
+    public BluntWeaponFeintAttribute(NamespacedKey key) {
         super(key,
-                Component.text("Backstep").color(TextColor.color(0x4D1DCB)),
+                Component.text("Feint").color(TextColor.color(0x4D1DCB)),
                 0f,
                 0f,
                 0f
