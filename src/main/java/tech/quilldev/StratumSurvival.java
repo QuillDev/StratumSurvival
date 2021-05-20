@@ -38,6 +38,7 @@ import tech.quilldev.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.Serialization.StratumSerialization;
 
+import javax.naming.Name;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,6 +78,7 @@ public final class StratumSurvival extends JavaPlugin {
                 new BluntWeaponPercentDamageAttribute(new NamespacedKey(this, "blunt_weapon_percent_damage")),
                 new BluntWeaponLifeStealAttribute(new NamespacedKey(this, "blunt_weapon_lifesteal")),
                 new BluntWeaponSpeedStealAttribute(new NamespacedKey(this, "blunt_weapon_speedsteal")),
+                new BluntWeaponBackstepAttribute(new NamespacedKey(this, "blunt_weapon_backstab")),
                 //Bow Weapon Attributes
                 new BowWeaponAttributeDamage(new NamespacedKey(this, "bow_damage")),
                 //Use Attributes
