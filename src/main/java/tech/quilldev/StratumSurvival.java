@@ -24,6 +24,8 @@ import tech.quilldev.Crafting.StratumCraftingManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Daggers.*;
+import tech.quilldev.CustomItems.Attributes.OnDeathAttributes.DropGoldOnDeathAttribute;
+import tech.quilldev.CustomItems.Attributes.OnDeathAttributes.DropIronOnDeathAttribute;
 import tech.quilldev.CustomItems.Attributes.OnDeathAttributes.WhisperOnDeath;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
@@ -49,6 +51,7 @@ import tech.quilldev.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.Serialization.StratumSerialization;
 
+import javax.naming.Name;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -98,7 +101,9 @@ public final class StratumSurvival extends JavaPlugin {
                 new ShadowDodgeUseWeaponAttribute(new NamespacedKey(this, "use_shadow_dodge")),
 
                 //Death Attributes
-                new WhisperOnDeath(new NamespacedKey(this, "on_death_whisper"))
+                new WhisperOnDeath(new NamespacedKey(this, "on_death_whisper")),
+                new DropGoldOnDeathAttribute(new NamespacedKey(this, "on_Death_gold")),
+                new DropIronOnDeathAttribute(new NamespacedKey(this, "on_Death_iron"))
         );
 
         //Register Events
