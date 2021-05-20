@@ -3,9 +3,9 @@ package tech.quilldev.Crafting.StratumRecipes.Materials.GeodeRecipes;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.plugin.Plugin;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterial;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
-import tech.quilldev.CustomItemsv2.MaterialManager.WeaponType;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import tech.quilldev.CustomItems.MaterialManager.WeaponType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -5,8 +5,8 @@ import org.bukkit.plugin.Plugin;
 import tech.quilldev.Crafting.StratumRecipes.Materials.GeodeRecipes.GeodeRecipeGenerator;
 import tech.quilldev.Crafting.StratumRecipes.Materials.GeodeRecipes.RecipeGeode;
 import tech.quilldev.Crafting.StratumRecipes.StratumRecipe;
-import tech.quilldev.CustomItemsv2.Attributes.ItemAttributes;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
+import tech.quilldev.CustomItems.Attributes.ItemAttributes;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.StratumSurvival;
 
 import java.util.ArrayList;

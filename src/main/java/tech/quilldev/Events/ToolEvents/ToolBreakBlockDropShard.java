@@ -5,8 +5,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import tech.quilldev.CustomItemsv2.ItemHelpers.ItemHelper;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
+import tech.quilldev.CustomItems.ItemHelpers.ItemHelper;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 import java.util.HashMap;
 import java.util.Random;

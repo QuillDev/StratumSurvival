@@ -8,8 +8,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.MaterialKey;
-import tech.quilldev.CustomItemsv2.MaterialManager.StratumMaterials.StratumMaterialManager;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 public class DaggerBackstabEvent implements Listener {
 
