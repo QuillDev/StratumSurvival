@@ -5,7 +5,11 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.serializers.DefaultSerializers;
 import net.kyori.adventure.text.Component;
+import org.apache.commons.lang.SerializationUtils;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class StratumSerialization {
     private static final Kryo kryo = new Kryo();
@@ -15,8 +19,43 @@ public class StratumSerialization {
         kryo.addDefaultSerializer(Float.class, DefaultSerializers.FloatSerializer.class);
         kryo.addDefaultSerializer(String.class, DefaultSerializers.StringSerializer.class);
         kryo.addDefaultSerializer(Boolean.class, DefaultSerializers.BooleanSerializer.class);
+        kryo.addDefaultSerializer(Long.class, DefaultSerializers.LongSerializer.class);
         kryo.addDefaultSerializer(Component.class, new ComponentSerializer());
         kryo.register(Component.class);
+    }
+
+    public static byte[] serializeLong(long value) {
+        final var output = new Output(8);
+        kryo.writeObject(output, value);
+        return output.getBuffer();
+    }
+
+    public static Long deserializeLong(byte[] bytes) {
+        final var input = new Input(bytes);
+        return kryo.readObject(input, Long.class);
+    }
+
+    public static byte[] serializeComponentList(ArrayList<Component> itemStacks) {
+        final var arrayOfComponentBytes = itemStacks
+                .stream()
+                .map(StratumSerialization::serializeComponent)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return SerializationUtils.serialize(arrayOfComponentBytes);
+    }
+
+    /**
+     * Deserialize the item list
+     *
+     * @param bytes to deserialize
+     * @return the array list we got from the bytes
+     */
+    public static ArrayList<Component> deserializeComponentList(byte[] bytes) {
+        final var byteList = (ArrayList<byte[]>) SerializationUtils.deserialize(bytes);
+        if (byteList == null) return null;
+        return byteList
+                .stream()
+                .map(StratumSerialization::deserializeComponent)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public static byte[] serializeComponent(Component component) {

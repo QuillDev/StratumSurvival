@@ -2,9 +2,12 @@ package tech.quilldev.NPCManager.ChatNPC;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import tech.quilldev.Serialization.StratumSerialization;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,13 +18,16 @@ public class ChatNPC {
 
     private final Villager villager;
     private final ArrayList<Component> chatLines = new ArrayList<>();
+    private final NamespacedKey chatDataKey;
     private final Plugin plugin;
     private int chatEventId = -1;
 
-    public ChatNPC(Villager villager, Plugin plugin) {
+    public ChatNPC(Villager villager, Plugin plugin, NamespacedKey chatDataKey) {
         this.villager = villager;
         this.plugin = plugin;
         this.chatEventId = startChatting();
+        this.chatDataKey = chatDataKey;
+        reloadChatLinesFromPersistentData();
     }
 
     /**
@@ -42,13 +48,40 @@ public class ChatNPC {
                 ));
     }
 
+    public void removeChatLine(int index) {
+        chatLines.remove(index);
+        updatePersistentChatData();
+    }
+
     public void addLine(Component component) {
         chatLines.add(component);
+        updatePersistentChatData();
+    }
+
+    public void reloadChatLinesFromPersistentData() {
+        chatLines.clear();
+        final var data = villager.getPersistentDataContainer();
+        final var chatDataBytes = data.get(chatDataKey, PersistentDataType.BYTE_ARRAY);
+        final var deserializedComponentList = StratumSerialization.deserializeComponentList(chatDataBytes);
+        this.chatLines.addAll(deserializedComponentList);
+    }
+
+    public void updatePersistentChatData() {
+        final var data = villager.getPersistentDataContainer();
+        data.set(chatDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponentList(chatLines));
+    }
+
+    public ArrayList<Component> getChatLines() {
+        return chatLines;
+    }
+
+    public Villager getVillager() {
+        return villager;
     }
 
     public int startChatting() {
         if (this.chatEventId == -1) {
-            this.chatEventId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::chatNearbyPlayers, 80L, 100L);
+            return this.chatEventId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::chatNearbyPlayers, 80L, 100L);
         }
         return -1;
     }

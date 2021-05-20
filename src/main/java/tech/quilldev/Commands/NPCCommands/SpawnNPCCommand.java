@@ -1,4 +1,4 @@
-package tech.quilldev.Commands;
+package tech.quilldev.Commands.NPCCommands;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;

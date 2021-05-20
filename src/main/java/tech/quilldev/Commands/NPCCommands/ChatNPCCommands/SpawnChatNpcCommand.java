@@ -1,4 +1,4 @@
-package tech.quilldev.Commands;
+package tech.quilldev.Commands.NPCCommands.ChatNPCCommands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,11 +7,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import tech.quilldev.NPCManager.ChatNPC.ChatNPCManager;
 
-public class SpawnChatNPC implements CommandExecutor {
+public class SpawnChatNpcCommand implements CommandExecutor {
 
     final ChatNPCManager chatNPCManager;
 
-    public SpawnChatNPC(ChatNPCManager chatNPCManager) {
+    public SpawnChatNpcCommand(ChatNPCManager chatNPCManager) {
         this.chatNPCManager = chatNPCManager;
     }
 
@@ -21,8 +21,10 @@ public class SpawnChatNPC implements CommandExecutor {
         if (!(sender instanceof Player)) return true;
         final var player = ((Player) sender).getPlayer();
         if (player == null) return true;
+
+        //Spawn hte npc at the given location
         final var location = player.getLocation();
         this.chatNPCManager.spawnNPC(args[0], location);
-        return false;
+        return true;
     }
 }

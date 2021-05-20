@@ -1,6 +1,7 @@
 package tech.quilldev.CustomItemsv2.Attributes.UseAttributes.UseAttributeHelpers;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
@@ -12,8 +13,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class UseAttribute extends Attribute {
-    public UseAttribute(NamespacedKey key, Component lore, float scaleValue) {
+
+    protected long cooldown;
+
+    public UseAttribute(NamespacedKey key, Component lore, float scaleValue, long cooldown) {
         super(key, lore, new ArrayList<>(), scaleValue, 0, 0, new ArrayList<>());
+        this.cooldown = cooldown;
     }
 
     @Override

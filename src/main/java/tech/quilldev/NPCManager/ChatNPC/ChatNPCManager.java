@@ -4,23 +4,30 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import tech.quilldev.Serialization.StratumSerialization;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ChatNPCManager {
 
-    private final NamespacedKey chatNpcKey;
-    private final HashMap<String, ChatNPC> chatNPCs = new HashMap<>();
+    //Keep the plugin here for access
     private final Plugin plugin;
+
+    //Villager data keys
+    private final NamespacedKey chatNpcKey;
+    private final NamespacedKey npcChatDataKey;
+
+    //List of NPCs on the server
+    private final HashMap<String, ChatNPC> chatNPCs = new HashMap<>();
 
     public ChatNPCManager(Plugin plugin) {
         this.chatNpcKey = new NamespacedKey(plugin, "npc_chatter");
+        this.npcChatDataKey = new NamespacedKey(plugin, "npc_line_data");
         this.plugin = plugin;
         this.loadExistingVillagers();
     }
@@ -35,15 +42,29 @@ public class ChatNPCManager {
         npc.addLine(line);
     }
 
+    /**
+     * Delete the npc with the given name
+     *
+     * @param name of the entity to delete
+     */
+    public void delete(String name) {
+        final var npc = chatNPCs.get(name);
+        npc.getVillager().remove();
+        npc.stopChatting();
+        chatNPCs.remove(name);
+
+    }
+
     public void spawnNPC(String name, Location location) {
         final var npc = (Villager) location.getWorld().spawnEntity(location, EntityType.VILLAGER);
         final var npcData = npc.getPersistentDataContainer();
         npcData.set(chatNpcKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        npcData.set(npcChatDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponentList(new ArrayList<>()));
         npc.setInvulnerable(true);
         npc.setCustomName(name);
         npc.setPersistent(true);
         npc.setAI(false);
-        chatNPCs.putIfAbsent(npc.getCustomName(), new ChatNPC(npc, plugin));
+        chatNPCs.putIfAbsent(npc.getCustomName(), new ChatNPC(npc, plugin, npcChatDataKey));
     }
 
     private void loadExistingVillagers() {
@@ -57,9 +78,13 @@ public class ChatNPCManager {
                                 final var persistentData = npc.getPersistentDataContainer();
                                 if (persistentData.getKeys().size() == 0) return;
                                 if (!persistentData.has(chatNpcKey, PersistentDataType.BYTE_ARRAY)) return;
-                                chatNPCs.putIfAbsent(npc.getCustomName(), new ChatNPC(npc, plugin));
+                                chatNPCs.putIfAbsent(npc.getCustomName(), new ChatNPC(npc, plugin, npcChatDataKey));
                             });
                 });
+    }
+
+    public HashMap<String, ChatNPC> getChatNPCs() {
+        return chatNPCs;
     }
 
 }
