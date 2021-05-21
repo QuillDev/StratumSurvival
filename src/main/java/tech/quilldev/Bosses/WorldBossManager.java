@@ -170,4 +170,8 @@ public class WorldBossManager {
     public HashMap<Player, Integer> getDpsMap() {
         return dpsMap;
     }
+
+    public void setActiveBattle(boolean activeBattle) {
+        this.activeBattle = activeBattle;
+    }
 }

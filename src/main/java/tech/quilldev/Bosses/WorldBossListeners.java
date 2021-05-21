@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentBuilder;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Giant;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -38,7 +39,15 @@ public class WorldBossListeners implements Listener {
         bossManager.getBossBar().setProgress(target.getHealth() / (20f * bossManager.getCombatantSize()));
 
         //Deal with DPS on the damage map
-        final var damager = event.getDamager();
+        var damager = event.getDamager();
+        if (damager instanceof Arrow) {
+            final var arrow = (Arrow) damager;
+            final var shooter = arrow.getShooter();
+            if (shooter instanceof Player) {
+                damager = ((Player) shooter).getPlayer();
+            }
+        }
+
         if (!(damager instanceof Player)) return;
         final var player = ((Player) damager).getPlayer();
         if (player == null) return;
@@ -102,7 +111,9 @@ public class WorldBossListeners implements Listener {
             player.sendMessage(messageToSend);
         }
 
+        //Reset the battle state
         dpsMap.clear();
+        bossManager.setActiveBattle(false);
     }
 
 
