@@ -24,7 +24,10 @@ public class ShadowDodgeUseWeaponAttribute extends UseAttribute {
     public void execute(Event sourceEvent, float modifier) {
         final var useEventData = getEventData(sourceEvent, true, true);
         if (useEventData == null) return;
-        knockbackEffect.execute(useEventData.getEvent(), 1.5f);
+
+        var player = useEventData.getPlayer();
+
+        knockbackEffect.execute(useEventData.getEvent(), player,.5f);
         cloakEffect.execute(useEventData.getEvent(), 15);
     }
 

@@ -26,8 +26,7 @@ import tech.quilldev.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Daggers.*;
 import tech.quilldev.CustomItems.Attributes.OnDeathAttributes.*;
-import tech.quilldev.CustomItems.Attributes.UseAttributes.JumpBoostUseWeaponAttribute;
-import tech.quilldev.CustomItems.Attributes.UseAttributes.SlowFieldUseWeaponAttribute;
+import tech.quilldev.CustomItems.Attributes.UseAttributes.*;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
@@ -35,10 +34,8 @@ import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardRareToE
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardUncommonToRareRecipe;
 import tech.quilldev.CustomItems.Attributes.AttackAttributes.BluntWeaponAttributes.*;
 import tech.quilldev.CustomItems.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttributeDamage;
-import tech.quilldev.CustomItems.Attributes.UseAttributes.CloakUseWeaponAttribute;
 import tech.quilldev.CustomItems.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItems.Attributes.ItemAttributes;
-import tech.quilldev.CustomItems.Attributes.UseAttributes.ShadowDodgeUseWeaponAttribute;
 import tech.quilldev.CustomItems.ItemHelpers.ItemGenerator;
 import tech.quilldev.CustomItems.MaterialManager.WeaponLists;
 import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
@@ -94,20 +91,25 @@ public final class StratumSurvival extends JavaPlugin {
                 new BluntWeaponSpeedStealAttribute(new NamespacedKey(this, "blunt_weapon_speedsteal")),
                 new BluntWeaponEvokerStrikeAttribute(new NamespacedKey(this, "blunt_weapon_evokerstrike")),
                 new BluntWeaponFeintAttribute(new NamespacedKey(this, "blunt_weapon_feint")),
+                new BluntWeaponHookAttribute(new NamespacedKey(this, "blunt_weapon_hook")),
                 //Bow Weapon Attributes
                 new BowWeaponAttributeDamage(new NamespacedKey(this, "bow_damage")),
                 //Use Attributes
                 new CloakUseWeaponAttribute(new NamespacedKey(this, "use_cloak")),
                 new ShadowDodgeUseWeaponAttribute(new NamespacedKey(this, "use_shadow_dodge")),
-                new SlowFieldUseWeaponAttribute(new NamespacedKey(this, "use_slow_field")),
                 new JumpBoostUseWeaponAttribute(new NamespacedKey(this, "use_jump_field")),
+                new SetDayUseAttribute(new NamespacedKey(this, "use_day")),
+                new SetNightUseAttribute(new NamespacedKey(this, "use_night")),
 
                 //Death Attributes
                 new WhisperOnDeath(new NamespacedKey(this, "on_death_whisper")),
                 new DropGoldOnDeathAttribute(new NamespacedKey(this, "on_Death_gold")),
                 new DropIronOnDeathAttribute(new NamespacedKey(this, "on_Death_iron")),
+                new DropEmeraldOnDeathAttribute(new NamespacedKey(this, "on_Death_emerald")),
+                new DropDiamondOnDeathAttribute(new NamespacedKey(this, "on_Death_diamond")),
                 new SpeedPoolOnDeathAttribute(new NamespacedKey(this, "on_death_speed_pool")),
-                new LifePoolOnDeathAttribute(new NamespacedKey(this, "on_death_life_pool"))
+                new LifePoolOnDeathAttribute(new NamespacedKey(this, "on_death_life_pool")),
+                new StrengthPoolOnDeathAttribute(new NamespacedKey(this, "on_death_strength_pool"))
         );
 
         //Register Events

@@ -11,7 +11,7 @@ public class SpeedPoolOnDeathAttribute extends LingeringPotionOnDeathAttribute{
     public SpeedPoolOnDeathAttribute(NamespacedKey key) {
         super(key,
                 new PotionEffect(PotionEffectType.SPEED,100,1),
-                Component.text("Harvester of Speed").color(TextColor.color(0x2963DA)),
+                Component.text("Speed Pool").color(TextColor.color(0x2963DA)),
                 1,
                 400,
                 400

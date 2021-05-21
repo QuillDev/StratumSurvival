@@ -6,11 +6,11 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class LifePoolOnDeathAttribute extends LingeringPotionOnDeathAttribute{
-    public LifePoolOnDeathAttribute(NamespacedKey key) {
+public class StrengthPoolOnDeathAttribute extends LingeringPotionOnDeathAttribute{
+    public StrengthPoolOnDeathAttribute(NamespacedKey key) {
         super(key,
-                new PotionEffect(PotionEffectType.ABSORPTION,200,1),
-                Component.text("Life Pool").color(TextColor.color(0xDA4840)),
+                new PotionEffect(PotionEffectType.INCREASE_DAMAGE,120,1),
+                Component.text("Strength Pool").color(TextColor.color(0xDA2211)),
                 1,
                 400,
                 400
