@@ -44,6 +44,14 @@ public enum StratumMaterial {
     DAGGER_IRON,
     DAGGER_GOLDEN,
     DAGGER_DIAMOND,
-    DAGGER_NETHERITE;
+    DAGGER_NETHERITE,
+
+    //CHESTS
+    CHEST_COMMON,
+    CHEST_UNCOMMON,
+    CHEST_RARE,
+    CHEST_EPIC,
+    CHEST_LEGENDARY,
+    ;
 
 }

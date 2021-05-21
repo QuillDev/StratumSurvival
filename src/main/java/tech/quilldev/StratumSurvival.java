@@ -190,13 +190,18 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("deobfuscate")).setExecutor(new DeobfuscateItem());
         Objects.requireNonNull(this.getCommand("spawnnpc")).setExecutor(new SpawnNPCCommand(npcManager));
         Objects.requireNonNull(this.getCommand("reroll")).setExecutor(new RerollItem());
-        Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(materialManager));
         Objects.requireNonNull(this.getCommand("spawnchatnpc")).setExecutor(new SpawnChatNpcCommand(chatNpcManager));
         Objects.requireNonNull(this.getCommand("spawnworldboss")).setExecutor(new SummonWorldBossCommand(worldBossManager));
         Objects.requireNonNull(this.getCommand("spawnworldbossdelayed")).setExecutor(new SummonWorldBossDelayedCommand(worldBossManager));
         Objects.requireNonNull(this.getCommand("worldbosstp")).setExecutor(new WorldBossTeleportCommand(worldBossManager));
 
 
+        //setup dev command
+        final var devTool = new DevTool(materialManager, this);
+        Objects.requireNonNull(this.getCommand("devtool")).setExecutor(devTool);
+        pluginManager.registerEvents(devTool, this);
+
+        //Register recipes from the crafting recipe
         craftingManager.registerDynamicRecipes(materialManager);
 
     }
