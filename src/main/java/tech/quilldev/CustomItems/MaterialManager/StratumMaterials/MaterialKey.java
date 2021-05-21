@@ -9,7 +9,8 @@ public enum MaterialKey {
     GEODE_KEY("itemtype_geode"),
     FRAGMENT_KEY("itemtype_fragment"),
     SHARD_KEY("itemtype_shard"),
-    EMPTY_KEY("itemtype_none");
+    EMPTY_KEY("itemtype_none"),
+    CHEST_KEY("itemtype_loot_chest");
 
     public String value;
 

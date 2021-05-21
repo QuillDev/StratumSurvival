@@ -4,10 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
-import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.FragmentMaterialRegistry;
-import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.GeodeMaterialRegistry;
-import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
-import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.ShardMaterialRegistry;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.*;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.BattleaxeMaterialRegistry;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.DaggerMaterialRegistry;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.ScytheMaterialRegistry;
@@ -33,7 +30,8 @@ public class StratumMaterialManager {
                 //Add crafting types
                 new GeodeMaterialRegistry(new NamespacedKey(plugin, MaterialKey.GEODE_KEY.value)),
                 new FragmentMaterialRegistry(new NamespacedKey(plugin, MaterialKey.FRAGMENT_KEY.value)),
-                new ShardMaterialRegistry(new NamespacedKey(plugin, MaterialKey.SHARD_KEY.value))
+                new ShardMaterialRegistry(new NamespacedKey(plugin, MaterialKey.SHARD_KEY.value)),
+                new ChestMaterialRegister(new NamespacedKey(plugin, MaterialKey.CHEST_KEY.value))
         );
 
 
