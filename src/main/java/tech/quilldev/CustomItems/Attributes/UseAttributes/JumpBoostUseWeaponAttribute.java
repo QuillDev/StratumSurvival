@@ -14,7 +14,7 @@ public class JumpBoostUseWeaponAttribute extends UseAttribute {
 
     public JumpBoostUseWeaponAttribute(NamespacedKey key) {
         super(key,
-                Component.text("Acrobatic Feild").color(TextColor.color(0x53CB35)),
+                Component.text("Acrobatic Field").color(TextColor.color(0x53CB35)),
                 0f,
                 500L);
     }

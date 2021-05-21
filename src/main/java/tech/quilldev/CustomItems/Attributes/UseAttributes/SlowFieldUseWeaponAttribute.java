@@ -12,13 +12,13 @@ import tech.quilldev.CustomItems.Effects.CloakEffect;
 import tech.quilldev.CustomItems.Effects.KnockbackEffect;
 import tech.quilldev.CustomItems.Effects.SpawnLingeringPotionCloudEffect;
 
-public class SlowFeildUseWeaponAttribute extends UseAttribute {
+public class SlowFieldUseWeaponAttribute extends UseAttribute {
 
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
 
-    public SlowFeildUseWeaponAttribute(NamespacedKey key) {
+    public SlowFieldUseWeaponAttribute(NamespacedKey key) {
         super(key,
-                Component.text("Slowing Feild").color(TextColor.color(0x6B8FCB)),
+                Component.text("Slowing Field").color(TextColor.color(0x6B8FCB)),
                 0f,
                 500L);
     }
