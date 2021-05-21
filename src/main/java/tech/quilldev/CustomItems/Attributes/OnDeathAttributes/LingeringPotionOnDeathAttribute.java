@@ -17,8 +17,11 @@ public abstract class LingeringPotionOnDeathAttribute extends OnDeathAttribute {
 
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
     PotionEffect potionEffect;
+    float radius;
+    int duration;
+    int durationOnUse;
 
-    public LingeringPotionOnDeathAttribute(NamespacedKey key, PotionEffect potionEffect, Component displayName) {
+    public LingeringPotionOnDeathAttribute(NamespacedKey key, PotionEffect potionEffect, Component displayName, float radius, int duration, int durationOnUse) {
         super(key,
                 displayName,
                 .2f,
@@ -26,6 +29,9 @@ public abstract class LingeringPotionOnDeathAttribute extends OnDeathAttribute {
                 .75f
         );
         this.potionEffect = potionEffect;
+        this.radius = radius;
+        this.duration = duration;
+        this.durationOnUse = durationOnUse;
     }
 
     @Override
@@ -41,6 +47,6 @@ public abstract class LingeringPotionOnDeathAttribute extends OnDeathAttribute {
         var target = eventData.getTarget();
 
         if (modifier < rand.nextFloat()) return;
-        spawnLingeringPotionCloudEffect.execute(sourceEvent, target.getLocation(),potionEffect);
+        spawnLingeringPotionCloudEffect.execute(sourceEvent, target.getLocation(),potionEffect, radius, duration, durationOnUse);
     }
 }

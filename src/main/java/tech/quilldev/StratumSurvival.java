@@ -25,6 +25,8 @@ import tech.quilldev.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import tech.quilldev.Crafting.StratumRecipes.Weapons.Daggers.*;
 import tech.quilldev.CustomItems.Attributes.OnDeathAttributes.*;
+import tech.quilldev.CustomItems.Attributes.UseAttributes.JumpBoostUseWeaponAttribute;
+import tech.quilldev.CustomItems.Attributes.UseAttributes.SlowFeildUseWeaponAttribute;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
 import tech.quilldev.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
@@ -97,6 +99,8 @@ public final class StratumSurvival extends JavaPlugin {
                 //Use Attributes
                 new CloakUseWeaponAttribute(new NamespacedKey(this, "use_cloak")),
                 new ShadowDodgeUseWeaponAttribute(new NamespacedKey(this, "use_shadow_dodge")),
+                new SlowFeildUseWeaponAttribute(new NamespacedKey(this, "use_slow_feild")),
+                new JumpBoostUseWeaponAttribute(new NamespacedKey(this, "use_jump_feild")),
 
                 //Death Attributes
                 new WhisperOnDeath(new NamespacedKey(this, "on_death_whisper")),

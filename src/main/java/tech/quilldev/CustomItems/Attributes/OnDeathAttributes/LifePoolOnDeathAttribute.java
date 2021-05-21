@@ -10,6 +10,10 @@ public class LifePoolOnDeathAttribute extends LingeringPotionOnDeathAttribute{
     public LifePoolOnDeathAttribute(NamespacedKey key) {
         super(key,
                 new PotionEffect(PotionEffectType.ABSORPTION,200,1),
-                Component.text("Harvester of Life").color(TextColor.color(0xDA4840)));
+                Component.text("Harvester of Life").color(TextColor.color(0xDA4840)),
+                1,
+                400,
+                400
+        );
     }
 }
