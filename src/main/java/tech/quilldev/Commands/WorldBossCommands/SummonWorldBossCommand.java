@@ -24,11 +24,11 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.jetbrains.annotations.NotNull;
 import tech.quilldev.Bosses.WorldBossManager;
 
-public class SummonWorldBoss implements CommandExecutor, Listener {
+public class SummonWorldBossCommand implements CommandExecutor, Listener {
 
     private final WorldBossManager bossManager;
 
-    public SummonWorldBoss(WorldBossManager bossManager) {
+    public SummonWorldBossCommand(WorldBossManager bossManager) {
         this.bossManager = bossManager;
     }
 

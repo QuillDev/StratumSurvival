@@ -26,6 +26,9 @@ commands:
     permission: stratumsurvival.items.reroll
 
   #Bosses
+  worldbosstp:
+    usage: /<command>
+    permission: stratumsurvival.bosses.tp
   spawnworldboss:
     usage: /<command>
     permission: stratumsurvival.bosses.summon

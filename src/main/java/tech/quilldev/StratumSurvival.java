@@ -16,8 +16,9 @@ import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveC
 import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveChatLineRawCommand;
 import tech.quilldev.Commands.NPCCommands.ChatNPCCommands.SpawnChatNpcCommand;
 import tech.quilldev.Commands.NPCCommands.SpawnNPCCommand;
-import tech.quilldev.Commands.WorldBossCommands.SummonWorldBoss;
-import tech.quilldev.Commands.WorldBossCommands.SummonWorldBossDelayed;
+import tech.quilldev.Commands.WorldBossCommands.SummonWorldBossCommand;
+import tech.quilldev.Commands.WorldBossCommands.SummonWorldBossDelayedCommand;
+import tech.quilldev.Commands.WorldBossCommands.WorldBossTeleportCommand;
 import tech.quilldev.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import tech.quilldev.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import tech.quilldev.Crafting.StratumCraftingManager;
@@ -51,7 +52,6 @@ import tech.quilldev.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import tech.quilldev.NPCManager.NPCManager;
 import tech.quilldev.Serialization.StratumSerialization;
 
-import javax.naming.Name;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -188,8 +188,9 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("reroll")).setExecutor(new RerollItem());
         Objects.requireNonNull(this.getCommand("devtool")).setExecutor(new DevTool(materialManager));
         Objects.requireNonNull(this.getCommand("spawnchatnpc")).setExecutor(new SpawnChatNpcCommand(chatNpcManager));
-        Objects.requireNonNull(this.getCommand("spawnworldboss")).setExecutor(new SummonWorldBoss(worldBossManager));
-        Objects.requireNonNull(this.getCommand("spawnworldbossdelayed")).setExecutor(new SummonWorldBossDelayed(worldBossManager));
+        Objects.requireNonNull(this.getCommand("spawnworldboss")).setExecutor(new SummonWorldBossCommand(worldBossManager));
+        Objects.requireNonNull(this.getCommand("spawnworldbossdelayed")).setExecutor(new SummonWorldBossDelayedCommand(worldBossManager));
+        Objects.requireNonNull(this.getCommand("worldbosstp")).setExecutor(new WorldBossTeleportCommand(worldBossManager));
 
 
         craftingManager.registerDynamicRecipes(materialManager);
