@@ -7,6 +7,7 @@ import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
+import org.bukkit.World;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -28,6 +29,9 @@ public class WorldBossManager {
     //TODO: Another manager class pls
     private final BukkitScheduler scheduler;
     private final NamespacedKey worldBossKey;
+
+    //World that we handle world bosses in
+    private final World world = Bukkit.getWorld("worldbossworld");
 
     //HP Bar for the world boss
     private final BossBar bossBar;
@@ -173,5 +177,9 @@ public class WorldBossManager {
 
     public void setActiveBattle(boolean activeBattle) {
         this.activeBattle = activeBattle;
+    }
+
+    public World getWorld() {
+        return world;
     }
 }

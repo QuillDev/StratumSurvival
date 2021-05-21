@@ -10,14 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class WorldBossListeners implements Listener {
 
@@ -27,6 +25,19 @@ public class WorldBossListeners implements Listener {
     public WorldBossListeners(WorldBossManager bossManager) {
         this.bossManager = bossManager;
         this.dpsMap = bossManager.getDpsMap();
+    }
+
+    //If a player is going to take void damage in the world boss world, teleport them to the spawn
+    @EventHandler
+    public void cancelSpawnDeathEvent(EntityDamageEvent event) {
+        if (!event.getCause().equals(EntityDamageEvent.DamageCause.VOID)) return;
+        final var entity = event.getEntity();
+        if (!(entity instanceof Player)) return;
+        final var player = ((Player) entity).getPlayer();
+        if (player == null) return;
+        final var world = bossManager.getWorld();
+        player.teleport(world.getSpawnLocation());
+        event.setCancelled(true);
     }
 
     @EventHandler
