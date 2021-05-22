@@ -5,6 +5,8 @@ public class ItemAdjectives {
     public static String[] adjectives = new String[]
             {
                     "Lacking",
+                    "Sloppy",
+                    "Toppy",
                     "Frail",
                     "Cheap",
                     "Damaging",
