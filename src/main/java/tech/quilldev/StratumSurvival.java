@@ -4,6 +4,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import tech.quilldev.Bosses.WorldBossManager;
 import tech.quilldev.Commands.*;
+import tech.quilldev.Commands.EnemyCommands.SpawnEnemy;
 import tech.quilldev.Commands.ItemGenerator.DeobfuscateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItem;
 import tech.quilldev.Commands.ItemGenerator.GenerateItemTabs;
@@ -199,7 +200,7 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("spawnworldboss")).setExecutor(new SummonWorldBossCommand(worldBossManager));
         Objects.requireNonNull(this.getCommand("spawnworldbossdelayed")).setExecutor(new SummonWorldBossDelayedCommand(worldBossManager));
         Objects.requireNonNull(this.getCommand("worldbosstp")).setExecutor(new WorldBossTeleportCommand(worldBossManager));
-
+        Objects.requireNonNull(this.getCommand("spawnenemy")).setExecutor(new SpawnEnemy());
 
         //setup dev command
         final var devTool = new DevTool(materialManager, this);

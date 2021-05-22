@@ -51,7 +51,6 @@ public enum StratumMaterial {
     CHEST_UNCOMMON,
     CHEST_RARE,
     CHEST_EPIC,
-    CHEST_LEGENDARY,
+    CHEST_LEGENDARY
     ;
-
 }
