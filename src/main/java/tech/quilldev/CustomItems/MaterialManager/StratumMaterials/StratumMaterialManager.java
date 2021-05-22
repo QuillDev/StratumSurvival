@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.*;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.BattleaxeMaterialRegistry;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.CutlassMaterialRegistry;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.DaggerMaterialRegistry;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.ScytheMaterialRegistry;
 import tech.quilldev.StratumSurvival;
@@ -26,6 +27,7 @@ public class StratumMaterialManager {
                 new ScytheMaterialRegistry(new NamespacedKey(plugin, MaterialKey.SCYTHE_KEY.value)),
                 new BattleaxeMaterialRegistry(new NamespacedKey(plugin, MaterialKey.BATTLEAXE_KEY.value)),
                 new DaggerMaterialRegistry(new NamespacedKey(plugin, MaterialKey.DAGGER_KEY.value)),
+                new CutlassMaterialRegistry(new NamespacedKey(plugin, MaterialKey.CUTLASS_KEY.value)),
 
                 //Add crafting types
                 new GeodeMaterialRegistry(new NamespacedKey(plugin, MaterialKey.GEODE_KEY.value)),

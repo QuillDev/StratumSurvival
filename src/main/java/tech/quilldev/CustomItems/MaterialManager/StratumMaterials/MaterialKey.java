@@ -10,7 +10,8 @@ public enum MaterialKey {
     FRAGMENT_KEY("itemtype_fragment"),
     SHARD_KEY("itemtype_shard"),
     EMPTY_KEY("itemtype_none"),
-    CHEST_KEY("itemtype_loot_chest");
+    CHEST_KEY("itemtype_loot_chest"),
+    CUTLASS_KEY("itemtype_cutlass");
 
     public String value;
 

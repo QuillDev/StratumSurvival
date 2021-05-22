@@ -6,7 +6,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import tech.quilldev.CustomItems.BaseWeaponAttributes.BaseAttributesDaggers;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesDaggers;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import tech.quilldev.Serialization.StratumSerialization;

@@ -50,9 +50,12 @@ commands:
     permission: stratumsurvival.npcs.deletechatnpc
   removechatline:
     usage: /<command>
+    permission: stratumsurvival.npcs.removechatline
   removechatlineraw:
     usage: /<command> <index>
+    permission: stratumsurvival.npcs.removechatline
 
   #Custom Enemies
   spawnenemy:
     usage: /<command>
+    permission: stratumsurvival.enemies.spawnenemy

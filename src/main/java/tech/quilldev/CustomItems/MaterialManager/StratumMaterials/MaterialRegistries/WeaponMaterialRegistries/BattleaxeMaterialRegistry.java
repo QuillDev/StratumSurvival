@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.inventory.ItemStack;
-import tech.quilldev.CustomItems.BaseWeaponAttributes.BaseAttributesBattleaxes;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesBattleaxes;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 

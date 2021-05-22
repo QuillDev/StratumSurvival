@@ -38,7 +38,7 @@ import tech.quilldev.CustomItems.Attributes.AttackAttributes.BowWeaponAttributes
 import tech.quilldev.CustomItems.EventHandler.HandleAttributeEvents;
 import tech.quilldev.CustomItems.Attributes.ItemAttributes;
 import tech.quilldev.CustomItems.ItemHelpers.ItemGenerator;
-import tech.quilldev.CustomItems.MaterialManager.WeaponLists;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
 import tech.quilldev.Events.ChatEvents.InjectChatItemEvent;
 import tech.quilldev.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 import tech.quilldev.Events.TestEvents.DaggerBackstabEvent;
@@ -200,7 +200,7 @@ public final class StratumSurvival extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("spawnworldboss")).setExecutor(new SummonWorldBossCommand(worldBossManager));
         Objects.requireNonNull(this.getCommand("spawnworldbossdelayed")).setExecutor(new SummonWorldBossDelayedCommand(worldBossManager));
         Objects.requireNonNull(this.getCommand("worldbosstp")).setExecutor(new WorldBossTeleportCommand(worldBossManager));
-        Objects.requireNonNull(this.getCommand("spawnenemy")).setExecutor(new SpawnEnemy());
+        Objects.requireNonNull(this.getCommand("spawnenemy")).setExecutor(new SpawnEnemy(materialManager));
 
         //setup dev command
         final var devTool = new DevTool(materialManager, this);

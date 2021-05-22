@@ -7,7 +7,7 @@ import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMateria
 import tech.quilldev.CustomItems.Attributes.Attribute;
 import tech.quilldev.CustomItems.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import tech.quilldev.CustomItems.Attributes.ItemAttributes;
-import tech.quilldev.CustomItems.MaterialManager.WeaponType;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
 import tech.quilldev.CustomItems.ItemHelpers.ItemNames.ItemAdjectives;
 import tech.quilldev.Serialization.StratumSerialization;
 

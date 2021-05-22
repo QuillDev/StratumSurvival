@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItems.BaseWeaponAttributes;
+package tech.quilldev.CustomItems.MaterialManager.StratumMaterials.BaseWeaponAttributes;
 
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlot;

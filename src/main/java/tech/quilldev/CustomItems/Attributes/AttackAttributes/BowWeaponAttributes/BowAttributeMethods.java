@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import tech.quilldev.CustomItems.Attributes.AttackAttributes.BowWeaponAttributes.BowAttributeHelpers.BowEventData;
-import tech.quilldev.CustomItems.MaterialManager.WeaponLists;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
 
 public class BowAttributeMethods {
 

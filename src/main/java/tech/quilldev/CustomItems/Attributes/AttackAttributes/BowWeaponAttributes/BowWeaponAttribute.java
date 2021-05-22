@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import tech.quilldev.CustomItems.Attributes.Attribute;
 import tech.quilldev.CustomItems.Attributes.OnDeathAttributes.OnDeathAttribute;
-import tech.quilldev.CustomItems.MaterialManager.WeaponLists;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
 
 import java.util.ArrayList;
 import java.util.Collections;

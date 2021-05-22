@@ -6,8 +6,8 @@ import org.bukkit.plugin.Plugin;
 import tech.quilldev.CustomItems.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import tech.quilldev.CustomItems.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
 import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import tech.quilldev.CustomItems.MaterialManager.WeaponLists;
-import tech.quilldev.CustomItems.MaterialManager.WeaponType;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
 import tech.quilldev.StratumSurvival;
 
 import java.util.ArrayList;

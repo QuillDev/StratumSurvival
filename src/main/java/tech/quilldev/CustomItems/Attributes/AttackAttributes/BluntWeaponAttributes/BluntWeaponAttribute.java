@@ -3,7 +3,7 @@ package tech.quilldev.CustomItems.Attributes.AttackAttributes.BluntWeaponAttribu
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import tech.quilldev.CustomItems.Attributes.AttackAttributes.AttackAttribute;
-import tech.quilldev.CustomItems.MaterialManager.WeaponLists;
+import tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
 
 public abstract class BluntWeaponAttribute extends AttackAttribute {
     public BluntWeaponAttribute(NamespacedKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {

@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItems.MaterialManager;
+package tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -40,6 +40,12 @@ public class WeaponLists {
                 materialManager.getItem(StratumMaterial.DAGGER_GOLDEN),
                 materialManager.getItem(StratumMaterial.DAGGER_DIAMOND),
                 materialManager.getItem(StratumMaterial.DAGGER_NETHERITE),
+                materialManager.getItem(StratumMaterial.CUTLASS_WOODEN),
+                materialManager.getItem(StratumMaterial.CUTLASS_STONE),
+                materialManager.getItem(StratumMaterial.CUTLASS_IRON),
+                materialManager.getItem(StratumMaterial.CUTLASS_GOLDEN),
+                materialManager.getItem(StratumMaterial.CUTLASS_DIAMOND),
+                materialManager.getItem(StratumMaterial.CUTLASS_NETHERITE),
                 materialManager.getItem(Material.WOODEN_SWORD),
                 materialManager.getItem(Material.STONE_SWORD),
                 materialManager.getItem(Material.IRON_SWORD),

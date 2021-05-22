@@ -1,4 +1,4 @@
-package tech.quilldev.CustomItems.MaterialManager;
+package tech.quilldev.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers;
 
 import org.bukkit.inventory.ItemStack;
 
