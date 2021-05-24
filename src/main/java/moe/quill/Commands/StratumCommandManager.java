@@ -26,7 +26,7 @@ public class StratumCommandManager {
             //If the command does not exist log it
             if (pluginCommand == null) {
                 logger.warn(String.format("Could not find a command with the name '%s'", command.getName()));
-                return;
+                continue;
             }
 
             //Set the executor of the command

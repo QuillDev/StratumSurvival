@@ -24,6 +24,6 @@ public class WorldBossTeleportCommand implements CommandExecutor {
         final var world = Bukkit.getWorld("worldbossworld");
         if (world == null) return true;
         player.teleport(world.getSpawnLocation());
-        return false;
+        return true;
     }
 }

@@ -144,7 +144,7 @@ public final class StratumSurvival extends JavaPlugin {
                 new StratumCommand("reroll", new RerollItem(), null),
                 new StratumCommand("spawnchatnpc", new SpawnChatNpcCommand(chatNpcManager), null),
                 new StratumCommand("spawnworldboss", new SummonWorldBossCommand(worldBossManager), null),
-                new StratumCommand("summonworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
+                new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
                 new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),
                 new StratumCommand("spawnenemy", new SpawnEnemy(materialManager), null),
                 new StratumCommand("devtool", devTool, null)
