@@ -1,6 +1,6 @@
 # Stratum Survival [WIP]
 
-Custom plugin for the StratumSurvival minecraft server ([mc.quill.moe](mc.quill.moe)) adding many custom mobs, weapons,
+Custom plugin for the StratumSurvival minecraft server adding many custom mobs, weapons,
 and misc other things!
 
 ## Features
