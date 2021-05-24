@@ -1,6 +1,7 @@
 package moe.quill.Commands.Misc;
 
-import moe.quill.Adventuring.Enemies.ZombieBased.Pirate;
+import moe.quill.Adventuring.Enemies.StrayBased.WeebEnemy;
+import moe.quill.Adventuring.Enemies.ZombieBased.PirateEnemy;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,8 +29,10 @@ public class DevTool implements CommandExecutor, Listener {
         if (!(sender instanceof Player)) return true;
         final var player = ((Player) sender).getPlayer();
         if (player == null) return true;
-        final var pirate = new Pirate();
+        final var pirate = new PirateEnemy();
+        final var weeb = new WeebEnemy();
         pirate.spawn(player.getLocation());
+        weeb.spawn(player.getLocation());
         return true;
     }
 }
