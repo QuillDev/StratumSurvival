@@ -1,7 +1,9 @@
 package moe.quill.Events.ChatEvents;
 
+import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import moe.quill.Utils.PlayerHelpers.PlayerInventoryHelper;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Player;
@@ -21,7 +23,7 @@ public class InjectChatItemEvent implements Listener {
     private final static Pattern numberPattern = Pattern.compile("[1-9]");
     private final static Pattern itemNodePattern = Pattern.compile("(\\{item[1-9]})");
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void injectOnChatEvent(AsyncChatEvent event) {
 
         // Get the message content and an empty component for adding additional data
@@ -63,13 +65,7 @@ public class InjectChatItemEvent implements Listener {
             chunks = chunks.append(Component.text(content.substring(lastChunk.end())));
         }
 
-        //Compose the message using data from the player
-        var message = event.composer().composeChat(event.getPlayer(), event.getPlayer().displayName(), Component.empty());
-        message = message.append(chunks);
-
-        //Send the message to the server and set the event to cancelled
-        event.getPlayer().getServer().sendMessage(message);
-        event.setCancelled(true);
+        event.message(chunks);
     }
 
     /**

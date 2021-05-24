@@ -1,4 +1,4 @@
-package moe.quill.Events.AnimalEvents;
+package moe.quill.Events;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

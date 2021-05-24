@@ -34,7 +34,8 @@ import moe.quill.Crafting.StratumRecipes.Weapons.Daggers.*;
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
 import moe.quill.Crafting.CustomItems.EventHandler.HandleAttributeEvents;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
-import moe.quill.Events.AnimalEvents.DevEvent;
+import moe.quill.Events.ChatEvents.ChatBadgeEvent;
+import moe.quill.Events.DevEvent;
 import moe.quill.Events.ChatEvents.InjectChatItemEvent;
 import moe.quill.Events.StratumEventManager;
 import moe.quill.Adventuring.Loot.LootManager;
@@ -51,7 +52,6 @@ import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMa
 import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
 import moe.quill.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 import moe.quill.Events.ToolEvents.DaggerBackstabEvent;
-import moe.quill.Events.ToolEvents.ToolBreakBlockDropShard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,6 +97,7 @@ public final class StratumSurvival extends JavaPlugin {
                 new NPCTransformWitchCancel(),
                 new DaggerBackstabEvent(materialManager),
                 new DevEvent(),
+                new ChatBadgeEvent(this),
                 devTool
         );
 
