@@ -11,7 +11,8 @@ public enum MaterialKey {
     SHARD_KEY("itemtype_shard"),
     EMPTY_KEY("itemtype_none"),
     CHEST_KEY("itemtype_loot_chest"),
-    CUTLASS_KEY("itemtype_cutlass");
+    CUTLASS_KEY("itemtype_cutlass"),
+    ARMOR_KEY("itemtype_armor");
 
     public String value;
 

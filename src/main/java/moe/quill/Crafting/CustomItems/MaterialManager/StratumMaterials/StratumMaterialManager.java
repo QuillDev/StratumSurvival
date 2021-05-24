@@ -31,6 +31,9 @@ public class StratumMaterialManager {
                 new DaggerMaterialRegistry(new NamespacedKey(plugin, MaterialKey.DAGGER_KEY.value)),
                 new CutlassMaterialRegistry(new NamespacedKey(plugin, MaterialKey.CUTLASS_KEY.value)),
 
+                //Add armor types
+                new ArmorMaterialRegistry(new NamespacedKey(plugin, MaterialKey.ARMOR_KEY.value)),
+
                 //Add crafting types
                 new GeodeMaterialRegistry(new NamespacedKey(plugin, MaterialKey.GEODE_KEY.value)),
                 new FragmentMaterialRegistry(new NamespacedKey(plugin, MaterialKey.FRAGMENT_KEY.value)),

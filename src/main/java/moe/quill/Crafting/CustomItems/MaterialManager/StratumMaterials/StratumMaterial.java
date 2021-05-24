@@ -46,7 +46,7 @@ public enum StratumMaterial {
     DAGGER_DIAMOND,
     DAGGER_NETHERITE,
 
-    //CUtlasses
+    //CUTLASSES
     CUTLASS_WOODEN,
     CUTLASS_STONE,
     CUTLASS_IRON,
@@ -59,6 +59,12 @@ public enum StratumMaterial {
     CHEST_UNCOMMON,
     CHEST_RARE,
     CHEST_EPIC,
-    CHEST_LEGENDARY
+    CHEST_LEGENDARY,
+
+    //ARMOR
+    HELMET_LEATHER_LIGHT,
+    HELMET_LEATHER_HEAVY,
+    BOOTS_LEATHER_LIGHT,
+    BOOTS_LEATHER_HEAVY
     ;
 }
