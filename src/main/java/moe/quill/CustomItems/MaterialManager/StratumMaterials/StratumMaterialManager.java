@@ -38,7 +38,6 @@ public class StratumMaterialManager {
                 new ChestMaterialRegister(new NamespacedKey(plugin, MaterialKey.CHEST_KEY.value))
         );
 
-
         //Populate the geode materials list
         geodeMaterials.addAll(
                 Arrays.asList(

@@ -24,6 +24,6 @@ public class SetNightUseAttribute extends UseAttribute {
         if (eventData == null) return;
         var player = eventData.getPlayer();
 
-        timeSetEffect.execute(sourceEvent,player.getLocation(), 13000);
+        timeSetEffect.execute(player.getLocation(), 13000);
     }
 }

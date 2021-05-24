@@ -6,7 +6,9 @@ import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import moe.quill.CustomItems.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
+import org.checkerframework.framework.qual.Unused;
 
+@SuppressWarnings("unused")
 public class SetDayUseAttribute extends UseAttribute {
 
     TimeSetEffect timeSetEffect = new TimeSetEffect();
@@ -24,6 +26,6 @@ public class SetDayUseAttribute extends UseAttribute {
         if (eventData == null) return;
         var player = eventData.getPlayer();
 
-        timeSetEffect.execute(sourceEvent, player.getLocation(), 1000);
+        timeSetEffect.execute(player.getLocation(), 1000);
     }
 }

@@ -34,6 +34,7 @@ import moe.quill.CustomItems.Attributes.AttackAttributes.BluntWeaponAttributes.B
 import moe.quill.CustomItems.Attributes.ItemAttributes;
 import moe.quill.CustomItems.EventHandler.HandleAttributeEvents;
 import moe.quill.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
+import moe.quill.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
 import moe.quill.Events.ChatEvents.InjectChatItemEvent;
 import moe.quill.Events.StratumEventManager;
 import moe.quill.NPCManager.ChatNPC.ChatNPCManager;
