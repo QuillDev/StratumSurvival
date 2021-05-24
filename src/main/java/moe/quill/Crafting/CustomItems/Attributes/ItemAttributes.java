@@ -1,12 +1,14 @@
 package moe.quill.Crafting.CustomItems.Attributes;
 
+import moe.quill.Crafting.CustomItems.Attributes.ToolAttributes.MiningAttributes.MiningAttribute;
+import moe.quill.Crafting.CustomItems.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import moe.quill.Crafting.CustomItems.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import moe.quill.Crafting.CustomItems.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ public class ItemAttributes {
     private static final Logger logger = LoggerFactory.getLogger(ItemAttributes.class.getSimpleName());
 
     //Attribute categories
-    public static final HashMap<String, WeaponType> attributeCategories = new HashMap<>();
+    public static final HashMap<String, ItemType> attributeCategories = new HashMap<>();
 
     public ItemAttributes(Plugin plugin) {
         levelKey = new NamespacedKey(plugin, "item_level");
@@ -43,8 +45,9 @@ public class ItemAttributes {
     }
 
     public void init(Plugin plugin) {
-        attributeCategories.putIfAbsent("WEAPON_BLUNT", new WeaponType(WeaponLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
-        attributeCategories.putIfAbsent("WEAPON_BOW", new WeaponType(WeaponLists.WEAPONS_BOW, BowWeaponAttribute.class));
+        attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(ItemLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
+        attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(ItemLists.WEAPONS_BOW, BowWeaponAttribute.class));
+        attributeCategories.putIfAbsent("TOOLS_MINING", new ItemType(ItemLists.TOOLS_PICKAXE, PickaxeAttribute.class));
         dynamicallyLoadAttributes(plugin);
 
     }
@@ -131,7 +134,7 @@ public class ItemAttributes {
      * @param query to match with the category
      * @return the weapon category for the given string
      */
-    public static WeaponType getWeaponCategory(String query) {
+    public static ItemType getWeaponCategory(String query) {
         final var key = attributeCategories
                 .keySet()
                 .stream()
@@ -141,7 +144,7 @@ public class ItemAttributes {
         return attributeCategories.get(key);
     }
 
-    public static WeaponType getWeaponTypeFromItemStack(ItemStack queryStack) {
+    public static ItemType getWeaponTypeFromItemStack(ItemStack queryStack) {
 
         for (final var key : attributeCategories.keySet()) {
             //Get the current entry

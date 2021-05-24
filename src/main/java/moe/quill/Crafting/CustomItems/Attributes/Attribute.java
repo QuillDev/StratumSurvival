@@ -1,5 +1,6 @@
 package moe.quill.Crafting.CustomItems.Attributes;
 
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
@@ -11,9 +12,10 @@ import java.util.Random;
 
 public abstract class Attribute {
 
+    protected static StratumMaterialManager materialManager;
     protected static final Random rand = new Random();
     protected static final AttributeFormatter attributeFormatter = new AttributeFormatter();
-    
+
     // Item Data Attributes
     public NamespacedKey key;
     public ArrayList<ItemStack> materials;
@@ -59,6 +61,15 @@ public abstract class Attribute {
      */
     public String dataFormat(float data) {
         return "";
+    }
+
+    /**
+     * Set the material manager for all attributes
+     *
+     * @param materialManager to set
+     */
+    public static void setMaterialManager(StratumMaterialManager materialManager) {
+        Attribute.materialManager = materialManager;
     }
 
     public abstract void execute(Event sourceEvent, float modifier);

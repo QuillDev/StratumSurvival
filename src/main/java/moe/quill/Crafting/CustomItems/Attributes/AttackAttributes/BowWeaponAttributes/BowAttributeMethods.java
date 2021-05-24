@@ -1,7 +1,7 @@
 package moe.quill.Crafting.CustomItems.Attributes.AttackAttributes.BowWeaponAttributes;
 
 import moe.quill.Crafting.CustomItems.Attributes.AttackAttributes.BowWeaponAttributes.BowAttributeHelpers.BowEventData;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -27,7 +27,7 @@ public class BowAttributeMethods {
 
         //Make sure the held item is a bow
         var match = false;
-        for (final var weapon : WeaponLists.WEAPONS_BOW) {
+        for (final var weapon : ItemLists.WEAPONS_BOW) {
             if (weapon.getType().equals(bow.getType())) {
                 match = true;
                 break;

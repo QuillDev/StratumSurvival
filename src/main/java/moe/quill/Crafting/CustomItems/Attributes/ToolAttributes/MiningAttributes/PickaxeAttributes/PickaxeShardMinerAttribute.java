@@ -1,23 +1,18 @@
-package moe.quill.Events.ToolEvents;
-
-import moe.quill.StratumSurvival;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
+package moe.quill.Crafting.CustomItems.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
 import moe.quill.Crafting.CustomItems.ItemHelpers.ItemHelper;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.StratumSurvival;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.event.Event;
 
 import java.util.HashMap;
-import java.util.Random;
 
-public class ToolBreakBlockDropShard implements Listener {
-
-    private final StratumMaterialManager materialManager;
+@SuppressWarnings("unused")
+public class PickaxeShardMinerAttribute extends PickaxeAttribute {
     private final ItemHelper itemHelper = new ItemHelper();
-    private final Random rand = StratumSurvival.rand;
 
     private final static float rareOdds = 1 / 300f;
     private final static float normalOdds = 1 / 100f;
@@ -36,16 +31,16 @@ public class ToolBreakBlockDropShard implements Listener {
         put(Material.EMERALD_ORE, commonOdds);
     }};
 
-    public ToolBreakBlockDropShard(StratumMaterialManager materialManager) {
-        this.materialManager = materialManager;
+    public PickaxeShardMinerAttribute(NamespacedKey key) {
+        super(key, Component.text("Fragment Finder").color(TextColor.color(0x32A2CB)), .5f, 1, 3);
     }
 
-    //TODO: Add odds to this
-    @EventHandler
-    public void dropShardOnBlockBreak(BlockBreakEvent event) {
-        if (!event.isDropItems()) return;
-        final var player = event.getPlayer();
-        final var block = event.getBlock();
+    @Override
+    public void execute(Event sourceEvent, float modifier) {
+        final var eventData = getEventData(sourceEvent);
+        if (eventData == null) return;
+        final var player = eventData.getPlayer();
+        final var block = eventData.getBlock();
 
         //Get the level of the block
         final var level = itemHelper.getRandomLevel(.38f, 6);
@@ -55,6 +50,14 @@ public class ToolBreakBlockDropShard implements Listener {
         //Get the fragment + drop it if we have a good roll
         if (odds < rand.nextFloat()) return;
         final var fragment = materialManager.getFragmentForLevel(level);
-        player.getWorld().dropItemNaturally(block.getLocation(), fragment);
+        final var drop = fragment.clone();
+        drop.setAmount((int) Math.floor(modifier));
+        player.getWorld().dropItemNaturally(block.getLocation(), drop);
+        player.sendActionBar(Component.text("Your pickaxe managed to find some shards!"));
+    }
+
+    @Override
+    public String dataFormat(float data) {
+        return attributeFormatter.formatFloat((int) Math.floor(data));
     }
 }

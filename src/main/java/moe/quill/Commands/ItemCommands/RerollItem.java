@@ -1,4 +1,4 @@
-package moe.quill.Commands;
+package moe.quill.Commands.ItemCommands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

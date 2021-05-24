@@ -1,12 +1,12 @@
 package moe.quill;
 
 import moe.quill.Adventuring.Bosses.WorldBossManager;
-import moe.quill.Commands.DevTool;
+import moe.quill.Commands.Misc.DevTool;
 import moe.quill.Commands.EnemyCommands.SpawnEnemy;
-import moe.quill.Commands.ItemGenerator.DeobfuscateItem;
-import moe.quill.Commands.ItemGenerator.GenerateItem;
-import moe.quill.Commands.ItemGenerator.GenerateItemTabs;
-import moe.quill.Commands.ItemGenerator.ObfuscateItem;
+import moe.quill.Commands.ItemCommands.DeobfuscateItem;
+import moe.quill.Commands.ItemCommands.GenerateItem;
+import moe.quill.Commands.ItemCommands.GenerateItemTabs;
+import moe.quill.Commands.ItemCommands.ObfuscateItem;
 import moe.quill.Commands.NPCCommands.ChatNPCCommands.AddChatLines.AddChatLineCommand;
 import moe.quill.Commands.NPCCommands.ChatNPCCommands.AddChatLines.AddChatLineTabs;
 import moe.quill.Commands.NPCCommands.ChatNPCCommands.DeleteChatNpc.DeleteChatNpcCommand;
@@ -15,14 +15,15 @@ import moe.quill.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveChatL
 import moe.quill.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine.RemoveChatLineRawCommand;
 import moe.quill.Commands.NPCCommands.ChatNPCCommands.SpawnChatNpcCommand;
 import moe.quill.Commands.NPCCommands.SpawnNPCCommand;
-import moe.quill.Commands.RerollItem;
+import moe.quill.Commands.ItemCommands.RerollItem;
 import moe.quill.Commands.StratumCommand;
 import moe.quill.Commands.StratumCommandManager;
-import moe.quill.Commands.WorldBossCommands.SummonWorldBossCommand;
-import moe.quill.Commands.WorldBossCommands.SummonWorldBossDelayedCommand;
-import moe.quill.Commands.WorldBossCommands.WorldBossTeleportCommand;
+import moe.quill.Commands.AdventureCommands.WorldBossCommands.SummonWorldBossCommand;
+import moe.quill.Commands.AdventureCommands.WorldBossCommands.SummonWorldBossDelayedCommand;
+import moe.quill.Commands.AdventureCommands.WorldBossCommands.WorldBossTeleportCommand;
 import moe.quill.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import moe.quill.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
+import moe.quill.Crafting.CustomItems.Attributes.Attribute;
 import moe.quill.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
 import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
 import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
@@ -32,7 +33,8 @@ import moe.quill.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import moe.quill.Crafting.StratumRecipes.Weapons.Daggers.*;
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
 import moe.quill.Crafting.CustomItems.EventHandler.HandleAttributeEvents;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.Events.AnimalEvents.DevEvent;
 import moe.quill.Events.ChatEvents.InjectChatItemEvent;
 import moe.quill.Events.StratumEventManager;
 import moe.quill.Adventuring.Loot.LootManager;
@@ -48,7 +50,7 @@ import moe.quill.Crafting.StratumCraftingManager;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
 import moe.quill.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
-import moe.quill.Events.TestEvents.DaggerBackstabEvent;
+import moe.quill.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.Events.ToolEvents.ToolBreakBlockDropShard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,13 +72,14 @@ public final class StratumSurvival extends JavaPlugin {
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
         final var materialManager = new StratumMaterialManager(this);
+        Attribute.setMaterialManager(materialManager);
         final var chatNpcManager = new ChatNPCManager(this);
         final var worldBossManager = new WorldBossManager(this);
         final var commandManager = new StratumCommandManager(this);
         final var eventManager = new StratumEventManager(this);
         final var lootManager = new LootManager(this, materialManager);
         final var itemGenerator = new ItemGenerator(materialManager);
-        new WeaponLists(materialManager);
+        new ItemLists(materialManager);
         itemAttributes.init(this);
 
         //setup dev command
@@ -93,7 +96,7 @@ public final class StratumSurvival extends JavaPlugin {
                 new CraftCustomItemEvent(itemGenerator, materialManager),
                 new NPCTransformWitchCancel(),
                 new DaggerBackstabEvent(materialManager),
-                new ToolBreakBlockDropShard(materialManager),
+                new DevEvent(),
                 devTool
         );
 

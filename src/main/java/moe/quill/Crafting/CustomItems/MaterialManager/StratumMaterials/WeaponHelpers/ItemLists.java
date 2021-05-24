@@ -8,16 +8,29 @@ import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMa
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WeaponLists {
+public class ItemLists {
 
     public final StratumMaterialManager materialManager;
     public static final ArrayList<ItemStack> WEAPONS_BLUNT = new ArrayList<>();
     public static final ArrayList<ItemStack> WEAPONS_BOW = new ArrayList<>();
+    public static final ArrayList<ItemStack> TOOLS_PICKAXE = new ArrayList<>();
 
-    public WeaponLists(StratumMaterialManager materialManager) {
+    public ItemLists(StratumMaterialManager materialManager) {
         this.materialManager = materialManager;
         this.registerBluntWeapons();
         this.registerBowWeapons();
+        this.registerMiningTools();
+    }
+
+    private void registerMiningTools() {
+        TOOLS_PICKAXE.addAll(Arrays.asList(
+                materialManager.getItem(Material.WOODEN_PICKAXE),
+                materialManager.getItem(Material.STONE_PICKAXE),
+                materialManager.getItem(Material.GOLDEN_PICKAXE),
+                materialManager.getItem(Material.IRON_PICKAXE),
+                materialManager.getItem(Material.DIAMOND_PICKAXE),
+                materialManager.getItem(Material.NETHERITE_PICKAXE)
+        ));
     }
 
     private void registerBluntWeapons() {

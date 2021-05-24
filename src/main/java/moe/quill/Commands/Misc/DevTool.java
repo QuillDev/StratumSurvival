@@ -1,4 +1,4 @@
-package moe.quill.Commands;
+package moe.quill.Commands.Misc;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;

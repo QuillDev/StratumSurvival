@@ -5,7 +5,7 @@ import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
 import moe.quill.Crafting.CustomItems.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.Crafting.CustomItems.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
@@ -69,29 +69,29 @@ public class ItemGenerator {
     /**
      * Generate a random item from the given weapon type
      *
-     * @param weaponType to generate from
+     * @param itemType to generate from
      * @return the random weapon type
      */
-    public ItemStack generateItem(WeaponType weaponType) {
-        return generateItem(weaponType, itemHelper.getRandomLevel(.45f, 6));
+    public ItemStack generateItem(ItemType itemType) {
+        return generateItem(itemType, itemHelper.getRandomLevel(.45f, 6));
     }
 
     /**
      * Generates an item based on the given category
      *
-     * @param weaponType of attributes to be generated
+     * @param itemType of attributes to be generated
      * @return an item created from that type
      */
-    public ItemStack generateItem(WeaponType weaponType, int level) {
-        final var materials = getMaterialsFromWeaponType(weaponType, level);
+    public ItemStack generateItem(ItemType itemType, int level) {
+        final var materials = getMaterialsFromWeaponType(itemType, level);
         final var mat = materials.get(rand.nextInt(materials.size()));
         //Create the item
         final var item = new ItemStack(mat);
         return generateItem(item, level);
     }
 
-    public ArrayList<ItemStack> getMaterialsFromWeaponType(WeaponType weaponType, int level) {
-        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(weaponType.type), level);
+    public ArrayList<ItemStack> getMaterialsFromWeaponType(ItemType itemType, int level) {
+        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(itemType.type), level);
         return getEligibleItems(attributes);
     }
 
@@ -147,7 +147,7 @@ public class ItemGenerator {
      *
      * @return the item category that was randomly chosen
      */
-    public WeaponType getRandomCategory() {
+    public ItemType getRandomCategory() {
         final var categories = ItemAttributes.attributeCategories;
         final var keys = new ArrayList<>(categories.keySet());
         return categories.get(keys.get(rand.nextInt(keys.size())));

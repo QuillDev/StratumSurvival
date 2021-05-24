@@ -2,7 +2,7 @@ package moe.quill.Crafting.CustomItems.Attributes.AttackAttributes.BowWeaponAttr
 
 import moe.quill.Crafting.CustomItems.Attributes.Attribute;
 import moe.quill.Crafting.CustomItems.Attributes.OnDeathAttributes.OnDeathAttribute;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 
@@ -14,7 +14,7 @@ public abstract class BowWeaponAttribute extends Attribute {
     protected final BowAttributeMethods bowAttributeMethods = new BowAttributeMethods();
 
     public BowWeaponAttribute(NamespacedKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
-        super(key, lore, WeaponLists.WEAPONS_BOW, scaleValue, minRoll, maxRoll, new ArrayList<>(
+        super(key, lore, ItemLists.WEAPONS_BOW, scaleValue, minRoll, maxRoll, new ArrayList<>(
                 Collections.singletonList(OnDeathAttribute.class)
         ));
     }

@@ -8,6 +8,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -43,6 +44,11 @@ public class HandleAttributeEvents implements Listener {
     public void onMobDeathEvent(EntityDeathEvent event) {
         if (event.getEntity().getKiller() == null) return;
         handleItemAttributes(event.getEntity().getKiller(), event);
+    }
+
+    @EventHandler
+    public void onBlockBreakEvent(BlockBreakEvent event) {
+        handleItemAttributes(event.getPlayer(), event);
     }
 
     private void handleItemAttributes(LivingEntity entity, Event event) {

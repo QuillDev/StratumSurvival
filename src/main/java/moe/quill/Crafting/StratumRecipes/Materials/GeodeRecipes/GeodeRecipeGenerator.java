@@ -5,7 +5,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.plugin.Plugin;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class GeodeRecipeGenerator {
         this.plugin = plugin;
     }
 
-    public ArrayList<RecipeGeode> generateGeodeRecipes(HashMap<String, WeaponType> attributeLists) {
+    public ArrayList<RecipeGeode> generateGeodeRecipes(HashMap<String, ItemType> attributeLists) {
 
         final var recipeList = new ArrayList<RecipeGeode>();
 
