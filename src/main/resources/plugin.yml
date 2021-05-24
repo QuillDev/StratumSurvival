@@ -1,6 +1,6 @@
 name: StratumSurvival
 version: ${project.version}
-main: tech.quilldev.StratumSurvival
+main: moe.quill.StratumSurvival
 api-version: 1.16
 
 commands:
