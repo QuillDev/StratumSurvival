@@ -31,7 +31,7 @@ public class StratumCommandManager {
 
             //Set the executor of the command
             pluginCommand.setExecutor(command.getExecutor());
-            if (command.getTabCompleter() == null) return; // if this command has no tab completer, return null
+            if (command.getTabCompleter() == null) continue; // if this command has no tab completer, return null
             pluginCommand.setTabCompleter(command.getTabCompleter());
         }
     }
