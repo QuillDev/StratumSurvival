@@ -1,5 +1,7 @@
 package moe.quill.Commands.Misc;
 
+import moe.quill.Adventuring.Enemies.EnemyManager;
+import moe.quill.Adventuring.Enemies.EnemyType;
 import moe.quill.Adventuring.Enemies.StrayBased.WeebEnemy;
 import moe.quill.Adventuring.Enemies.ZombieBased.PirateEnemy;
 import org.bukkit.NamespacedKey;
@@ -17,11 +19,13 @@ public class DevTool implements CommandExecutor, Listener {
     private final StratumMaterialManager materialManager;
     private final Plugin plugin;
     private final NamespacedKey lootChestKey;
+    private final EnemyManager enemyManager;
 
-    public DevTool(StratumMaterialManager materialManager, Plugin plugin) {
+    public DevTool(StratumMaterialManager materialManager, EnemyManager enemyManager, Plugin plugin) {
         this.materialManager = materialManager;
         this.plugin = plugin;
         this.lootChestKey = new NamespacedKey(plugin, "loot_chest_key");
+        this.enemyManager = enemyManager;
     }
 
     @Override
@@ -29,10 +33,7 @@ public class DevTool implements CommandExecutor, Listener {
         if (!(sender instanceof Player)) return true;
         final var player = ((Player) sender).getPlayer();
         if (player == null) return true;
-        final var pirate = new PirateEnemy();
-        final var weeb = new WeebEnemy();
-        pirate.spawn(player.getLocation());
-        weeb.spawn(player.getLocation());
+        enemyManager.spawnEnemyOfType(player.getLocation(), EnemyType.valueOf(args[0]));
         return true;
     }
 }

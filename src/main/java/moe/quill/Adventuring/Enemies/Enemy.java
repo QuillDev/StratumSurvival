@@ -10,11 +10,13 @@ public abstract class Enemy {
 
     protected final Component name;
     protected final EntityType entityType;
+    protected final EnemyType enemyType;
     protected static StratumMaterialManager materialManager;
 
-    public Enemy(Component name, EntityType entityType) {
+    public Enemy(Component name, EntityType entityType, EnemyType enemyType) {
         this.name = name;
         this.entityType = entityType;
+        this.enemyType = enemyType;
     }
 
     protected abstract Entity spawnFreshEntity(Location location);
@@ -24,5 +26,9 @@ public abstract class Enemy {
 
     public static void setMaterialManager(StratumMaterialManager materialManager) {
         Enemy.materialManager = materialManager;
+    }
+
+    public EnemyType getEnemyType() {
+        return enemyType;
     }
 }

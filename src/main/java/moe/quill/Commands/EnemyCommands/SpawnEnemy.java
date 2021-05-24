@@ -1,43 +1,27 @@
 package moe.quill.Commands.EnemyCommands;
 
-import moe.quill.Crafting.CustomItems.MaterialManager.HeadHelper;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Adventuring.Enemies.EnemyManager;
+import moe.quill.Adventuring.Enemies.EnemyType;
+import moe.quill.Commands.PlayerCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.*;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
+
 import org.jetbrains.annotations.NotNull;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
-public class SpawnEnemy implements CommandExecutor {
+public class SpawnEnemy implements CommandExecutor, PlayerCommand {
 
-    private final StratumMaterialManager materialManager;
-    private final ItemStack pirateHead =
-            HeadHelper.getHeadFromTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTU2ZWM3MGYwNDQxYzdkMWYwM2ZjOTcwOWZkZjcwZTU1OGY3ZDJlYzE5MWQzNzMwYjhjMDYyMWJlZjg5OWVkZSJ9fX0=");
+    private final EnemyManager enemyManager;
 
-
-    public SpawnEnemy(StratumMaterialManager materialManager) {
-        this.materialManager = materialManager;
+    public SpawnEnemy(EnemyManager enemyManager) {
+        this.enemyManager = enemyManager;
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (!(sender instanceof Player)) return false;
-
-        final var player = ((Player) sender).getPlayer();
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+        final var player = getPlayerFromSender(sender);
         if (player == null) return true;
-
-        ItemStack head = pirateHead;
-        ItemStack sword = materialManager.getItem(StratumMaterial.SCYTHE_GOLDEN);
-        var headMeta = (SkullMeta) head.getItemMeta();
-
-        final var location = player.getLocation();
-        final var pirate = (Stray) player.getWorld().spawnEntity(location, EntityType.STRAY);
-        pirate.getEquipment().setHelmet(head);
-        pirate.getEquipment().setItemInMainHand(sword);
-
-        return false;
+        enemyManager.spawnEnemyOfType(player.getLocation(), EnemyType.valueOf(args[0]));
+        return true;
     }
 }

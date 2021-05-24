@@ -9,7 +9,7 @@ public class BaseAttributesDaggers {
 
     public static AttributeModifier ATTACK_SPEED = new AttributeModifier(
             UUID.randomUUID(),
-            "quickblade",
+            "blade_attack_speed",
             -.2f,
             AttributeModifier.Operation.MULTIPLY_SCALAR_1,
             EquipmentSlot.HAND
@@ -17,7 +17,7 @@ public class BaseAttributesDaggers {
 
     public static AttributeModifier MOVE_SPEED = new AttributeModifier(
             UUID.randomUUID(),
-            "quickblade",
+            "blade_walk_speed",
             .3f,
             AttributeModifier.Operation.MULTIPLY_SCALAR_1,
             EquipmentSlot.HAND
