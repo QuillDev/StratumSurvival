@@ -1,5 +1,6 @@
 package moe.quill.Adventuring.Bosses;
 
+import moe.quill.Utils.TickHelper;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.TextColor;
@@ -24,15 +25,17 @@ import java.util.HashMap;
 
 public class WorldBossManager {
 
+    //TODO: Rework this class a bit when we come back to it
     private final Plugin plugin;
 
-    //TODO: Another manager class pls
     private final BukkitScheduler scheduler;
     private final NamespacedKey worldBossKey;
 
     //World that we handle world bosses in
     private final World world = Bukkit.getWorld("worldbossworld");
 
+    //ID of the de spawning event
+    private int despawnWorldBossId = -1;
     //HP Bar for the world boss
     private final BossBar bossBar;
     private boolean activeBattle = false;
@@ -49,6 +52,20 @@ public class WorldBossManager {
         this.scheduler = Bukkit.getScheduler();
         //Register the world boss listeners
         plugin.getServer().getPluginManager().registerEvents(new WorldBossListeners(this), plugin);
+        startWorldBossSchedule();
+    }
+
+    /**
+     * Start spawning world bosses with the given delays
+     */
+    public void startWorldBossSchedule() {
+        if (world == null) return;
+        final var spawnBlock = world.getBlockAt(3, 41, -56);
+        scheduler.scheduleSyncRepeatingTask(plugin,
+                () -> spawnWithDelay(spawnBlock.getLocation()),
+                TickHelper.THIRTY_MINUTES,
+                TickHelper.THIRTY_MINUTES
+        );
     }
 
     /**
@@ -89,6 +106,15 @@ public class WorldBossManager {
                 Component.text("A world boss has been summoned!")
                         .color(TextColor.color(0xFF544D))
         );
+
+        //Schedule the de spawn task
+        despawnWorldBossId = scheduler.scheduleSyncDelayedTask(plugin, () -> {
+            boss.remove();
+            Bukkit.getServer().sendMessage(
+                    Component.text("The boss was not killed in time and returned to it's den.")
+                            .color(TextColor.color(0xFF544D))
+            );
+        }, TickHelper.minToTick(5));
     }
 
     /**
@@ -97,24 +123,24 @@ public class WorldBossManager {
      * @param location to spawn the boss at
      */
     public void spawnWithDelay(Location location) {
-        final var ticksTillSpawn = 20 * 60; //1 Minute spawn delay
+        final var ticksTillSpawn = TickHelper.minToTick(1); //1 Minute spawn delay
 
         announceWorldBossTimer(ticksTillSpawn);
 
         //Log when there's 30 seconds left
         scheduler.scheduleSyncDelayedTask(plugin, () -> {
-            announceWorldBossTimer(30 * 20);
-        }, 30 * 20);
+            announceWorldBossTimer(TickHelper.secToTick(30));
+        }, TickHelper.secToTick(30));
 
         //Log when there's 10 seconds left
         scheduler.scheduleSyncDelayedTask(plugin, () -> {
-            announceWorldBossTimer(10 * 20);
-        }, 50 * 20);
+            announceWorldBossTimer(TickHelper.secToTick(10));
+        }, TickHelper.secToTick(50));
 
         //Start onscreen countdown when there's 5 seconds left
         scheduler.scheduleSyncDelayedTask(plugin, () -> {
             startNearbyCountdown(location);
-        }, ticksTillSpawn - (20 * 5));
+        }, ticksTillSpawn - (TickHelper.secToTick(5)));
 
         //Spawn the world boss after the ticks are up
         scheduler.scheduleSyncDelayedTask(plugin, () -> {
@@ -181,5 +207,13 @@ public class WorldBossManager {
 
     public World getWorld() {
         return world;
+    }
+
+    public void setDespawnWorldBossId(int despawnWorldBossId) {
+        this.despawnWorldBossId = despawnWorldBossId;
+    }
+
+    public int getDespawnWorldBossId() {
+        return despawnWorldBossId;
     }
 }

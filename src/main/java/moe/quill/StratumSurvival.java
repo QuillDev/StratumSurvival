@@ -1,6 +1,7 @@
 package moe.quill;
 
 import moe.quill.Adventuring.Bosses.WorldBossManager;
+import moe.quill.Adventuring.Enemies.Enemy;
 import moe.quill.Commands.Misc.DevTool;
 import moe.quill.Commands.EnemyCommands.SpawnEnemy;
 import moe.quill.Commands.ItemCommands.DeobfuscateItem;
@@ -72,7 +73,10 @@ public final class StratumSurvival extends JavaPlugin {
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
         final var materialManager = new StratumMaterialManager(this);
+
+        //TODO: Find a better way to do this
         Attribute.setMaterialManager(materialManager);
+        Enemy.setMaterialManager(materialManager);
         final var chatNpcManager = new ChatNPCManager(this);
         final var worldBossManager = new WorldBossManager(this);
         final var commandManager = new StratumCommandManager(this);
