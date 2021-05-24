@@ -1,14 +1,15 @@
 package moe.quill.Adventuring.Enemies.StrayBased;
 
 import moe.quill.Adventuring.Enemies.Enemy;
+import moe.quill.Adventuring.Enemies.EnemyType;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Stray;
 
 public abstract class StrayEnemy extends Enemy {
-    public StrayEnemy(Component name) {
-        super(name, EntityType.STRAY);
+    public StrayEnemy(Component name, EnemyType enemyType) {
+        super(name, EntityType.STRAY, enemyType);
     }
 
     @Override

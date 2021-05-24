@@ -1,6 +1,7 @@
 package moe.quill.Adventuring.Enemies.ZombieBased;
 
 import moe.quill.Adventuring.Enemies.Enemy;
+import moe.quill.Adventuring.Enemies.EnemyType;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -8,8 +9,8 @@ import org.bukkit.entity.Zombie;
 
 public abstract class ZombieEnemy extends Enemy {
 
-    public ZombieEnemy(Component name) {
-        super(name, EntityType.ZOMBIE);
+    public ZombieEnemy(Component name, EnemyType enemyType) {
+        super(name, EntityType.ZOMBIE, enemyType);
     }
 
     @Override

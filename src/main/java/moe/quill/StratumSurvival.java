@@ -2,6 +2,8 @@ package moe.quill;
 
 import moe.quill.Adventuring.Bosses.WorldBossManager;
 import moe.quill.Adventuring.Enemies.Enemy;
+import moe.quill.Adventuring.Enemies.EnemyManager;
+import moe.quill.Commands.EnemyCommands.SpawnEnemyTabs;
 import moe.quill.Commands.Misc.DevTool;
 import moe.quill.Commands.EnemyCommands.SpawnEnemy;
 import moe.quill.Commands.ItemCommands.DeobfuscateItem;
@@ -86,8 +88,10 @@ public final class StratumSurvival extends JavaPlugin {
         new ItemLists(materialManager);
         itemAttributes.init(this);
 
+        final var enemyManager = new EnemyManager(this);
+
         //setup dev command
-        final var devTool = new DevTool(materialManager, this);
+        final var devTool = new DevTool(materialManager, enemyManager, this);
 
         //Register Events
         eventManager.register(
@@ -150,7 +154,7 @@ public final class StratumSurvival extends JavaPlugin {
                 new StratumCommand("spawnworldboss", new SummonWorldBossCommand(worldBossManager), null),
                 new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
                 new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),
-                new StratumCommand("spawnenemy", new SpawnEnemy(materialManager), null),
+                new StratumCommand("spawnenemy", new SpawnEnemy(enemyManager), new SpawnEnemyTabs()),
                 new StratumCommand("devtool", devTool, null)
         );
 

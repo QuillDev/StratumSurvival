@@ -1,5 +1,6 @@
 package moe.quill.Adventuring.Enemies.ZombieBased;
 
+import moe.quill.Adventuring.Enemies.EnemyType;
 import moe.quill.Crafting.CustomItems.MaterialManager.HeadHelper;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import net.kyori.adventure.text.Component;
@@ -9,7 +10,7 @@ import org.bukkit.entity.Zombie;
 public class PirateEnemy extends ZombieEnemy {
 
     public PirateEnemy() {
-        super(Component.text("Pirate"));
+        super(Component.text("Pirate"), EnemyType.ENEMY_PIRATE);
     }
 
     @Override
