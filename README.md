@@ -1,24 +1,28 @@
 # Stratum Survival [WIP]
 
-Custom plugin for Stratum Survival server
+Custom plugin for the StratumSurvival minecraft server ([mc.quill.moe](mc.quill.moe)) adding many custom mobs, weapons,
+and misc other things!
 
 ## Features
 
-* Custom Generated Mob Loot
-* Custom Mobs
-    * Rats
-* Tons of custom weapon attributes
+* Custom Mob Loot
+* Custom Weapons
+* Weapon Attribute System
+    * Re-rolling Weapons
+    * Salvaging Weapons
+    * Obfuscating/De-obfuscating Weapons
+    * Custom crafting for weapons
+    * Mining for salvage crystals
+* World Bosses
+* Custom Enemies
+* Custom Crafting Recipes
+* Custom NPCs
 
 ## Screenshots
 
-![Rats](https://media.discordapp.net/attachments/836826304883851286/837442932214464512/unknown.png)
+![CustomAttributes](./images/CustomAttributes.png)
+![Stratum](./images/Stratum.png)
 
-## Dependencies
+# Requirements
 
-* [JDK 15](https://jdk.java.net/)
-
-## TODO
-
-- [ ] NPC Shop Vendors (Custom)
-- [ ] Fluctuating prices based on market volume
-- [ ] Migrate to JDK 16 (Prepare for JDK 17 LTS Release)
+JDK 15

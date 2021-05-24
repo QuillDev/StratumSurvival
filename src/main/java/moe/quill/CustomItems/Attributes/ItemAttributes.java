@@ -82,7 +82,7 @@ public class ItemAttributes {
         attributes.addAll(Arrays.asList(newAttributes));
         //Log the attributes that we just loaded
         Arrays.stream(newAttributes).forEach(attr -> {
-            logger.info("Loaded attribute " + attr.key.getKey());
+            logger.info(String.format("Loaded attribute %s [key:%s]", attr.getClass().getSimpleName(), attr.key.value()));
         });
     }
 
