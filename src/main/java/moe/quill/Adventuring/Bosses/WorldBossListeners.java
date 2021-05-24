@@ -123,6 +123,8 @@ public class WorldBossListeners implements Listener {
         //Reset the battle state
         dpsMap.clear();
         bossManager.setActiveBattle(false);
+        Bukkit.getScheduler().cancelTask(bossManager.getDespawnWorldBossId());
+        bossManager.setDespawnWorldBossId(-1);
     }
 
 
