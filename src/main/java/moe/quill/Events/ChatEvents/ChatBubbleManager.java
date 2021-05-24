@@ -15,6 +15,7 @@ public class ChatBubbleManager {
     private final ArrayList<ChatCloudData> messageList;
     private final Player player;
     private final Plugin plugin;
+    private static final long DELAY = 50L;
 
     public ChatBubbleManager(Plugin plugin, Player player) {
         this.messageList = new ArrayList<>();
@@ -22,25 +23,41 @@ public class ChatBubbleManager {
         this.plugin = plugin;
     }
 
-    //TODO: FIX, INCONSISTENT
+    /**
+     * Add a message to be scheduled as a chat over head
+     *
+     * @param component to show over the players head
+     */
     public void addMessage(Component component) {
+
+        //Calculate the remaining time till this message should play
         final var timeRemaining = (messageList.size() == 0) ?
                 0L
-                : Bukkit.getCurrentTick() - messageList.get(0).startTicks + ((messageList.size() - 1) * 20 * 4L);
+                : (messageList.get(messageList.size() - 1).startTicks + DELAY) - Bukkit.getCurrentTick();
 
+        //Create the chat box information for when to schedule the event etc
         final var data = new ChatCloudData(component, Bukkit.getCurrentTick() + timeRemaining);
         messageList.add(data);
 
+        //Schedule the task for the estimated tie
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             summonChatTag(player, component);
+
+            // Schedule the cleanup task for the chat bubble
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                messageList.remove(data);
+            }, DELAY);
         }, timeRemaining);
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-            messageList.remove(data);
-        }, timeRemaining + 20 * 4);
 
     }
 
+    /**
+     * Summon a chat tag above the player @ the given location
+     *
+     * @param player  to spawn the chat tag on
+     * @param message to put on the tag
+     */
     private void summonChatTag(Player player, Component message) {
         final var nameTag = (AreaEffectCloud) player.getWorld().spawnEntity(player.getLocation(), EntityType.AREA_EFFECT_CLOUD);
         nameTag.setParticle(Particle.TOWN_AURA);
@@ -49,6 +66,6 @@ public class ChatBubbleManager {
         nameTag.customName(message);
         nameTag.setCustomNameVisible(true);
         nameTag.setWaitTime(0);
-        nameTag.setDuration(20 * 4);
+        nameTag.setDuration((int) DELAY);
     }
 }
