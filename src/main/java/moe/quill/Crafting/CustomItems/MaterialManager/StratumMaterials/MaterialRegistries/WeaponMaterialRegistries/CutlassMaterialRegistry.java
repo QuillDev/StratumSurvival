@@ -1,6 +1,7 @@
 package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesCutlasses;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import net.kyori.adventure.text.Component;
@@ -16,12 +17,12 @@ import java.util.HashMap;
 public class CutlassMaterialRegistry extends MaterialRegistry {
 
 
-    public CutlassMaterialRegistry(NamespacedKey itemKey) {
-        super(itemKey);
+    public CutlassMaterialRegistry() {
+        super(MaterialKey.CUTLASS_KEY);
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials() {
+    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
         return new HashMap<>() {{
             final var CUTLASS_WOODEN = new ItemStack(Material.WOODEN_SWORD);
             final var CUTLASS_WOODEN_META = CUTLASS_WOODEN.getItemMeta();

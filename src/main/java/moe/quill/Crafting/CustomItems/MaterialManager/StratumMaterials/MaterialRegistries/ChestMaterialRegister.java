@@ -1,6 +1,7 @@
 package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries;
 
 import moe.quill.Crafting.CustomItems.MaterialManager.HeadHelper;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -10,12 +11,12 @@ import java.util.HashMap;
 public class ChestMaterialRegister extends MaterialRegistry {
 
 
-    public ChestMaterialRegister(NamespacedKey itemKey) {
-        super(itemKey);
+    public ChestMaterialRegister() {
+        super(MaterialKey.CHEST_KEY);
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials() {
+    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
         return new HashMap<>() {{
             final var commonChestData = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDdlYzQxZTBkZjhlMTcwZDk3ZjliOWFmMWQ2NWVkYWQ0OTc5Yzc4Yzg5YjAxYjE4MGYzODllZTA4YTYxYWY4MiJ9fX0=";
             final var uncommonChestData = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWFmOGRhYWRjZGRiMDg4YThlZDg3NTliYTAyNzcwZDcyODIxNGYwN2NkZDkzYTYzMGI4ZTdkM2NhMDM3M2RjIn19fQ==";

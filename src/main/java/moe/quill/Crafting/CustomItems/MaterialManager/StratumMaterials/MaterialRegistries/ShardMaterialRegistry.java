@@ -2,6 +2,7 @@ package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.Material
 
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
 import moe.quill.Crafting.CustomItems.ItemHelpers.ItemRarity;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -14,12 +15,12 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class ShardMaterialRegistry extends MaterialRegistry {
-    public ShardMaterialRegistry(NamespacedKey itemKey) {
-        super(itemKey);
+    public ShardMaterialRegistry() {
+        super(MaterialKey.SHARD_KEY);
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials() {
+    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
         return new HashMap<>() {{
             final Component crystalLore = Component.text("Used for crafting");
             // Setup the common crystal

@@ -1,21 +1,22 @@
 package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries;
 
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
 public abstract class MaterialRegistry {
-    protected NamespacedKey itemKey;
+    protected MaterialKey materialKey;
 
-    public MaterialRegistry(NamespacedKey itemKey) {
-        this.itemKey = itemKey;
+    public MaterialRegistry(MaterialKey materialKey) {
+        this.materialKey = materialKey;
 
     }
 
-    public abstract HashMap<String, ItemStack> getMaterials();
+    public abstract HashMap<String, ItemStack> getMaterials(NamespacedKey key);
 
-    public NamespacedKey getItemKey() {
-        return itemKey;
+    public MaterialKey getMaterialKey() {
+        return materialKey;
     }
 }

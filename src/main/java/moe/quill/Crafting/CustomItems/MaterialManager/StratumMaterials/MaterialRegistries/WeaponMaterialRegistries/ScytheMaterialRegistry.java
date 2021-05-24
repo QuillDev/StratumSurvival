@@ -1,5 +1,6 @@
 package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import net.kyori.adventure.text.Component;
@@ -15,12 +16,12 @@ import java.util.HashMap;
 
 public class ScytheMaterialRegistry extends MaterialRegistry {
 
-    public ScytheMaterialRegistry(NamespacedKey itemKey) {
-        super(itemKey);
+    public ScytheMaterialRegistry() {
+        super(MaterialKey.SCYTHE_KEY);
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials() {
+    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
         return new HashMap<>() {
             {
                 //setup wooden battleaxe

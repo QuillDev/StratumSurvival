@@ -2,6 +2,7 @@ package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.Material
 
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
 import moe.quill.Crafting.CustomItems.ItemHelpers.ItemRarity;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -13,14 +14,14 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class FragmentMaterialRegistry extends MaterialRegistry{
-    public FragmentMaterialRegistry(NamespacedKey itemKey) {
-        super(itemKey);
+public class FragmentMaterialRegistry extends MaterialRegistry {
+    public FragmentMaterialRegistry() {
+        super(MaterialKey.FRAGMENT_KEY);
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials() {
-        return new HashMap<>(){{
+    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+        return new HashMap<>() {{
             final Component fragmentLore = Component.text("Combine 9 of these for a shard!");
             // Setup the common fragment
             final var FRAGMENT_COMMON = new ItemStack(Material.IRON_NUGGET);

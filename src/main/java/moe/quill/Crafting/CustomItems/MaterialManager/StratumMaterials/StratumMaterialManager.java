@@ -1,17 +1,16 @@
 package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials;
 
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.*;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.BattleaxeMaterialRegistry;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.CutlassMaterialRegistry;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.DaggerMaterialRegistry;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries.ScytheMaterialRegistry;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 
@@ -20,26 +19,15 @@ public class StratumMaterialManager {
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
     private final ArrayList<ItemStack> geodeMaterials = new ArrayList<>();
     private final HashMap<MaterialKey, NamespacedKey> keyMap = new HashMap<>();
+    private final Plugin plugin;
+    private static final Reflections reflections = new Reflections("moe.quill");
     private static final Logger logger = LoggerFactory.getLogger(StratumMaterialManager.class.getSimpleName());
 
     public StratumMaterialManager(Plugin plugin) {
+        this.plugin = plugin;
+
         //Register all of the material types
-        registerAll(
-                //Add weapon types
-                new ScytheMaterialRegistry(new NamespacedKey(plugin, MaterialKey.SCYTHE_KEY.value)),
-                new BattleaxeMaterialRegistry(new NamespacedKey(plugin, MaterialKey.BATTLEAXE_KEY.value)),
-                new DaggerMaterialRegistry(new NamespacedKey(plugin, MaterialKey.DAGGER_KEY.value)),
-                new CutlassMaterialRegistry(new NamespacedKey(plugin, MaterialKey.CUTLASS_KEY.value)),
-
-                //Add armor types
-                new ArmorMaterialRegistry(new NamespacedKey(plugin, MaterialKey.ARMOR_KEY.value)),
-
-                //Add crafting types
-                new GeodeMaterialRegistry(new NamespacedKey(plugin, MaterialKey.GEODE_KEY.value)),
-                new FragmentMaterialRegistry(new NamespacedKey(plugin, MaterialKey.FRAGMENT_KEY.value)),
-                new ShardMaterialRegistry(new NamespacedKey(plugin, MaterialKey.SHARD_KEY.value)),
-                new ChestMaterialRegister(new NamespacedKey(plugin, MaterialKey.CHEST_KEY.value))
-        );
+        registerMaterialsDynamically();
 
         //Populate the geode materials list
         geodeMaterials.addAll(
@@ -53,6 +41,22 @@ public class StratumMaterialManager {
         );
     }
 
+    public void registerMaterialsDynamically() {
+        reflections
+                .getSubTypesOf(MaterialRegistry.class)
+                .stream()
+                .filter(enemyClass -> !Modifier.isAbstract(enemyClass.getModifiers()))
+                .forEach(enemyClass -> {
+                    try {
+                        final var registry = enemyClass.getDeclaredConstructor().newInstance();
+                        registerAll(registry);
+                        logger.info(String.format("Registered new material registry -> %s", registry.getClass().getSimpleName()));
+                    } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
     /**
      * Register all of the given materials to hte material registry
      *
@@ -60,11 +64,13 @@ public class StratumMaterialManager {
      */
     public void registerAll(MaterialRegistry... registries) {
         for (final var registry : registries) {
-            final var registryMaterials = registry.getMaterials(); //get the material list
-            final var registryKey = registry.getItemKey(); //get the key for this list
+
+            final var registryKey = new NamespacedKey(plugin, registry.getMaterialKey().name());
+            final var materialKey = registry.getMaterialKey();
+            final var registryMaterials = registry.getMaterials(registryKey); //get the material list
             registryMaterials.forEach(stratumMaterials::putIfAbsent); //add all of them to stratum materials
-            final var materialKey = MaterialKey.getKeyFromValue(registryKey.value()); //get the material key for this keys value
             keyMap.putIfAbsent(materialKey, registryKey); // put the key into the key list
+            logger.info("Linked keys -> " + materialKey.name() + " + " + registryKey.getKey());
         }
     }
 

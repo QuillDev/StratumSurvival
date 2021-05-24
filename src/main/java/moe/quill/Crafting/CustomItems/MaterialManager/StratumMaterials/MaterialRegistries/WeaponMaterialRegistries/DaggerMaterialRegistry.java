@@ -1,6 +1,7 @@
 package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesDaggers;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import net.kyori.adventure.text.Component;
@@ -14,12 +15,12 @@ import moe.quill.Utils.Serialization.StratumSerialization;
 import java.util.HashMap;
 
 public class DaggerMaterialRegistry extends MaterialRegistry {
-    public DaggerMaterialRegistry(NamespacedKey itemKey) {
-        super(itemKey);
+    public DaggerMaterialRegistry() {
+        super(MaterialKey.DAGGER_KEY);
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials() {
+    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
         return new HashMap<>() {{
             final var DAGGER_WOODEN = new ItemStack(Material.WOODEN_SWORD);
             final var DAGGER_WOODEN_META = DAGGER_WOODEN.getItemMeta();

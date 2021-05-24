@@ -10,8 +10,8 @@ public class BaseAttributesBoots {
     public static AttributeModifier MOVE_SPEED_LIGHT = new AttributeModifier(
             UUID.randomUUID(),
             "lightarmor",
-            1f,
-            AttributeModifier.Operation.ADD_NUMBER,
+            .1f,
+            AttributeModifier.Operation.MULTIPLY_SCALAR_1,
             EquipmentSlot.FEET
     );
 
