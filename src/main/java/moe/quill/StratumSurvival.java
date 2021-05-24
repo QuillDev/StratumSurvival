@@ -78,7 +78,6 @@ public final class StratumSurvival extends JavaPlugin {
 
         //TODO: Find a better way to do this
         Attribute.setMaterialManager(materialManager);
-        Enemy.setMaterialManager(materialManager);
         final var chatNpcManager = new ChatNPCManager(this);
         final var worldBossManager = new WorldBossManager(this);
         final var commandManager = new StratumCommandManager(this);
@@ -87,11 +86,11 @@ public final class StratumSurvival extends JavaPlugin {
         final var itemGenerator = new ItemGenerator(materialManager);
         new ItemLists(materialManager);
         itemAttributes.init(this);
+        final var enemyManager = new EnemyManager(this, materialManager);
 
-        final var enemyManager = new EnemyManager(this);
 
         //setup dev command
-        final var devTool = new DevTool(materialManager, enemyManager, this);
+        final var devTool = new DevTool(materialManager, this);
 
         //Register Events
         eventManager.register(

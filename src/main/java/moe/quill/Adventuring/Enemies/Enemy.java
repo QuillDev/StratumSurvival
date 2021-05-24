@@ -11,10 +11,11 @@ public abstract class Enemy {
     protected final Component name;
     protected final EntityType entityType;
     protected final EnemyType enemyType;
-    protected static StratumMaterialManager materialManager;
+    protected final StratumMaterialManager materialManager;
 
-    public Enemy(Component name, EntityType entityType, EnemyType enemyType) {
+    public Enemy(Component name, StratumMaterialManager materialManager, EntityType entityType, EnemyType enemyType) {
         this.name = name;
+        this.materialManager = materialManager;
         this.entityType = entityType;
         this.enemyType = enemyType;
     }
@@ -23,10 +24,6 @@ public abstract class Enemy {
 
     @SuppressWarnings("CheckReturnValue")
     public abstract Entity spawn(Location location);
-
-    public static void setMaterialManager(StratumMaterialManager materialManager) {
-        Enemy.materialManager = materialManager;
-    }
 
     public EnemyType getEnemyType() {
         return enemyType;

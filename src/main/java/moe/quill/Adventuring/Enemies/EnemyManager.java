@@ -2,6 +2,7 @@ package moe.quill.Adventuring.Enemies;
 
 import moe.quill.Crafting.CustomItems.Attributes.Attribute;
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -20,12 +21,13 @@ public class EnemyManager {
     private final Plugin plugin;
 
     private final HashMap<EnemyType, Enemy> enemyMap = new HashMap<>();
-
+    private final StratumMaterialManager materialManager;
     private static final Logger logger = LoggerFactory.getLogger(EnemyManager.class.getSimpleName());
     private static final Reflections reflections = new Reflections("moe.quill");
 
-    public EnemyManager(Plugin plugin) {
+    public EnemyManager(Plugin plugin, StratumMaterialManager materialManager) {
         this.plugin = plugin;
+        this.materialManager = materialManager;
         registerEnemiesDynamically();
     }
 
@@ -42,7 +44,7 @@ public class EnemyManager {
                 .filter(enemyClass -> !Modifier.isAbstract(enemyClass.getModifiers()))
                 .forEach(enemyClass -> {
                     try {
-                        final var enemy = enemyClass.getDeclaredConstructor().newInstance();
+                        final var enemy = enemyClass.getDeclaredConstructor(StratumMaterialManager.class).newInstance(materialManager);
                         enemyMap.put(enemy.enemyType, enemy);
                         logger.info(String.format("Registered new enemy -> %s", enemy.getClass().getSimpleName()));
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
