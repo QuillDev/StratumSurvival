@@ -1,7 +1,7 @@
 package moe.quill.Events.ChatEvents;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
-import moe.quill.PlayerHelpers.PlayerInventoryHelper;
+import moe.quill.Utils.PlayerHelpers.PlayerInventoryHelper;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Player;

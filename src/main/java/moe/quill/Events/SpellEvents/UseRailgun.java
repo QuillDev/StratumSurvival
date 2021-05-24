@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
-import moe.quill.Particles.ParticleFactory;
+import moe.quill.Utils.Particles.ParticleFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;

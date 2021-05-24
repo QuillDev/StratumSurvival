@@ -5,9 +5,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.CustomItems.ItemHelpers.ItemGenerator;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
 
 
 public class CraftCustomItemEvent implements Listener {

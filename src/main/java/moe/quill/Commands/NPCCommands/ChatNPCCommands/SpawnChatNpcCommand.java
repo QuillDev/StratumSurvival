@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import moe.quill.NPCManager.ChatNPC.ChatNPCManager;
+import moe.quill.Adventuring.NPCManager.ChatNPC.ChatNPCManager;
 
 public class SpawnChatNpcCommand implements CommandExecutor {
 

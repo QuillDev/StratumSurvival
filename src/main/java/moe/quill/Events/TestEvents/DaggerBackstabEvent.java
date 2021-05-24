@@ -1,6 +1,6 @@
 package moe.quill.Events.TestEvents;
 
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
@@ -9,7 +9,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 public class DaggerBackstabEvent implements Listener {
 

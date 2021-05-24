@@ -5,8 +5,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.SmithingRecipe;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Crafting.StratumRecipes.StratumRecipe;
 
 public class SmithGeode extends StratumRecipe {

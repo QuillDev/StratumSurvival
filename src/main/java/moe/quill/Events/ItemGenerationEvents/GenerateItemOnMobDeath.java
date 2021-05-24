@@ -1,16 +1,17 @@
 package moe.quill.Events.ItemGenerationEvents;
 
+import moe.quill.StratumSurvival;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import moe.quill.CustomItems.ItemHelpers.ItemGenerator;
+import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
 
 import java.util.Random;
 
 public class GenerateItemOnMobDeath implements Listener {
-    private final Random rand = new Random();
+    private final Random rand = StratumSurvival.rand;
 
     private static final float playerDropRate = 1 / 20f;
     private static final float naturalDropRate = 1 / 200f;

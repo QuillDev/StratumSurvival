@@ -1,14 +1,14 @@
 package moe.quill.Crafting.CustomCraftingEvents;
 
-import moe.quill.CustomItems.Attributes.ItemAttributes;
-import moe.quill.Serialization.StratumSerialization;
+import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
+import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 public class GrindCustomWeaponEvent implements Listener {
 

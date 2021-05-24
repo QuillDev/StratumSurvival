@@ -1,7 +1,7 @@
 package moe.quill.Commands.EnemyCommands;
 
-import moe.quill.CustomItems.MaterialManager.HeadHelper;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.CustomItems.MaterialManager.HeadHelper;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,7 +9,7 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.jetbrains.annotations.NotNull;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 public class SpawnEnemy implements CommandExecutor {
 

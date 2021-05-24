@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import moe.quill.CustomItems.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.CustomItems.ItemHelpers.ItemHelper;
 
 public class ObfuscateItem implements CommandExecutor {
     private static final ItemHelper itemHelper = new ItemHelper();

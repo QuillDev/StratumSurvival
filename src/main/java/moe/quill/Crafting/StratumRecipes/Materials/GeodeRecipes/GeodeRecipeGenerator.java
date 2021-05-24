@@ -3,9 +3,9 @@ package moe.quill.Crafting.StratumRecipes.Materials.GeodeRecipes;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.plugin.Plugin;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
 package moe.quill;
 
-import moe.quill.Bosses.WorldBossManager;
+import moe.quill.Adventuring.Bosses.WorldBossManager;
 import moe.quill.Commands.DevTool;
 import moe.quill.Commands.EnemyCommands.SpawnEnemy;
 import moe.quill.Commands.ItemGenerator.DeobfuscateItem;
@@ -30,35 +30,38 @@ import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardRareToEpicR
 import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardUncommonToRareRecipe;
 import moe.quill.Crafting.StratumRecipes.Weapons.Battleaxes.*;
 import moe.quill.Crafting.StratumRecipes.Weapons.Daggers.*;
-import moe.quill.CustomItems.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponChainAttribute;
-import moe.quill.CustomItems.Attributes.ItemAttributes;
-import moe.quill.CustomItems.EventHandler.HandleAttributeEvents;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponType;
+import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
+import moe.quill.Crafting.CustomItems.EventHandler.HandleAttributeEvents;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.WeaponLists;
 import moe.quill.Events.ChatEvents.InjectChatItemEvent;
 import moe.quill.Events.StratumEventManager;
-import moe.quill.NPCManager.ChatNPC.ChatNPCManager;
-import moe.quill.NPCManager.NPCEvents.InteractBlacksmithEvent;
-import moe.quill.NPCManager.NPCEvents.InteractCryptologistEvent;
-import moe.quill.NPCManager.NPCEvents.NPCTransformWitchCancel;
-import moe.quill.NPCManager.NPCManager;
-import moe.quill.Serialization.StratumSerialization;
+import moe.quill.Adventuring.Loot.LootManager;
+import moe.quill.Adventuring.NPCManager.ChatNPC.ChatNPCManager;
+import moe.quill.Adventuring.NPCManager.NPCEvents.InteractBlacksmithEvent;
+import moe.quill.Adventuring.NPCManager.NPCEvents.InteractCryptologistEvent;
+import moe.quill.Adventuring.NPCManager.NPCEvents.NPCTransformWitchCancel;
+import moe.quill.Adventuring.NPCManager.NPCManager;
+import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.CustomItems.ItemHelpers.ItemGenerator;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
 import moe.quill.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 import moe.quill.Events.TestEvents.DaggerBackstabEvent;
 import moe.quill.Events.ToolEvents.ToolBreakBlockDropShard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Random;
+
 public final class StratumSurvival extends JavaPlugin {
+    public static final Random rand = new Random();
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
     private final NPCManager npcManager = new NPCManager(this);
     private static final Logger logger = LoggerFactory.getLogger(StratumSurvival.class.getSimpleName());
 
+    //TODO: Add some class for managing all of our namespaced keys... seriously
     @Override
     public void onEnable() {
         logger.info("Enabled!");
@@ -71,6 +74,7 @@ public final class StratumSurvival extends JavaPlugin {
         final var worldBossManager = new WorldBossManager(this);
         final var commandManager = new StratumCommandManager(this);
         final var eventManager = new StratumEventManager(this);
+        final var lootManager = new LootManager(this, materialManager);
         final var itemGenerator = new ItemGenerator(materialManager);
         new WeaponLists(materialManager);
         itemAttributes.init(this);

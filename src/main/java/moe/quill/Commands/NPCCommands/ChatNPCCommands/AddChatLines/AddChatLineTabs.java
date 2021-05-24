@@ -1,6 +1,6 @@
 package moe.quill.Commands.NPCCommands.ChatNPCCommands.AddChatLines;
 
-import moe.quill.NPCManager.ChatNPC.ChatNPCManager;
+import moe.quill.Adventuring.NPCManager.ChatNPC.ChatNPCManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;

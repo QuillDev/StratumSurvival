@@ -1,6 +1,6 @@
 package moe.quill.Commands.WorldBossCommands;
 
-import moe.quill.Bosses.WorldBossManager;
+import moe.quill.Adventuring.Bosses.WorldBossManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

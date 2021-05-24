@@ -6,8 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import moe.quill.NPCManager.NPCManager;
-import moe.quill.NPCManager.NPCs.NPCType;
+import moe.quill.Adventuring.NPCManager.NPCManager;
+import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
 
 public class SpawnNPCCommand implements CommandExecutor {
 

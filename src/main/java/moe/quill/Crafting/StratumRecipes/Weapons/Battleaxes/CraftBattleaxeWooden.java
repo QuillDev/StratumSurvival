@@ -5,8 +5,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import moe.quill.Crafting.StratumRecipes.Weapons.AbstractRecipes.WoodRecipe;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Crafting.StratumRecipes.StratumRecipe;
 
 public class CraftBattleaxeWooden extends StratumRecipe implements WoodRecipe {

@@ -1,12 +1,13 @@
 package moe.quill.Events.ToolEvents;
 
+import moe.quill.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import moe.quill.CustomItems.ItemHelpers.ItemHelper;
-import moe.quill.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.CustomItems.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -15,7 +16,7 @@ public class ToolBreakBlockDropShard implements Listener {
 
     private final StratumMaterialManager materialManager;
     private final ItemHelper itemHelper = new ItemHelper();
-    private final Random rand = new Random();
+    private final Random rand = StratumSurvival.rand;
 
     private final static float rareOdds = 1 / 300f;
     private final static float normalOdds = 1 / 100f;

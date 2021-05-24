@@ -1,6 +1,6 @@
 package moe.quill.Commands.NPCCommands.ChatNPCCommands.RemoveChatLine;
 
-import moe.quill.NPCManager.ChatNPC.ChatNPCManager;
+import moe.quill.Adventuring.NPCManager.ChatNPC.ChatNPCManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.command.Command;
