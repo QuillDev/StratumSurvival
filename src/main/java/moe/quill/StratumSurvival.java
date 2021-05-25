@@ -107,37 +107,7 @@ public final class StratumSurvival extends JavaPlugin {
                 new ChatBadgeEvent(this),
                 devTool
         );
-
-        //Register crafting
-        craftingManager.registerAll(
-                //BATTLEAXE RECIPES
-                new CraftBattleaxeWooden(new NamespacedKey(this, "craft_battleaxe_wooden"), materialManager),
-                new CraftBattleaxeStone(new NamespacedKey(this, "craft_battleaxe_stone"), materialManager),
-                new CraftBattleaxeGolden(new NamespacedKey(this, "craft_battleaxe_golden"), materialManager),
-                new CraftBattleaxeIron(new NamespacedKey(this, "craft_battleaxe_iron"), materialManager),
-                new CraftBattleaxeDiamond(new NamespacedKey(this, "craft_battleaxe_diamond"), materialManager),
-                new CraftBattleaxeNetherite(new NamespacedKey(this, "smith_battleaxe_netherite"), materialManager),
-                //DAGGER RECIPES
-                new CraftDaggerWooden(new NamespacedKey(this, "craft_dagger_wooden"), materialManager),
-                new CraftDaggerStone(new NamespacedKey(this, "craft_dagger_stone"), materialManager),
-                new CraftDaggerGolden(new NamespacedKey(this, "craft_dagger_golden"), materialManager),
-                new CraftDaggerIron(new NamespacedKey(this, "craft_dagger_iron"), materialManager),
-                new CraftDaggerDiamond(new NamespacedKey(this, "craft_dagger_diamond"), materialManager),
-                new CraftDaggerNetherite(new NamespacedKey(this, "smith_dagger_netherite"), materialManager),
-                // Add shard crafting recipes
-                new ShardCommonToUncommonRecipe(new NamespacedKey(this, "craft_shard_common_to_uncommon"), materialManager),
-                new ShardUncommonToRareRecipe(new NamespacedKey(this, "craft_shard_uncommon_to_rare"), materialManager),
-                new ShardRareToEpicRecipe(new NamespacedKey(this, "craft_shard_rare_to_epic"), materialManager),
-                new ShardEpicToLegendary(new NamespacedKey(this, "craft_shard_epic_to_legendary"), materialManager),
-
-                //Add Fragment Crafting Recipes
-                new FragmentToShardCommon(new NamespacedKey(this, "craft_fragment_to_shard_common"), materialManager),
-                new FragmentToShardUncommon(new NamespacedKey(this, "craft_fragment_to_shard_uncommon"), materialManager),
-                new FragmentToShardRare(new NamespacedKey(this, "craft_fragment_to_shard_rare"), materialManager),
-                new FragmentToShardEpic(new NamespacedKey(this, "craft_fragment_to_shard_epic"), materialManager),
-                new FragmentToShardLegendary(new NamespacedKey(this, "craft_fragment_to_shard_legendary"), materialManager)
-
-        );
+        craftingManager.enable(materialManager);
 
         commandManager.register(
                 new StratumCommand("generateitem", new GenerateItem(itemGenerator), new GenerateItemTabs()),
@@ -156,11 +126,6 @@ public final class StratumSurvival extends JavaPlugin {
                 new StratumCommand("spawnenemy", new SpawnEnemy(enemyManager), new SpawnEnemyTabs()),
                 new StratumCommand("devtool", devTool, null)
         );
-
-
-        //Register recipes from the crafting recipe
-        craftingManager.registerDynamicRecipes(materialManager);
-
     }
 
     @Override

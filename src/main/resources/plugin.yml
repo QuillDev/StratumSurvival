@@ -35,6 +35,7 @@ commands:
   spawnworldbossdelayed:
     usage: /<command>
     permission: stratumsurvival.bosses.summon
+
   #NPC Permissions
   addchatline:
     usage: /<command> <npcname> <line>

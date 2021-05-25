@@ -45,7 +45,7 @@ public class LootListener implements Listener {
         player.sendMessage(String.format("Opened tier %s loot", level));
         targetClicked.remove();
 
-        //TODO: Get table based on loot tier
+        //Get the table based on the loot level
         final var table = lootTables.getLootTable(level);
         final var drop = table.getRandomDrop();
         player.getInventory().addItem(drop);

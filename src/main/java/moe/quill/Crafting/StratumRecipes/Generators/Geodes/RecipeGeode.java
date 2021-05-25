@@ -1,5 +1,6 @@
-package moe.quill.Crafting.StratumRecipes.Materials.GeodeRecipes;
+package moe.quill.Crafting.StratumRecipes.Generators.Geodes;
 
+import moe.quill.Utils.Annotations.IgnoreDynamicLoading;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
@@ -8,13 +9,14 @@ import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMa
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Crafting.StratumRecipes.StratumRecipe;
 
+@IgnoreDynamicLoading
 public class RecipeGeode extends StratumRecipe {
 
     protected StratumMaterial output;
     protected StratumMaterial mineral;
     protected RecipeChoice input;
 
-    public RecipeGeode(NamespacedKey key, StratumMaterialManager materialManager, StratumMaterial output, StratumMaterial mineral, RecipeChoice input) {
+    public RecipeGeode(String key, StratumMaterialManager materialManager, StratumMaterial output, StratumMaterial mineral, RecipeChoice input) {
         super(key, materialManager);
         this.output = output;
         this.mineral = mineral;
@@ -22,7 +24,7 @@ public class RecipeGeode extends StratumRecipe {
     }
 
     @Override
-    public Recipe getRecipe() {
+    public Recipe getRecipe(NamespacedKey key) {
         final var recipe = new ShapelessRecipe(key, materialManager.getItem(output));
         recipe.addIngredient(1, materialManager.getItem(mineral));
         recipe.addIngredient(input);

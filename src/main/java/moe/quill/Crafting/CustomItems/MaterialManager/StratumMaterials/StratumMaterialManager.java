@@ -41,6 +41,9 @@ public class StratumMaterialManager {
         );
     }
 
+    /**
+     * Dynamically register materials using reflection
+     */
     public void registerMaterialsDynamically() {
         reflections
                 .getSubTypesOf(MaterialRegistry.class)
@@ -70,7 +73,6 @@ public class StratumMaterialManager {
             final var registryMaterials = registry.getMaterials(registryKey); //get the material list
             registryMaterials.forEach(stratumMaterials::putIfAbsent); //add all of them to stratum materials
             keyMap.putIfAbsent(materialKey, registryKey); // put the key into the key list
-            logger.info("Linked keys -> " + materialKey.name() + " + " + registryKey.getKey());
         }
     }
 
