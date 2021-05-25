@@ -9,15 +9,15 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapelessRecipe;
 
-public class CraftHeavyBootsLeather extends StratumRecipe {
-    public CraftHeavyBootsLeather(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_BOOTS_LEATHER_HEAVY, materialManager);
+public class CraftHeavyBootsGold extends StratumRecipe {
+    public CraftHeavyBootsGold(StratumMaterialManager materialManager) {
+        super(RecipeKey.RECIPIE_BOOTS_GOLDEN_HEAVY, materialManager);
     }
 
     @Override
     public Recipe getRecipe(NamespacedKey key) {
-        final var recipe = new ShapelessRecipe(key, materialManager.getItem(StratumMaterial.BOOTS_LEATHER_HEAVY));
-        recipe.addIngredient(Material.LEATHER_BOOTS);
+        final var recipe = new ShapelessRecipe(key, materialManager.getItem(StratumMaterial.BOOTS_GOLDEN_HEAVY));
+        recipe.addIngredient(Material.GOLDEN_BOOTS);
         recipe.addIngredient(Material.OBSIDIAN);
         return recipe;
     }
