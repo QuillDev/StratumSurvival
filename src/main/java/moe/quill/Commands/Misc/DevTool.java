@@ -36,12 +36,17 @@ public class DevTool implements CommandExecutor, Listener {
         if (player == null) return true;
 
 
-        final var heavy_helmet = materialManager.getItem(StratumMaterial.HELMET_LEATHER_HEAVY);
-        final var heavy_boots = materialManager.getItem(StratumMaterial.BOOTS_LEATHER_HEAVY);
-        final var light_helmet = materialManager.getItem(StratumMaterial.HELMET_LEATHER_LIGHT);
-        final var light_boots = materialManager.getItem(StratumMaterial.BOOTS_LEATHER_LIGHT);
+        final var item1 = materialManager.getItem(StratumMaterial.HELMET_IRON_LIGHT);
+        final var item2 = materialManager.getItem(StratumMaterial.CHESTPLATE_IRON_LIGHT);
+        final var item3 = materialManager.getItem(StratumMaterial.LEGGINGS_IRON_LIGHT);
+        final var item4 = materialManager.getItem(StratumMaterial.BOOTS_IRON_LIGHT);
 
-        player.getInventory().addItem(light_boots);
+        final var item5 = materialManager.getItem(StratumMaterial.HELMET_IRON_HEAVY);
+        final var item6 = materialManager.getItem(StratumMaterial.CHESTPLATE_IRON_HEAVY);
+        final var item7 = materialManager.getItem(StratumMaterial.LEGGINGS_IRON_HEAVY);
+        final var item8 = materialManager.getItem(StratumMaterial.BOOTS_IRON_HEAVY);
+
+        player.getInventory().addItem(item1,item2,item3,item4,item5,item6,item7,item8);
         return true;
     }
 }
