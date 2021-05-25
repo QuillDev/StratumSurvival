@@ -7,7 +7,7 @@ import moe.quill.Crafting.StratumRecipes.Weapons.AbstractRecipes.WoodRecipe;
 
 public class CraftScytheWooden extends ScytheRecipeBase implements WoodRecipe {
 
-    public CraftScytheWooden(RecipeKey key, StratumMaterialManager materialManager) {
-        super(key, materialManager, choice, StratumMaterial.SCYTHE_WOODEN);
+    public CraftScytheWooden(StratumMaterialManager materialManager) {
+        super(RecipeKey.RECIPE_SCYTHE_WOODEN, materialManager, choice, StratumMaterial.SCYTHE_WOODEN);
     }
 }

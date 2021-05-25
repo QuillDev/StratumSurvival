@@ -7,7 +7,7 @@ import moe.quill.Crafting.StratumRecipes.Weapons.AbstractRecipes.StratumSmithRec
 
 public class CraftScytheNetherite extends StratumSmithRecipe {
 
-    public CraftScytheNetherite(RecipeKey key, StratumMaterialManager materialManager) {
-        super(key, materialManager, StratumMaterial.SCYTHE_DIAMOND, StratumMaterial.SCYTHE_NETHERITE);
+    public CraftScytheNetherite(StratumMaterialManager materialManager) {
+        super(RecipeKey.RECIPE_SCYTHE_NETHERITE, materialManager, StratumMaterial.SCYTHE_DIAMOND, StratumMaterial.SCYTHE_NETHERITE);
     }
 }

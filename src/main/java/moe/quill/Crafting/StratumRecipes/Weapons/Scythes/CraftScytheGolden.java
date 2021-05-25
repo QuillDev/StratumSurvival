@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.RecipeChoice;
 
 public class CraftScytheGolden extends ScytheRecipeBase {
-    public CraftScytheGolden(RecipeKey key, StratumMaterialManager materialManager) {
-        super(key, materialManager, new RecipeChoice.MaterialChoice(Material.GOLD_INGOT), StratumMaterial.SCYTHE_GOLDEN);
+    public CraftScytheGolden(StratumMaterialManager materialManager) {
+        super(RecipeKey.RECIPE_SCYTHE_GOLDEN, materialManager, new RecipeChoice.MaterialChoice(Material.GOLD_INGOT), StratumMaterial.SCYTHE_GOLDEN);
     }
 }

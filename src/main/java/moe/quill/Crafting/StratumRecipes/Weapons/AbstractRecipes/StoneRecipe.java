@@ -3,7 +3,7 @@ package moe.quill.Crafting.StratumRecipes.Weapons.AbstractRecipes;
 import org.bukkit.Material;
 import org.bukkit.inventory.RecipeChoice;
 
-public interface CobbleRecipe {
+public interface StoneRecipe {
 
     RecipeChoice choice = new RecipeChoice.MaterialChoice(
             Material.COBBLESTONE,
