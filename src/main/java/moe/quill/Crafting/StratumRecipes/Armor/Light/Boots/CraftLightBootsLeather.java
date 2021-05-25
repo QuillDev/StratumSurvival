@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftLightBootsLeather extends StratumRecipe {
     public CraftLightBootsLeather(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_BOOTS_LEATHER_LIGHT, materialManager);
+        super(RecipeKey.RECIPE_BOOTS_LEATHER_LIGHT, materialManager);
     }
 
     @Override

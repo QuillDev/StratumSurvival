@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftLightLeggingsIron extends StratumRecipe {
     public CraftLightLeggingsIron(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_LEGGINGS_IRON_LIGHT, materialManager);
+        super(RecipeKey.RECIPE_LEGGINGS_IRON_LIGHT, materialManager);
     }
 
     @Override

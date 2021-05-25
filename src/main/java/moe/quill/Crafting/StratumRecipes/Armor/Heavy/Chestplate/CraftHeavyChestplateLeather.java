@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftHeavyChestplateLeather extends StratumRecipe {
     public CraftHeavyChestplateLeather(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_CHESTPLATE_LEATHER_HEAVY, materialManager);
+        super(RecipeKey.RECIPE_CHESTPLATE_LEATHER_HEAVY, materialManager);
     }
 
     @Override

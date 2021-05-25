@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
 
+import java.util.Random;
+
 public class GrindCustomWeaponEvent implements Listener {
 
     private final StratumMaterialManager materialManager;
@@ -36,7 +38,8 @@ public class GrindCustomWeaponEvent implements Listener {
         final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
         var level = (int) StratumSerialization.deserializeFloat(levelBytes);
         // Get the corresponding item based on the level
-        final var item = materialManager.getCrystalForLevel(level);
+        final var item = materialManager.getFragmentForLevel(level);
+        item.setAmount(2 + new Random().nextInt(3));
         if (item == null) return;
         final var inventory = event.getPlayer().getInventory();
         inventory.remove(heldItem);

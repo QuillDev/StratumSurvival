@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftHeavyChestplateGold extends StratumRecipe {
     public CraftHeavyChestplateGold(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_CHESTPLATE_GOLDEN_HEAVY, materialManager);
+        super(RecipeKey.RECIPE_CHESTPLATE_GOLDEN_HEAVY, materialManager);
     }
 
     @Override
