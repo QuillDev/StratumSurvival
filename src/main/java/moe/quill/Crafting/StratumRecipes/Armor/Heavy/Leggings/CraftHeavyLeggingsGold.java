@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftHeavyLeggingsGold extends StratumRecipe {
     public CraftHeavyLeggingsGold(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_LEGGINGS_GOLDEN_HEAVY, materialManager);
+        super(RecipeKey.RECIPE_LEGGINGS_GOLDEN_HEAVY, materialManager);
     }
 
     @Override

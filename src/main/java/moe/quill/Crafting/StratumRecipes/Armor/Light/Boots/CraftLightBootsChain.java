@@ -7,12 +7,11 @@ import moe.quill.Crafting.StratumRecipes.StratumRecipe;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftLightBootsChain extends StratumRecipe {
     public CraftLightBootsChain(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_BOOTS_CHAIN_LIGHT, materialManager);
+        super(RecipeKey.RECIPE_BOOTS_CHAIN_LIGHT, materialManager);
     }
 
     @Override

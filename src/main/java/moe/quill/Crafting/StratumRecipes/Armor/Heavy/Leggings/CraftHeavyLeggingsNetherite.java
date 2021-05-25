@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftHeavyLeggingsNetherite extends StratumRecipe {
     public CraftHeavyLeggingsNetherite(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_LEGGINGS_NETHERITE_HEAVY, materialManager);
+        super(RecipeKey.RECIPE_LEGGINGS_NETHERITE_HEAVY, materialManager);
     }
 
     @Override

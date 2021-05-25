@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftLightChestplateNetherite extends StratumRecipe {
     public CraftLightChestplateNetherite(StratumMaterialManager materialManager) {
-        super(RecipeKey.RECIPIE_CHESTPLATE_NETHERITE_LIGHT, materialManager);
+        super(RecipeKey.RECIPE_CHESTPLATE_NETHERITE_LIGHT, materialManager);
     }
 
     @Override
