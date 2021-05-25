@@ -1,6 +1,7 @@
 package moe.quill.Adventuring.Loot;
 
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
+import moe.quill.StratumSurvival;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -25,6 +26,8 @@ public class LootListener implements Listener {
 
     @EventHandler
     public void dropLootEvent(EntityDeathEvent event) {
+        final var lootOdds = .03f;
+        if (lootOdds < StratumSurvival.rand.nextFloat()) return;
         final var entity = event.getEntity();
         final var player = entity.getKiller();
         if (player == null) return;
