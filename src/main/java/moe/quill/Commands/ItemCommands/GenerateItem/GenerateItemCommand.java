@@ -1,4 +1,4 @@
-package moe.quill.Commands.ItemCommands;
+package moe.quill.Commands.ItemCommands.GenerateItem;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
 import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
 
-public class GenerateItem implements CommandExecutor {
+public class GenerateItemCommand implements CommandExecutor {
 
     private final ItemGenerator itemGenerator;
 
-    public GenerateItem(ItemGenerator itemGenerator) {
+    public GenerateItemCommand(ItemGenerator itemGenerator) {
         this.itemGenerator = itemGenerator;
     }
 

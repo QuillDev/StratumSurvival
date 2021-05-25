@@ -24,6 +24,9 @@ commands:
   reroll:
     usage: /<command>
     permission: stratumsurvival.items.reroll
+  stratumgive:
+    usage: /<command> <itemtype>
+    permission: stratumsurvival.items.give
 
   #Bosses
   worldbosstp:

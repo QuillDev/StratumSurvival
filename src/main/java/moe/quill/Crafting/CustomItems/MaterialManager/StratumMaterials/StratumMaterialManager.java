@@ -155,4 +155,8 @@ public class StratumMaterialManager {
     public ArrayList<ItemStack> getGeodeMaterials() {
         return geodeMaterials;
     }
+
+    public HashMap<String, ItemStack> getStratumMaterials() {
+        return stratumMaterials;
+    }
 }

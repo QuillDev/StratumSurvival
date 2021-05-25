@@ -1,14 +1,15 @@
 package moe.quill;
 
 import moe.quill.Adventuring.Bosses.WorldBossManager;
-import moe.quill.Adventuring.Enemies.Enemy;
 import moe.quill.Adventuring.Enemies.EnemyManager;
 import moe.quill.Commands.EnemyCommands.SpawnEnemyTabs;
+import moe.quill.Commands.ItemCommands.GiveStratumItem.GiveStratumItemCommand;
+import moe.quill.Commands.ItemCommands.GiveStratumItem.GiveStratumItemTabs;
 import moe.quill.Commands.Misc.DevTool;
 import moe.quill.Commands.EnemyCommands.SpawnEnemy;
 import moe.quill.Commands.ItemCommands.DeobfuscateItem;
-import moe.quill.Commands.ItemCommands.GenerateItem;
-import moe.quill.Commands.ItemCommands.GenerateItemTabs;
+import moe.quill.Commands.ItemCommands.GenerateItem.GenerateItemCommand;
+import moe.quill.Commands.ItemCommands.GenerateItem.GenerateItemTabs;
 import moe.quill.Commands.ItemCommands.ObfuscateItem;
 import moe.quill.Commands.NPCCommands.ChatNPCCommands.AddChatLines.AddChatLineCommand;
 import moe.quill.Commands.NPCCommands.ChatNPCCommands.AddChatLines.AddChatLineTabs;
@@ -27,13 +28,6 @@ import moe.quill.Commands.AdventureCommands.WorldBossCommands.WorldBossTeleportC
 import moe.quill.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
 import moe.quill.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
 import moe.quill.Crafting.CustomItems.Attributes.Attribute;
-import moe.quill.Crafting.StratumRecipes.Materials.FragmentRecipes.*;
-import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardCommonToUncommonRecipe;
-import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardEpicToLegendary;
-import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardRareToEpicRecipe;
-import moe.quill.Crafting.StratumRecipes.Materials.ShardRecipes.ShardUncommonToRareRecipe;
-import moe.quill.Crafting.StratumRecipes.Weapons.Battleaxes.*;
-import moe.quill.Crafting.StratumRecipes.Weapons.Daggers.*;
 import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
 import moe.quill.Crafting.CustomItems.EventHandler.HandleAttributeEvents;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
@@ -48,7 +42,6 @@ import moe.quill.Adventuring.NPCManager.NPCEvents.InteractCryptologistEvent;
 import moe.quill.Adventuring.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
-import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
@@ -110,7 +103,7 @@ public final class StratumSurvival extends JavaPlugin {
         craftingManager.enable(materialManager);
 
         commandManager.register(
-                new StratumCommand("generateitem", new GenerateItem(itemGenerator), new GenerateItemTabs()),
+                new StratumCommand("generateitem", new GenerateItemCommand(itemGenerator), new GenerateItemTabs()),
                 new StratumCommand("addchatline", new AddChatLineCommand(chatNpcManager), new AddChatLineTabs(chatNpcManager)),
                 new StratumCommand("deletechatnpc", new DeleteChatNpcCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
                 new StratumCommand("removechatline", new RemoveChatLineCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
@@ -124,7 +117,8 @@ public final class StratumSurvival extends JavaPlugin {
                 new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
                 new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),
                 new StratumCommand("spawnenemy", new SpawnEnemy(enemyManager), new SpawnEnemyTabs()),
-                new StratumCommand("devtool", devTool, null)
+                new StratumCommand("devtool", devTool, null),
+                new StratumCommand("stratumgive", new GiveStratumItemCommand(materialManager), new GiveStratumItemTabs(materialManager))
         );
     }
 
