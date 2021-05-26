@@ -1,8 +1,5 @@
 package moe.quill;
 
-import com.comphenix.protocol.ProtocolLib;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
 import moe.quill.Adventuring.Bosses.WorldBossManager;
 import moe.quill.Adventuring.Enemies.EnemyManager;
 import moe.quill.Commands.EnemyCommands.SpawnEnemyTabs;

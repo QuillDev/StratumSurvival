@@ -98,10 +98,5 @@
             <artifactId>kryo</artifactId>
             <version>5.1.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>4.6.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>
