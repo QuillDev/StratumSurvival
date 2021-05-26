@@ -2,6 +2,7 @@ name: StratumSurvival
 version: ${project.version}
 main: moe.quill.StratumSurvival
 api-version: 1.16
+depend: [ ProtocolLib ]
 
 commands:
   dev:

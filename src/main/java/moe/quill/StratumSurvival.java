@@ -1,5 +1,8 @@
 package moe.quill;
 
+import com.comphenix.protocol.ProtocolLib;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import moe.quill.Adventuring.Bosses.WorldBossManager;
 import moe.quill.Adventuring.Enemies.EnemyManager;
 import moe.quill.Commands.EnemyCommands.SpawnEnemyTabs;
@@ -58,15 +61,18 @@ import java.util.Random;
 
 public final class StratumSurvival extends JavaPlugin {
     public static final Random rand = new Random();
+    private static final Logger logger = LoggerFactory.getLogger(StratumSurvival.class.getSimpleName());
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
     private final NPCManager npcManager = new NPCManager(this);
-    private static final Logger logger = LoggerFactory.getLogger(StratumSurvival.class.getSimpleName());
+    private ProtocolManager protocolManager = null;
+
 
     //TODO: Add some class for managing all of our namespaced keys... seriously
     @Override
     public void onEnable() {
         logger.info("Enabled!");
         StratumSerialization.init();
+        protocolManager = ProtocolLibrary.getProtocolManager();
 
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
@@ -86,7 +92,7 @@ public final class StratumSurvival extends JavaPlugin {
 
 
         //setup dev command
-        final var devTool = new DevTool(materialManager, this);
+        final var devTool = new DevTool(materialManager, protocolManager, this);
 
         //Register Events
         eventManager.register(

@@ -135,4 +135,9 @@ public enum StratumMaterial {
 
     //ADD THE GRAPPLING HOOK
     GRAPPLING_HOOK,
+
+    //TRINKET BAGS
+    SMALL_TRINKET_BAG,
+    MEDIUM_TRINKET_BAG,
+    LARGE_TRINKET_BAG,
 }

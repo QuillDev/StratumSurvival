@@ -7,7 +7,6 @@ import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMa
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 

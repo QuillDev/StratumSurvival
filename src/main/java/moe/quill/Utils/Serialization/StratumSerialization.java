@@ -24,6 +24,35 @@ public class StratumSerialization {
         kryo.register(Component.class);
     }
 
+    /**
+     * Serialize a list of items to a byte array
+     *
+     * @param itemStacks to serialize
+     * @return the serialized item list
+     */
+    public static byte[] serializeItemList(ArrayList<ItemStack> itemStacks) {
+        final var arrayOfItemByteArrays = itemStacks
+                .stream()
+                .map(ItemStack::serializeAsBytes)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return SerializationUtils.serialize(arrayOfItemByteArrays);
+    }
+
+    /**
+     * Deserialize the item list
+     *
+     * @param bytes to deserialize
+     * @return the array list we got from the bytes
+     */
+    public static ArrayList<ItemStack> deserializeItemList(byte[] bytes) {
+        final var byteList = (ArrayList<byte[]>) SerializationUtils.deserialize(bytes);
+        if (byteList == null) return null;
+        return byteList
+                .stream()
+                .map(ItemStack::deserializeBytes)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public static byte[] serializeLong(long value) {
         final var output = new Output(8);
         kryo.writeObject(output, value);

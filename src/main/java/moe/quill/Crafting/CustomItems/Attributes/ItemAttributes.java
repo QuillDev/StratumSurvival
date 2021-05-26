@@ -2,6 +2,7 @@ package moe.quill.Crafting.CustomItems.Attributes;
 
 import moe.quill.Crafting.CustomItems.Attributes.ToolAttributes.MiningAttributes.MiningAttribute;
 import moe.quill.Crafting.CustomItems.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
+import net.kyori.adventure.key.Namespaced;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -28,6 +29,10 @@ public class ItemAttributes {
     public static NamespacedKey customItemKey = null;
     public static NamespacedKey cooldownKey;
 
+    //Trinket Keys
+    public static NamespacedKey inventorySizeKey = null;
+    public static NamespacedKey inventoryItemDataKey = null;
+
     //list of attributes
     private static final ArrayList<Attribute> attributes = new ArrayList<>();
     private static final Reflections reflections = new Reflections("moe.quill");
@@ -42,6 +47,8 @@ public class ItemAttributes {
         nameKey = new NamespacedKey(plugin, "item_name");
         customItemKey = new NamespacedKey(plugin, "item_is_custom");
         cooldownKey = new NamespacedKey(plugin, "item_use_cooldown");
+        inventorySizeKey = new NamespacedKey(plugin, "inventory_size");
+        inventoryItemDataKey = new NamespacedKey(plugin, "inventory_data");
     }
 
     public void init(Plugin plugin) {
