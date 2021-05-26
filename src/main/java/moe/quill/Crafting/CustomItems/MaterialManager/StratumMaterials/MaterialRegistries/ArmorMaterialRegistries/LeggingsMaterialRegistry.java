@@ -127,6 +127,61 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_NETHERITE_HEAVY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_NETHERITE_HEAVY.setItemMeta(LEGGINGS_NETHERITE_HEAVY_META);
 
+            //JUG
+            final var LEGGINGS_LEATHER_JUG = new ItemStack(Material.LEATHER_LEGGINGS);
+            final var LEGGINGS_LEATHER_JUG_META = LEGGINGS_LEATHER_JUG.getItemMeta();
+            LEGGINGS_LEATHER_JUG_META.displayName(Component.text("Juggernaut Leather Leggings"));
+            LEGGINGS_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_JUG);
+            LEGGINGS_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_LEATHER_JUG);
+            LEGGINGS_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_LEATHER_JUG);
+            LEGGINGS_LEATHER_JUG_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+            LEGGINGS_LEATHER_JUG.setItemMeta(LEGGINGS_LEATHER_JUG_META);
+
+            final var LEGGINGS_GOLDEN_JUG = new ItemStack(Material.GOLDEN_LEGGINGS);
+            final var LEGGINGS_GOLDEN_JUG_META = LEGGINGS_GOLDEN_JUG.getItemMeta();
+            LEGGINGS_GOLDEN_JUG_META.displayName(Component.text("Juggernaut Golden Leggings"));
+            LEGGINGS_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_JUG);
+            LEGGINGS_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_GOLDEN_JUG);
+            LEGGINGS_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_GOLD_JUG);
+            LEGGINGS_GOLDEN_JUG_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+            LEGGINGS_GOLDEN_JUG.setItemMeta(LEGGINGS_GOLDEN_JUG_META);
+
+            final var LEGGINGS_CHAIN_JUG = new ItemStack(Material.CHAINMAIL_LEGGINGS);
+            final var LEGGINGS_CHAIN_JUG_META = LEGGINGS_CHAIN_JUG.getItemMeta();
+            LEGGINGS_CHAIN_JUG_META.displayName(Component.text("Juggernaut Chainmail Leggings"));
+            LEGGINGS_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_JUG);
+            LEGGINGS_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_CHAIN_JUG);
+            LEGGINGS_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_CHAIN_JUG);
+            LEGGINGS_CHAIN_JUG_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+            LEGGINGS_CHAIN_JUG.setItemMeta(LEGGINGS_CHAIN_JUG_META);
+
+            final var LEGGINGS_IRON_JUG = new ItemStack(Material.IRON_LEGGINGS);
+            final var LEGGINGS_IRON_JUG_META = LEGGINGS_IRON_JUG.getItemMeta();
+            LEGGINGS_IRON_JUG_META.displayName(Component.text("Juggernaut Iron Leggings"));
+            LEGGINGS_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_JUG);
+            LEGGINGS_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_IRON_JUG);
+            LEGGINGS_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_IRON_JUG);
+            LEGGINGS_IRON_JUG_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+            LEGGINGS_IRON_JUG.setItemMeta(LEGGINGS_IRON_JUG_META);
+
+            final var LEGGINGS_DIAMOND_JUG = new ItemStack(Material.DIAMOND_LEGGINGS);
+            final var LEGGINGS_DIAMOND_JUG_META = LEGGINGS_DIAMOND_JUG.getItemMeta();
+            LEGGINGS_DIAMOND_JUG_META.displayName(Component.text("Juggernaut Diamond Leggings"));
+            LEGGINGS_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_JUG);
+            LEGGINGS_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_DIAMOND_JUG);
+            LEGGINGS_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_DIAMOND_JUG);
+            LEGGINGS_DIAMOND_JUG_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+            LEGGINGS_DIAMOND_JUG.setItemMeta(LEGGINGS_DIAMOND_JUG_META);
+
+            final var LEGGINGS_NETHERITE_JUG = new ItemStack(Material.NETHERITE_LEGGINGS);
+            final var LEGGINGS_NETHERITE_JUG_META = LEGGINGS_NETHERITE_JUG.getItemMeta();
+            LEGGINGS_NETHERITE_JUG_META.displayName(Component.text("Juggernaut Netherite Leggings"));
+            LEGGINGS_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_JUG);
+            LEGGINGS_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_NETHERITE_JUG);
+            LEGGINGS_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_NETHERITE_JUG);
+            LEGGINGS_NETHERITE_JUG_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+            LEGGINGS_NETHERITE_JUG.setItemMeta(LEGGINGS_NETHERITE_JUG_META);
+            
             //ADDING TO LIST
             put(StratumMaterial.LEGGINGS_LEATHER_LIGHT.name(), LEGGINGS_LEATHER_LIGHT);
             put(StratumMaterial.LEGGINGS_GOLDEN_LIGHT.name(), LEGGINGS_GOLDEN_LIGHT);
@@ -142,6 +197,12 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             put(StratumMaterial.LEGGINGS_DIAMOND_HEAVY.name(), LEGGINGS_DIAMOND_HEAVY);
             put(StratumMaterial.LEGGINGS_NETHERITE_HEAVY.name(), LEGGINGS_NETHERITE_HEAVY);
 
+            put(StratumMaterial.LEGGINGS_LEATHER_JUG.name(), LEGGINGS_LEATHER_JUG);
+            put(StratumMaterial.LEGGINGS_GOLDEN_JUG.name(), LEGGINGS_GOLDEN_JUG);
+            put(StratumMaterial.LEGGINGS_CHAIN_JUG.name(), LEGGINGS_CHAIN_JUG);
+            put(StratumMaterial.LEGGINGS_IRON_JUG.name(), LEGGINGS_IRON_JUG);
+            put(StratumMaterial.LEGGINGS_DIAMOND_JUG.name(), LEGGINGS_DIAMOND_JUG);
+            put(StratumMaterial.LEGGINGS_NETHERITE_JUG.name(), LEGGINGS_NETHERITE_JUG);
         }};
     }
 }

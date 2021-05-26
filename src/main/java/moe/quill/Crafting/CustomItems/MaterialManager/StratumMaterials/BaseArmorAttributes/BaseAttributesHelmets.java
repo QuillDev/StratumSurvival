@@ -29,6 +29,13 @@ public class BaseAttributesHelmets {
             AttributeModifier.Operation.MULTIPLY_SCALAR_1,
             EquipmentSlot.HEAD
     );
+    public static AttributeModifier MOVE_SPEED_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "overweight",
+            -2*(BaseAttributesArmor.SPEED_VALUE),
+            AttributeModifier.Operation.MULTIPLY_SCALAR_1,
+            EquipmentSlot.HEAD
+    );
 
     //ARMOR_LIGHT
     public static AttributeModifier ARMOR_LEATHER_LIGHT = new AttributeModifier(
@@ -118,7 +125,51 @@ public class BaseAttributesHelmets {
             EquipmentSlot.HEAD
     );
 
-    //HEALTH
+    //ARMOR_JUG
+    public static AttributeModifier ARMOR_LEATHER_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "strong",
+            LEATHER_ARMOR_BASE+2*(BaseAttributesArmor.ARMOR_VALUE_LOW),
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier ARMOR_GOLDEN_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "strong",
+            GOLDEN_ARMOR_BASE+2*(BaseAttributesArmor.ARMOR_VALUE_LOW),
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier ARMOR_CHAIN_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "strong",
+            CHAIN_ARMOR_BASE+2*(BaseAttributesArmor.ARMOR_VALUE_LOW),
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier ARMOR_IRON_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "strong",
+            IRON_ARMOR_BASE+2*(BaseAttributesArmor.ARMOR_VALUE_LOW),
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier ARMOR_DIAMOND_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "strong",
+            DIAMOND_ARMOR_BASE+2*(BaseAttributesArmor.ARMOR_VALUE_LOW),
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier ARMOR_NETHERITE_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "strong",
+            NETHERITE_ARMOR_BASE+ 2*(BaseAttributesArmor.ARMOR_VALUE_LOW),
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+
+    //HEALTH_HEAVY
     public static AttributeModifier HEALTH_LEATHER_HEAVY = new AttributeModifier(
             UUID.randomUUID(),
             "healthy",
@@ -158,6 +209,50 @@ public class BaseAttributesHelmets {
             UUID.randomUUID(),
             "healthy",
             BaseAttributesArmor.NETHERITE_VALUE_LOW,
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+
+    //HEALTH_JUG
+    public static AttributeModifier HEALTH_LEATHER_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "healthy",
+            2*BaseAttributesArmor.LEATHER_VALUE_LOW,
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier HEALTH_GOLD_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "healthy",
+            2*BaseAttributesArmor.GOLD_VALUE_LOW,
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier HEALTH_CHAIN_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "healthy",
+            2*BaseAttributesArmor.CHAIN_VALUE_LOW,
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier HEALTH_IRON_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "healthy",
+            2*BaseAttributesArmor.IRON_VALUE_LOW,
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier HEALTH_DIAMOND_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "healthy",
+            2*BaseAttributesArmor.DIAMOND_VALUE_LOW,
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlot.HEAD
+    );
+    public static AttributeModifier HEALTH_NETHERITE_JUG = new AttributeModifier(
+            UUID.randomUUID(),
+            "healthy",
+            2*BaseAttributesArmor.NETHERITE_VALUE_LOW,
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HEAD
     );
