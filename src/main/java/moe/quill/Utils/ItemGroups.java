@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class ItemGroups {
     
-    public static HashSet<Material> Ores = new HashSet<>(){{
+    public static final HashSet<Material> Ore = new HashSet<>(){{
         add(Material.REDSTONE_ORE);
         add(Material.LAPIS_ORE);
         add(Material.NETHER_QUARTZ_ORE);
@@ -17,4 +17,12 @@ public class ItemGroups {
         add(Material.DIAMOND_ORE);
         add(Material.EMERALD_ORE);
     }};
+
+    public static final HashSet<Material> Ice = new HashSet<>() {{
+        add(Material.ICE);
+        add(Material.BLUE_ICE);
+        add(Material.FROSTED_ICE);
+        add(Material.PACKED_ICE);
+    }};
 }
+

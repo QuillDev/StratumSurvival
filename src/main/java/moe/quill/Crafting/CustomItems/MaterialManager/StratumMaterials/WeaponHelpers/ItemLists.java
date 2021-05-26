@@ -29,7 +29,19 @@ public class ItemLists {
                 materialManager.getItem(Material.GOLDEN_PICKAXE),
                 materialManager.getItem(Material.IRON_PICKAXE),
                 materialManager.getItem(Material.DIAMOND_PICKAXE),
-                materialManager.getItem(Material.NETHERITE_PICKAXE)
+                materialManager.getItem(Material.NETHERITE_PICKAXE),
+                materialManager.getItem(StratumMaterial.ICEPICK_WOODEN),
+                materialManager.getItem(StratumMaterial.ICEPICK_STONE),
+                materialManager.getItem(StratumMaterial.ICEPICK_GOLDEN),
+                materialManager.getItem(StratumMaterial.ICEPICK_IRON),
+                materialManager.getItem(StratumMaterial.ICEPICK_DIAMOND),
+                materialManager.getItem(StratumMaterial.ICEPICK_NETHERITE),
+                materialManager.getItem(StratumMaterial.HAMMER_WOODEN),
+                materialManager.getItem(StratumMaterial.HAMMER_STONE),
+                materialManager.getItem(StratumMaterial.HAMMER_GOLDEN),
+                materialManager.getItem(StratumMaterial.HAMMER_IRON),
+                materialManager.getItem(StratumMaterial.HAMMER_DIAMOND),
+                materialManager.getItem(StratumMaterial.HAMMER_NETHERITE)
         ));
     }
 

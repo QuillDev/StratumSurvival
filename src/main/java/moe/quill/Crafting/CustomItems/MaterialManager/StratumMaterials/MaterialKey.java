@@ -12,7 +12,11 @@ public enum MaterialKey {
     EMPTY_KEY("itemtype_none"),
     CHEST_KEY("itemtype_loot_chest"),
     CUTLASS_KEY("itemtype_cutlass"),
-    ARMOR_KEY("itemtype_armor");
+    ARMOR_KEY("itemtype_armor"),
+    HAMMER_KEY("itemtype_hammer"),
+    ICEPICK_KEY("itemtype_icepick"),
+    GRAPPLING_HOOK_KEY("itemtype_grappling_hook")
+    ;
 
     public String value;
 

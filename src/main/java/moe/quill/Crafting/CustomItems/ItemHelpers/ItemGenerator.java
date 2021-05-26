@@ -32,7 +32,6 @@ public class ItemGenerator {
 
         final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(weaponType.type), level);
         final var useAttributes = getUseAttributes(attributes);
-
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
         final var lore = new ArrayList<Component>();
@@ -172,18 +171,5 @@ public class ItemGenerator {
         });
 
         return uniqueItems;
-    }
-
-    /**
-     * Get the name of the item, choosing the display name first
-     *
-     * @param item to get the name of
-     * @return the name of the item
-     */
-    public Component getItemName(ItemStack item) {
-        final var meta = item.getItemMeta();
-        final var displayName = meta.displayName();
-        if (displayName == null) return Component.text(item.getI18NDisplayName());
-        return displayName;
     }
 }

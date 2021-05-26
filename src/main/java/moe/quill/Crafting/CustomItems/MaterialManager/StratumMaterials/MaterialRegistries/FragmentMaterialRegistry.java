@@ -20,7 +20,7 @@ public class FragmentMaterialRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+    public HashMap<String, ItemStack> getMaterials() {
         return new HashMap<>() {{
             final Component fragmentLore = Component.text("Combine 9 of these for a shard!");
             // Setup the common fragment

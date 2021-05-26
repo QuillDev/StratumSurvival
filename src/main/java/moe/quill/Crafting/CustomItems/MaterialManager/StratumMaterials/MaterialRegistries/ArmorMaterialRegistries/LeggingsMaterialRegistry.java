@@ -20,7 +20,7 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+    public HashMap<String, ItemStack> getMaterials() {
         return new HashMap<>() {{
 
             //LIGHT
@@ -29,7 +29,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_LEATHER_LIGHT_META.displayName(Component.text("Light Leather Leggings"));
             LEGGINGS_LEATHER_LIGHT_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_LIGHT);
             LEGGINGS_LEATHER_LIGHT_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_LEATHER_LIGHT);
-            LEGGINGS_LEATHER_LIGHT_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_LEATHER_LIGHT.setItemMeta(LEGGINGS_LEATHER_LIGHT_META);
 
             final var LEGGINGS_GOLDEN_LIGHT = new ItemStack(Material.GOLDEN_LEGGINGS);
@@ -37,7 +36,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_GOLDEN_LIGHT_META.displayName(Component.text("Light Gold Leggings"));
             LEGGINGS_GOLDEN_LIGHT_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_LIGHT);
             LEGGINGS_GOLDEN_LIGHT_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_GOLDEN_LIGHT);
-            LEGGINGS_GOLDEN_LIGHT_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_GOLDEN_LIGHT.setItemMeta(LEGGINGS_GOLDEN_LIGHT_META);
 
             final var LEGGINGS_CHAIN_LIGHT = new ItemStack(Material.CHAINMAIL_LEGGINGS);
@@ -45,7 +43,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_CHAIN_LIGHT_META.displayName(Component.text("Light Chainmail Leggings"));
             LEGGINGS_CHAIN_LIGHT_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_LIGHT);
             LEGGINGS_CHAIN_LIGHT_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_CHAIN_LIGHT);
-            LEGGINGS_CHAIN_LIGHT_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_CHAIN_LIGHT.setItemMeta(LEGGINGS_CHAIN_LIGHT_META);
 
             final var LEGGINGS_IRON_LIGHT = new ItemStack(Material.IRON_LEGGINGS);
@@ -53,7 +50,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_IRON_LIGHT_META.displayName(Component.text("Light Iron Leggings"));
             LEGGINGS_IRON_LIGHT_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_LIGHT);
             LEGGINGS_IRON_LIGHT_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_IRON_LIGHT);
-            LEGGINGS_IRON_LIGHT_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_IRON_LIGHT.setItemMeta(LEGGINGS_IRON_LIGHT_META);
 
             final var LEGGINGS_DIAMOND_LIGHT = new ItemStack(Material.DIAMOND_LEGGINGS);
@@ -61,7 +57,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_DIAMOND_LIGHT_META.displayName(Component.text("Light Diamond Leggings"));
             LEGGINGS_DIAMOND_LIGHT_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_LIGHT);
             LEGGINGS_DIAMOND_LIGHT_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_DIAMOND_LIGHT);
-            LEGGINGS_DIAMOND_LIGHT_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_DIAMOND_LIGHT.setItemMeta(LEGGINGS_DIAMOND_LIGHT_META);
 
             final var LEGGINGS_NETHERITE_LIGHT = new ItemStack(Material.NETHERITE_LEGGINGS);
@@ -69,7 +64,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_NETHERITE_LIGHT_META.displayName(Component.text("Light Netherite Leggings"));
             LEGGINGS_NETHERITE_LIGHT_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_LIGHT);
             LEGGINGS_NETHERITE_LIGHT_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_NETHERITE_LIGHT);
-            LEGGINGS_NETHERITE_LIGHT_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_NETHERITE_LIGHT.setItemMeta(LEGGINGS_NETHERITE_LIGHT_META);
 
             //HEAVY
@@ -79,7 +73,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_LEATHER_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_HEAVY);
             LEGGINGS_LEATHER_HEAVY_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_LEATHER_HEAVY);
             LEGGINGS_LEATHER_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_LEATHER_HEAVY);
-            LEGGINGS_LEATHER_HEAVY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_LEATHER_HEAVY.setItemMeta(LEGGINGS_LEATHER_HEAVY_META);
 
             final var LEGGINGS_GOLDEN_HEAVY = new ItemStack(Material.GOLDEN_LEGGINGS);
@@ -88,7 +81,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_GOLDEN_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_HEAVY);
             LEGGINGS_GOLDEN_HEAVY_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_GOLDEN_HEAVY);
             LEGGINGS_GOLDEN_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_GOLD_HEAVY);
-            LEGGINGS_GOLDEN_HEAVY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_GOLDEN_HEAVY.setItemMeta(LEGGINGS_GOLDEN_HEAVY_META);
 
             final var LEGGINGS_CHAIN_HEAVY = new ItemStack(Material.CHAINMAIL_LEGGINGS);
@@ -97,7 +89,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_CHAIN_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_HEAVY);
             LEGGINGS_CHAIN_HEAVY_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_CHAIN_HEAVY);
             LEGGINGS_CHAIN_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_CHAIN_HEAVY);
-            LEGGINGS_CHAIN_HEAVY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_CHAIN_HEAVY.setItemMeta(LEGGINGS_CHAIN_HEAVY_META);
 
             final var LEGGINGS_IRON_HEAVY = new ItemStack(Material.IRON_LEGGINGS);
@@ -106,7 +97,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_IRON_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_HEAVY);
             LEGGINGS_IRON_HEAVY_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_IRON_HEAVY);
             LEGGINGS_IRON_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_IRON_HEAVY);
-            LEGGINGS_IRON_HEAVY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_IRON_HEAVY.setItemMeta(LEGGINGS_IRON_HEAVY_META);
 
             final var LEGGINGS_DIAMOND_HEAVY = new ItemStack(Material.DIAMOND_LEGGINGS);
@@ -115,7 +105,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_DIAMOND_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_HEAVY);
             LEGGINGS_DIAMOND_HEAVY_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_DIAMOND_HEAVY);
             LEGGINGS_DIAMOND_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_DIAMOND_HEAVY);
-            LEGGINGS_DIAMOND_HEAVY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_DIAMOND_HEAVY.setItemMeta(LEGGINGS_DIAMOND_HEAVY_META);
 
             final var LEGGINGS_NETHERITE_HEAVY = new ItemStack(Material.NETHERITE_LEGGINGS);
@@ -124,7 +113,6 @@ public class LeggingsMaterialRegistry extends MaterialRegistry {
             LEGGINGS_NETHERITE_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesLeggings.MOVE_SPEED_HEAVY);
             LEGGINGS_NETHERITE_HEAVY_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesLeggings.ARMOR_NETHERITE_HEAVY);
             LEGGINGS_NETHERITE_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesLeggings.HEALTH_NETHERITE_HEAVY);
-            LEGGINGS_NETHERITE_HEAVY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             LEGGINGS_NETHERITE_HEAVY.setItemMeta(LEGGINGS_NETHERITE_HEAVY_META);
 
             //JUG

@@ -5,6 +5,7 @@ import moe.quill.Adventuring.Enemies.EnemyManager;
 import moe.quill.Commands.EnemyCommands.SpawnEnemyTabs;
 import moe.quill.Commands.ItemCommands.GiveStratumItem.GiveStratumItemCommand;
 import moe.quill.Commands.ItemCommands.GiveStratumItem.GiveStratumItemTabs;
+import moe.quill.Commands.ItemCommands.ListKeysCommand;
 import moe.quill.Commands.Misc.DevTool;
 import moe.quill.Commands.EnemyCommands.SpawnEnemy;
 import moe.quill.Commands.ItemCommands.DeobfuscateItem;
@@ -41,6 +42,8 @@ import moe.quill.Adventuring.NPCManager.NPCEvents.InteractBlacksmithEvent;
 import moe.quill.Adventuring.NPCManager.NPCEvents.InteractCryptologistEvent;
 import moe.quill.Adventuring.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import moe.quill.Adventuring.NPCManager.NPCManager;
+import moe.quill.Events.ToolEvents.GrappleHookEvent;
+import moe.quill.Events.ToolEvents.IcePickClimb;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
@@ -98,6 +101,8 @@ public final class StratumSurvival extends JavaPlugin {
                 new DaggerBackstabEvent(materialManager),
                 new DevEvent(),
                 new ChatBadgeEvent(this),
+                new IcePickClimb(materialManager),
+                new GrappleHookEvent(materialManager),
                 devTool
         );
         craftingManager.enable(materialManager);
@@ -118,7 +123,8 @@ public final class StratumSurvival extends JavaPlugin {
                 new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),
                 new StratumCommand("spawnenemy", new SpawnEnemy(enemyManager), new SpawnEnemyTabs()),
                 new StratumCommand("devtool", devTool, null),
-                new StratumCommand("stratumgive", new GiveStratumItemCommand(materialManager), new GiveStratumItemTabs(materialManager))
+                new StratumCommand("stratumgive", new GiveStratumItemCommand(materialManager), new GiveStratumItemTabs(materialManager)),
+                new StratumCommand("listkeys", new ListKeysCommand(), null)
         );
     }
 

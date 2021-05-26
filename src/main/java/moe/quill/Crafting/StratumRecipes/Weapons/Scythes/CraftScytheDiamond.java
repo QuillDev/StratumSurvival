@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.RecipeChoice;
 
 public class CraftScytheDiamond extends ScytheRecipeBase {
-    public CraftScytheDiamond(RecipeKey key, StratumMaterialManager materialManager) {
-        super(key, materialManager, new RecipeChoice.MaterialChoice(Material.DIAMOND), StratumMaterial.SCYTHE_DIAMOND);
+    public CraftScytheDiamond(StratumMaterialManager materialManager) {
+        super(RecipeKey.RECIPE_SCYTHE_DIAMOND, materialManager, new RecipeChoice.MaterialChoice(Material.DIAMOND), StratumMaterial.SCYTHE_DIAMOND);
     }
 }

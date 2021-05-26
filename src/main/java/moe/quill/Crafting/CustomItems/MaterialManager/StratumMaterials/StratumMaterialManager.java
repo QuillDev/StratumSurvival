@@ -1,9 +1,11 @@
 package moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials;
 
 import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialRegistries.*;
+import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
@@ -70,8 +72,18 @@ public class StratumMaterialManager {
 
             final var registryKey = new NamespacedKey(plugin, registry.getMaterialKey().name());
             final var materialKey = registry.getMaterialKey();
-            final var registryMaterials = registry.getMaterials(registryKey); //get the material list
+            final var registryMaterials = registry.getMaterials(); //get the material list
             registryMaterials.forEach(stratumMaterials::putIfAbsent); //add all of them to stratum materials
+
+            //Set that items key for each item in the map
+            registryMaterials.values().forEach(item -> {
+                        final var meta = item.getItemMeta();
+                        final var data = meta.getPersistentDataContainer();
+                        data.set(registryKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+                        item.setItemMeta(meta);
+                    }
+            );
+
             keyMap.putIfAbsent(materialKey, registryKey); // put the key into the key list
         }
     }
@@ -85,7 +97,6 @@ public class StratumMaterialManager {
     public NamespacedKey getNamespacedMaterialKey(MaterialKey key) {
         return keyMap.get(key);
     }
-    //TODO: register geodes some other way
 
     public ItemStack getItem(StratumMaterial material) {
         return getItem(material.name());

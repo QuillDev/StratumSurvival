@@ -21,7 +21,7 @@ public class ScytheMaterialRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+    public HashMap<String, ItemStack> getMaterials() {
         return new HashMap<>() {
             {
                 //setup wooden battleaxe
@@ -32,7 +32,6 @@ public class ScytheMaterialRegistry extends MaterialRegistry {
                 SCYTHE_WOODEN_META.displayName(Component.text(SCYTHE_WOODEN_META.getLocalizedName()));
                 SCYTHE_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesScythes.ATTACK_DAMAGE_WOOD);
                 SCYTHE_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesScythes.ATTACK_SPEED);
-                SCYTHE_WOODEN_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
                 SCYTHE_WOODEN.setItemMeta(SCYTHE_WOODEN_META);
 
                 //setup stone battleaxe
@@ -43,7 +42,6 @@ public class ScytheMaterialRegistry extends MaterialRegistry {
                 SCYTHE_STONE_META.displayName(Component.text(SCYTHE_STONE_META.getLocalizedName()));
                 SCYTHE_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesScythes.ATTACK_DAMAGE_STONE);
                 SCYTHE_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesScythes.ATTACK_SPEED);
-                SCYTHE_STONE_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
                 SCYTHE_STONE.setItemMeta(SCYTHE_STONE_META);
 
                 //setup iron battleaxe
@@ -54,7 +52,6 @@ public class ScytheMaterialRegistry extends MaterialRegistry {
                 SCYTHE_IRON_META.displayName(Component.text(SCYTHE_IRON_META.getLocalizedName()));
                 SCYTHE_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesScythes.ATTACK_DAMAGE_IRON);
                 SCYTHE_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesScythes.ATTACK_SPEED);
-                SCYTHE_IRON_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
                 SCYTHE_IRON.setItemMeta(SCYTHE_IRON_META);
 
                 //setup golden battleaxe
@@ -65,7 +62,6 @@ public class ScytheMaterialRegistry extends MaterialRegistry {
                 SCYTHE_GOLDEN_META.displayName(Component.text(SCYTHE_GOLDEN_META.getLocalizedName()));
                 SCYTHE_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesScythes.ATTACK_DAMAGE_GOLD);
                 SCYTHE_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesScythes.ATTACK_SPEED);
-                SCYTHE_GOLDEN_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
                 SCYTHE_GOLDEN.setItemMeta(SCYTHE_GOLDEN_META);
 
                 //setup diamond battleaxe
@@ -76,7 +72,6 @@ public class ScytheMaterialRegistry extends MaterialRegistry {
                 SCYTHE_DIAMOND_META.displayName(Component.text(SCYTHE_DIAMOND_META.getLocalizedName()));
                 SCYTHE_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesScythes.ATTACK_DAMAGE_DIAMOND);
                 SCYTHE_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesScythes.ATTACK_SPEED);
-                SCYTHE_DIAMOND_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
                 SCYTHE_DIAMOND.setItemMeta(SCYTHE_DIAMOND_META);
 
                 //setup Netherite battleaxe
@@ -87,7 +82,6 @@ public class ScytheMaterialRegistry extends MaterialRegistry {
                 SCYTHE_NETHERITE_META.displayName(Component.text(SCYTHE_NETHERITE_META.getLocalizedName()));
                 SCYTHE_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesScythes.ATTACK_DAMAGE_NETHERITE);
                 SCYTHE_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesScythes.ATTACK_SPEED);
-                SCYTHE_NETHERITE_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
                 SCYTHE_NETHERITE.setItemMeta(SCYTHE_NETHERITE_META);
 
                 //Add battle axes to the stratum material manager

@@ -91,6 +91,17 @@ public class ItemHelper {
             if (Float.isNaN(value)) continue;
             lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
         }
+
+        //If the item already has lore, then merge the lore
+//        if (meta.hasLore()) {
+//            final var tempLoreList = meta.lore();
+//            if (tempLoreList != null) {
+//                tempLoreList.addAll(lore);
+//                meta.lore(tempLoreList);
+//                return;
+//            }
+//
+//        }
         meta.lore(lore);
     }
 
