@@ -27,6 +27,9 @@ commands:
   stratumgive:
     usage: /<command> <itemtype>
     permission: stratumsurvival.items.give
+  listkeys:
+    usage: /<command>
+    permission: stratumsurvival.items.listkeys
 
   #Bosses
   worldbosstp:

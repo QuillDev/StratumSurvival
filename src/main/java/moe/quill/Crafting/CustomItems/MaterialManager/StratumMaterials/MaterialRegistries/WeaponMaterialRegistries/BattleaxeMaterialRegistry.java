@@ -18,7 +18,7 @@ public class BattleaxeMaterialRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+    public HashMap<String, ItemStack> getMaterials() {
 
         return new HashMap<>() {{
             //setup wooden battleaxe

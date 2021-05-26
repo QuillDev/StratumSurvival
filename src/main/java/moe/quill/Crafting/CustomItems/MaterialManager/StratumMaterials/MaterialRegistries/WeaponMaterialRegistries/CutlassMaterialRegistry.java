@@ -22,7 +22,7 @@ public class CutlassMaterialRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+    public HashMap<String, ItemStack> getMaterials() {
         return new HashMap<>() {{
             final var CUTLASS_WOODEN = new ItemStack(Material.WOODEN_SWORD);
             final var CUTLASS_WOODEN_META = CUTLASS_WOODEN.getItemMeta();
@@ -31,7 +31,6 @@ public class CutlassMaterialRegistry extends MaterialRegistry {
             CUTLASS_WOODEN_META.displayName(Component.text(CUTLASS_WOODEN_META.getLocalizedName()));
             CUTLASS_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesCutlasses.ATTACK_DAMAGE_WOOD);
             CUTLASS_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesCutlasses.ATTACK_SPEED);
-            CUTLASS_WOODEN_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             CUTLASS_WOODEN.setItemMeta(CUTLASS_WOODEN_META);
 
             //setup stone battleaxe
@@ -42,7 +41,6 @@ public class CutlassMaterialRegistry extends MaterialRegistry {
             CUTLASS_STONE_META.displayName(Component.text(CUTLASS_STONE_META.getLocalizedName()));
             CUTLASS_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesCutlasses.ATTACK_DAMAGE_STONE);
             CUTLASS_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesCutlasses.ATTACK_SPEED);
-            CUTLASS_STONE_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             CUTLASS_STONE.setItemMeta(CUTLASS_STONE_META);
 
             //setup iron battleaxe
@@ -53,7 +51,6 @@ public class CutlassMaterialRegistry extends MaterialRegistry {
             CUTLASS_IRON_META.displayName(Component.text(CUTLASS_IRON_META.getLocalizedName()));
             CUTLASS_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesCutlasses.ATTACK_DAMAGE_IRON);
             CUTLASS_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesCutlasses.ATTACK_SPEED);
-            CUTLASS_IRON_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             CUTLASS_IRON.setItemMeta(CUTLASS_IRON_META);
 
             //setup golden battleaxe
@@ -64,7 +61,6 @@ public class CutlassMaterialRegistry extends MaterialRegistry {
             CUTLASS_GOLDEN_META.displayName(Component.text(CUTLASS_GOLDEN_META.getLocalizedName()));
             CUTLASS_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesCutlasses.ATTACK_DAMAGE_GOLD);
             CUTLASS_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesCutlasses.ATTACK_SPEED);
-            CUTLASS_GOLDEN_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             CUTLASS_GOLDEN.setItemMeta(CUTLASS_GOLDEN_META);
 
             //setup diamond battleaxe
@@ -75,7 +71,6 @@ public class CutlassMaterialRegistry extends MaterialRegistry {
             CUTLASS_DIAMOND_META.displayName(Component.text(CUTLASS_DIAMOND_META.getLocalizedName()));
             CUTLASS_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesCutlasses.ATTACK_DAMAGE_DIAMOND);
             CUTLASS_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesCutlasses.ATTACK_SPEED);
-            CUTLASS_DIAMOND_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             CUTLASS_DIAMOND.setItemMeta(CUTLASS_DIAMOND_META);
 
             //setup Netherite battleaxe
@@ -86,7 +81,6 @@ public class CutlassMaterialRegistry extends MaterialRegistry {
             CUTLASS_NETHERITE_META.displayName(Component.text(CUTLASS_NETHERITE_META.getLocalizedName()));
             CUTLASS_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesCutlasses.ATTACK_DAMAGE_NETHERITE);
             CUTLASS_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesCutlasses.ATTACK_SPEED);
-            CUTLASS_NETHERITE_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             CUTLASS_NETHERITE.setItemMeta(CUTLASS_NETHERITE_META);
 
             //Add battle axes to the stratum material manager

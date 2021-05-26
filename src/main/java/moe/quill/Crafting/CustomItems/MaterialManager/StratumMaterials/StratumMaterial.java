@@ -116,7 +116,7 @@ public enum StratumMaterial {
     BOOTS_DIAMOND_HEAVY,
     BOOTS_NETHERITE_LIGHT,
     BOOTS_NETHERITE_HEAVY,
-    
+
     //ICE PICKS
     ICEPICK_WOODEN,
     ICEPICK_STONE,
@@ -124,7 +124,7 @@ public enum StratumMaterial {
     ICEPICK_GOLDEN,
     ICEPICK_DIAMOND,
     ICEPICK_NETHERITE,
-    
+
     //HAMMERS
     HAMMER_WOODEN,
     HAMMER_STONE,
@@ -132,5 +132,7 @@ public enum StratumMaterial {
     HAMMER_GOLDEN,
     HAMMER_DIAMOND,
     HAMMER_NETHERITE,
-    ;
+
+    //ADD THE GRAPPLING HOOK
+    GRAPPLING_HOOK,
 }

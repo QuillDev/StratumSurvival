@@ -47,7 +47,7 @@ public class ItemAttributes {
     public void init(Plugin plugin) {
         attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(ItemLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
         attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(ItemLists.WEAPONS_BOW, BowWeaponAttribute.class));
-        attributeCategories.putIfAbsent("TOOLS_MINING", new ItemType(ItemLists.TOOLS_PICKAXE, PickaxeAttribute.class));
+        attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(ItemLists.TOOLS_PICKAXE, PickaxeAttribute.class));
         dynamicallyLoadAttributes(plugin);
 
     }

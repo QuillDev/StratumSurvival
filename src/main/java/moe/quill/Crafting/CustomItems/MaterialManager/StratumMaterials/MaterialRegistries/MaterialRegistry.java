@@ -14,7 +14,7 @@ public abstract class MaterialRegistry {
 
     }
 
-    public abstract HashMap<String, ItemStack> getMaterials(NamespacedKey key);
+    public abstract HashMap<String, ItemStack> getMaterials();
 
     public MaterialKey getMaterialKey() {
         return materialKey;

@@ -20,7 +20,7 @@ public class DaggerMaterialRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+    public HashMap<String, ItemStack> getMaterials() {
         return new HashMap<>() {{
             final var DAGGER_WOODEN = new ItemStack(Material.WOODEN_SWORD);
             final var DAGGER_WOODEN_META = DAGGER_WOODEN.getItemMeta();
@@ -30,7 +30,6 @@ public class DaggerMaterialRegistry extends MaterialRegistry {
             DAGGER_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_WOOD);
             DAGGER_WOODEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
             DAGGER_WOODEN_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesDaggers.MOVE_SPEED);
-            DAGGER_WOODEN_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             DAGGER_WOODEN.setItemMeta(DAGGER_WOODEN_META);
 
             //setup stone battleaxe
@@ -42,7 +41,6 @@ public class DaggerMaterialRegistry extends MaterialRegistry {
             DAGGER_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_STONE);
             DAGGER_STONE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
             DAGGER_STONE_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesDaggers.MOVE_SPEED);
-            DAGGER_STONE_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             DAGGER_STONE.setItemMeta(DAGGER_STONE_META);
 
             //setup iron battleaxe
@@ -54,7 +52,6 @@ public class DaggerMaterialRegistry extends MaterialRegistry {
             DAGGER_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_IRON);
             DAGGER_IRON_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
             DAGGER_IRON_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesDaggers.MOVE_SPEED);
-            DAGGER_IRON_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             DAGGER_IRON.setItemMeta(DAGGER_IRON_META);
 
             //setup golden battleaxe
@@ -66,7 +63,6 @@ public class DaggerMaterialRegistry extends MaterialRegistry {
             DAGGER_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_GOLD);
             DAGGER_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
             DAGGER_GOLDEN_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesDaggers.MOVE_SPEED);
-            DAGGER_GOLDEN_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             DAGGER_GOLDEN.setItemMeta(DAGGER_GOLDEN_META);
 
             //setup diamond battleaxe
@@ -78,7 +74,6 @@ public class DaggerMaterialRegistry extends MaterialRegistry {
             DAGGER_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_DIAMOND);
             DAGGER_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
             DAGGER_DIAMOND_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesDaggers.MOVE_SPEED);
-            DAGGER_DIAMOND_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             DAGGER_DIAMOND.setItemMeta(DAGGER_DIAMOND_META);
 
             //setup Netherite battleaxe
@@ -90,7 +85,6 @@ public class DaggerMaterialRegistry extends MaterialRegistry {
             DAGGER_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, BaseAttributesDaggers.ATTACK_DAMAGE_NETHERITE);
             DAGGER_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, BaseAttributesDaggers.ATTACK_SPEED);
             DAGGER_NETHERITE_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesDaggers.MOVE_SPEED);
-            DAGGER_NETHERITE_META.getPersistentDataContainer().set(itemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
             DAGGER_NETHERITE.setItemMeta(DAGGER_NETHERITE_META);
 
             //Add battle axes to the stratum material manager

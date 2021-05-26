@@ -14,7 +14,8 @@ public enum MaterialKey {
     CUTLASS_KEY("itemtype_cutlass"),
     ARMOR_KEY("itemtype_armor"),
     HAMMER_KEY("itemtype_hammer"),
-    ICEPICK_KEY("itemtype_icepick")
+    ICEPICK_KEY("itemtype_icepick"),
+    GRAPPLING_HOOK_KEY("itemtype_grappling_hook")
     ;
 
     public String value;

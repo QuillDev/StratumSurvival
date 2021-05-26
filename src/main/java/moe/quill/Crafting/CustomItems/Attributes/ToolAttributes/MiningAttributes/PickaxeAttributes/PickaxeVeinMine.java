@@ -5,9 +5,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.event.Event;
-import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ public class PickaxeVeinMine extends PickaxeAttribute {
         if (eventData == null) return;
         final var block = eventData.getBlock();
         final var blockType = block.getType();
-        if (!ItemGroups.Ores.contains(blockType)) return; //If it's not in the whitelist, we don't care
+        if (!ItemGroups.Ore.contains(blockType)) return; //If it's not in the whitelist, we don't care
 
         //Actually process the vein mining
         final var range = (int) modifier + 1;

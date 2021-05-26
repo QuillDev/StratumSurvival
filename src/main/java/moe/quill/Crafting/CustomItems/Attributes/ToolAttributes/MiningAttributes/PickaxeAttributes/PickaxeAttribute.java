@@ -28,7 +28,7 @@ public abstract class PickaxeAttribute extends MiningAttribute {
     public MiningEventData getEventData(Event sourceEvent) {
         final var sourceData = super.getEventData(sourceEvent);
         if (sourceData == null) return null;
-        if (!ItemGroups.Ores.contains(sourceData.getBlock().getType())) return null;
+        if (!ItemGroups.Ore.contains(sourceData.getBlock().getType())) return null;
         return sourceData;
     }
 }

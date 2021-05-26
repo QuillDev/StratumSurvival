@@ -18,7 +18,7 @@ public class HammerRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey key) {
+    public HashMap<String, ItemStack> getMaterials() {
         return new HashMap<>() {{
             final var icepickLore = Collections.singletonList(
                     Component.text("Great for breaking the ice!").color(TextColor.color(0x5FA5CB)).asComponent()

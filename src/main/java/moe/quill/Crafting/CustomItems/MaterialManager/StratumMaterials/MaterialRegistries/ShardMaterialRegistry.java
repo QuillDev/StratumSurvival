@@ -20,7 +20,7 @@ public class ShardMaterialRegistry extends MaterialRegistry {
     }
 
     @Override
-    public HashMap<String, ItemStack> getMaterials(NamespacedKey itemKey) {
+    public HashMap<String, ItemStack> getMaterials() {
         return new HashMap<>() {{
             final Component crystalLore = Component.text("Used for crafting");
             // Setup the common crystal
@@ -31,7 +31,6 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_COMMON_META.displayName(Component.text("Common Shard").decorate(TextDecoration.BOLD).color(SHARD_COMMON_COLOR));
             SHARD_COMMON_META.lore(Collections.singletonList(crystalLore.color(SHARD_COMMON_COLOR)));
             SHARD_COMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 1f);
-            SHARD_COMMON_META.getPersistentDataContainer().set(itemKey, PersistentDataType.FLOAT, 1f);
             SHARD_COMMON.setItemMeta(SHARD_COMMON_META);
 
             //Uncommon crafting crystal
@@ -42,7 +41,6 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_UNCOMMON_META.displayName(Component.text("Uncommon Shard").decorate(TextDecoration.BOLD).color(SHARD_UNCOMMON_COLOR));
             SHARD_UNCOMMON_META.lore(Collections.singletonList(crystalLore.color(SHARD_UNCOMMON_COLOR)));
             SHARD_UNCOMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 2f);
-            SHARD_UNCOMMON_META.getPersistentDataContainer().set(itemKey, PersistentDataType.FLOAT, 1f);
             SHARD_UNCOMMON.setItemMeta(SHARD_UNCOMMON_META);
 
             // Rare crafting crystal
@@ -53,7 +51,6 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_RARE_META.displayName(Component.text("Rare Shard").decorate(TextDecoration.BOLD).color(SHARD_RARE_COLOR));
             SHARD_RARE_META.lore(Collections.singletonList(crystalLore.color(SHARD_RARE_COLOR)));
             SHARD_RARE_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 3f);
-            SHARD_RARE_META.getPersistentDataContainer().set(itemKey, PersistentDataType.FLOAT, 1f);
             SHARD_RARE.setItemMeta(SHARD_RARE_META);
 
             // Epic crafting crystal
@@ -64,7 +61,6 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_EPIC_META.displayName(Component.text("Epic Shard").decorate(TextDecoration.BOLD).color(SHARD_EPIC_COLOR));
             SHARD_EPIC_META.lore(Collections.singletonList(crystalLore.color(SHARD_EPIC_COLOR)));
             SHARD_EPIC_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 4f);
-            SHARD_EPIC_META.getPersistentDataContainer().set(itemKey, PersistentDataType.FLOAT, 1f);
             SHARD_EPIC.setItemMeta(SHARD_EPIC_META);
 
             // Legendary crafting crystal
@@ -75,7 +71,6 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_LEGENDARY_META.displayName(Component.text("Legendary Shard").decorate(TextDecoration.BOLD).color(SHARD_LEGENDARY_COLOR));
             SHARD_LEGENDARY_META.lore(Collections.singletonList(crystalLore.color(SHARD_LEGENDARY_COLOR)));
             SHARD_LEGENDARY_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 5f);
-            SHARD_LEGENDARY_META.getPersistentDataContainer().set(itemKey, PersistentDataType.FLOAT, 1f);
             SHARD_LEGENDARY.setItemMeta(SHARD_LEGENDARY_META);
 
             //Add all of the materials to the material manager
