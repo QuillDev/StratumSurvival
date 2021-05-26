@@ -115,6 +115,55 @@ public class ChestplateMaterialRegistry extends MaterialRegistry {
             CHESTPLATE_NETHERITE_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_NETHERITE_HEAVY);
             CHESTPLATE_NETHERITE_HEAVY.setItemMeta(CHESTPLATE_NETHERITE_HEAVY_META);
 
+            //JUG
+            final var CHESTPLATE_LEATHER_JUG = new ItemStack(Material.LEATHER_CHESTPLATE);
+            final var CHESTPLATE_LEATHER_JUG_META = CHESTPLATE_LEATHER_JUG.getItemMeta();
+            CHESTPLATE_LEATHER_JUG_META.displayName(Component.text("Juggernaut Leather Chestplate"));
+            CHESTPLATE_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesChestplates.MOVE_SPEED_JUG);
+            CHESTPLATE_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesChestplates.ARMOR_LEATHER_JUG);
+            CHESTPLATE_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_LEATHER_JUG);
+            CHESTPLATE_LEATHER_JUG.setItemMeta(CHESTPLATE_LEATHER_JUG_META);
+
+            final var CHESTPLATE_GOLDEN_JUG = new ItemStack(Material.GOLDEN_CHESTPLATE);
+            final var CHESTPLATE_GOLDEN_JUG_META = CHESTPLATE_GOLDEN_JUG.getItemMeta();
+            CHESTPLATE_GOLDEN_JUG_META.displayName(Component.text("Juggernaut Golden Chestplate"));
+            CHESTPLATE_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesChestplates.MOVE_SPEED_JUG);
+            CHESTPLATE_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesChestplates.ARMOR_GOLDEN_JUG);
+            CHESTPLATE_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_GOLD_JUG);
+            CHESTPLATE_GOLDEN_JUG.setItemMeta(CHESTPLATE_GOLDEN_JUG_META);
+
+            final var CHESTPLATE_CHAIN_JUG = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+            final var CHESTPLATE_CHAIN_JUG_META = CHESTPLATE_CHAIN_JUG.getItemMeta();
+            CHESTPLATE_CHAIN_JUG_META.displayName(Component.text("Juggernaut Chainmail Chestplate"));
+            CHESTPLATE_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesChestplates.MOVE_SPEED_JUG);
+            CHESTPLATE_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesChestplates.ARMOR_CHAIN_JUG);
+            CHESTPLATE_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_CHAIN_JUG);
+            CHESTPLATE_CHAIN_JUG.setItemMeta(CHESTPLATE_CHAIN_JUG_META);
+
+            final var CHESTPLATE_IRON_JUG = new ItemStack(Material.IRON_CHESTPLATE);
+            final var CHESTPLATE_IRON_JUG_META = CHESTPLATE_IRON_JUG.getItemMeta();
+            CHESTPLATE_IRON_JUG_META.displayName(Component.text("Juggernaut Iron Chestplate"));
+            CHESTPLATE_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesChestplates.MOVE_SPEED_JUG);
+            CHESTPLATE_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesChestplates.ARMOR_IRON_JUG);
+            CHESTPLATE_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_IRON_JUG);
+            CHESTPLATE_IRON_JUG.setItemMeta(CHESTPLATE_IRON_JUG_META);
+
+            final var CHESTPLATE_DIAMOND_JUG = new ItemStack(Material.DIAMOND_CHESTPLATE);
+            final var CHESTPLATE_DIAMOND_JUG_META = CHESTPLATE_DIAMOND_JUG.getItemMeta();
+            CHESTPLATE_DIAMOND_JUG_META.displayName(Component.text("Juggernaut Diamond Chestplate"));
+            CHESTPLATE_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesChestplates.MOVE_SPEED_JUG);
+            CHESTPLATE_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesChestplates.ARMOR_DIAMOND_JUG);
+            CHESTPLATE_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_DIAMOND_JUG);
+            CHESTPLATE_DIAMOND_JUG.setItemMeta(CHESTPLATE_DIAMOND_JUG_META);
+
+            final var CHESTPLATE_NETHERITE_JUG = new ItemStack(Material.NETHERITE_CHESTPLATE);
+            final var CHESTPLATE_NETHERITE_JUG_META = CHESTPLATE_NETHERITE_JUG.getItemMeta();
+            CHESTPLATE_NETHERITE_JUG_META.displayName(Component.text("Juggernaut Netherite Chestplate"));
+            CHESTPLATE_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesChestplates.MOVE_SPEED_JUG);
+            CHESTPLATE_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesChestplates.ARMOR_NETHERITE_JUG);
+            CHESTPLATE_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_NETHERITE_JUG);
+            CHESTPLATE_NETHERITE_JUG.setItemMeta(CHESTPLATE_NETHERITE_JUG_META);
+            
             //ADDING TO LIST
             put(StratumMaterial.CHESTPLATE_LEATHER_LIGHT.name(), CHESTPLATE_LEATHER_LIGHT);
             put(StratumMaterial.CHESTPLATE_GOLDEN_LIGHT.name(), CHESTPLATE_GOLDEN_LIGHT);
@@ -130,6 +179,12 @@ public class ChestplateMaterialRegistry extends MaterialRegistry {
             put(StratumMaterial.CHESTPLATE_DIAMOND_HEAVY.name(), CHESTPLATE_DIAMOND_HEAVY);
             put(StratumMaterial.CHESTPLATE_NETHERITE_HEAVY.name(), CHESTPLATE_NETHERITE_HEAVY);
 
+            put(StratumMaterial.CHESTPLATE_LEATHER_JUG.name(), CHESTPLATE_LEATHER_JUG);
+            put(StratumMaterial.CHESTPLATE_GOLDEN_JUG.name(), CHESTPLATE_GOLDEN_JUG);
+            put(StratumMaterial.CHESTPLATE_CHAIN_JUG.name(), CHESTPLATE_CHAIN_JUG);
+            put(StratumMaterial.CHESTPLATE_IRON_JUG.name(), CHESTPLATE_IRON_JUG);
+            put(StratumMaterial.CHESTPLATE_DIAMOND_JUG.name(), CHESTPLATE_DIAMOND_JUG);
+            put(StratumMaterial.CHESTPLATE_NETHERITE_JUG.name(), CHESTPLATE_NETHERITE_JUG);
         }};
     }
 }

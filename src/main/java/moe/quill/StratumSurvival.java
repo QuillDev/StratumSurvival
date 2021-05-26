@@ -64,15 +64,12 @@ public final class StratumSurvival extends JavaPlugin {
     private static final Logger logger = LoggerFactory.getLogger(StratumSurvival.class.getSimpleName());
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
     private final NPCManager npcManager = new NPCManager(this);
-    private ProtocolManager protocolManager = null;
-
 
     //TODO: Add some class for managing all of our namespaced keys... seriously
     @Override
     public void onEnable() {
         logger.info("Enabled!");
         StratumSerialization.init();
-        protocolManager = ProtocolLibrary.getProtocolManager();
 
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
@@ -92,7 +89,7 @@ public final class StratumSurvival extends JavaPlugin {
 
 
         //setup dev command
-        final var devTool = new DevTool(materialManager, protocolManager, this);
+        final var devTool = new DevTool(materialManager, this);
 
         //Register Events
         eventManager.register(

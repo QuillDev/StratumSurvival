@@ -115,6 +115,55 @@ public class HelmetMaterialRegistry extends MaterialRegistry {
             HELMET_NETHERITE_HEAVY_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_NETHERITE_HEAVY);
             HELMET_NETHERITE_HEAVY.setItemMeta(HELMET_NETHERITE_HEAVY_META);
 
+            //JUG
+            final var HELMET_LEATHER_JUG = new ItemStack(Material.LEATHER_HELMET);
+            final var HELMET_LEATHER_JUG_META = HELMET_LEATHER_JUG.getItemMeta();
+            HELMET_LEATHER_JUG_META.displayName(Component.text("Juggernaut Leather Helmet"));
+            HELMET_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesHelmets.MOVE_SPEED_JUG);
+            HELMET_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesHelmets.ARMOR_LEATHER_JUG);
+            HELMET_LEATHER_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_LEATHER_JUG);
+            HELMET_LEATHER_JUG.setItemMeta(HELMET_LEATHER_JUG_META);
+
+            final var HELMET_GOLDEN_JUG = new ItemStack(Material.GOLDEN_HELMET);
+            final var HELMET_GOLDEN_JUG_META = HELMET_GOLDEN_JUG.getItemMeta();
+            HELMET_GOLDEN_JUG_META.displayName(Component.text("Juggernaut Golden Helmet"));
+            HELMET_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesHelmets.MOVE_SPEED_JUG);
+            HELMET_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesHelmets.ARMOR_GOLDEN_JUG);
+            HELMET_GOLDEN_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_GOLD_JUG);
+            HELMET_GOLDEN_JUG.setItemMeta(HELMET_GOLDEN_JUG_META);
+
+            final var HELMET_CHAIN_JUG = new ItemStack(Material.CHAINMAIL_HELMET);
+            final var HELMET_CHAIN_JUG_META = HELMET_CHAIN_JUG.getItemMeta();
+            HELMET_CHAIN_JUG_META.displayName(Component.text("Juggernaut Chainmail Helmet"));
+            HELMET_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesHelmets.MOVE_SPEED_JUG);
+            HELMET_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesHelmets.ARMOR_CHAIN_JUG);
+            HELMET_CHAIN_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_CHAIN_JUG);
+            HELMET_CHAIN_JUG.setItemMeta(HELMET_CHAIN_JUG_META);
+
+            final var HELMET_IRON_JUG = new ItemStack(Material.IRON_HELMET);
+            final var HELMET_IRON_JUG_META = HELMET_IRON_JUG.getItemMeta();
+            HELMET_IRON_JUG_META.displayName(Component.text("Juggernaut Iron Helmet"));
+            HELMET_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesHelmets.MOVE_SPEED_JUG);
+            HELMET_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesHelmets.ARMOR_IRON_JUG);
+            HELMET_IRON_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_IRON_JUG);
+            HELMET_IRON_JUG.setItemMeta(HELMET_IRON_JUG_META);
+
+            final var HELMET_DIAMOND_JUG = new ItemStack(Material.DIAMOND_HELMET);
+            final var HELMET_DIAMOND_JUG_META = HELMET_DIAMOND_JUG.getItemMeta();
+            HELMET_DIAMOND_JUG_META.displayName(Component.text("Juggernaut Diamond Helmet"));
+            HELMET_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesHelmets.MOVE_SPEED_JUG);
+            HELMET_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesHelmets.ARMOR_DIAMOND_JUG);
+            HELMET_DIAMOND_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_DIAMOND_JUG);
+            HELMET_DIAMOND_JUG.setItemMeta(HELMET_DIAMOND_JUG_META);
+
+            final var HELMET_NETHERITE_JUG = new ItemStack(Material.NETHERITE_HELMET);
+            final var HELMET_NETHERITE_JUG_META = HELMET_NETHERITE_JUG.getItemMeta();
+            HELMET_NETHERITE_JUG_META.displayName(Component.text("Juggernaut Netherite Helmet"));
+            HELMET_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, BaseAttributesHelmets.MOVE_SPEED_JUG);
+            HELMET_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesHelmets.ARMOR_NETHERITE_JUG);
+            HELMET_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_NETHERITE_JUG);
+            HELMET_NETHERITE_JUG.setItemMeta(HELMET_NETHERITE_JUG_META);
+            
             //ADDING TO LIST
             put(StratumMaterial.HELMET_LEATHER_LIGHT.name(), HELMET_LEATHER_LIGHT);
             put(StratumMaterial.HELMET_GOLDEN_LIGHT.name(), HELMET_GOLDEN_LIGHT);
@@ -130,6 +179,12 @@ public class HelmetMaterialRegistry extends MaterialRegistry {
             put(StratumMaterial.HELMET_DIAMOND_HEAVY.name(), HELMET_DIAMOND_HEAVY);
             put(StratumMaterial.HELMET_NETHERITE_HEAVY.name(), HELMET_NETHERITE_HEAVY);
 
+            put(StratumMaterial.HELMET_LEATHER_JUG.name(), HELMET_LEATHER_JUG);
+            put(StratumMaterial.HELMET_GOLDEN_JUG.name(), HELMET_GOLDEN_JUG);
+            put(StratumMaterial.HELMET_CHAIN_JUG.name(), HELMET_CHAIN_JUG);
+            put(StratumMaterial.HELMET_IRON_JUG.name(), HELMET_IRON_JUG);
+            put(StratumMaterial.HELMET_DIAMOND_JUG.name(), HELMET_DIAMOND_JUG);
+            put(StratumMaterial.HELMET_NETHERITE_JUG.name(), HELMET_NETHERITE_JUG);
         }};
     }
 }
