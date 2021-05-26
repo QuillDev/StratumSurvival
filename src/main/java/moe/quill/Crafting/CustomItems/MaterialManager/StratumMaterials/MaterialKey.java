@@ -16,7 +16,8 @@ public enum MaterialKey {
     HAMMER_KEY("itemtype_hammer"),
     ICEPICK_KEY("itemtype_icepick"),
     GRAPPLING_HOOK_KEY("itemtype_grappling_hook"),
-    TRINKET_BAG("itemtype_trinket_bag");
+    TRINKET_BAG_KEY("itemtype_trinket_bag"),
+    BLOCKADE_KEY("itemtype_blockade");
 
     public String value;
 

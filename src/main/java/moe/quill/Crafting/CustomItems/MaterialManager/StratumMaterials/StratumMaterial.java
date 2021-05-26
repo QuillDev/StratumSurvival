@@ -164,4 +164,7 @@ public enum StratumMaterial {
     SMALL_TRINKET_BAG,
     MEDIUM_TRINKET_BAG,
     LARGE_TRINKET_BAG,
+
+    //Inventory item Helper
+    BLOCKADE,
 }

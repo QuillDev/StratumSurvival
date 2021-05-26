@@ -35,6 +35,7 @@ import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHel
 import moe.quill.Events.ChatEvents.ChatBadgeEvent;
 import moe.quill.Events.DevEvent;
 import moe.quill.Events.ChatEvents.InjectChatItemEvent;
+import moe.quill.Events.InventoryEvents.StopBlockadeClicks;
 import moe.quill.Events.StratumEventManager;
 import moe.quill.Adventuring.Loot.LootManager;
 import moe.quill.Adventuring.NPCManager.ChatNPC.ChatNPCManager;
@@ -44,6 +45,7 @@ import moe.quill.Adventuring.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.Events.ToolEvents.IcePickClimb;
+import moe.quill.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
@@ -103,6 +105,8 @@ public final class StratumSurvival extends JavaPlugin {
                 new ChatBadgeEvent(this),
                 new IcePickClimb(materialManager),
                 new GrappleHookEvent(materialManager),
+                new StopBlockadeClicks(materialManager),
+                new TrinketBagEventHandler(materialManager),
                 devTool
         );
         craftingManager.enable(materialManager);
