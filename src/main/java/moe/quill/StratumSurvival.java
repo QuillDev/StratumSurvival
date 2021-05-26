@@ -26,12 +26,13 @@ import moe.quill.Commands.StratumCommandManager;
 import moe.quill.Commands.AdventureCommands.WorldBossCommands.SummonWorldBossCommand;
 import moe.quill.Commands.AdventureCommands.WorldBossCommands.SummonWorldBossDelayedCommand;
 import moe.quill.Commands.AdventureCommands.WorldBossCommands.WorldBossTeleportCommand;
-import moe.quill.Crafting.CustomCraftingEvents.CraftCustomItemEvent;
-import moe.quill.Crafting.CustomCraftingEvents.GrindCustomWeaponEvent;
-import moe.quill.Crafting.CustomItems.Attributes.Attribute;
-import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
-import moe.quill.Crafting.CustomItems.EventHandler.HandleAttributeEvents;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.Crafting.CraftingEvents.CraftCustomItemEvent;
+import moe.quill.Crafting.CraftingEvents.GrindCustomWeaponEvent;
+import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.Items.EventHandler.HandleAttributeEvents;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.Events.ChatEvents.ChatBadgeEvent;
 import moe.quill.Events.DevEvent;
 import moe.quill.Events.ChatEvents.InjectChatItemEvent;
@@ -46,11 +47,12 @@ import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.Events.ToolEvents.IcePickClimb;
 import moe.quill.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
+import moe.quill.Utils.Annotations.Keyable;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
 import moe.quill.Events.ToolEvents.DaggerBackstabEvent;
 import org.slf4j.Logger;
@@ -68,8 +70,8 @@ public final class StratumSurvival extends JavaPlugin {
     @Override
     public void onEnable() {
         logger.info("Enabled!");
+        new KeyManager(this); //TODO: FUN!
         StratumSerialization.init();
-
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
         final var materialManager = new StratumMaterialManager(this);

@@ -1,7 +1,7 @@
 package moe.quill.Commands.ItemCommands.GiveStratumItem;
 
 import moe.quill.Commands.PlayerCommand;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

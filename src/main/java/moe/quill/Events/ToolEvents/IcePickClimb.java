@@ -1,11 +1,10 @@
 package moe.quill.Events.ToolEvents;
 
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Utils.ItemGroups;
 import moe.quill.Utils.Particles.ParticleFactory;
 import org.bukkit.Color;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -15,8 +14,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class IcePickClimb implements Listener {

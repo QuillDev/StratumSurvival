@@ -1,13 +1,8 @@
 package moe.quill.Adventuring.Enemies;
 
-import moe.quill.Crafting.CustomItems.Attributes.Attribute;
-import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
-import org.bukkit.Bukkit;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitScheduler;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

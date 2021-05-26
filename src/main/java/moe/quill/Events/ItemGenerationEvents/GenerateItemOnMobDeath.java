@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
+import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 
 import java.util.Random;
 

@@ -1,14 +1,13 @@
 package moe.quill.Events.ToolEvents;
 
 import moe.quill.StratumSurvival;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import moe.quill.Crafting.CustomItems.ItemHelpers.ItemHelper;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 
 import java.util.HashMap;
 import java.util.Random;

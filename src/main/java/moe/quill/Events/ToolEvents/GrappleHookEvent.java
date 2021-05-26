@@ -1,7 +1,7 @@
 package moe.quill.Events.ToolEvents;
 
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

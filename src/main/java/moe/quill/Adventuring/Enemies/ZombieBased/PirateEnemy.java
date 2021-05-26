@@ -1,9 +1,9 @@
 package moe.quill.Adventuring.Enemies.ZombieBased;
 
 import moe.quill.Adventuring.Enemies.EnemyType;
-import moe.quill.Crafting.CustomItems.MaterialManager.HeadHelper;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.HeadHelper;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Zombie;

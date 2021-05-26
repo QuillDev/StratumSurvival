@@ -1,9 +1,9 @@
 package moe.quill.Events.ToolEvents.TrinketBag;
 
-import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;

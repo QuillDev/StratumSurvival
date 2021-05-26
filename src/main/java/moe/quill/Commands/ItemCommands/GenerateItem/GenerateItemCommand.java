@@ -6,8 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
-import moe.quill.Crafting.CustomItems.ItemHelpers.ItemGenerator;
+import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 
 public class GenerateItemCommand implements CommandExecutor {
 

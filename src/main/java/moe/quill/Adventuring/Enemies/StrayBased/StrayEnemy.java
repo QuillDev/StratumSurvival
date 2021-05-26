@@ -2,7 +2,7 @@ package moe.quill.Adventuring.Enemies.StrayBased;
 
 import moe.quill.Adventuring.Enemies.Enemy;
 import moe.quill.Adventuring.Enemies.EnemyType;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;

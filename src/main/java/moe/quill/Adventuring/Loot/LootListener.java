@@ -1,6 +1,6 @@
 package moe.quill.Adventuring.Loot;
 
-import moe.quill.Crafting.CustomItems.Attributes.ItemAttributes;
+import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;

@@ -1,7 +1,6 @@
 package moe.quill.Commands.EnemyCommands;
 
 import moe.quill.Adventuring.Enemies.EnemyType;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;

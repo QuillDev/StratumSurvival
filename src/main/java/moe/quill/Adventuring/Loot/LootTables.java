@@ -1,8 +1,8 @@
 package moe.quill.Adventuring.Loot;
 
-import moe.quill.Crafting.CustomItems.ItemHelpers.ItemRarity;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.CustomItems.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.ItemHelpers.ItemRarity;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import net.kyori.adventure.text.Component;
 
 import java.util.HashMap;
