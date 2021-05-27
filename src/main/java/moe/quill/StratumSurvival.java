@@ -47,7 +47,6 @@ import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.Events.ToolEvents.IcePickClimb;
 import moe.quill.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
-import moe.quill.Utils.Annotations.Keyable;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
