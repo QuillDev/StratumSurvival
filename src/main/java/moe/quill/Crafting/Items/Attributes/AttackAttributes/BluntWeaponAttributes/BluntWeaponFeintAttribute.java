@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.KnockbackEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -10,8 +11,8 @@ public class BluntWeaponFeintAttribute extends BluntWeaponAttribute{
 
     public final static KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    public BluntWeaponFeintAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponFeintAttribute() {
+        super(AttributeKey.BLUNT_WEAPON_FEINT_ATTRIBUTE,
                 Component.text("Feint").color(TextColor.color(0x4D1DCB)),
                 0f,
                 0f,

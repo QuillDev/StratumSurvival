@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.KnockbackEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -10,8 +11,8 @@ public class BluntWeaponHookAttribute extends BluntWeaponAttribute{
 
     public final static KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    public BluntWeaponHookAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponHookAttribute() {
+        super(AttributeKey.BLUNT_WEAPON_HOOK_ATTRIBUTE,
                 Component.text("Pulling Slash").color(TextColor.color(0x2BCBC6)),
                 0f,
                 0f,

@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.CloakEffect;
 import moe.quill.Crafting.Items.Effects.KnockbackEffect;
 import net.kyori.adventure.text.Component;
@@ -8,13 +9,13 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 
-public class ShadowDodgeUseWeaponAttribute extends UseAttribute {
+public class UseShadowDodgeAttribute extends UseAttribute {
 
     public final static CloakEffect cloakEffect = new CloakEffect();
     public final static KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    public ShadowDodgeUseWeaponAttribute(NamespacedKey key) {
-        super(key,
+    public UseShadowDodgeAttribute() {
+        super(AttributeKey.USE_SHADOW_DODGE_ATTRIBUTE,
                 Component.text("Shadow Dodge").color(TextColor.color(0x3F0BCB)),
                 0f,
                 100L);

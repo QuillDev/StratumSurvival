@@ -2,7 +2,6 @@ package moe.quill.Crafting.Items.Attributes;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import net.kyori.adventure.text.Component;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import moe.quill.Crafting.Items.Attributes.AttributeHelpers.AttributeFormatter;
@@ -17,7 +16,7 @@ public abstract class Attribute {
     protected static final AttributeFormatter attributeFormatter = new AttributeFormatter();
 
     // Item Data Attributes
-    public NamespacedKey key;
+    public AttributeKey key;
     public ArrayList<ItemStack> materials;
     public Component lore;
     public ArrayList<Class<?>> childAttributes;
@@ -27,7 +26,7 @@ public abstract class Attribute {
     // Stats for determining item characteristics when generating the item
     public float scaleValue;
 
-    public Attribute(NamespacedKey key,
+    public Attribute(AttributeKey key,
                      Component lore,
                      ArrayList<ItemStack> items,
                      float scaleValue,

@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
@@ -11,8 +12,8 @@ public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute {
 
     SpawnEntityEffect evokerFangEffect = new SpawnEntityEffect();
 
-    public BluntWeaponEvokerStrikeAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponEvokerStrikeAttribute() {
+        super(AttributeKey.BLUNT_WEAPON_EVOKER_STRIKE_ATTRIBUTE,
                 Component.text("Evoker Strike").color(TextColor.color(0x555755)),
                 .1f,
                 .1f,

@@ -1,14 +1,13 @@
 package moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 
 public class PickaxeDoubleDropsAttribute extends PickaxeAttribute {
-    public PickaxeDoubleDropsAttribute(
-            NamespacedKey key
-    ) {
-        super(key, Component.text("Double Drops"), .2f, .1f, 1f);
+    public PickaxeDoubleDropsAttribute() {
+        super(AttributeKey.PICKAXE_DOUBLE_DROP_ATTRIBUTE, Component.text("Double Drops"), .2f, .1f, 1f);
     }
 
     @Override

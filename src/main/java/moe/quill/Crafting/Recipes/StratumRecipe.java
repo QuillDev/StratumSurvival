@@ -9,7 +9,7 @@ public abstract class StratumRecipe {
 
     protected final String key;
     protected final StratumMaterialManager materialManager;
-    protected final ItemHelper itemHelper = new ItemHelper();
+//    protected final ItemHelper itemHelper = new ItemHelper();
 
     public StratumRecipe(RecipeKey key, StratumMaterialManager materialManager) {
         this.key = key.name();

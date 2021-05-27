@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.BonusDamageEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -11,8 +12,8 @@ public class BluntWeaponPercentDamageAttribute extends BluntWeaponAttribute {
 
     private static final BonusDamageEffect bonusDamageEffect = new BonusDamageEffect();
 
-    public BluntWeaponPercentDamageAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponPercentDamageAttribute() {
+        super(AttributeKey.BLUNT_WEAPON_PERCENT_DAMAGE_ATTRIBUTE,
                 Component.text("Damage Multiplier").color(TextColor.color(0xf75134)),
                 .2f,
                 .1f,

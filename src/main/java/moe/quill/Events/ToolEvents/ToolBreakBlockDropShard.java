@@ -15,7 +15,7 @@ import java.util.Random;
 public class ToolBreakBlockDropShard implements Listener {
 
     private final StratumMaterialManager materialManager;
-    private final ItemHelper itemHelper = new ItemHelper();
+    //    private final ItemHelper itemHelper = new ItemHelper();
     private final Random rand = StratumSurvival.rand;
 
     private final static float rareOdds = 1 / 300f;
@@ -46,14 +46,15 @@ public class ToolBreakBlockDropShard implements Listener {
         final var player = event.getPlayer();
         final var block = event.getBlock();
 
-        //Get the level of the block
-        final var level = itemHelper.getRandomLevel(.38f, 6);
-        final var odds = oreOdds.get(block.getType());
-        if (odds == null) return;
-
-        //Get the fragment + drop it if we have a good roll
-        if (odds < rand.nextFloat()) return;
-        final var fragment = materialManager.getFragmentForLevel(level);
-        player.getWorld().dropItemNaturally(block.getLocation(), fragment);
+        //TODO: Reimplement
+//        //Get the level of the block
+//        final var level = itemHelper.getRandomLevel(.38f, 6);
+//        final var odds = oreOdds.get(block.getType());
+//        if (odds == null) return;
+//
+//        //Get the fragment + drop it if we have a good roll
+//        if (odds < rand.nextFloat()) return;
+//        final var fragment = materialManager.getFragmentForLevel(level);
+//        player.getWorld().dropItemNaturally(block.getLocation(), fragment);
     }
 }

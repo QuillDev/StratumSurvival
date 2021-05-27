@@ -1,6 +1,7 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public abstract class OnDeathAttribute extends Attribute {
 
-    public OnDeathAttribute(NamespacedKey key,
+    public OnDeathAttribute(AttributeKey key,
                             Component lore,
                             float scaleValue,
                             float minRoll,

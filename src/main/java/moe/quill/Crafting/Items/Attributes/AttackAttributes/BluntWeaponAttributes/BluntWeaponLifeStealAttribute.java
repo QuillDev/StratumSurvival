@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.HealPlayerEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -11,8 +12,8 @@ public class BluntWeaponLifeStealAttribute extends BluntWeaponAttribute {
 
     public static final HealPlayerEffect healPlayerEffect = new HealPlayerEffect();
 
-    public BluntWeaponLifeStealAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponLifeStealAttribute() {
+        super(AttributeKey.BLUNT_WEAPON_LIFE_STEAL_ATTRIBUTE,
                 Component.text("Life Steal").color(TextColor.color(0xf75134)),
                 .08f,
                 .05f,

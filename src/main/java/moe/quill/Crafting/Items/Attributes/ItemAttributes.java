@@ -69,9 +69,7 @@ public class ItemAttributes {
                 .filter(attrClass -> !Modifier.isAbstract(attrClass.getModifiers()))
                 .forEach(attrClass -> {
                     try {
-                        final var attr = attrClass.getDeclaredConstructor(
-                                NamespacedKey.class
-                        ).newInstance(new NamespacedKey(plugin, attrClass.getName()));
+                        final var attr = attrClass.getDeclaredConstructor().newInstance();
                         ItemAttributes.registerAll(attr);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
@@ -88,7 +86,7 @@ public class ItemAttributes {
         attributes.addAll(Arrays.asList(newAttributes));
         //Log the attributes that we just loaded
         Arrays.stream(newAttributes).forEach(attr -> {
-            logger.info(String.format("Loaded attribute %s [key:%s]", attr.getClass().getSimpleName(), attr.key.value()));
+            logger.info(String.format("Loaded attribute %s [key:%s]", attr.getClass().getSimpleName(), attr.key.name()));
         });
     }
 
@@ -125,10 +123,10 @@ public class ItemAttributes {
      * @param query to search for attributes that match it
      * @return a matching attribute
      */
-    public static Attribute getAttribute(String query) {
+    public static Attribute getAttribute(AttributeKey query) {
         return attributes
                 .stream()
-                .filter(attr -> attr.key.value().equalsIgnoreCase(query))
+                .filter(attr -> attr.key.equals(query))
                 .findFirst()
                 .orElse(null);
     }

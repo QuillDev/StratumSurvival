@@ -1,5 +1,7 @@
 package moe.quill.Crafting.Items.EventHandler;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.KeyManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
@@ -16,7 +18,16 @@ import org.bukkit.persistence.PersistentDataType;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Utils.Serialization.StratumSerialization;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class HandleAttributeEvents implements Listener {
+
+    private final KeyManager keyManager;
+
+    public HandleAttributeEvents(KeyManager keyManager) {
+        this.keyManager = keyManager;
+    }
 
     @EventHandler
     public void onDamageEvent(EntityDamageByEntityEvent event) {
@@ -61,13 +72,26 @@ public class HandleAttributeEvents implements Listener {
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
         if (data.has(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
+
         // Run the event over all keys on this item and see if any match
         data.getKeys().forEach(key -> {
-            final var attr = ItemAttributes.getAttribute(key.getKey());
+            if (!hasAttribute(key.getKey())) return;
+            final var attr = ItemAttributes.getAttribute(AttributeKey.valueOf(key.getKey().toUpperCase()));
             if (attr == null) return;
-            final var modBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
+            final var nsKey = keyManager.getNsKey(attr.key);
+            final var modBytes = data.get(nsKey, PersistentDataType.BYTE_ARRAY);
             final var modifier = StratumSerialization.deserializeFloat(modBytes);
             attr.execute(event, modifier);
         });
+    }
+
+    //Check if the enum list has the given attribute
+    public boolean hasAttribute(String query) {
+        for (final var attr : AttributeKey.values()) {
+            if (attr.name().equalsIgnoreCase(query)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

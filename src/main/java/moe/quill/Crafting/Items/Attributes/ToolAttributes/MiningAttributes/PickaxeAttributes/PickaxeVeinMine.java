@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Utils.ItemGroups;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -13,8 +14,8 @@ import java.util.Collections;
 
 @SuppressWarnings("unused")
 public class PickaxeVeinMine extends PickaxeAttribute {
-    public PickaxeVeinMine(NamespacedKey key) {
-        super(key, Component.text("Vein Miner"), 1.5f, 3, 8);
+    public PickaxeVeinMine() {
+        super(AttributeKey.PICKAXE_VEIN_MINER_ATTRIBUTE, Component.text("Vein Miner"), 1.5f, 3, 8);
     }
 
     @Override

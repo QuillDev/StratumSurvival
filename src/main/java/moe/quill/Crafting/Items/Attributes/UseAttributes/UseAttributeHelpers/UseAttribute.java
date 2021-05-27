@@ -1,6 +1,7 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;
@@ -20,7 +21,7 @@ public abstract class UseAttribute extends Attribute {
 
     protected long cooldown;
 
-    public UseAttribute(NamespacedKey key, Component lore, float scaleValue, long cooldown) {
+    public UseAttribute(AttributeKey key, Component lore, float scaleValue, long cooldown) {
         super(key, lore, new ArrayList<>(), scaleValue, 0, 0, new ArrayList<>());
         this.cooldown = cooldown;
     }

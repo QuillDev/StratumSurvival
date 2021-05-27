@@ -66,12 +66,11 @@ public final class StratumSurvival extends JavaPlugin {
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
     private final NPCManager npcManager = new NPCManager(this);
 
-    //TODO: Add some class for managing all of our namespaced keys... seriously
     @Override
     public void onEnable() {
-        logger.info("Enabled!");
-        new KeyManager(this); //TODO: FUN!
-        StratumSerialization.init();
+        StratumSerialization.init(); //Setup the serializer
+        final var keyManager = new KeyManager(this);
+
         //Init the item attributes manager
         final var itemAttributes = new ItemAttributes(this);
         final var materialManager = new StratumMaterialManager(this);
@@ -83,7 +82,7 @@ public final class StratumSurvival extends JavaPlugin {
         final var commandManager = new StratumCommandManager(this);
         final var eventManager = new StratumEventManager(this);
         final var lootManager = new LootManager(this, materialManager);
-        final var itemGenerator = new ItemGenerator(materialManager);
+        final var itemGenerator = new ItemGenerator(materialManager, keyManager);
         new ItemLists(materialManager);
         itemAttributes.init(this);
         final var enemyManager = new EnemyManager(this, materialManager);
@@ -94,7 +93,7 @@ public final class StratumSurvival extends JavaPlugin {
 
         //Register Events
         eventManager.register(
-                new HandleAttributeEvents(),
+                new HandleAttributeEvents(keyManager),
                 new GenerateItemOnMobDeath(itemGenerator),
                 new InjectChatItemEvent(),
                 new GrindCustomWeaponEvent(materialManager),

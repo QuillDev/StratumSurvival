@@ -6,9 +6,11 @@ import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.Use
 import moe.quill.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -19,13 +21,17 @@ import java.util.stream.Collectors;
 public class ItemGenerator {
 
     private final static Random rand = StratumSurvival.rand;
-    private final static ItemHelper itemHelper = new ItemHelper();
+    private final ItemHelper itemHelper;
+    private final KeyManager keyManager;
     private final StratumMaterialManager materialManager;
 
-    public ItemGenerator(StratumMaterialManager materialManager) {
+    public ItemGenerator(StratumMaterialManager materialManager, KeyManager keyManager) {
         this.materialManager = materialManager;
+        this.itemHelper = new ItemHelper(keyManager);
+        this.keyManager = keyManager;
     }
 
+    //TODO: Re-add generateItem
     public ItemStack generateItem(ItemStack item, int level) {
         final var weaponType = ItemAttributes.getWeaponTypeFromItemStack(item);
         if (weaponType == null) return null;
@@ -47,7 +53,7 @@ public class ItemGenerator {
         for (var i = 0; (i < maxIndex); i++) {
             final var curAttr = attributes.get(rand.nextInt(attributes.size()));
             final var dataValue = itemHelper.generateDataValue(curAttr, level);
-            data.set(curAttr.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
+            data.set(keyManager.getNsKey(curAttr.key), PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
             lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
             attributes.remove(curAttr); //remove the attribute we used
 

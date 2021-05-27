@@ -9,7 +9,7 @@ import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 
 public class RerollItem implements CommandExecutor {
 
-    private static final ItemHelper itemHelper = new ItemHelper();
+//    private static final ItemHelper itemHelper = new ItemHelper();
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -18,7 +18,7 @@ public class RerollItem implements CommandExecutor {
         if (player == null) return true;
 
         final var heldItem = player.getInventory().getItemInMainHand();
-        itemHelper.reRollItem(heldItem);
+//        itemHelper.reRollItem(heldItem); //TODO: Reimplement
         return false;
     }
 }

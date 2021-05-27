@@ -1,6 +1,7 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.OnDeathAttributes.OnDeathAttribute;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class AttackAttribute extends Attribute {
-    public AttackAttribute(NamespacedKey key, Component lore, ArrayList<ItemStack> itemStacks, float scaleValue, float minRoll, float maxRoll) {
+    public AttackAttribute(AttributeKey key, Component lore, ArrayList<ItemStack> itemStacks, float scaleValue, float minRoll, float maxRoll) {
         super(
                 key,
                 lore,

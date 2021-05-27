@@ -1,13 +1,15 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
 import moe.quill.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
+import org.w3c.dom.Attr;
 
-public abstract class LingeringPotionOnDeathAttribute extends OnDeathAttribute {
+public abstract class OnDeathLingeringPotionAttribute extends OnDeathAttribute {
 
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
     PotionEffect potionEffect;
@@ -15,7 +17,7 @@ public abstract class LingeringPotionOnDeathAttribute extends OnDeathAttribute {
     int duration;
     int durationOnUse;
 
-    public LingeringPotionOnDeathAttribute(NamespacedKey key, PotionEffect potionEffect, Component displayName, float radius, int duration, int durationOnUse) {
+    public OnDeathLingeringPotionAttribute(AttributeKey key, PotionEffect potionEffect, Component displayName, float radius, int duration, int durationOnUse) {
         super(key,
                 displayName,
                 .2f,

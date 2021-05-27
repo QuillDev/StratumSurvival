@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.TimeSetEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -7,12 +8,12 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 
-public class SetNightUseAttribute extends UseAttribute {
+public class UseSetNightAttribute extends UseAttribute {
 
     TimeSetEffect timeSetEffect = new TimeSetEffect();
 
-    public SetNightUseAttribute(NamespacedKey key) {
-        super(key,
+    public UseSetNightAttribute() {
+        super(AttributeKey.USE_SET_NIGHT_ATTRIBUTE,
                 Component.text("Daniel's Blessing").color(TextColor.color(0xCB8D)),
                 0f,
                 3600 * 20);

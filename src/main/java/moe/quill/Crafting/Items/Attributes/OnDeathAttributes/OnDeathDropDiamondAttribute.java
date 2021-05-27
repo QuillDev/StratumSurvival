@@ -1,6 +1,7 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -9,13 +10,13 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
-public class DropEmeraldOnDeathAttribute extends OnDeathAttribute{
+public class OnDeathDropDiamondAttribute extends OnDeathAttribute{
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
-    public DropEmeraldOnDeathAttribute(NamespacedKey key) {
-        super(key,
-                Component.text("Emerald Touch").color(TextColor.color(0x2CDA44)),
+    public OnDeathDropDiamondAttribute() {
+        super(AttributeKey.ON_DEATH_DROP_DIAMOND_ATTRIBUTE,
+                Component.text("Diamond Touch").color(TextColor.color(0x35B6DA)),
                 .05f,
                 .01f,
                 .2f
@@ -33,7 +34,7 @@ public class DropEmeraldOnDeathAttribute extends OnDeathAttribute{
         if (data == null) return;
 
         var target = data.getTarget();
-        var item = new ItemStack(Material.EMERALD);
+        var item = new ItemStack(Material.DIAMOND);
 
         if (modifier < Attribute.rand.nextFloat()) return;
         dropItemStackEffect.execute(sourceEvent, target.getLocation(), item);

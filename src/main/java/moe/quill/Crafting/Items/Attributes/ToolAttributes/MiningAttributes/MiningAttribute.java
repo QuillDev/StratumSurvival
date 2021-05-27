@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ToolAttributes.ToolAttribute;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public abstract class MiningAttribute extends ToolAttribute {
     public MiningAttribute(
-            NamespacedKey key,
+            AttributeKey key,
             Component lore,
             ArrayList<ItemStack> materials,
             float scaleValue,

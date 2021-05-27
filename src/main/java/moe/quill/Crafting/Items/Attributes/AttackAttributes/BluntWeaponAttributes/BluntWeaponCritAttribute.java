@@ -1,6 +1,7 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.CritDamageEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -11,8 +12,8 @@ public class BluntWeaponCritAttribute extends BluntWeaponAttribute {
 
     private final static CritDamageEffect critDamageEffect = new CritDamageEffect();
 
-    public BluntWeaponCritAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponCritAttribute() {
+        super(AttributeKey.BLUNT_WEAPON_CRIT_ATTRIBUTE,
                 Component.text("Critical Strike").color(TextColor.color(0xDAAF00)),
                 .2f,
                 .05f,

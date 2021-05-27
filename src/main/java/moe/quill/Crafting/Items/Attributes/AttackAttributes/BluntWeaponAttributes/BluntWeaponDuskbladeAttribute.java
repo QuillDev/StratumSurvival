@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.BonusDamageEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -9,8 +10,8 @@ import org.bukkit.event.Event;
 public class BluntWeaponDuskbladeAttribute extends BluntWeaponAttribute{
     private static final BonusDamageEffect bonusDamageEffect = new BonusDamageEffect();
 
-    public BluntWeaponDuskbladeAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponDuskbladeAttribute() {
+        super(AttributeKey.BLUNT_WEAPON_DUSKBLADE_ATTRIBUTE,
                 Component.text("Duskblade").color(TextColor.color(0x3E607C)),
                 0f,
                 0f,

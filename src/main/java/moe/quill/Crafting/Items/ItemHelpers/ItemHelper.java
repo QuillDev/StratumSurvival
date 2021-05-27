@@ -2,6 +2,7 @@ package moe.quill.Crafting.Items.ItemHelpers;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
@@ -19,28 +20,36 @@ public class ItemHelper {
 
     private static final Random rand = StratumSurvival.rand;
 
+    private final KeyManager keyManager;
+
+    public ItemHelper(KeyManager keyManager) {
+        this.keyManager = keyManager;
+    }
+
     /**
      * Re-roll the stats on the given item
      *
      * @param item to re-roll stats on
      */
     public void reRollItem(ItemStack item) {
-        final var meta = item.getItemMeta();
-        final var data = meta.getPersistentDataContainer();
-        data.getKeys().forEach((key) -> {
-            final var attribute = ItemAttributes.getAttribute(key.getKey());
 
-            //Get the level of the item
-            final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
-            var level = (int) StratumSerialization.deserializeFloat(levelBytes);
-            if (attribute == null) return;
-
-            //Get the data and set each key with new values
-            final var dataValue = generateDataValue(attribute, level);
-            data.set(attribute.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
-            setLoreFromItemKeys(meta);
-            item.setItemMeta(meta);
-        });
+        //TODO: Re add reroll
+//        final var meta = item.getItemMeta();
+//        final var data = meta.getPersistentDataContainer();
+//        data.getKeys().forEach((key) -> {
+//            final var attribute = ItemAttributes.getAttribute(key.getKey());
+//
+//            //Get the level of the item
+//            final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
+//            var level = (int) StratumSerialization.deserializeFloat(levelBytes);
+//            if (attribute == null) return;
+//
+//            //Get the data and set each key with new values
+//            final var dataValue = generateDataValue(attribute, level);
+//            data.set(attribute.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
+//            setLoreFromItemKeys(meta);
+//            item.setItemMeta(meta);
+//        });
     }
 
     /**
@@ -77,20 +86,21 @@ public class ItemHelper {
      * @param meta of the item to set the lore of
      */
     public void setLoreFromItemKeys(ItemMeta meta) {
-        final var data = meta.getPersistentDataContainer();
-        if (data.getKeys().size() == 0) return;
-        final var lore = new ArrayList<Component>();
-        final var level = (int) StratumSerialization.deserializeFloat(data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY));
-        lore.add(ItemRarity.getRarity(level).getName());
-        for (final var key : data.getKeys()) {
-            final var attr = ItemAttributes.getAttribute(key.getKey());
-            if (attr == null) continue;
-            //Get the value off of the item for the given attribute
-            final var valueBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
-            final var value = StratumSerialization.deserializeFloat(valueBytes);
-            if (Float.isNaN(value)) continue;
-            lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
-        }
+        //TODO: Re add set lore
+//        final var data = meta.getPersistentDataContainer();
+//        if (data.getKeys().size() == 0) return;
+//        final var lore = new ArrayList<Component>();
+//        final var level = (int) StratumSerialization.deserializeFloat(data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY));
+//        lore.add(ItemRarity.getRarity(level).getName());
+//        for (final var key : data.getKeys()) {
+//            final var attr = ItemAttributes.getAttribute(key.getKey());
+//            if (attr == null) continue;
+//            //Get the value off of the item for the given attribute
+//            final var valueBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
+//            final var value = StratumSerialization.deserializeFloat(valueBytes);
+//            if (Float.isNaN(value)) continue;
+//            lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
+//        }
 
         //If the item already has lore, then merge the lore
 //        if (meta.hasLore()) {
@@ -102,7 +112,7 @@ public class ItemHelper {
 //            }
 //
 //        }
-        meta.lore(lore);
+//        meta.lore(lore);
     }
 
     /**
