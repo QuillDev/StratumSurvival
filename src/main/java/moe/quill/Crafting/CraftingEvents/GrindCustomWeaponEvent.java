@@ -8,15 +8,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 import java.util.Random;
 
 public class GrindCustomWeaponEvent implements Listener {
 
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
-    public GrindCustomWeaponEvent(StratumMaterialManager materialManager) {
+    public GrindCustomWeaponEvent(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }
 

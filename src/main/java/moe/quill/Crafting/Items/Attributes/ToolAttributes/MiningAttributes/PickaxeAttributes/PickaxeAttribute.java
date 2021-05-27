@@ -3,7 +3,9 @@ package moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.Pick
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.MiningAttribute;
 import moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.MiningEventData;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.ItemGroups;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -12,8 +14,10 @@ import org.bukkit.event.Event;
 import java.util.ArrayList;
 
 public abstract class PickaxeAttribute extends MiningAttribute {
-    public PickaxeAttribute(AttributeKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
+    public PickaxeAttribute(MaterialManager materialManager, KeyManager keyManager, AttributeKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
         super(
+                materialManager,
+                keyManager,
                 key,
                 lore,
                 new ArrayList<>() {{

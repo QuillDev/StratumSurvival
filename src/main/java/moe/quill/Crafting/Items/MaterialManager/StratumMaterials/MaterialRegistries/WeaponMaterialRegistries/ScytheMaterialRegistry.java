@@ -3,6 +3,7 @@ package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegist
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -13,8 +14,8 @@ import java.util.HashMap;
 
 public class ScytheMaterialRegistry extends MaterialRegistry {
 
-    public ScytheMaterialRegistry() {
-        super(MaterialKey.SCYTHE_KEY);
+    public ScytheMaterialRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.SCYTHE_KEY);
     }
 
     @Override

@@ -6,15 +6,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class ToolBreakBlockDropShard implements Listener {
 
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
     //    private final ItemHelper itemHelper = new ItemHelper();
     private final Random rand = StratumSurvival.rand;
 
@@ -35,7 +34,7 @@ public class ToolBreakBlockDropShard implements Listener {
         put(Material.EMERALD_ORE, commonOdds);
     }};
 
-    public ToolBreakBlockDropShard(StratumMaterialManager materialManager) {
+    public ToolBreakBlockDropShard(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }
 

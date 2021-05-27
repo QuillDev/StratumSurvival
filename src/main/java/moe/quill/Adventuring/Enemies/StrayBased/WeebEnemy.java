@@ -3,13 +3,13 @@ package moe.quill.Adventuring.Enemies.StrayBased;
 import moe.quill.Adventuring.Enemies.EnemyType;
 import moe.quill.Crafting.Items.MaterialManager.HeadHelper;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
 public class WeebEnemy extends StrayEnemy {
-    public WeebEnemy(StratumMaterialManager materialManager) {
+    public WeebEnemy(MaterialManager materialManager) {
         super(Component.text("Weeb"), materialManager, EnemyType.ENEMY_WEEB);
     }
 

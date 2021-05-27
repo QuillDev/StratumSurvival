@@ -2,17 +2,21 @@ package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttribut
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.ChainDamageEffect;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 
 public class BluntWeaponChainAttribute extends BluntWeaponAttribute {
 
     private static final ChainDamageEffect chainDamageEffect = new ChainDamageEffect();
 
-    public BluntWeaponChainAttribute() {
-        super(AttributeKey.BLUNT_WEAPON_CHAIN_ATTRIBUTE,
+    public BluntWeaponChainAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.BLUNT_WEAPON_CHAIN_ATTRIBUTE,
                 Component.text("Chain Damage").color(TextColor.color(0xe04bfa)),
                 .17f,
                 .1f,

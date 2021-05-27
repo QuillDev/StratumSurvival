@@ -5,13 +5,11 @@ import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -26,8 +24,8 @@ public class ItemGenerator {
     private final KeyManager keyManager;
 
     @Inject
-    public ItemGenerator(StratumSurvival plugin) {
-        this.keyManager = plugin.getKeyManager();
+    public ItemGenerator(KeyManager keyManager) {
+        this.keyManager = keyManager;
         this.itemHelper = new ItemHelper(keyManager);
 
     }

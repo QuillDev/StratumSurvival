@@ -2,6 +2,8 @@ package moe.quill.Crafting.Items.Attributes.UseAttributes;
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
@@ -13,8 +15,10 @@ import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.Use
 public class UseJumpBoostAttribute extends UseAttribute {
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
 
-    public UseJumpBoostAttribute() {
+    public UseJumpBoostAttribute(MaterialManager materialManager, KeyManager keyManager) {
         super(
+                materialManager,
+                keyManager,
                 AttributeKey.USE_JUMP_BOOST_ATTRIBUTE,
                 Component.text("Acrobatic Field").color(TextColor.color(0x53CB35)),
                 0f,

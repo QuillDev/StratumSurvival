@@ -3,6 +3,7 @@ package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegist
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -14,8 +15,8 @@ import java.util.HashMap;
 
 @SuppressWarnings("unused")
 public class GrapplingHookRegistry extends MaterialRegistry {
-    public GrapplingHookRegistry() {
-        super(MaterialKey.GRAPPLING_HOOK_KEY);
+    public GrapplingHookRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.GRAPPLING_HOOK_KEY);
     }
 
     @Override

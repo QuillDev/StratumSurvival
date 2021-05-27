@@ -1,6 +1,8 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -10,13 +12,13 @@ import org.bukkit.inventory.ItemStack;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
 
-public class OnDeathDropGoldAttribute extends OnDeathAttribute{
+public class OnDeathDropGoldAttribute extends OnDeathAttribute {
 
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
-    public OnDeathDropGoldAttribute() {
-        super(AttributeKey.ON_DEATH_DROP_GOLD_ATTRIBUTE,
+    public OnDeathDropGoldAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(materialManager, keyManager, AttributeKey.ON_DEATH_DROP_GOLD_ATTRIBUTE,
                 Component.text("Midas Touch").color(TextColor.color(0xDAAA35)),
                 .1f,
                 .05f,

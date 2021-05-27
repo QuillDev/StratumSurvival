@@ -1,7 +1,7 @@
 package moe.quill.Crafting.Recipes.Tools.GrapplingHook;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Recipes.RecipeKey;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import org.bukkit.Material;
@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapedRecipe;
 
 @SuppressWarnings("unused")
 public class CraftGrapplingHook extends StratumRecipe {
-    public CraftGrapplingHook(StratumMaterialManager materialManager) {
+    public CraftGrapplingHook(MaterialManager materialManager) {
         super(RecipeKey.RECIPE_GRAPPLING_HOOK, materialManager);
     }
 

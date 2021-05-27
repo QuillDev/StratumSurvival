@@ -3,6 +3,8 @@ package moe.quill.Crafting.Items.Attributes;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -43,8 +45,12 @@ public class ItemAttributes {
     //Attribute categories
     public static final HashMap<String, ItemType> attributeCategories = new HashMap<>();
 
+    private final MaterialManager materialManager;
+    private final KeyManager keyManager;
+
+
     @Inject
-    public ItemAttributes(StratumSurvival plugin) {
+    public ItemAttributes(StratumSurvival plugin, MaterialManager materialManager, KeyManager keyManager) {
         levelKey = new NamespacedKey(plugin, "item_level");
         obfuscatedKey = new NamespacedKey(plugin, "item_obfuscated");
         nameKey = new NamespacedKey(plugin, "item_name");
@@ -52,6 +58,8 @@ public class ItemAttributes {
         cooldownKey = new NamespacedKey(plugin, "item_use_cooldown");
         inventorySizeKey = new NamespacedKey(plugin, "inventory_size");
         inventoryItemDataKey = new NamespacedKey(plugin, "inventory_data");
+        this.materialManager = materialManager;
+        this.keyManager = keyManager;
         init();
     }
 
@@ -72,7 +80,12 @@ public class ItemAttributes {
                 .filter(attrClass -> !Modifier.isAbstract(attrClass.getModifiers()))
                 .forEach(attrClass -> {
                     try {
-                        final var attr = attrClass.getDeclaredConstructor().newInstance();
+                        final var attr = attrClass
+                                .getDeclaredConstructor(
+                                        MaterialManager.class,
+                                        KeyManager.class
+                                )
+                                .newInstance(materialManager, keyManager);
                         ItemAttributes.registerAll(attr);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();

@@ -6,7 +6,6 @@ import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.Annotations.Keyable;
 import org.bukkit.NamespacedKey;
-import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
 
 import java.util.HashMap;
@@ -38,5 +37,9 @@ public class KeyManager {
 
     public NamespacedKey getNsKey(AttributeKey attributeKey) {
         return getNsKey(attributeKey.name());
+    }
+
+    public NamespacedKey getNsKey(GlobalKey globalKey) {
+        return getNsKey(globalKey.name());
     }
 }

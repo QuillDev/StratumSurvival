@@ -4,16 +4,16 @@ import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import org.bukkit.inventory.RecipeChoice;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 import java.util.HashSet;
 
 
 public class GeodeRecipeGenerator extends RecipeGenerator {
 
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
-    public GeodeRecipeGenerator(StratumMaterialManager materialManager) {
+    public GeodeRecipeGenerator(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }
 

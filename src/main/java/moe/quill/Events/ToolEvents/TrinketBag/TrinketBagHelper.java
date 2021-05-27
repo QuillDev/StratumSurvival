@@ -3,7 +3,7 @@ package moe.quill.Events.ToolEvents.TrinketBag;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -26,7 +26,7 @@ public class TrinketBagHelper {
     private final NamespacedKey itemDataKey;
     private final static int maxBagSize = 9;
 
-    public TrinketBagHelper(StratumMaterialManager materialManager) {
+    public TrinketBagHelper(MaterialManager materialManager) {
         this.trinketBagKey = materialManager.getNamespacedMaterialKey(MaterialKey.TRINKET_BAG_KEY);
         this.inventorySizeKey = ItemAttributes.inventorySizeKey;
         this.itemDataKey = ItemAttributes.inventoryItemDataKey;

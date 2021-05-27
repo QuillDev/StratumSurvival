@@ -1,6 +1,6 @@
 package moe.quill.Adventuring.Enemies;
 
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -11,9 +11,9 @@ public abstract class Enemy {
     protected final Component name;
     protected final EntityType entityType;
     protected final EnemyType enemyType;
-    protected final StratumMaterialManager materialManager;
+    protected final MaterialManager materialManager;
 
-    public Enemy(Component name, StratumMaterialManager materialManager, EntityType entityType, EnemyType enemyType) {
+    public Enemy(Component name, MaterialManager materialManager, EntityType entityType, EnemyType enemyType) {
         this.name = name;
         this.materialManager = materialManager;
         this.entityType = entityType;

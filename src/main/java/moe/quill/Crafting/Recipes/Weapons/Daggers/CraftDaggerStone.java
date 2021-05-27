@@ -4,14 +4,14 @@ import moe.quill.Crafting.Recipes.RecipeKey;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import moe.quill.Crafting.Recipes.Weapons.AbstractRecipes.StoneRecipe;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
 public class CraftDaggerStone extends StratumRecipe implements StoneRecipe {
-    public CraftDaggerStone(StratumMaterialManager materialManager) {
+    public CraftDaggerStone(MaterialManager materialManager) {
         super(RecipeKey.RECIPE_DAGGER_STONE, materialManager);
     }
 

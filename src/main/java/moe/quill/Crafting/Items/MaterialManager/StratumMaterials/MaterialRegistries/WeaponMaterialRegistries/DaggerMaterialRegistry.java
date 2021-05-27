@@ -4,6 +4,7 @@ import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.BaseWeaponAttri
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -12,8 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class DaggerMaterialRegistry extends MaterialRegistry {
-    public DaggerMaterialRegistry() {
-        super(MaterialKey.DAGGER_KEY);
+    public DaggerMaterialRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.DAGGER_KEY);
     }
 
     @Override

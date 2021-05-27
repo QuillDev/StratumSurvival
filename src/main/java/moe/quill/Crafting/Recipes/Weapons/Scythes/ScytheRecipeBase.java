@@ -1,7 +1,7 @@
 package moe.quill.Crafting.Recipes.Weapons.Scythes;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Recipes.RecipeKey;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import org.bukkit.Material;
@@ -15,7 +15,7 @@ public abstract class ScytheRecipeBase extends StratumRecipe {
     private final RecipeChoice choice;
     private final StratumMaterial result;
 
-    public ScytheRecipeBase(RecipeKey key, StratumMaterialManager materialManager, RecipeChoice choice, StratumMaterial result) {
+    public ScytheRecipeBase(RecipeKey key, MaterialManager materialManager, RecipeChoice choice, StratumMaterial result) {
         super(key, materialManager);
         this.choice = choice;
         this.result = result;

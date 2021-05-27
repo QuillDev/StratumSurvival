@@ -1,9 +1,10 @@
 package moe.quill.Adventuring.Loot;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import org.bukkit.Location;
@@ -14,23 +15,22 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.Plugin;
 
 import java.util.Random;
 
+@Singleton
 public class LootManager {
 
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
     private final NamespacedKey lootChestKey;
     private final LootTables lootTables;
     private final Random rand = StratumSurvival.rand;
 
     @Inject
-    public LootManager(StratumSurvival plugin) {
-        this.materialManager = plugin.getMaterialManager();
+    public LootManager(StratumSurvival plugin, MaterialManager materialManager) {
+        this.materialManager = materialManager;
         this.lootTables = plugin.getLootTables();
         this.lootChestKey = new NamespacedKey(plugin, "loot_chest_key");
-        plugin.getServer().getPluginManager().registerEvents(new LootListener(this), plugin);
     }
 
     /**

@@ -3,8 +3,7 @@ package moe.quill.Adventuring.Loot;
 import com.google.inject.Inject;
 import moe.quill.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.StratumSurvival;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import net.kyori.adventure.text.Component;
 
 import java.util.HashMap;
@@ -12,11 +11,11 @@ import java.util.HashMap;
 public class LootTables {
 
     private final HashMap<Integer, LootTable> tables = new HashMap<>();
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
     @Inject
-    public LootTables(StratumSurvival plugin) {
-        this.materialManager = plugin.getMaterialManager();
+    public LootTables(MaterialManager materialManager) {
+        this.materialManager = materialManager;
     }
 
     public void init() {

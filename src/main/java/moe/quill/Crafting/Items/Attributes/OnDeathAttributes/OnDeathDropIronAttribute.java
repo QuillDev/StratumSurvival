@@ -1,6 +1,8 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -10,12 +12,15 @@ import org.bukkit.inventory.ItemStack;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
 
-public class OnDeathDropIronAttribute extends OnDeathAttribute{
+public class OnDeathDropIronAttribute extends OnDeathAttribute {
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
-    public OnDeathDropIronAttribute() {
-        super(AttributeKey.ON_DEATH_DROP_IRON_ATTRIBUTE,
+    public OnDeathDropIronAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.ON_DEATH_DROP_IRON_ATTRIBUTE,
                 Component.text("Steel Touch").color(TextColor.color(0x88ABDA)),
                 .1f,
                 .05f,

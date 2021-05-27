@@ -3,6 +3,7 @@ package moe.quill.Crafting.Items.MaterialManager.StratumMaterials;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.*;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.Material;
@@ -19,18 +20,21 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 @Singleton
-public class StratumMaterialManager {
+public class MaterialManager {
 
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
     private final ArrayList<ItemStack> geodeMaterials = new ArrayList<>();
     private final HashMap<MaterialKey, NamespacedKey> keyMap = new HashMap<>();
-    private final Plugin plugin;
     private static final Reflections reflections = new Reflections("moe.quill");
-    private static final Logger logger = LoggerFactory.getLogger(StratumMaterialManager.class.getSimpleName());
+    private static final Logger logger = LoggerFactory.getLogger(MaterialManager.class.getSimpleName());
+
+    private final Plugin plugin;
+    private final KeyManager keyManager;
 
     @Inject
-    public StratumMaterialManager(StratumSurvival plugin) {
+    public MaterialManager(StratumSurvival plugin, KeyManager keyManager) {
         this.plugin = plugin;
+        this.keyManager = keyManager;
 
         //Register all of the material types
         registerMaterialsDynamically();
@@ -55,9 +59,9 @@ public class StratumMaterialManager {
                 .getSubTypesOf(MaterialRegistry.class)
                 .stream()
                 .filter(registryClass -> !Modifier.isAbstract(registryClass.getModifiers()))
-                .forEach(enemyClass -> {
+                .forEach(registryClass -> {
                     try {
-                        final var registry = enemyClass.getDeclaredConstructor().newInstance();
+                        final var registry = registryClass.getDeclaredConstructor(KeyManager.class).newInstance(keyManager);
                         registerAll(registry);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();

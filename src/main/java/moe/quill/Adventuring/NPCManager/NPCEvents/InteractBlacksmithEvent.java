@@ -1,19 +1,13 @@
 package moe.quill.Adventuring.NPCManager.NPCEvents;
 
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
-import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
 import moe.quill.Utils.PlayerHelpers.PlayerInventoryHelper;
-import moe.quill.Utils.Serialization.StratumSerialization;
 
 public class InteractBlacksmithEvent implements Listener {
 
@@ -21,9 +15,9 @@ public class InteractBlacksmithEvent implements Listener {
     private final NamespacedKey blacksmithKey;
     //    private final ItemHelper itemHelper = new ItemHelper();
     private final PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
-    public InteractBlacksmithEvent(NPCManager npcManager, StratumMaterialManager materialManager) {
+    public InteractBlacksmithEvent(NPCManager npcManager, MaterialManager materialManager) {
         this.blacksmithKey = npcManager.getNPCByType(NPCType.BLACKSMITH).getKey();
         this.materialManager = materialManager;
     }

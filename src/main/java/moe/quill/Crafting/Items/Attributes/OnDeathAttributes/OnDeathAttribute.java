@@ -2,6 +2,8 @@ package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 
@@ -12,13 +14,18 @@ import java.util.ArrayList;
 
 public abstract class OnDeathAttribute extends Attribute {
 
-    public OnDeathAttribute(AttributeKey key,
-                            Component lore,
-                            float scaleValue,
-                            float minRoll,
-                            float maxRoll
+    public OnDeathAttribute(
+            MaterialManager materialManager,
+            KeyManager keyManager, AttributeKey key,
+            Component lore,
+            float scaleValue,
+            float minRoll,
+            float maxRoll
     ) {
-        super(key, lore,
+        super(
+                materialManager,
+                keyManager,
+                key, lore,
                 //Weapons this attribute can be applied to
                 new ArrayList<>(),
                 scaleValue,

@@ -1,13 +1,17 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 
 public class OnDeathWhisperAttribute extends OnDeathAttribute {
-    public OnDeathWhisperAttribute() {
+    public OnDeathWhisperAttribute(MaterialManager materialManager, KeyManager keyManager) {
         super(
+                materialManager,
+                keyManager,
                 AttributeKey.ON_DEATH_WHISPER_ATTRIBUTE,
                 Component.text("Whispering"),
                 0f,

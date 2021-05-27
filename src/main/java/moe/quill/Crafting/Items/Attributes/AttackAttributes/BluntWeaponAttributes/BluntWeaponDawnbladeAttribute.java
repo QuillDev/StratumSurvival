@@ -2,16 +2,20 @@ package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttribut
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.BonusDamageEffect;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 
-public class BluntWeaponDawnbladeAttribute extends BluntWeaponAttribute{
+public class BluntWeaponDawnbladeAttribute extends BluntWeaponAttribute {
     private static final BonusDamageEffect bonusDamageEffect = new BonusDamageEffect();
 
-    public BluntWeaponDawnbladeAttribute() {
-        super(AttributeKey.BLUNT_WEAPON_DAWNBLADE_ATTRIBUTE,
+    public BluntWeaponDawnbladeAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.BLUNT_WEAPON_DAWNBLADE_ATTRIBUTE,
                 Component.text("Dawnblade").color(TextColor.color(0xDFE291)),
                 0f,
                 0f,

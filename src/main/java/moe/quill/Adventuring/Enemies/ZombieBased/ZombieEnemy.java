@@ -2,7 +2,7 @@ package moe.quill.Adventuring.Enemies.ZombieBased;
 
 import moe.quill.Adventuring.Enemies.Enemy;
 import moe.quill.Adventuring.Enemies.EnemyType;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Zombie;
 
 public abstract class ZombieEnemy extends Enemy {
 
-    public ZombieEnemy(Component name, StratumMaterialManager materialManager, EnemyType enemyType) {
+    public ZombieEnemy(Component name, MaterialManager materialManager, EnemyType enemyType) {
         super(name, materialManager, EntityType.ZOMBIE, enemyType);
     }
 

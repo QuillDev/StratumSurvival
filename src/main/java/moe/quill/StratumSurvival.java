@@ -1,8 +1,10 @@
 package moe.quill;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import moe.quill.Adventuring.Bosses.WorldBossManager;
 import moe.quill.Adventuring.Enemies.EnemyManager;
+import moe.quill.Adventuring.Loot.LootListener;
 import moe.quill.Adventuring.Loot.LootTables;
 import moe.quill.Commands.EnemyCommands.SpawnEnemyTabs;
 import moe.quill.Commands.ItemCommands.GiveStratumItem.GiveStratumItemCommand;
@@ -55,11 +57,12 @@ import moe.quill.Guice.Binders.PluginBinderModule;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 
 import java.util.Random;
 
+@Singleton
 public final class StratumSurvival extends JavaPlugin {
     public static final Random rand = new Random();
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
@@ -67,7 +70,7 @@ public final class StratumSurvival extends JavaPlugin {
     @Inject
     private KeyManager keyManager;
     @Inject
-    private StratumMaterialManager materialManager;
+    private MaterialManager materialManager;
     @Inject
     private ItemAttributes itemAttributes;
     @Inject
@@ -102,7 +105,6 @@ public final class StratumSurvival extends JavaPlugin {
             module.createInjector()
                     .injectMembers(this);
 
-            Attribute.setMaterialManager(materialManager);
             itemAttributes.init();
 
 
@@ -126,6 +128,7 @@ public final class StratumSurvival extends JavaPlugin {
                     new GrappleHookEvent(materialManager),
                     new StopBlockadeClicks(materialManager),
                     new TrinketBagEventHandler(materialManager),
+                    new LootListener(lootManager, keyManager),
                     devTool
             );
             craftingManager.enable(materialManager);
@@ -153,14 +156,6 @@ public final class StratumSurvival extends JavaPlugin {
             e.printStackTrace();
         }
 
-    }
-
-    public StratumMaterialManager getMaterialManager() {
-        return materialManager;//TODO FIX
-    }
-
-    public KeyManager getKeyManager() {
-        return keyManager;
     }
 
     public LootTables getLootTables() {

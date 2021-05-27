@@ -1,6 +1,8 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes;
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
@@ -14,8 +16,11 @@ public class UseSlowFieldAttribute extends UseAttribute {
 
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
 
-    public UseSlowFieldAttribute() {
-        super(AttributeKey.USE_SLOW_FIELD_ATTRIBUTE,
+    public UseSlowFieldAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.USE_SLOW_FIELD_ATTRIBUTE,
                 Component.text("Slowing Field").color(TextColor.color(0x6B8FCB)),
                 0f,
                 500L);
