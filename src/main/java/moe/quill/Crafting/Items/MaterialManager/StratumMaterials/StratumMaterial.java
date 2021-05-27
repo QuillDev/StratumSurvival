@@ -65,6 +65,7 @@ public enum StratumMaterial {
     TRINKET_BAG_SMALL,
     TRINKET_BAG_MEDIUM,
     TRINKET_BAG_LARGE,
+    TRINKET_BAG_XLARGE,
 
     //HELMETS
     HELMET_LEATHER_LIGHT,

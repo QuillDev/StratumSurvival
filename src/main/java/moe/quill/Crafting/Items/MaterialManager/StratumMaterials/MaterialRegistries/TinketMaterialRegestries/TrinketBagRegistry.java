@@ -40,7 +40,7 @@ public class TrinketBagRegistry extends MaterialRegistry {
             TRINKET_BAG_MEDIUM_META.displayName(Component.text("Medium Trinket Bag"));
             TRINKET_BAG_MEDIUM_META.setLocalizedName("Medium Trinket Bag");
             TRINKET_BAG_MEDIUM_META.setCustomModelData(2);
-            TRINKET_BAG_MEDIUM_DATA.set(ItemAttributes.inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(6));
+            TRINKET_BAG_MEDIUM_DATA.set(ItemAttributes.inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(5));
             TRINKET_BAG_MEDIUM_DATA.set(ItemAttributes.inventoryItemDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeItemList(emptyItemList));
             TRINKET_BAG_MEDIUM.setItemMeta(TRINKET_BAG_MEDIUM_META);
 
@@ -50,14 +50,25 @@ public class TrinketBagRegistry extends MaterialRegistry {
             TRINKET_BAG_LARGE_META.displayName(Component.text("Large Trinket Bag"));
             TRINKET_BAG_LARGE_META.setLocalizedName("Large Trinket Bag");
             TRINKET_BAG_LARGE_META.setCustomModelData(3);
-            TRINKET_BAG_LARGE_DATA.set(ItemAttributes.inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(9));
+            TRINKET_BAG_LARGE_DATA.set(ItemAttributes.inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(7));
             TRINKET_BAG_LARGE_DATA.set(ItemAttributes.inventoryItemDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeItemList(emptyItemList));
             TRINKET_BAG_LARGE.setItemMeta(TRINKET_BAG_LARGE_META);
+
+            final var TRINKET_BAG_XLARGE = new ItemStack(Material.RABBIT_HIDE);
+            final var TRINKET_BAG_XLARGE_META = TRINKET_BAG_XLARGE.getItemMeta();
+            final var TRINKET_BAG_XLARGE_DATA = TRINKET_BAG_XLARGE_META.getPersistentDataContainer();
+            TRINKET_BAG_XLARGE_META.displayName(Component.text("Extra Large Trinket Bag"));
+            TRINKET_BAG_XLARGE_META.setLocalizedName("Extra Large Trinket Bag");
+            TRINKET_BAG_XLARGE_META.setCustomModelData(4);
+            TRINKET_BAG_XLARGE_DATA.set(ItemAttributes.inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(9));
+            TRINKET_BAG_XLARGE_DATA.set(ItemAttributes.inventoryItemDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeItemList(emptyItemList));
+            TRINKET_BAG_XLARGE.setItemMeta(TRINKET_BAG_XLARGE_META);
 
             //TODO: ADD KEYS
             put(StratumMaterial.TRINKET_BAG_SMALL.name(), TRINKET_BAG_SMALL);
             put(StratumMaterial.TRINKET_BAG_MEDIUM.name(), TRINKET_BAG_MEDIUM);
             put(StratumMaterial.TRINKET_BAG_LARGE.name(), TRINKET_BAG_LARGE);
+            put(StratumMaterial.TRINKET_BAG_XLARGE.name(), TRINKET_BAG_XLARGE);
         }};
     }
 }

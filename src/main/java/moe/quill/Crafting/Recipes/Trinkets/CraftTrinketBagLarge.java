@@ -11,7 +11,7 @@ public class CraftTrinketBagLarge extends TrinketBagUpgrade{
                 materialManager,
                 StratumMaterial.TRINKET_BAG_LARGE,
                 new RecipeChoice.ExactChoice(materialManager.getItem(StratumMaterial.TRINKET_BAG_MEDIUM)),
-                new RecipeChoice.ExactChoice(materialManager.getItem(StratumMaterial.SHARD_LEGENDARY))
+                new RecipeChoice.ExactChoice(materialManager.getItem(StratumMaterial.SHARD_EPIC))
         );
     }
 }
