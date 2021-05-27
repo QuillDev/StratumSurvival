@@ -1,7 +1,7 @@
 package moe.quill.Crafting.Recipes.Trinkets;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Recipes.RecipeKey;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import org.bukkit.Material;
@@ -10,7 +10,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
 public class CraftTrinketBagSmall extends StratumRecipe {
-    public CraftTrinketBagSmall(StratumMaterialManager materialManager) {
+    public CraftTrinketBagSmall(MaterialManager materialManager) {
         super(RecipeKey.RECIPE_TRINKET_BAG_SMALL, materialManager);
     }
 

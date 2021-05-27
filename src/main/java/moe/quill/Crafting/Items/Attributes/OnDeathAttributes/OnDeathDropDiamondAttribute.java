@@ -1,7 +1,10 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -9,12 +12,15 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
-public class DropDiamondOnDeathAttribute extends OnDeathAttribute{
+public class OnDeathDropDiamondAttribute extends OnDeathAttribute {
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
-    public DropDiamondOnDeathAttribute(NamespacedKey key) {
-        super(key,
+    public OnDeathDropDiamondAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.ON_DEATH_DROP_DIAMOND_ATTRIBUTE,
                 Component.text("Diamond Touch").color(TextColor.color(0x35B6DA)),
                 .05f,
                 .01f,

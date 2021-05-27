@@ -12,7 +12,7 @@
     <name>stratumsurvival</name>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>15</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -73,6 +73,7 @@
     </repositories>
 
     <dependencies>
+        <!-- Minecraft -->
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
@@ -84,15 +85,23 @@
             <artifactId>datafixerupper</artifactId>
             <version>1.0.20</version>
         </dependency>
+        <!-- Reflections -->
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.12</version>
         </dependency>
+        <!-- Serialization -->
         <dependency>
             <groupId>com.esotericsoftware</groupId>
             <artifactId>kryo</artifactId>
             <version>5.1.1</version>
+        </dependency>
+        <!-- Dependency Injection -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>5.0.1</version>
         </dependency>
     </dependencies>
 </project>

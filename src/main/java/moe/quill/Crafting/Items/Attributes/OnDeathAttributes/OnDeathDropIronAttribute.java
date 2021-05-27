@@ -1,24 +1,30 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
-import moe.quill.Crafting.Items.Attributes.Attribute;
-import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
+import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
 
-public class DropEmeraldOnDeathAttribute extends OnDeathAttribute{
+public class OnDeathDropIronAttribute extends OnDeathAttribute {
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
-    public DropEmeraldOnDeathAttribute(NamespacedKey key) {
-        super(key,
-                Component.text("Emerald Touch").color(TextColor.color(0x2CDA44)),
+    public OnDeathDropIronAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.ON_DEATH_DROP_IRON_ATTRIBUTE,
+                Component.text("Steel Touch").color(TextColor.color(0x88ABDA)),
+                .1f,
                 .05f,
-                .01f,
-                .2f
+                .6f
         );
     }
 
@@ -33,7 +39,7 @@ public class DropEmeraldOnDeathAttribute extends OnDeathAttribute{
         if (data == null) return;
 
         var target = data.getTarget();
-        var item = new ItemStack(Material.EMERALD);
+        var item = new ItemStack(Material.IRON_NUGGET);
 
         if (modifier < Attribute.rand.nextFloat()) return;
         dropItemStackEffect.execute(sourceEvent, target.getLocation(), item);

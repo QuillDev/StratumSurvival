@@ -1,8 +1,10 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.Event;
 import moe.quill.Crafting.Items.Effects.SpawnEntityEffect;
@@ -11,8 +13,11 @@ public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute {
 
     SpawnEntityEffect evokerFangEffect = new SpawnEntityEffect();
 
-    public BluntWeaponEvokerStrikeAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponEvokerStrikeAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.BLUNT_WEAPON_EVOKER_STRIKE_ATTRIBUTE,
                 Component.text("Evoker Strike").color(TextColor.color(0x555755)),
                 .1f,
                 .1f,

@@ -1,9 +1,11 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.OnDeathAttributes.OnDeathAttribute;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -15,8 +17,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class AttackAttribute extends Attribute {
-    public AttackAttribute(NamespacedKey key, Component lore, ArrayList<ItemStack> itemStacks, float scaleValue, float minRoll, float maxRoll) {
+    public AttackAttribute(
+            MaterialManager materialManager,
+            KeyManager keyManager,
+            AttributeKey key,
+            Component lore,
+            ArrayList<ItemStack> itemStacks,
+            float scaleValue,
+            float minRoll,
+            float maxRoll
+    ) {
         super(
+                materialManager,
+                keyManager,
                 key,
                 lore,
                 itemStacks,

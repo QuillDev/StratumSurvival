@@ -1,8 +1,8 @@
 package moe.quill.Crafting.Items.Attributes;
 
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import moe.quill.Crafting.Items.Attributes.AttributeHelpers.AttributeFormatter;
@@ -12,29 +12,35 @@ import java.util.Random;
 
 public abstract class Attribute {
 
-    protected static StratumMaterialManager materialManager;
     protected static final Random rand = new Random();
     protected static final AttributeFormatter attributeFormatter = new AttributeFormatter();
 
     // Item Data Attributes
-    public NamespacedKey key;
+    public AttributeKey key;
     public ArrayList<ItemStack> materials;
     public Component lore;
     public ArrayList<Class<?>> childAttributes;
+    protected final MaterialManager materialManager;
+    protected final KeyManager keyManager;
     public float minRoll;
     public float maxRoll;
 
     // Stats for determining item characteristics when generating the item
     public float scaleValue;
 
-    public Attribute(NamespacedKey key,
-                     Component lore,
-                     ArrayList<ItemStack> items,
-                     float scaleValue,
-                     float minRoll,
-                     float maxRoll,
-                     ArrayList<Class<?>> childAttributes
+    public Attribute(
+            MaterialManager materialManager,
+            KeyManager keyManager,
+            AttributeKey key,
+            Component lore,
+            ArrayList<ItemStack> items,
+            float scaleValue,
+            float minRoll,
+            float maxRoll,
+            ArrayList<Class<?>> childAttributes
     ) {
+        this.materialManager = materialManager;
+        this.keyManager = keyManager;
         this.key = key;
         this.materials = items;
         this.lore = lore;
@@ -61,15 +67,6 @@ public abstract class Attribute {
      */
     public String dataFormat(float data) {
         return "";
-    }
-
-    /**
-     * Set the material manager for all attributes
-     *
-     * @param materialManager to set
-     */
-    public static void setMaterialManager(StratumMaterialManager materialManager) {
-        Attribute.materialManager = materialManager;
     }
 
     public abstract void execute(Event sourceEvent, float modifier);

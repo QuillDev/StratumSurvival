@@ -1,7 +1,7 @@
 package moe.quill.Commands.ItemCommands.GiveStratumItem;
 
 import moe.quill.Commands.PlayerCommand;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class GiveStratumItemCommand implements CommandExecutor, PlayerCommand {
 
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
-    public GiveStratumItemCommand(StratumMaterialManager materialManager) {
+    public GiveStratumItemCommand(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }
 

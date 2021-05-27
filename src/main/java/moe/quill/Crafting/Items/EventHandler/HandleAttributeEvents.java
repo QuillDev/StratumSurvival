@@ -1,6 +1,11 @@
 package moe.quill.Crafting.Items.EventHandler;
 
+import moe.quill.Crafting.GlobalKey;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.KeyManager;
+import moe.quill.Utils.KeyUtils;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -17,6 +22,14 @@ import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Utils.Serialization.StratumSerialization;
 
 public class HandleAttributeEvents implements Listener {
+
+    private final KeyManager keyManager;
+    private final NamespacedKey obfuscatedKey;
+
+    public HandleAttributeEvents(KeyManager keyManager) {
+        this.keyManager = keyManager;
+        this.obfuscatedKey = keyManager.getNsKey(GlobalKey.OBFUSCATED_KEY);
+    }
 
     @EventHandler
     public void onDamageEvent(EntityDamageByEntityEvent event) {
@@ -60,14 +73,17 @@ public class HandleAttributeEvents implements Listener {
         if (meta == null) return;
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
-        if (data.has(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
+        if (data.has(obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
+
         // Run the event over all keys on this item and see if any match
         data.getKeys().forEach(key -> {
-            final var attr = ItemAttributes.getAttribute(key.getKey());
+            final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) return;
-            final var modBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
+            final var nsKey = keyManager.getNsKey(attr.key);
+            final var modBytes = data.get(nsKey, PersistentDataType.BYTE_ARRAY);
             final var modifier = StratumSerialization.deserializeFloat(modBytes);
             attr.execute(event, modifier);
         });
     }
+
 }

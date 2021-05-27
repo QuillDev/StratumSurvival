@@ -1,30 +1,42 @@
 package moe.quill.Adventuring.NPCManager.NPCEvents;
 
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.GlobalKey;
+import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.KeyManager;
+import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
-import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
 import moe.quill.Utils.PlayerHelpers.PlayerInventoryHelper;
-import moe.quill.Utils.Serialization.StratumSerialization;
+import org.bukkit.persistence.PersistentDataType;
 
 public class InteractBlacksmithEvent implements Listener {
 
-    private final NamespacedKey blacksmithKey;
-    private final ItemHelper itemHelper = new ItemHelper();
+    //Instantiated Vars
     private final PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
-    private final StratumMaterialManager materialManager;
 
-    public InteractBlacksmithEvent(NPCManager npcManager, StratumMaterialManager materialManager) {
+    //Instanced Vars
+    private final NamespacedKey blacksmithKey;
+    private final MaterialManager materialManager;
+    private final ItemHelper itemHelper;
+
+    //Setup Keys we need
+    private final NamespacedKey obfuscatedKey;
+    private final NamespacedKey levelKey;
+
+    public InteractBlacksmithEvent(NPCManager npcManager, MaterialManager materialManager, KeyManager keyManager, ItemHelper itemHelper) {
         this.blacksmithKey = npcManager.getNPCByType(NPCType.BLACKSMITH).getKey();
         this.materialManager = materialManager;
+        this.itemHelper = itemHelper;
+
+        this.obfuscatedKey = keyManager.getNsKey(GlobalKey.OBFUSCATED_KEY);
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
     }
 
     @EventHandler
@@ -43,9 +55,9 @@ public class InteractBlacksmithEvent implements Listener {
         final var meta = heldItem.getItemMeta();
         if (meta == null) return;
         final var itemData = meta.getPersistentDataContainer();
-        if (itemData.has(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
-        if (!itemData.has(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY)) return;
-        final var levelBytes = itemData.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
+        if (itemData.has(obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
+        if (!itemData.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
+        final var levelBytes = itemData.get(levelKey, PersistentDataType.BYTE_ARRAY);
         var level = (int) StratumSerialization.deserializeFloat(levelBytes);
 
         // Get the corresponding item based on the level

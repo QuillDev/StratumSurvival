@@ -1,14 +1,17 @@
 package moe.quill.Crafting.Items.ItemHelpers;
 
+import com.google.inject.Inject;
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -19,13 +22,29 @@ import java.util.stream.Collectors;
 public class ItemGenerator {
 
     private final static Random rand = StratumSurvival.rand;
-    private final static ItemHelper itemHelper = new ItemHelper();
-    private final StratumMaterialManager materialManager;
+    private final ItemHelper itemHelper;
+    private final KeyManager keyManager;
 
-    public ItemGenerator(StratumMaterialManager materialManager) {
-        this.materialManager = materialManager;
+    //Keys for generating Items
+    private NamespacedKey levelKey;
+    private NamespacedKey isCustomItemKey;
+    private NamespacedKey cooldownKey;
+    private NamespacedKey nameKey;
+
+    @Inject
+    public ItemGenerator(KeyManager keyManager, ItemHelper itemHelper) {
+        this.keyManager = keyManager;
+        this.itemHelper = itemHelper;
+
+        //setup keys
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.isCustomItemKey = keyManager.getNsKey(GlobalKey.IS_CUSTOM_KEY);
+        this.cooldownKey = keyManager.getNsKey(GlobalKey.COOLDOWN_KEY);
+        this.nameKey = keyManager.getNsKey(GlobalKey.NAME_KEY);
+
     }
 
+    //TODO: Re-add generateItem
     public ItemStack generateItem(ItemStack item, int level) {
         final var weaponType = ItemAttributes.getWeaponTypeFromItemStack(item);
         if (weaponType == null) return null;
@@ -47,19 +66,19 @@ public class ItemGenerator {
         for (var i = 0; (i < maxIndex); i++) {
             final var curAttr = attributes.get(rand.nextInt(attributes.size()));
             final var dataValue = itemHelper.generateDataValue(curAttr, level);
-            data.set(curAttr.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
+            data.set(keyManager.getNsKey(curAttr.key), PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
             lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
             attributes.remove(curAttr); //remove the attribute we used
 
             //If the attribute just added was a use attribute, make it so we can't get any more
             if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
-                data.set(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(0L));
+                data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(0L));
                 attributes.removeAll(useAttributes);
             }
         }
-        data.set(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
-        data.set(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponent(name));
-        data.set(ItemAttributes.customItemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        data.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
+        data.set(nameKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponent(name));
+        data.set(isCustomItemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;

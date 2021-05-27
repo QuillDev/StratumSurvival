@@ -3,6 +3,7 @@ package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegist
 import moe.quill.Crafting.Items.MaterialManager.HeadHelper;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -10,8 +11,8 @@ import java.util.HashMap;
 public class ChestMaterialRegister extends MaterialRegistry {
 
 
-    public ChestMaterialRegister() {
-        super(MaterialKey.CHEST_KEY);
+    public ChestMaterialRegister(KeyManager keyManager) {
+        super(keyManager, MaterialKey.LOOT_CHEST_KEY);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -11,7 +14,7 @@ import java.util.HashMap;
 
 @SuppressWarnings("unused")
 public class PickaxeShardMinerAttribute extends PickaxeAttribute {
-    private final ItemHelper itemHelper = new ItemHelper();
+    private final ItemHelper itemHelper;
 
     private final static float rareOdds = 1 / 300f;
     private final static float normalOdds = 1 / 100f;
@@ -30,8 +33,9 @@ public class PickaxeShardMinerAttribute extends PickaxeAttribute {
         put(Material.EMERALD_ORE, commonOdds);
     }};
 
-    public PickaxeShardMinerAttribute(NamespacedKey key) {
-        super(key, Component.text("Fragment Finder").color(TextColor.color(0x32A2CB)), .5f, 1, 3);
+    public PickaxeShardMinerAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(materialManager, keyManager, AttributeKey.PICKAXE_SHARD_MINER_ATTRIBUTE, Component.text("Fragment Finder").color(TextColor.color(0x32A2CB)), .5f, 1, 3);
+        this.itemHelper = new ItemHelper(keyManager);
     }
 
     @Override

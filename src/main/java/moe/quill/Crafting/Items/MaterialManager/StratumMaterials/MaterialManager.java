@@ -1,6 +1,10 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.*;
+import moe.quill.Crafting.KeyManager;
+import moe.quill.StratumSurvival;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -15,18 +19,22 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-
-public class StratumMaterialManager {
+@Singleton
+public class MaterialManager {
 
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
     private final ArrayList<ItemStack> geodeMaterials = new ArrayList<>();
     private final HashMap<MaterialKey, NamespacedKey> keyMap = new HashMap<>();
-    private final Plugin plugin;
     private static final Reflections reflections = new Reflections("moe.quill");
-    private static final Logger logger = LoggerFactory.getLogger(StratumMaterialManager.class.getSimpleName());
+    private static final Logger logger = LoggerFactory.getLogger(MaterialManager.class.getSimpleName());
 
-    public StratumMaterialManager(Plugin plugin) {
+    private final Plugin plugin;
+    private final KeyManager keyManager;
+
+    @Inject
+    public MaterialManager(StratumSurvival plugin, KeyManager keyManager) {
         this.plugin = plugin;
+        this.keyManager = keyManager;
 
         //Register all of the material types
         registerMaterialsDynamically();
@@ -50,12 +58,11 @@ public class StratumMaterialManager {
         reflections
                 .getSubTypesOf(MaterialRegistry.class)
                 .stream()
-                .filter(enemyClass -> !Modifier.isAbstract(enemyClass.getModifiers()))
-                .forEach(enemyClass -> {
+                .filter(registryClass -> !Modifier.isAbstract(registryClass.getModifiers()))
+                .forEach(registryClass -> {
                     try {
-                        final var registry = enemyClass.getDeclaredConstructor().newInstance();
+                        final var registry = registryClass.getDeclaredConstructor(KeyManager.class).newInstance(keyManager);
                         registerAll(registry);
-                        logger.info(String.format("Registered new material registry -> %s", registry.getClass().getSimpleName()));
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
@@ -85,6 +92,7 @@ public class StratumMaterialManager {
             );
 
             keyMap.putIfAbsent(materialKey, registryKey); // put the key into the key list
+
         }
     }
 

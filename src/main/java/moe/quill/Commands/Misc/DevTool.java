@@ -8,16 +8,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 
 public class DevTool implements CommandExecutor, Listener {
     private final Plugin plugin;
 
     private final NamespacedKey lootChestKey;
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
-    public DevTool(StratumMaterialManager materialManager, Plugin plugin) {
+    public DevTool(MaterialManager materialManager, Plugin plugin) {
         this.plugin = plugin;
         this.lootChestKey = new NamespacedKey(plugin, "loot_chest_key");
         this.materialManager = materialManager;

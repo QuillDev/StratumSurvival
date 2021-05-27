@@ -1,8 +1,9 @@
 package moe.quill.Adventuring.Enemies;
 
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.Location;
-import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,17 +12,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 
+@Singleton
 public class EnemyManager {
 
-    private final Plugin plugin;
 
     private final HashMap<EnemyType, Enemy> enemyMap = new HashMap<>();
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
     private static final Logger logger = LoggerFactory.getLogger(EnemyManager.class.getSimpleName());
     private static final Reflections reflections = new Reflections("moe.quill");
 
-    public EnemyManager(Plugin plugin, StratumMaterialManager materialManager) {
-        this.plugin = plugin;
+    @Inject
+    public EnemyManager(MaterialManager materialManager) {
         this.materialManager = materialManager;
         registerEnemiesDynamically();
     }
@@ -39,7 +40,7 @@ public class EnemyManager {
                 .filter(enemyClass -> !Modifier.isAbstract(enemyClass.getModifiers()))
                 .forEach(enemyClass -> {
                     try {
-                        final var enemy = enemyClass.getDeclaredConstructor(StratumMaterialManager.class).newInstance(materialManager);
+                        final var enemy = enemyClass.getDeclaredConstructor(MaterialManager.class).newInstance(materialManager);
                         enemyMap.put(enemy.enemyType, enemy);
                         logger.info(String.format("Registered new enemy -> %s", enemy.getClass().getSimpleName()));
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {

@@ -1,12 +1,14 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -14,8 +16,12 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class ShardMaterialRegistry extends MaterialRegistry {
-    public ShardMaterialRegistry() {
-        super(MaterialKey.SHARD_KEY);
+
+    private final NamespacedKey levelKey;
+
+    public ShardMaterialRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.SHARD_KEY);
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
     }
 
     @Override
@@ -29,7 +35,7 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_COMMON_META.setCustomModelData(1);
             SHARD_COMMON_META.displayName(Component.text("Common Shard").decorate(TextDecoration.BOLD).color(SHARD_COMMON_COLOR));
             SHARD_COMMON_META.lore(Collections.singletonList(crystalLore.color(SHARD_COMMON_COLOR)));
-            SHARD_COMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 1f);
+            SHARD_COMMON_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 1f);
             SHARD_COMMON.setItemMeta(SHARD_COMMON_META);
 
             //Uncommon crafting crystal
@@ -39,7 +45,7 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_UNCOMMON_META.setCustomModelData(2);
             SHARD_UNCOMMON_META.displayName(Component.text("Uncommon Shard").decorate(TextDecoration.BOLD).color(SHARD_UNCOMMON_COLOR));
             SHARD_UNCOMMON_META.lore(Collections.singletonList(crystalLore.color(SHARD_UNCOMMON_COLOR)));
-            SHARD_UNCOMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 2f);
+            SHARD_UNCOMMON_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 2f);
             SHARD_UNCOMMON.setItemMeta(SHARD_UNCOMMON_META);
 
             // Rare crafting crystal
@@ -49,7 +55,7 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_RARE_META.setCustomModelData(3);
             SHARD_RARE_META.displayName(Component.text("Rare Shard").decorate(TextDecoration.BOLD).color(SHARD_RARE_COLOR));
             SHARD_RARE_META.lore(Collections.singletonList(crystalLore.color(SHARD_RARE_COLOR)));
-            SHARD_RARE_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 3f);
+            SHARD_RARE_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 3f);
             SHARD_RARE.setItemMeta(SHARD_RARE_META);
 
             // Epic crafting crystal
@@ -59,7 +65,7 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_EPIC_META.setCustomModelData(4);
             SHARD_EPIC_META.displayName(Component.text("Epic Shard").decorate(TextDecoration.BOLD).color(SHARD_EPIC_COLOR));
             SHARD_EPIC_META.lore(Collections.singletonList(crystalLore.color(SHARD_EPIC_COLOR)));
-            SHARD_EPIC_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 4f);
+            SHARD_EPIC_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 4f);
             SHARD_EPIC.setItemMeta(SHARD_EPIC_META);
 
             // Legendary crafting crystal
@@ -69,7 +75,7 @@ public class ShardMaterialRegistry extends MaterialRegistry {
             SHARD_LEGENDARY_META.setCustomModelData(5);
             SHARD_LEGENDARY_META.displayName(Component.text("Legendary Shard").decorate(TextDecoration.BOLD).color(SHARD_LEGENDARY_COLOR));
             SHARD_LEGENDARY_META.lore(Collections.singletonList(crystalLore.color(SHARD_LEGENDARY_COLOR)));
-            SHARD_LEGENDARY_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 5f);
+            SHARD_LEGENDARY_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 5f);
             SHARD_LEGENDARY.setItemMeta(SHARD_LEGENDARY_META);
 
             //Add all of the materials to the material manager

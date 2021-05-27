@@ -1,10 +1,13 @@
 package moe.quill.Adventuring.Loot;
 
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,9 +22,12 @@ public class LootListener implements Listener {
     private final LootManager lootManager;
     private final LootTables lootTables;
 
-    public LootListener(LootManager lootManager) {
+    private final NamespacedKey levelKey;
+
+    public LootListener(LootManager lootManager, KeyManager keyManager) {
         this.lootManager = lootManager;
         this.lootTables = lootManager.getLootTables();
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
     }
 
     @EventHandler
@@ -41,8 +47,8 @@ public class LootListener implements Listener {
         final var target = (ArmorStand) targetClicked;
         final var targetData = target.getPersistentDataContainer();
         if (!targetData.has(lootManager.getLootChestKey(), PersistentDataType.BYTE_ARRAY)) return;
-        if (!targetData.has(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY)) return;
-        final var level = (int) StratumSerialization.deserializeFloat(targetData.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY));
+        if (!targetData.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
+        final var level = (int) StratumSerialization.deserializeFloat(targetData.get(levelKey, PersistentDataType.BYTE_ARRAY));
         event.setCancelled(true); //cancel the right click event
         final var player = event.getPlayer();
         player.sendMessage(String.format("Opened tier %s loot", level));

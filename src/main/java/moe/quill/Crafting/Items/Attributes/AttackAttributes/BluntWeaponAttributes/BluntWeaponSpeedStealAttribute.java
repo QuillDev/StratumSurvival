@@ -1,6 +1,9 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.EffectHelpers.EffectHelper;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
@@ -14,8 +17,11 @@ public class BluntWeaponSpeedStealAttribute extends BluntWeaponAttribute {
 
     EffectHelper helper = new EffectHelper();
 
-    public BluntWeaponSpeedStealAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponSpeedStealAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.BLUNT_WEAPON_SPEED_STEAL_ATTRIBUTE,
                 Component.text("Speed Leach").color(TextColor.color(0x1C6FF7)),
                 0,
                 0,

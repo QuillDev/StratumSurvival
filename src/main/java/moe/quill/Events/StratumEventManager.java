@@ -1,5 +1,7 @@
 package moe.quill.Events;
 
+import com.google.inject.Inject;
+import moe.quill.StratumSurvival;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,7 +14,8 @@ public class StratumEventManager {
     private final PluginManager pluginManager;
     private static final Logger logger = LoggerFactory.getLogger(StratumEventManager.class.getSimpleName());
 
-    public StratumEventManager(JavaPlugin plugin) {
+    @Inject
+    public StratumEventManager(StratumSurvival plugin) {
         this.plugin = plugin;
         this.pluginManager = plugin.getServer().getPluginManager();
     }

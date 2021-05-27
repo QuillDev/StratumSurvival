@@ -1,5 +1,8 @@
 package moe.quill.Adventuring.Bosses;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import moe.quill.StratumSurvival;
 import moe.quill.Utils.TickHelper;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -23,6 +26,7 @@ import moe.quill.Utils.Serialization.StratumSerialization;
 import java.util.Collection;
 import java.util.HashMap;
 
+@Singleton
 public class WorldBossManager {
 
     //TODO: Rework this class a bit when we come back to it
@@ -45,7 +49,8 @@ public class WorldBossManager {
     private final HashMap<Player, Integer> dpsMap = new HashMap<>();
 
     //TODO: Add Support for multiple world bosses at once (some sort of boss data class)
-    public WorldBossManager(Plugin plugin) {
+    @Inject
+    public WorldBossManager(StratumSurvival plugin) {
         this.plugin = plugin;
         this.worldBossKey = new NamespacedKey(plugin, "mob_world_boss");
         this.bossBar = Bukkit.createBossBar("", BarColor.RED, BarStyle.SOLID);

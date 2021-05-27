@@ -6,14 +6,14 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 public abstract class BlockRecipe extends StratumRecipe {
 
     protected final StratumMaterial outMaterial;
     protected final StratumMaterial inMaterial;
 
-    public BlockRecipe(RecipeKey recipeKey, StratumMaterialManager materialManager, StratumMaterial inMaterial, StratumMaterial outMaterial) {
+    public BlockRecipe(RecipeKey recipeKey, MaterialManager materialManager, StratumMaterial inMaterial, StratumMaterial outMaterial) {
         super(recipeKey, materialManager);
         this.outMaterial = outMaterial;
         this.inMaterial = inMaterial;

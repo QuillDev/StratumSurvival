@@ -4,6 +4,7 @@ import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.BaseArmorAttrib
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -12,8 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class HelmetMaterialRegistry extends MaterialRegistry {
-    public HelmetMaterialRegistry() {
-        super(MaterialKey.ARMOR_KEY);
+    public HelmetMaterialRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.ARMOR_KEY);
     }
 
     @Override
@@ -160,7 +161,7 @@ public class HelmetMaterialRegistry extends MaterialRegistry {
             HELMET_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesHelmets.ARMOR_NETHERITE_JUG);
             HELMET_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesHelmets.HEALTH_NETHERITE_JUG);
             HELMET_NETHERITE_JUG.setItemMeta(HELMET_NETHERITE_JUG_META);
-            
+
             //ADDING TO LIST
             put(StratumMaterial.HELMET_LEATHER_LIGHT.name(), HELMET_LEATHER_LIGHT);
             put(StratumMaterial.HELMET_GOLDEN_LIGHT.name(), HELMET_GOLDEN_LIGHT);

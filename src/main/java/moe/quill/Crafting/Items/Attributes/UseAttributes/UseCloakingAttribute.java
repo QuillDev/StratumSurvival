@@ -1,18 +1,21 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.Crafting.Items.Effects.CloakEffect;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 
-public class CloakUseWeaponAttribute extends UseAttribute {
+public class UseCloakingAttribute extends UseAttribute {
 
     private final static CloakEffect cloakEffect = new CloakEffect();
 
-    public CloakUseWeaponAttribute(NamespacedKey key) {
-        super(key,
+    public UseCloakingAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(materialManager, keyManager, AttributeKey.USE_CLOAKING_ATTRIBUTE,
                 Component.text("Cloaking Mist").color(TextColor.color(0x3F0BCB)),
                 0f,
                 15 * 20);

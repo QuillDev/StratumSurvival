@@ -9,15 +9,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 public class DaggerBackstabEvent implements Listener {
 
     final static float range = 45;
 
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
-    public DaggerBackstabEvent(StratumMaterialManager materialManager) {
+    public DaggerBackstabEvent(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }
 

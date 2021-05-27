@@ -9,7 +9,13 @@ import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 
 public class RerollItem implements CommandExecutor {
 
-    private static final ItemHelper itemHelper = new ItemHelper();
+//    private static final ItemHelper itemHelper = new ItemHelper();
+
+    private final ItemHelper itemHelper;
+
+    public RerollItem(ItemHelper itemHelper) {
+        this.itemHelper = itemHelper;
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

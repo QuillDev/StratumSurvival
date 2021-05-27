@@ -1,5 +1,7 @@
 package moe.quill.Adventuring.NPCManager.ChatNPC;
 
+import com.google.inject.Inject;
+import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,7 +27,8 @@ public class ChatNPCManager {
     //List of NPCs on the server
     private final HashMap<String, ChatNPC> chatNPCs = new HashMap<>();
 
-    public ChatNPCManager(Plugin plugin) {
+    @Inject
+    public ChatNPCManager(StratumSurvival plugin) {
         this.chatNpcKey = new NamespacedKey(plugin, "npc_chatter");
         this.npcChatDataKey = new NamespacedKey(plugin, "npc_line_data");
         this.plugin = plugin;

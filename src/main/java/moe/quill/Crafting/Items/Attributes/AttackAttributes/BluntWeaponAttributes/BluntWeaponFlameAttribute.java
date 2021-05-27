@@ -1,6 +1,9 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Effects.FlameEffect;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
@@ -10,8 +13,11 @@ public class BluntWeaponFlameAttribute extends BluntWeaponAttribute {
 
     private final static FlameEffect flameEffect = new FlameEffect();
 
-    public BluntWeaponFlameAttribute(NamespacedKey key) {
-        super(key,
+    public BluntWeaponFlameAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.BLUNT_WEAPON_FLAME_ATTRIBUTE,
                 Component.text("Burn Chance").color(TextColor.color(0xFF3824)),
                 .2f,
                 .1f,

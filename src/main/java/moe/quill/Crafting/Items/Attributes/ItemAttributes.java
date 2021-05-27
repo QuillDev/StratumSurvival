@@ -1,6 +1,11 @@
 package moe.quill.Crafting.Items.Attributes;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
+import moe.quill.StratumSurvival;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -18,19 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+@Singleton
 public class ItemAttributes {
-
-    //Public keys
-    public static NamespacedKey levelKey = null;
-    public static NamespacedKey obfuscatedKey = null;
-    public static NamespacedKey nameKey = null;
-    public static NamespacedKey customItemKey = null;
-    public static NamespacedKey cooldownKey;
-
-    //Trinket Keys
-    public static NamespacedKey inventorySizeKey = null;
-    public static NamespacedKey inventoryItemDataKey = null;
-
     //list of attributes
     private static final ArrayList<Attribute> attributes = new ArrayList<>();
     private static final Reflections reflections = new Reflections("moe.quill");
@@ -39,39 +33,40 @@ public class ItemAttributes {
     //Attribute categories
     public static final HashMap<String, ItemType> attributeCategories = new HashMap<>();
 
-    public ItemAttributes(Plugin plugin) {
-        levelKey = new NamespacedKey(plugin, "item_level");
-        obfuscatedKey = new NamespacedKey(plugin, "item_obfuscated");
-        nameKey = new NamespacedKey(plugin, "item_name");
-        customItemKey = new NamespacedKey(plugin, "item_is_custom");
-        cooldownKey = new NamespacedKey(plugin, "item_use_cooldown");
-        inventorySizeKey = new NamespacedKey(plugin, "inventory_size");
-        inventoryItemDataKey = new NamespacedKey(plugin, "inventory_data");
+    private final MaterialManager materialManager;
+    private final KeyManager keyManager;
+
+
+    @Inject
+    public ItemAttributes(MaterialManager materialManager, KeyManager keyManager) {
+        this.materialManager = materialManager;
+        this.keyManager = keyManager;
+        init();
     }
 
-    public void init(Plugin plugin) {
+    public void init() {
         attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(ItemLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
         attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(ItemLists.WEAPONS_BOW, BowWeaponAttribute.class));
         attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(ItemLists.TOOLS_PICKAXE, PickaxeAttribute.class));
-        dynamicallyLoadAttributes(plugin);
-
+        dynamicallyLoadAttributes();
     }
 
     /**
      * Attempt do dynamically load attributes based on their extension from the attribute class
-     *
-     * @param plugin to create namespaced keys for
      */
-    private void dynamicallyLoadAttributes(Plugin plugin) {
+    private void dynamicallyLoadAttributes() {
         reflections
                 .getSubTypesOf(Attribute.class)
                 .stream()
                 .filter(attrClass -> !Modifier.isAbstract(attrClass.getModifiers()))
                 .forEach(attrClass -> {
                     try {
-                        final var attr = attrClass.getDeclaredConstructor(
-                                NamespacedKey.class
-                        ).newInstance(new NamespacedKey(plugin, attrClass.getName()));
+                        final var attr = attrClass
+                                .getDeclaredConstructor(
+                                        MaterialManager.class,
+                                        KeyManager.class
+                                )
+                                .newInstance(materialManager, keyManager);
                         ItemAttributes.registerAll(attr);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
@@ -88,7 +83,7 @@ public class ItemAttributes {
         attributes.addAll(Arrays.asList(newAttributes));
         //Log the attributes that we just loaded
         Arrays.stream(newAttributes).forEach(attr -> {
-            logger.info(String.format("Loaded attribute %s [key:%s]", attr.getClass().getSimpleName(), attr.key.value()));
+            logger.info(String.format("Loaded attribute %s [key:%s]", attr.getClass().getSimpleName(), attr.key.name()));
         });
     }
 
@@ -125,10 +120,10 @@ public class ItemAttributes {
      * @param query to search for attributes that match it
      * @return a matching attribute
      */
-    public static Attribute getAttribute(String query) {
+    public static Attribute getAttribute(AttributeKey query) {
         return attributes
                 .stream()
-                .filter(attr -> attr.key.value().equalsIgnoreCase(query))
+                .filter(attr -> attr.key.equals(query))
                 .findFirst()
                 .orElse(null);
     }

@@ -1,6 +1,6 @@
 package moe.quill.Commands.ItemCommands.GiveStratumItem;
 
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 public class GiveStratumItemTabs implements TabCompleter {
 
-    private final StratumMaterialManager materialManager;
+    private final MaterialManager materialManager;
 
-    public GiveStratumItemTabs(StratumMaterialManager materialManager) {
+    public GiveStratumItemTabs(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }
 

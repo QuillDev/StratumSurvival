@@ -8,7 +8,12 @@ import org.jetbrains.annotations.NotNull;
 import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 
 public class ObfuscateItem implements CommandExecutor {
-    private static final ItemHelper itemHelper = new ItemHelper();
+
+    public ItemHelper itemHelper;
+
+    public ObfuscateItem(ItemHelper itemHelper) {
+        this.itemHelper = itemHelper;
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -16,6 +21,7 @@ public class ObfuscateItem implements CommandExecutor {
         final var player = ((Player) sender).getPlayer();
         if (player == null) return true;
         final var item = player.getInventory().getItemInMainHand();
+
         itemHelper.encryptItem(item);
 
         return true;

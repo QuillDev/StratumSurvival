@@ -1,5 +1,8 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -9,13 +12,14 @@ import org.bukkit.inventory.ItemStack;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
 
-public class DropIronOnDeathAttribute extends OnDeathAttribute{
+public class OnDeathDropGoldAttribute extends OnDeathAttribute {
+
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
-    public DropIronOnDeathAttribute(NamespacedKey key) {
-        super(key,
-                Component.text("Steel Touch").color(TextColor.color(0x88ABDA)),
+    public OnDeathDropGoldAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(materialManager, keyManager, AttributeKey.ON_DEATH_DROP_GOLD_ATTRIBUTE,
+                Component.text("Midas Touch").color(TextColor.color(0xDAAA35)),
                 .1f,
                 .05f,
                 .6f
@@ -33,7 +37,7 @@ public class DropIronOnDeathAttribute extends OnDeathAttribute{
         if (data == null) return;
 
         var target = data.getTarget();
-        var item = new ItemStack(Material.IRON_NUGGET);
+        var item = new ItemStack(Material.GOLD_NUGGET);
 
         if (modifier < Attribute.rand.nextFloat()) return;
         dropItemStackEffect.execute(sourceEvent, target.getLocation(), item);

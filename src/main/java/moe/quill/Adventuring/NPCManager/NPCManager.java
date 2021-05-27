@@ -4,17 +4,23 @@ import moe.quill.Adventuring.NPCManager.NPCs.Blacksmith;
 import moe.quill.Adventuring.NPCManager.NPCs.Cryptologist;
 import moe.quill.Adventuring.NPCManager.NPCs.NPC;
 import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
+import moe.quill.StratumSurvival;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@Singleton
 public class NPCManager {
 
     public final ArrayList<NPC> npcs = new ArrayList<>();
 
-    public NPCManager(Plugin plugin) {
+
+    @Inject
+    public NPCManager(StratumSurvival plugin) {
         npcs.addAll(
                 Arrays.asList(
                         new Cryptologist(new NamespacedKey(plugin, NPCType.CRYPTOLOGIST.key)),

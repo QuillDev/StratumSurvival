@@ -1,19 +1,25 @@
 package moe.quill.Adventuring.Loot;
 
+import com.google.inject.Inject;
 import moe.quill.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import net.kyori.adventure.text.Component;
 
 import java.util.HashMap;
 
 public class LootTables {
 
-    private final HashMap<Integer, LootTable> tables;
+    private final HashMap<Integer, LootTable> tables = new HashMap<>();
+    private final MaterialManager materialManager;
 
-    public LootTables(StratumMaterialManager materialManager) {
+    @Inject
+    public LootTables(MaterialManager materialManager) {
+        this.materialManager = materialManager;
+    }
 
-        this.tables = new HashMap<>() {{
+    public void init() {
+        tables.putAll(new HashMap<>() {{
             put(1, new LootTable(Component.text("Common Chest").color(ItemRarity.COMMON.color)) {{
                 register(
                         new LootDrop(materialManager.getItem(StratumMaterial.FRAGMENT_COMMON), 100f),
@@ -48,8 +54,7 @@ public class LootTables {
                         new LootDrop(materialManager.getItem(StratumMaterial.FRAGMENT_LEGENDARY), 50f, 3)
                 );
             }});
-
-        }};
+        }});
     }
 
     public LootTable getLootTable(int level) {

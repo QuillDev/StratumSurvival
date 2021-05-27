@@ -1,6 +1,8 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes;
 
-import moe.quill.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.NamespacedKey;
@@ -8,13 +10,18 @@ import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
+import moe.quill.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
 
-public class JumpBoostUseWeaponAttribute extends UseAttribute {
+public class UseSlowFieldAttribute extends UseAttribute {
+
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
 
-    public JumpBoostUseWeaponAttribute(NamespacedKey key) {
-        super(key,
-                Component.text("Acrobatic Field").color(TextColor.color(0x53CB35)),
+    public UseSlowFieldAttribute(MaterialManager materialManager, KeyManager keyManager) {
+        super(
+                materialManager,
+                keyManager,
+                AttributeKey.USE_SLOW_FIELD_ATTRIBUTE,
+                Component.text("Slowing Field").color(TextColor.color(0x6B8FCB)),
                 0f,
                 500L);
     }
@@ -26,16 +33,10 @@ public class JumpBoostUseWeaponAttribute extends UseAttribute {
 
         var player = useEventData.getPlayer();
 
-        spawnLingeringPotionCloudEffect.execute(sourceEvent,player.getLocation(),
-                new PotionEffect(PotionEffectType.JUMP,100,5),
-                3,
-                120,
-                0
-        );
-        spawnLingeringPotionCloudEffect.execute(sourceEvent,player.getLocation(),
-                new PotionEffect(PotionEffectType.SLOW_FALLING,100,1),
-                3,
-                120,
+        spawnLingeringPotionCloudEffect.execute(sourceEvent, player.getLocation(),
+                new PotionEffect(PotionEffectType.SLOW, 35, 2),
+                12,
+                100,
                 0
         );
     }

@@ -1,11 +1,16 @@
 package moe.quill.Crafting.Items.ItemHelpers;
 
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.KeyManager;
+import moe.quill.Utils.KeyUtils;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,6 +24,20 @@ public class ItemHelper {
 
     private static final Random rand = StratumSurvival.rand;
 
+    private final KeyManager keyManager;
+
+    //Keys we'll be working with
+    private final NamespacedKey levelKey;
+    private final NamespacedKey obfuscatedKey;
+    private final NamespacedKey nameKey;
+
+    public ItemHelper(KeyManager keyManager) {
+        this.keyManager = keyManager;
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.obfuscatedKey = keyManager.getNsKey(GlobalKey.OBFUSCATED_KEY);
+        this.nameKey = keyManager.getNsKey(GlobalKey.NAME_KEY);
+    }
+
     /**
      * Re-roll the stats on the given item
      *
@@ -28,16 +47,16 @@ public class ItemHelper {
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
         data.getKeys().forEach((key) -> {
-            final var attribute = ItemAttributes.getAttribute(key.getKey());
+            final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
+            if (attr == null) return;
 
             //Get the level of the item
-            final var levelBytes = data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY);
+            final var levelBytes = data.get(levelKey, PersistentDataType.BYTE_ARRAY);
             var level = (int) StratumSerialization.deserializeFloat(levelBytes);
-            if (attribute == null) return;
 
             //Get the data and set each key with new values
-            final var dataValue = generateDataValue(attribute, level);
-            data.set(attribute.key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
+            final var dataValue = generateDataValue(attr, level);
+            data.set(keyManager.getNsKey(attr.key), PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
             setLoreFromItemKeys(meta);
             item.setItemMeta(meta);
         });
@@ -77,22 +96,24 @@ public class ItemHelper {
      * @param meta of the item to set the lore of
      */
     public void setLoreFromItemKeys(ItemMeta meta) {
+
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
         final var lore = new ArrayList<Component>();
-        final var level = (int) StratumSerialization.deserializeFloat(data.get(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY));
+        final var level = (int) StratumSerialization.deserializeFloat(data.get(levelKey, PersistentDataType.BYTE_ARRAY));
         lore.add(ItemRarity.getRarity(level).getName());
         for (final var key : data.getKeys()) {
-            final var attr = ItemAttributes.getAttribute(key.getKey());
+            final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) continue;
             //Get the value off of the item for the given attribute
-            final var valueBytes = data.get(attr.key, PersistentDataType.BYTE_ARRAY);
+            final var valueBytes = data.get(keyManager.getNsKey(attr.key), PersistentDataType.BYTE_ARRAY);
             final var value = StratumSerialization.deserializeFloat(valueBytes);
             if (Float.isNaN(value)) continue;
             lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
         }
 
-        //If the item already has lore, then merge the lore
+        //TODO: FIND A COOL WAY TO DO THIS MAYBE
+//        If the item already has lore, then merge the lore
 //        if (meta.hasLore()) {
 //            final var tempLoreList = meta.lore();
 //            if (tempLoreList != null) {
@@ -100,7 +121,6 @@ public class ItemHelper {
 //                meta.lore(tempLoreList);
 //                return;
 //            }
-//
 //        }
         meta.lore(lore);
     }
@@ -118,9 +138,9 @@ public class ItemHelper {
         //Set the data on the item from the data keys
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
-        data.remove(ItemAttributes.obfuscatedKey);
-        if (data.has(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY)) {
-            final var nameBytes = data.get(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY);
+        data.remove(obfuscatedKey);
+        if (data.has(nameKey, PersistentDataType.BYTE_ARRAY)) {
+            final var nameBytes = data.get(nameKey, PersistentDataType.BYTE_ARRAY);
             final var name = StratumSerialization.deserializeComponent(nameBytes);
             meta.displayName(name);
         }
@@ -137,7 +157,7 @@ public class ItemHelper {
         meta.lore(Collections.singletonList(Component.text("????????").decorate(TextDecoration.OBFUSCATED)));
         meta.displayName(Component.text("?????????").decorate(TextDecoration.OBFUSCATED));
         final var data = meta.getPersistentDataContainer();
-        data.set(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        data.set(obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         itemStack.setItemMeta(meta);
     }
 
@@ -163,9 +183,9 @@ public class ItemHelper {
     }
 
     public ItemStack setCraftFormatting(ItemStack itemStack) {
-//        final var meta = itemStack.getItemMeta();
-//        meta.displayName(Component.text("\u00A7f" + meta.getLocalizedName()));
-//        itemStack.setItemMeta(meta);
+        final var meta = itemStack.getItemMeta();
+        meta.displayName(Component.text("\u00A7f" + meta.getLocalizedName()));
+        itemStack.setItemMeta(meta);
         return itemStack;
     }
 }

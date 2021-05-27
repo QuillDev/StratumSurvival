@@ -1,12 +1,15 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -14,8 +17,12 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class FragmentMaterialRegistry extends MaterialRegistry {
-    public FragmentMaterialRegistry() {
-        super(MaterialKey.FRAGMENT_KEY);
+
+    private final NamespacedKey levelKey;
+
+    public FragmentMaterialRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.FRAGMENT_KEY);
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
     }
 
     @Override
@@ -29,7 +36,7 @@ public class FragmentMaterialRegistry extends MaterialRegistry {
             FRAGMENT_COMMON_META.setCustomModelData(1);
             FRAGMENT_COMMON_META.displayName(Component.text("Common Fragment").decorate(TextDecoration.BOLD).color(FRAGMENT_COMMON_COLOR));
             FRAGMENT_COMMON_META.lore(Collections.singletonList(fragmentLore.color(FRAGMENT_COMMON_COLOR)));
-            FRAGMENT_COMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 1f);
+            FRAGMENT_COMMON_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 1f);
             FRAGMENT_COMMON.setItemMeta(FRAGMENT_COMMON_META);
 
             //Uncommon crafting fragment
@@ -39,7 +46,7 @@ public class FragmentMaterialRegistry extends MaterialRegistry {
             FRAGMENT_UNCOMMON_META.setCustomModelData(2);
             FRAGMENT_UNCOMMON_META.displayName(Component.text("Uncommon Fragment").decorate(TextDecoration.BOLD).color(FRAGMENT_UNCOMMON_COLOR));
             FRAGMENT_UNCOMMON_META.lore(Collections.singletonList(fragmentLore.color(FRAGMENT_UNCOMMON_COLOR)));
-            FRAGMENT_UNCOMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 2f);
+            FRAGMENT_UNCOMMON_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 2f);
             FRAGMENT_UNCOMMON.setItemMeta(FRAGMENT_UNCOMMON_META);
 
             // Rare crafting fragment
@@ -49,7 +56,7 @@ public class FragmentMaterialRegistry extends MaterialRegistry {
             FRAGMENT_RARE_META.setCustomModelData(3);
             FRAGMENT_RARE_META.displayName(Component.text("Rare Fragment").decorate(TextDecoration.BOLD).color(FRAGMENT_RARE_COLOR));
             FRAGMENT_RARE_META.lore(Collections.singletonList(fragmentLore.color(FRAGMENT_RARE_COLOR)));
-            FRAGMENT_RARE_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 3f);
+            FRAGMENT_RARE_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 3f);
             FRAGMENT_RARE.setItemMeta(FRAGMENT_RARE_META);
 
             // Epic crafting fragment
@@ -59,7 +66,7 @@ public class FragmentMaterialRegistry extends MaterialRegistry {
             FRAGMENT_EPIC_META.setCustomModelData(4);
             FRAGMENT_EPIC_META.displayName(Component.text("Epic Fragment").decorate(TextDecoration.BOLD).color(FRAGMENT_EPIC_COLOR));
             FRAGMENT_EPIC_META.lore(Collections.singletonList(fragmentLore.color(FRAGMENT_EPIC_COLOR)));
-            FRAGMENT_EPIC_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 4f);
+            FRAGMENT_EPIC_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 4f);
             FRAGMENT_EPIC.setItemMeta(FRAGMENT_EPIC_META);
 
             // Legendary crafting fragment
@@ -69,7 +76,7 @@ public class FragmentMaterialRegistry extends MaterialRegistry {
             FRAGMENT_LEGENDARY_META.setCustomModelData(5);
             FRAGMENT_LEGENDARY_META.displayName(Component.text("Legendary Fragment").decorate(TextDecoration.BOLD).color(FRAGMENT_LEGENDARY_COLOR));
             FRAGMENT_LEGENDARY_META.lore(Collections.singletonList(fragmentLore.color(FRAGMENT_LEGENDARY_COLOR)));
-            FRAGMENT_LEGENDARY_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 5f);
+            FRAGMENT_LEGENDARY_META.getPersistentDataContainer().set(levelKey, PersistentDataType.FLOAT, 5f);
             FRAGMENT_LEGENDARY.setItemMeta(FRAGMENT_LEGENDARY_META);
 
             //Add all of the materials to the material manager

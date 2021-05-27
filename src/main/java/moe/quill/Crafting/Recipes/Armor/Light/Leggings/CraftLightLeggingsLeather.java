@@ -1,7 +1,7 @@
 package moe.quill.Crafting.Recipes.Armor.Light.Leggings;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Recipes.RecipeKey;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import org.bukkit.Material;
@@ -10,7 +10,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapelessRecipe;
 
 public class CraftLightLeggingsLeather extends StratumRecipe {
-    public CraftLightLeggingsLeather(StratumMaterialManager materialManager) {
+    public CraftLightLeggingsLeather(MaterialManager materialManager) {
         super(RecipeKey.RECIPE_LEGGINGS_LEATHER_LIGHT, materialManager);
     }
 

@@ -3,7 +3,7 @@ package moe.quill.Crafting;
 import moe.quill.Crafting.Recipes.Generators.Geodes.RecipeGenerator;
 import moe.quill.Utils.Annotations.IgnoreDynamicLoading;
 import moe.quill.Crafting.Recipes.StratumRecipe;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;
@@ -28,7 +28,7 @@ public class StratumCraftingManager {
         this.server = plugin.getServer();
     }
 
-    public void enable(StratumMaterialManager materialManager) {
+    public void enable(MaterialManager materialManager) {
         this.loadRecipesDynamically(plugin, materialManager);
     }
 
@@ -37,7 +37,7 @@ public class StratumCraftingManager {
      *
      * @param plugin to create namespaced keys for
      */
-    private void loadRecipesDynamically(Plugin plugin, StratumMaterialManager materialManager) {
+    private void loadRecipesDynamically(Plugin plugin, MaterialManager materialManager) {
         reflections
                 .getSubTypesOf(StratumRecipe.class)
                 .stream()
@@ -45,7 +45,7 @@ public class StratumCraftingManager {
                 .filter(recipeClass -> !recipeClass.isAnnotationPresent(IgnoreDynamicLoading.class))
                 .forEach(attrClass -> {
                     try {
-                        final var recipe = attrClass.getDeclaredConstructor(StratumMaterialManager.class).newInstance(materialManager);
+                        final var recipe = attrClass.getDeclaredConstructor(MaterialManager.class).newInstance(materialManager);
                         registerStratumRecipe(recipe);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
@@ -59,7 +59,7 @@ public class StratumCraftingManager {
                 .filter(generatorClass -> !generatorClass.isAnnotationPresent(IgnoreDynamicLoading.class))
                 .forEach(generatorClass -> {
                     try {
-                        final var recipe = generatorClass.getDeclaredConstructor(StratumMaterialManager.class).newInstance(materialManager);
+                        final var recipe = generatorClass.getDeclaredConstructor(MaterialManager.class).newInstance(materialManager);
                         final var recipes = recipe.getRecipes();
                         recipes.forEach(this::registerStratumRecipe);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {

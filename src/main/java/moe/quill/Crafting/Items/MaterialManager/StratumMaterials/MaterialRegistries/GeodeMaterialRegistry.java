@@ -1,12 +1,15 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -14,8 +17,12 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class GeodeMaterialRegistry extends MaterialRegistry {
-    public GeodeMaterialRegistry() {
-        super(MaterialKey.GEODE_KEY);
+
+    private final NamespacedKey key;
+
+    public GeodeMaterialRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.GEODE_KEY);
+        this.key = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
     }
 
     @Override
@@ -30,7 +37,7 @@ public class GeodeMaterialRegistry extends MaterialRegistry {
             GEODE_COMMON_META.setCustomModelData(1);
             GEODE_COMMON_META.displayName(Component.text("Common Geode").decorate(TextDecoration.BOLD).color(GEODE_COMMON_COLOR));
             GEODE_COMMON_META.lore(Collections.singletonList(geodeLore.color(GEODE_COMMON_COLOR)));
-            GEODE_COMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 1f);
+            GEODE_COMMON_META.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, 1f);
             GEODE_COMMON.setItemMeta(GEODE_COMMON_META);
 
             //Uncommon crafting geode
@@ -40,7 +47,7 @@ public class GeodeMaterialRegistry extends MaterialRegistry {
             GEODE_UNCOMMON_META.setCustomModelData(2);
             GEODE_UNCOMMON_META.displayName(Component.text("Uncommon Geode").decorate(TextDecoration.BOLD).color(GEODE_UNCOMMON_COLOR));
             GEODE_UNCOMMON_META.lore(Collections.singletonList(geodeLore.color(GEODE_UNCOMMON_COLOR)));
-            GEODE_UNCOMMON_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 2f);
+            GEODE_UNCOMMON_META.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, 2f);
             GEODE_UNCOMMON.setItemMeta(GEODE_UNCOMMON_META);
 
             // Rare crafting geode
@@ -50,7 +57,7 @@ public class GeodeMaterialRegistry extends MaterialRegistry {
             GEODE_RARE_META.setCustomModelData(3);
             GEODE_RARE_META.displayName(Component.text("Rare Geode").decorate(TextDecoration.BOLD).color(GEODE_RARE_COLOR));
             GEODE_RARE_META.lore(Collections.singletonList(geodeLore.color(GEODE_RARE_COLOR)));
-            GEODE_RARE_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 3f);
+            GEODE_RARE_META.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, 3f);
             GEODE_RARE.setItemMeta(GEODE_RARE_META);
 
             // Epic crafting geode
@@ -60,7 +67,7 @@ public class GeodeMaterialRegistry extends MaterialRegistry {
             GEODE_EPIC_META.setCustomModelData(4);
             GEODE_EPIC_META.displayName(Component.text("Epic Geode").decorate(TextDecoration.BOLD).color(GEODE_EPIC_COLOR));
             GEODE_EPIC_META.lore(Collections.singletonList(geodeLore.color(GEODE_EPIC_COLOR)));
-            GEODE_EPIC_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 4f);
+            GEODE_EPIC_META.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, 4f);
             GEODE_EPIC.setItemMeta(GEODE_EPIC_META);
 
             // Legendary crafting geode
@@ -70,7 +77,7 @@ public class GeodeMaterialRegistry extends MaterialRegistry {
             GEODE_LEGENDARY_META.setCustomModelData(5);
             GEODE_LEGENDARY_META.displayName(Component.text("Legendary Geode").decorate(TextDecoration.BOLD).color(GEODE_LEGENDARY_COLOR));
             GEODE_LEGENDARY_META.lore(Collections.singletonList(geodeLore.color(GEODE_LEGENDARY_COLOR)));
-            GEODE_LEGENDARY_META.getPersistentDataContainer().set(ItemAttributes.levelKey, PersistentDataType.FLOAT, 5f);
+            GEODE_LEGENDARY_META.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, 5f);
             GEODE_LEGENDARY.setItemMeta(GEODE_LEGENDARY_META);
 
             //Add all of the materials to the material manager

@@ -3,6 +3,7 @@ package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegist
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -12,8 +13,8 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class HammerRegistry extends MaterialRegistry {
-    public HammerRegistry() {
-        super(MaterialKey.HAMMER_KEY);
+    public HammerRegistry(KeyManager keyManager) {
+        super(keyManager, MaterialKey.HAMMER_KEY);
     }
 
     @Override

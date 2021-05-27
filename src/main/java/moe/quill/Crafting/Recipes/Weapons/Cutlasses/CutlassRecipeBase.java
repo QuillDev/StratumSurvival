@@ -1,7 +1,7 @@
 package moe.quill.Crafting.Recipes.Weapons.Cutlasses;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Recipes.RecipeKey;
 import moe.quill.Crafting.Recipes.StratumRecipe;
 import org.bukkit.Material;
@@ -15,7 +15,7 @@ public abstract class CutlassRecipeBase extends StratumRecipe {
     private final RecipeChoice material;
     private final StratumMaterial result;
 
-    public CutlassRecipeBase(RecipeKey key, StratumMaterialManager materialManager, RecipeChoice material, StratumMaterial result) {
+    public CutlassRecipeBase(RecipeKey key, MaterialManager materialManager, RecipeChoice material, StratumMaterial result) {
         super(key, materialManager);
         this.material = material;
         this.result = result;

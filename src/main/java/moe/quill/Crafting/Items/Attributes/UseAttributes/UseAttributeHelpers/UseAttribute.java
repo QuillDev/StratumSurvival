@@ -1,7 +1,11 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers;
 
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.Attribute;
+import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -19,10 +23,12 @@ import java.util.Arrays;
 public abstract class UseAttribute extends Attribute {
 
     protected long cooldown;
+    protected final NamespacedKey cooldownKey;
 
-    public UseAttribute(NamespacedKey key, Component lore, float scaleValue, long cooldown) {
-        super(key, lore, new ArrayList<>(), scaleValue, 0, 0, new ArrayList<>());
+    public UseAttribute(MaterialManager materialManager, KeyManager keyManager, AttributeKey key, Component lore, float scaleValue, long cooldown) {
+        super(materialManager, keyManager, key, lore, new ArrayList<>(), scaleValue, 0, 0, new ArrayList<>());
         this.cooldown = cooldown;
+        this.cooldownKey = keyManager.getNsKey(GlobalKey.COOLDOWN_KEY);
     }
 
     @Override
@@ -59,10 +65,10 @@ public abstract class UseAttribute extends Attribute {
         final var heldItemData = heldItemMeta.getPersistentDataContainer();
 
         //If the held item has no cooldown key, return null
-        if (!heldItemData.has(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY)) return null;
+        if (!heldItemData.has(cooldownKey, PersistentDataType.BYTE_ARRAY)) return null;
 
         //Do cool down calculations
-        final var lastTickBytes = heldItemData.get(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY);
+        final var lastTickBytes = heldItemData.get(cooldownKey, PersistentDataType.BYTE_ARRAY);
         final var lastTick = StratumSerialization.deserializeLong(lastTickBytes);
         final var curTick = Bukkit.getCurrentTick();
         final var deltaTicks = curTick - lastTick;
@@ -93,7 +99,7 @@ public abstract class UseAttribute extends Attribute {
         }
 
         //Write the new cool down to the key
-        heldItemData.set(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(curTick));
+        heldItemData.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(curTick));
         heldItem.setItemMeta(heldItemMeta);
         return new UseEventData(event, player, action);
     }
