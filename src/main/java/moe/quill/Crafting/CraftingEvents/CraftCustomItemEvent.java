@@ -1,6 +1,8 @@
 package moe.quill.Crafting.CraftingEvents;
 
 import moe.quill.Crafting.KeyManager;
+import moe.quill.Utils.PlayerHelpers.InventoryHelper;
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
@@ -15,13 +17,14 @@ public class CraftCustomItemEvent implements Listener {
 
     private final ItemGenerator generator;
     private final MaterialManager materialManager;
-    private final KeyManager keyManager;
+    private final InventoryHelper inventoryHelper = new InventoryHelper();
+
+    private final NamespacedKey shardKey;
 
     public CraftCustomItemEvent(KeyManager keyManager, ItemGenerator generator, MaterialManager materialManager) {
         this.generator = generator;
         this.materialManager = materialManager;
-        this.keyManager = keyManager;
-
+        this.shardKey = keyManager.getNsKey(MaterialKey.SHARD_KEY);
     }
 
     @EventHandler
@@ -40,24 +43,27 @@ public class CraftCustomItemEvent implements Listener {
 
         final var geodeMeta = geodeMatch.getItemMeta();
         if (!geodeMeta.hasCustomModelData()) return; //TODO: HACKY IF THIS BREAKS< YOU KNOW WHY
-        final var slots = event.getInventory().getMatrix();
 
-        ItemStack item = null;
-        ItemStack shard = null;
-        for (final var slotItem : slots) {
-            if (slotItem == null) continue;
-            final var slotMeta = slotItem.getItemMeta();
-            final var data = slotMeta.getPersistentDataContainer();
-            if (data.has(keyManager.getNsKey(MaterialKey.SHARD_KEY), PersistentDataType.FLOAT)) {
-                shard = slotItem;
-                continue;
-            }
-            item = slotItem;
+        //Get items from the crafting grid
+        final var gridItems = inventoryHelper.getItemsFromMatrix(event.getInventory());
+
+        //Get the first viewer (player)
+        final var player = event.getView().getPlayer();
+        //Get the crystal
+        final var shard = gridItems.stream()
+                .filter(itm -> itm.getItemMeta().getPersistentDataContainer().has(shardKey, PersistentDataType.BYTE_ARRAY))
+                .findFirst().orElse(null);
+        final var item = gridItems.stream()
+                .filter(itm -> !itm.getItemMeta().getPersistentDataContainer().has(shardKey, PersistentDataType.BYTE_ARRAY))
+                .findFirst().orElse(null);
+
+        //If the crystal is null, cancel the event
+        if (shard == null || item == null) {
+            player.sendMessage("Failed to craft! Please report this error to a server administrator!");
+            event.setCancelled(true);
+            return;
         }
 
-
-        if (item == null) return;
-        if (shard == null) return;
         //Set the item to have the same properties as the rolled item
         final var level = geodeMeta.getCustomModelData();
         final var rolledItem = generator.generateItem(item, level);
@@ -70,8 +76,8 @@ public class CraftCustomItemEvent implements Listener {
         }
 
         event.getInventory().clear();
-        event.getInventory().getViewers().get(0).getInventory().addItem(shard);
-        event.getInventory().getViewers().get(0).getInventory().addItem(item);
+        player.getInventory().addItem(shard);
+        player.getInventory().addItem(item);
         event.setCancelled(true);
     }
 }

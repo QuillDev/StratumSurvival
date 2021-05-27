@@ -1,9 +1,7 @@
 package moe.quill.Events.ChatEvents;
 
-import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
-import moe.quill.Utils.PlayerHelpers.PlayerInventoryHelper;
-import net.kyori.adventure.audience.Audience;
+import moe.quill.Utils.PlayerHelpers.InventoryHelper;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Player;
@@ -17,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class InjectChatItemEvent implements Listener {
 
-    private final static PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
+    private final static InventoryHelper inventoryHelper = new InventoryHelper();
 
     //Patterns for parsing text chat data
     private final static Pattern numberPattern = Pattern.compile("[1-9]");

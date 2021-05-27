@@ -1,23 +1,18 @@
 package moe.quill.Adventuring.NPCManager.NPCEvents;
 
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
-import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
-import moe.quill.Utils.PlayerHelpers.PlayerInventoryHelper;
+import moe.quill.Utils.PlayerHelpers.InventoryHelper;
 
 public class InteractCryptologistEvent implements Listener {
 
     private final NamespacedKey cryptoKey;
     //    private final ItemHelper itemHelper = new ItemHelper();
-    private final PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
+    private final InventoryHelper inventoryHelper = new InventoryHelper();
 
     public InteractCryptologistEvent(NPCManager npcManager) {
         this.cryptoKey = npcManager.getNPCByType(NPCType.CRYPTOLOGIST).getKey();

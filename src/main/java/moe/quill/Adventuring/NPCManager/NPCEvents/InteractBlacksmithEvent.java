@@ -13,13 +13,13 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
-import moe.quill.Utils.PlayerHelpers.PlayerInventoryHelper;
+import moe.quill.Utils.PlayerHelpers.InventoryHelper;
 import org.bukkit.persistence.PersistentDataType;
 
 public class InteractBlacksmithEvent implements Listener {
 
     //Instantiated Vars
-    private final PlayerInventoryHelper inventoryHelper = new PlayerInventoryHelper();
+    private final InventoryHelper inventoryHelper = new InventoryHelper();
 
     //Instanced Vars
     private final NamespacedKey blacksmithKey;
