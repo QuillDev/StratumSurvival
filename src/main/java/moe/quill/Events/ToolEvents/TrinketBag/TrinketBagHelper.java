@@ -31,7 +31,7 @@ public class TrinketBagHelper {
     private final NamespacedKey itemDataKey;
 
     public TrinketBagHelper(KeyManager keyManager, MaterialManager materialManager) {
-        this.trinketBagKey = materialManager.getNamespacedMaterialKey(MaterialKey.TRINKET_BAG_KEY);
+        this.trinketBagKey = keyManager.getNsKey(MaterialKey.TRINKET_BAG_KEY);
         this.inventorySizeKey = keyManager.getNsKey(GlobalKey.INVENTORY_SIZE_KEY);
         this.itemDataKey = keyManager.getNsKey(GlobalKey.ITEM_DATA_KEY);
         this.blockade = materialManager.getItem(StratumMaterial.BLOCKADE);

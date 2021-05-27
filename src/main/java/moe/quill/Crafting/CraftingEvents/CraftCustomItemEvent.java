@@ -1,5 +1,6 @@
 package moe.quill.Crafting.CraftingEvents;
 
+import moe.quill.Crafting.KeyManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
@@ -14,10 +15,12 @@ public class CraftCustomItemEvent implements Listener {
 
     private final ItemGenerator generator;
     private final MaterialManager materialManager;
+    private final KeyManager keyManager;
 
-    public CraftCustomItemEvent(ItemGenerator generator, MaterialManager materialManager) {
+    public CraftCustomItemEvent(KeyManager keyManager, ItemGenerator generator, MaterialManager materialManager) {
         this.generator = generator;
         this.materialManager = materialManager;
+        this.keyManager = keyManager;
 
     }
 
@@ -45,7 +48,7 @@ public class CraftCustomItemEvent implements Listener {
             if (slotItem == null) continue;
             final var slotMeta = slotItem.getItemMeta();
             final var data = slotMeta.getPersistentDataContainer();
-            if (data.has(materialManager.getNamespacedMaterialKey(MaterialKey.SHARD_KEY), PersistentDataType.FLOAT)) {
+            if (data.has(keyManager.getNsKey(MaterialKey.SHARD_KEY), PersistentDataType.FLOAT)) {
                 shard = slotItem;
                 continue;
             }

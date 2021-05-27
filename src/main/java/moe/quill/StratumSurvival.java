@@ -105,11 +105,7 @@ public final class StratumSurvival extends JavaPlugin {
 
             //DI STUFF
             PluginBinderModule module = new PluginBinderModule(this);
-            module.createInjector()
-                    .injectMembers(this);
-
-            itemAttributes.init();
-
+            module.createInjector().injectMembers(this);
 
             //setup dev command
             final var devTool = new DevTool(materialManager, this);
@@ -122,13 +118,13 @@ public final class StratumSurvival extends JavaPlugin {
                     new GrindCustomWeaponEvent(keyManager, materialManager),
                     new InteractCryptologistEvent(npcManager),
                     new InteractBlacksmithEvent(npcManager, materialManager, keyManager, itemHelper),
-                    new CraftCustomItemEvent(itemGenerator, materialManager),
+                    new CraftCustomItemEvent(keyManager, itemGenerator, materialManager),
                     new NPCTransformWitchCancel(),
-                    new DaggerBackstabEvent(materialManager),
+                    new DaggerBackstabEvent(keyManager),
                     new DevEvent(),
                     new ChatBadgeEvent(this),
-                    new IcePickClimb(materialManager),
-                    new GrappleHookEvent(materialManager),
+                    new IcePickClimb(keyManager),
+                    new GrappleHookEvent(keyManager),
                     new StopBlockadeClicks(materialManager),
                     new TrinketBagEventHandler(keyManager, materialManager),
                     new LootListener(lootManager, keyManager),

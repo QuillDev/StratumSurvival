@@ -1,8 +1,10 @@
 package moe.quill.Events.ToolEvents;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
+import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,10 +17,10 @@ public class DaggerBackstabEvent implements Listener {
 
     final static float range = 45;
 
-    private final MaterialManager materialManager;
+    private final KeyManager keyManager;
 
-    public DaggerBackstabEvent(MaterialManager materialManager) {
-        this.materialManager = materialManager;
+    public DaggerBackstabEvent(KeyManager keyManager) {
+        this.keyManager = keyManager;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -33,7 +35,7 @@ public class DaggerBackstabEvent implements Listener {
         if (meta == null) return;
 
         //Get the dagger key and the data container for the held item
-        final var daggerKey = materialManager.getNamespacedMaterialKey(MaterialKey.DAGGER_KEY);
+        final var daggerKey = keyManager.getNsKey(MaterialKey.DAGGER_KEY);
         final var data = meta.getPersistentDataContainer();
         //If the item is not a dagger, return
         if (!data.has(daggerKey, PersistentDataType.BYTE_ARRAY)) {

@@ -24,7 +24,6 @@ public class MaterialManager {
 
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
     private final ArrayList<ItemStack> geodeMaterials = new ArrayList<>();
-    private final HashMap<MaterialKey, NamespacedKey> keyMap = new HashMap<>();
     private static final Reflections reflections = new Reflections("moe.quill");
     private static final Logger logger = LoggerFactory.getLogger(MaterialManager.class.getSimpleName());
 
@@ -90,20 +89,7 @@ public class MaterialManager {
                         item.setItemMeta(meta);
                     }
             );
-
-            keyMap.putIfAbsent(materialKey, registryKey); // put the key into the key list
-
         }
-    }
-
-    /**
-     * Return the namespaced key matching the given material key
-     *
-     * @param key to search for
-     * @return the matching key
-     */
-    public NamespacedKey getNamespacedMaterialKey(MaterialKey key) {
-        return keyMap.get(key);
     }
 
     public ItemStack getItem(StratumMaterial material) {

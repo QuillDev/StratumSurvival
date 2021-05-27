@@ -41,10 +41,7 @@ public class ItemAttributes {
     public ItemAttributes(MaterialManager materialManager, KeyManager keyManager) {
         this.materialManager = materialManager;
         this.keyManager = keyManager;
-        init();
-    }
 
-    public void init() {
         attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(ItemLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
         attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(ItemLists.WEAPONS_BOW, BowWeaponAttribute.class));
         attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(ItemLists.TOOLS_PICKAXE, PickaxeAttribute.class));
