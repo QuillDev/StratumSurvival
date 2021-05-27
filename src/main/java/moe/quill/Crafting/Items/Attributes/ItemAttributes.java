@@ -25,18 +25,6 @@ import java.util.HashMap;
 
 @Singleton
 public class ItemAttributes {
-
-    //Public keys
-    public static NamespacedKey levelKey = null;
-    public static NamespacedKey obfuscatedKey = null;
-    public static NamespacedKey nameKey = null;
-    public static NamespacedKey customItemKey = null;
-    public static NamespacedKey cooldownKey;
-
-    //Trinket Keys
-    public static NamespacedKey inventorySizeKey = null;
-    public static NamespacedKey inventoryItemDataKey = null;
-
     //list of attributes
     private static final ArrayList<Attribute> attributes = new ArrayList<>();
     private static final Reflections reflections = new Reflections("moe.quill");
@@ -50,14 +38,7 @@ public class ItemAttributes {
 
 
     @Inject
-    public ItemAttributes(StratumSurvival plugin, MaterialManager materialManager, KeyManager keyManager) {
-        levelKey = new NamespacedKey(plugin, "item_level");
-        obfuscatedKey = new NamespacedKey(plugin, "item_obfuscated");
-        nameKey = new NamespacedKey(plugin, "item_name");
-        customItemKey = new NamespacedKey(plugin, "item_is_custom");
-        cooldownKey = new NamespacedKey(plugin, "item_use_cooldown");
-        inventorySizeKey = new NamespacedKey(plugin, "inventory_size");
-        inventoryItemDataKey = new NamespacedKey(plugin, "inventory_data");
+    public ItemAttributes(MaterialManager materialManager, KeyManager keyManager) {
         this.materialManager = materialManager;
         this.keyManager = keyManager;
         init();

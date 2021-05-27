@@ -11,6 +11,12 @@ public class RerollItem implements CommandExecutor {
 
 //    private static final ItemHelper itemHelper = new ItemHelper();
 
+    private final ItemHelper itemHelper;
+
+    public RerollItem(ItemHelper itemHelper) {
+        this.itemHelper = itemHelper;
+    }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) return true;
@@ -18,7 +24,7 @@ public class RerollItem implements CommandExecutor {
         if (player == null) return true;
 
         final var heldItem = player.getInventory().getItemInMainHand();
-//        itemHelper.reRollItem(heldItem); //TODO: Reimplement
+        itemHelper.reRollItem(heldItem);
         return false;
     }
 }

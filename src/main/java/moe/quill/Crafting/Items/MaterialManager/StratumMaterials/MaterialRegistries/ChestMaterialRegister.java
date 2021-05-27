@@ -12,7 +12,7 @@ public class ChestMaterialRegister extends MaterialRegistry {
 
 
     public ChestMaterialRegister(KeyManager keyManager) {
-        super(keyManager, MaterialKey.CHEST_KEY);
+        super(keyManager, MaterialKey.LOOT_CHEST_KEY);
     }
 
     @Override

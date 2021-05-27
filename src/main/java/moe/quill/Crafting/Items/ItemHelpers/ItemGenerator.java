@@ -1,6 +1,7 @@
 package moe.quill.Crafting.Items.ItemHelpers;
 
 import com.google.inject.Inject;
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
@@ -10,6 +11,7 @@ import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -23,10 +25,22 @@ public class ItemGenerator {
     private final ItemHelper itemHelper;
     private final KeyManager keyManager;
 
+    //Keys for generating Items
+    private NamespacedKey levelKey;
+    private NamespacedKey isCustomItemKey;
+    private NamespacedKey cooldownKey;
+    private NamespacedKey nameKey;
+
     @Inject
-    public ItemGenerator(KeyManager keyManager) {
+    public ItemGenerator(KeyManager keyManager, ItemHelper itemHelper) {
         this.keyManager = keyManager;
-        this.itemHelper = new ItemHelper(keyManager);
+        this.itemHelper = itemHelper;
+
+        //setup keys
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.isCustomItemKey = keyManager.getNsKey(GlobalKey.IS_CUSTOM_KEY);
+        this.cooldownKey = keyManager.getNsKey(GlobalKey.COOLDOWN_KEY);
+        this.nameKey = keyManager.getNsKey(GlobalKey.NAME_KEY);
 
     }
 
@@ -58,13 +72,13 @@ public class ItemGenerator {
 
             //If the attribute just added was a use attribute, make it so we can't get any more
             if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
-                data.set(ItemAttributes.cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(0L));
+                data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(0L));
                 attributes.removeAll(useAttributes);
             }
         }
-        data.set(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
-        data.set(ItemAttributes.nameKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponent(name));
-        data.set(ItemAttributes.customItemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        data.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
+        data.set(nameKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponent(name));
+        data.set(isCustomItemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;

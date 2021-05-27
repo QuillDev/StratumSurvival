@@ -35,6 +35,7 @@ import moe.quill.Crafting.CraftingEvents.GrindCustomWeaponEvent;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.EventHandler.HandleAttributeEvents;
+import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.Events.ChatEvents.ChatBadgeEvent;
@@ -73,6 +74,8 @@ public final class StratumSurvival extends JavaPlugin {
     private MaterialManager materialManager;
     @Inject
     private ItemAttributes itemAttributes;
+    @Inject
+    private ItemHelper itemHelper;
     @Inject
     private ItemGenerator itemGenerator;
     @Inject
@@ -116,9 +119,9 @@ public final class StratumSurvival extends JavaPlugin {
                     new HandleAttributeEvents(keyManager),
                     new GenerateItemOnMobDeath(itemGenerator),
                     new InjectChatItemEvent(),
-                    new GrindCustomWeaponEvent(materialManager),
+                    new GrindCustomWeaponEvent(keyManager, materialManager),
                     new InteractCryptologistEvent(npcManager),
-                    new InteractBlacksmithEvent(npcManager, materialManager),
+                    new InteractBlacksmithEvent(npcManager, materialManager, keyManager, itemHelper),
                     new CraftCustomItemEvent(itemGenerator, materialManager),
                     new NPCTransformWitchCancel(),
                     new DaggerBackstabEvent(materialManager),
@@ -127,7 +130,7 @@ public final class StratumSurvival extends JavaPlugin {
                     new IcePickClimb(materialManager),
                     new GrappleHookEvent(materialManager),
                     new StopBlockadeClicks(materialManager),
-                    new TrinketBagEventHandler(materialManager),
+                    new TrinketBagEventHandler(keyManager, materialManager),
                     new LootListener(lootManager, keyManager),
                     devTool
             );
@@ -139,10 +142,10 @@ public final class StratumSurvival extends JavaPlugin {
                     new StratumCommand("deletechatnpc", new DeleteChatNpcCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
                     new StratumCommand("removechatline", new RemoveChatLineCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
                     new StratumCommand("removechatlineraw", new RemoveChatLineRawCommand(chatNpcManager), null),
-                    new StratumCommand("obfuscate", new ObfuscateItem(), null),
-                    new StratumCommand("deobfuscate", new DeobfuscateItem(), null),
+                    new StratumCommand("obfuscate", new ObfuscateItem(itemHelper), null),
+                    new StratumCommand("deobfuscate", new DeobfuscateItem(itemHelper), null),
                     new StratumCommand("spawnnpc", new SpawnNPCCommand(npcManager), null),
-                    new StratumCommand("reroll", new RerollItem(), null),
+                    new StratumCommand("reroll", new RerollItem(itemHelper), null),
                     new StratumCommand("spawnchatnpc", new SpawnChatNpcCommand(chatNpcManager), null),
                     new StratumCommand("spawnworldboss", new SummonWorldBossCommand(worldBossManager), null),
                     new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),

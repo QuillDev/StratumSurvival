@@ -1,8 +1,11 @@
 package moe.quill.Crafting.Items.EventHandler;
 
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.KeyManager;
+import moe.quill.Utils.KeyUtils;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -18,15 +21,14 @@ import org.bukkit.persistence.PersistentDataType;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Utils.Serialization.StratumSerialization;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class HandleAttributeEvents implements Listener {
 
     private final KeyManager keyManager;
+    private final NamespacedKey obfuscatedKey;
 
     public HandleAttributeEvents(KeyManager keyManager) {
         this.keyManager = keyManager;
+        this.obfuscatedKey = keyManager.getNsKey(GlobalKey.OBFUSCATED_KEY);
     }
 
     @EventHandler
@@ -71,12 +73,11 @@ public class HandleAttributeEvents implements Listener {
         if (meta == null) return;
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
-        if (data.has(ItemAttributes.obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
+        if (data.has(obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
 
         // Run the event over all keys on this item and see if any match
         data.getKeys().forEach(key -> {
-            if (!hasAttribute(key.getKey())) return;
-            final var attr = ItemAttributes.getAttribute(AttributeKey.valueOf(key.getKey().toUpperCase()));
+            final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) return;
             final var nsKey = keyManager.getNsKey(attr.key);
             final var modBytes = data.get(nsKey, PersistentDataType.BYTE_ARRAY);
@@ -85,13 +86,4 @@ public class HandleAttributeEvents implements Listener {
         });
     }
 
-    //Check if the enum list has the given attribute
-    public boolean hasAttribute(String query) {
-        for (final var attr : AttributeKey.values()) {
-            if (attr.name().equalsIgnoreCase(query)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

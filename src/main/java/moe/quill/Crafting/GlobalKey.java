@@ -10,4 +10,5 @@ public enum GlobalKey {
     IS_CUSTOM_KEY,
     INVENTORY_SIZE_KEY,
     ITEM_DATA_KEY,
+    COOLDOWN_KEY,
 }

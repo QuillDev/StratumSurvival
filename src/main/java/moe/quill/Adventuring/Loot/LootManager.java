@@ -2,9 +2,12 @@ package moe.quill.Adventuring.Loot;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import moe.quill.StratumSurvival;
 import org.bukkit.Location;
@@ -22,15 +25,19 @@ import java.util.Random;
 public class LootManager {
 
     private final MaterialManager materialManager;
-    private final NamespacedKey lootChestKey;
     private final LootTables lootTables;
     private final Random rand = StratumSurvival.rand;
 
+    //NS Keys
+    private final NamespacedKey lootChestKey;
+    private final NamespacedKey levelKey;
+
     @Inject
-    public LootManager(StratumSurvival plugin, MaterialManager materialManager) {
+    public LootManager(KeyManager keyManager, MaterialManager materialManager, LootTables lootTables) {
         this.materialManager = materialManager;
-        this.lootTables = plugin.getLootTables();
-        this.lootChestKey = new NamespacedKey(plugin, "loot_chest_key");
+        this.lootTables = lootTables;
+        this.lootChestKey = keyManager.getNsKey(MaterialKey.LOOT_CHEST_KEY);
+        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
     }
 
     /**
@@ -53,7 +60,7 @@ public class LootManager {
         final var chestStand = (ArmorStand) location.getWorld().spawnEntity(spawnLocation, EntityType.ARMOR_STAND);
         final var chestStandData = chestStand.getPersistentDataContainer();
         chestStandData.set(lootChestKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
-        chestStandData.set(ItemAttributes.levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
+        chestStandData.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
         chestStand.setAI(false);
         chestStand.setVisible(false);
         chestStand.setArms(false);

@@ -11,7 +11,7 @@ public enum MaterialKey {
     FRAGMENT_KEY,
     SHARD_KEY,
     EMPTY_KEY,
-    CHEST_KEY,
+    LOOT_CHEST_KEY,
     CUTLASS_KEY,
     ARMOR_KEY,
     HAMMER_KEY,

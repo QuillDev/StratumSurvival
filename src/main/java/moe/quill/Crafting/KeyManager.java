@@ -3,6 +3,7 @@ package moe.quill.Crafting;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.Annotations.Keyable;
 import org.bukkit.NamespacedKey;
@@ -35,11 +36,7 @@ public class KeyManager {
         return keys.get(query);
     }
 
-    public NamespacedKey getNsKey(AttributeKey attributeKey) {
-        return getNsKey(attributeKey.name());
-    }
-
-    public NamespacedKey getNsKey(GlobalKey globalKey) {
-        return getNsKey(globalKey.name());
+    public <E extends Enum<E>> NamespacedKey getNsKey(Enum<E> materialKey) {
+        return getNsKey(materialKey.name());
     }
 }

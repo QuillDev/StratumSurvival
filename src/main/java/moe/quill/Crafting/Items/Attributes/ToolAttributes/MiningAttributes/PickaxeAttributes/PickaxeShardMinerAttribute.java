@@ -40,8 +40,6 @@ public class PickaxeShardMinerAttribute extends PickaxeAttribute {
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-
-        //TODO: Reimplement
         final var eventData = getEventData(sourceEvent);
         if (eventData == null) return;
         final var player = eventData.getPlayer();
