@@ -1,5 +1,7 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers;
 
+import com.google.inject.Inject;
+import moe.quill.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
@@ -10,11 +12,13 @@ import java.util.Arrays;
 
 public class ItemLists {
 
-    public final StratumMaterialManager materialManager;
+
     public static final ArrayList<ItemStack> WEAPONS_BLUNT = new ArrayList<>();
     public static final ArrayList<ItemStack> WEAPONS_BOW = new ArrayList<>();
     public static final ArrayList<ItemStack> TOOLS_PICKAXE = new ArrayList<>();
+    private final StratumMaterialManager materialManager;
 
+    @Inject
     public ItemLists(StratumMaterialManager materialManager) {
         this.materialManager = materialManager;
         this.registerBluntWeapons();

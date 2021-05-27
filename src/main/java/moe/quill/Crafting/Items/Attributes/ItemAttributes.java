@@ -1,6 +1,9 @@
 package moe.quill.Crafting.Items.Attributes;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
+import moe.quill.StratumSurvival;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+@Singleton
 public class ItemAttributes {
 
     //Public keys
@@ -39,7 +43,8 @@ public class ItemAttributes {
     //Attribute categories
     public static final HashMap<String, ItemType> attributeCategories = new HashMap<>();
 
-    public ItemAttributes(Plugin plugin) {
+    @Inject
+    public ItemAttributes(StratumSurvival plugin) {
         levelKey = new NamespacedKey(plugin, "item_level");
         obfuscatedKey = new NamespacedKey(plugin, "item_obfuscated");
         nameKey = new NamespacedKey(plugin, "item_name");
@@ -47,22 +52,20 @@ public class ItemAttributes {
         cooldownKey = new NamespacedKey(plugin, "item_use_cooldown");
         inventorySizeKey = new NamespacedKey(plugin, "inventory_size");
         inventoryItemDataKey = new NamespacedKey(plugin, "inventory_data");
+        init();
     }
 
-    public void init(Plugin plugin) {
+    public void init() {
         attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(ItemLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
         attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(ItemLists.WEAPONS_BOW, BowWeaponAttribute.class));
         attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(ItemLists.TOOLS_PICKAXE, PickaxeAttribute.class));
-        dynamicallyLoadAttributes(plugin);
-
+        dynamicallyLoadAttributes();
     }
 
     /**
      * Attempt do dynamically load attributes based on their extension from the attribute class
-     *
-     * @param plugin to create namespaced keys for
      */
-    private void dynamicallyLoadAttributes(Plugin plugin) {
+    private void dynamicallyLoadAttributes() {
         reflections
                 .getSubTypesOf(Attribute.class)
                 .stream()

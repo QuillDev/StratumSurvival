@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.ItemHelpers;
 
+import com.google.inject.Inject;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
@@ -23,12 +24,12 @@ public class ItemGenerator {
     private final static Random rand = StratumSurvival.rand;
     private final ItemHelper itemHelper;
     private final KeyManager keyManager;
-    private final StratumMaterialManager materialManager;
 
-    public ItemGenerator(StratumMaterialManager materialManager, KeyManager keyManager) {
-        this.materialManager = materialManager;
+    @Inject
+    public ItemGenerator(StratumSurvival plugin) {
+        this.keyManager = plugin.getKeyManager();
         this.itemHelper = new ItemHelper(keyManager);
-        this.keyManager = keyManager;
+
     }
 
     //TODO: Re-add generateItem

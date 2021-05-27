@@ -1,6 +1,8 @@
 package moe.quill.Adventuring.Enemies;
 
+import com.google.inject.Inject;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
+import moe.quill.StratumSurvival;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
@@ -13,16 +15,15 @@ import java.util.HashMap;
 
 public class EnemyManager {
 
-    private final Plugin plugin;
 
     private final HashMap<EnemyType, Enemy> enemyMap = new HashMap<>();
     private final StratumMaterialManager materialManager;
     private static final Logger logger = LoggerFactory.getLogger(EnemyManager.class.getSimpleName());
     private static final Reflections reflections = new Reflections("moe.quill");
 
-    public EnemyManager(Plugin plugin, StratumMaterialManager materialManager) {
-        this.plugin = plugin;
-        this.materialManager = materialManager;
+    @Inject
+    public EnemyManager(StratumSurvival plugin) {
+        this.materialManager = plugin.getMaterialManager();
         registerEnemiesDynamically();
     }
 

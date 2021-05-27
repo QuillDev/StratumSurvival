@@ -1,6 +1,9 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.*;
+import moe.quill.StratumSurvival;
 import moe.quill.Utils.Serialization.StratumSerialization;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -15,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-
+@Singleton
 public class StratumMaterialManager {
 
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
@@ -25,7 +28,8 @@ public class StratumMaterialManager {
     private static final Reflections reflections = new Reflections("moe.quill");
     private static final Logger logger = LoggerFactory.getLogger(StratumMaterialManager.class.getSimpleName());
 
-    public StratumMaterialManager(Plugin plugin) {
+    @Inject
+    public StratumMaterialManager(StratumSurvival plugin) {
         this.plugin = plugin;
 
         //Register all of the material types
@@ -50,12 +54,11 @@ public class StratumMaterialManager {
         reflections
                 .getSubTypesOf(MaterialRegistry.class)
                 .stream()
-                .filter(enemyClass -> !Modifier.isAbstract(enemyClass.getModifiers()))
+                .filter(registryClass -> !Modifier.isAbstract(registryClass.getModifiers()))
                 .forEach(enemyClass -> {
                     try {
                         final var registry = enemyClass.getDeclaredConstructor().newInstance();
                         registerAll(registry);
-                        logger.info(String.format("Registered new material registry -> %s", registry.getClass().getSimpleName()));
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
@@ -85,6 +88,7 @@ public class StratumMaterialManager {
             );
 
             keyMap.putIfAbsent(materialKey, registryKey); // put the key into the key list
+
         }
     }
 

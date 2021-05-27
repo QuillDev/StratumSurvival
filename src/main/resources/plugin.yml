@@ -2,7 +2,6 @@ name: StratumSurvival
 version: ${project.version}
 main: moe.quill.StratumSurvival
 api-version: 1.16
-depend: [ ProtocolLib ]
 
 commands:
   dev:
@@ -67,3 +66,8 @@ commands:
   spawnenemy:
     usage: /<command>
     permission: stratumsurvival.enemies.spawnenemy
+
+  #Test COmmand
+  test:
+    usage: /<command>
+    permission: stratumsurvival.dev.test

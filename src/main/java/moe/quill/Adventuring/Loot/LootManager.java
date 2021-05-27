@@ -1,5 +1,6 @@
 package moe.quill.Adventuring.Loot;
 
+import com.google.inject.Inject;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterialManager;
@@ -22,12 +23,13 @@ public class LootManager {
     private final StratumMaterialManager materialManager;
     private final NamespacedKey lootChestKey;
     private final LootTables lootTables;
-    private static final Random rand = StratumSurvival.rand;
+    private final Random rand = StratumSurvival.rand;
 
-    public LootManager(Plugin plugin, StratumMaterialManager materialManager) {
-        this.materialManager = materialManager;
+    @Inject
+    public LootManager(StratumSurvival plugin) {
+        this.materialManager = plugin.getMaterialManager();
+        this.lootTables = plugin.getLootTables();
         this.lootChestKey = new NamespacedKey(plugin, "loot_chest_key");
-        this.lootTables = new LootTables(materialManager);
         plugin.getServer().getPluginManager().registerEvents(new LootListener(this), plugin);
     }
 
