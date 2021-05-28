@@ -26,10 +26,10 @@ public class ItemGenerator {
     private final KeyManager keyManager;
 
     //Keys for generating Items
-    private NamespacedKey levelKey;
-    private NamespacedKey isCustomItemKey;
-    private NamespacedKey cooldownKey;
-    private NamespacedKey nameKey;
+    private final NamespacedKey levelKey;
+    private final NamespacedKey isCustomItemKey;
+    private final NamespacedKey cooldownKey;
+    private final NamespacedKey nameKey;
 
     @Inject
     public ItemGenerator(KeyManager keyManager, ItemHelper itemHelper) {
@@ -102,6 +102,7 @@ public class ItemGenerator {
      */
     public ItemStack generateItem(ItemType itemType, int level) {
         final var materials = getMaterialsFromWeaponType(itemType, level);
+        System.out.println(materials.size());
         final var mat = materials.get(rand.nextInt(materials.size()));
         //Create the item
         final var item = new ItemStack(mat);

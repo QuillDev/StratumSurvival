@@ -86,7 +86,6 @@ public class ItemHelper {
         for (; level < maxLevel; level++) {
             if (levelRate < rand.nextFloat()) return level;
         }
-        //TODO: Scale random levels (old model)
         return level;
     }
 

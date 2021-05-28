@@ -78,11 +78,11 @@ public final class StratumSurvival extends JavaPlugin {
     @Inject
     private ItemHelper itemHelper;
     @Inject
+    private ItemLists itemLists;
+    @Inject
     private ItemGenerator itemGenerator;
     @Inject
     private NPCManager npcManager;
-    @Inject
-    private ItemLists itemLists;
     @Inject
     private ChatNPCManager chatNpcManager;
     @Inject

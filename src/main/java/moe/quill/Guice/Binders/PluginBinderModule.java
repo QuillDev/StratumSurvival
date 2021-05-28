@@ -7,7 +7,6 @@ import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.StratumSurvival;
 import org.bukkit.plugin.Plugin;
 
 public class PluginBinderModule extends AbstractModule {
