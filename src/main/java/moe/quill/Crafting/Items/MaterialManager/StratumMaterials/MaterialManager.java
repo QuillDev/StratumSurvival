@@ -31,7 +31,7 @@ public class MaterialManager {
     private final KeyManager keyManager;
 
     @Inject
-    public MaterialManager(StratumSurvival plugin, KeyManager keyManager) {
+    public MaterialManager(Plugin plugin, KeyManager keyManager) {
         this.plugin = plugin;
         this.keyManager = keyManager;
 

@@ -50,7 +50,7 @@ public class WorldBossManager {
 
     //TODO: Add Support for multiple world bosses at once (some sort of boss data class)
     @Inject
-    public WorldBossManager(StratumSurvival plugin) {
+    public WorldBossManager(Plugin plugin) {
         this.plugin = plugin;
         this.worldBossKey = new NamespacedKey(plugin, "mob_world_boss");
         this.bossBar = Bukkit.createBossBar("", BarColor.RED, BarStyle.SOLID);

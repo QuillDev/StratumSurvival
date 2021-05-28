@@ -1,7 +1,6 @@
 package moe.quill.Adventuring.Loot;
 
 import moe.quill.Crafting.GlobalKey;
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.Serialization.StratumSerialization;

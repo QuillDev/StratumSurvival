@@ -56,6 +56,7 @@ import moe.quill.Events.ToolEvents.IcePickClimb;
 import moe.quill.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
 import moe.quill.Guice.Binders.PluginBinderModule;
 import moe.quill.Utils.Serialization.StratumSerialization;
+import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
@@ -109,7 +110,6 @@ public final class StratumSurvival extends JavaPlugin {
 
             //setup dev command
             final var devTool = new DevTool(materialManager, this);
-
             //Register Events
             eventManager.register(
                     new HandleAttributeEvents(keyManager),

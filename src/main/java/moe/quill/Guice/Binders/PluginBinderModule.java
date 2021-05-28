@@ -8,16 +8,17 @@ import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
+import org.bukkit.plugin.Plugin;
 
 public class PluginBinderModule extends AbstractModule {
 
-    private final StratumSurvival plugin;
+    private final Plugin plugin;
     private final KeyManager keyManager;
     private final MaterialManager materialManager;
     private final ItemHelper itemHelper;
     private final ItemGenerator itemGenerator;
 
-    public PluginBinderModule(StratumSurvival plugin) {
+    public PluginBinderModule(Plugin plugin) {
         this.plugin = plugin;
         this.keyManager = new KeyManager(plugin);
         this.materialManager = new MaterialManager(plugin, keyManager);
@@ -31,7 +32,7 @@ public class PluginBinderModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        this.bind(StratumSurvival.class).toInstance(this.plugin);
+        this.bind(Plugin.class).toInstance(this.plugin);
         this.bind(KeyManager.class).toInstance(this.keyManager);
         this.bind(MaterialManager.class).toInstance(this.materialManager);
         this.bind(ItemHelper.class).toInstance(this.itemHelper);

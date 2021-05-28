@@ -28,7 +28,7 @@ public class ChatNPCManager {
     private final HashMap<String, ChatNPC> chatNPCs = new HashMap<>();
 
     @Inject
-    public ChatNPCManager(StratumSurvival plugin) {
+    public ChatNPCManager(Plugin plugin) {
         this.chatNpcKey = new NamespacedKey(plugin, "npc_chatter");
         this.npcChatDataKey = new NamespacedKey(plugin, "npc_line_data");
         this.plugin = plugin;

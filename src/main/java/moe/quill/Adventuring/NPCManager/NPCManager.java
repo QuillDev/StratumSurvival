@@ -20,7 +20,7 @@ public class NPCManager {
 
 
     @Inject
-    public NPCManager(StratumSurvival plugin) {
+    public NPCManager(Plugin plugin) {
         npcs.addAll(
                 Arrays.asList(
                         new Cryptologist(new NamespacedKey(plugin, NPCType.CRYPTOLOGIST.key)),

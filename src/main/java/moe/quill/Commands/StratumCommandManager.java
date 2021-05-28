@@ -2,6 +2,8 @@ package moe.quill.Commands;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import moe.quill.StratumSurvival;
@@ -10,12 +12,12 @@ import moe.quill.StratumSurvival;
 public class StratumCommandManager {
 
 
-    private final StratumSurvival plugin;
+    private final JavaPlugin plugin;
     private static final Logger logger = LoggerFactory.getLogger(StratumCommandManager.class.getSimpleName());
 
     @Inject
-    public StratumCommandManager(StratumSurvival plugin) {
-        this.plugin = plugin;
+    public StratumCommandManager(Plugin plugin) {
+        this.plugin = (JavaPlugin) plugin;
         register(); //register all of the commands
     }
 
