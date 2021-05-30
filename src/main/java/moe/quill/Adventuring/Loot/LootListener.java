@@ -3,7 +3,7 @@ package moe.quill.Adventuring.Loot;
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.NamespacedKey;
@@ -47,7 +47,7 @@ public class LootListener implements Listener {
         final var targetData = target.getPersistentDataContainer();
         if (!targetData.has(lootManager.getLootChestKey(), PersistentDataType.BYTE_ARRAY)) return;
         if (!targetData.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
-        final var level = (int) StratumSerialization.deserializeFloat(targetData.get(levelKey, PersistentDataType.BYTE_ARRAY));
+        final var level = (int) StratumSurvival.serializer.deserializeFloat(targetData.get(levelKey, PersistentDataType.BYTE_ARRAY));
         event.setCancelled(true); //cancel the right click event
         final var player = event.getPlayer();
         player.sendMessage(String.format("Opened tier %s loot", level));

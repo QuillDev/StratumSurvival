@@ -20,9 +20,7 @@ public abstract class PickaxeAttribute extends MiningAttribute {
                 keyManager,
                 key,
                 lore,
-                new ArrayList<>() {{
-                    addAll(ItemLists.TOOLS_PICKAXE);
-                }},
+                ItemLists.TOOLS_PICKAXE,
                 scaleValue,
                 minRoll,
                 maxRoll

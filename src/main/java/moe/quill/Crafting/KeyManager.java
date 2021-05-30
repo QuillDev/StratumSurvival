@@ -2,7 +2,6 @@ package moe.quill.Crafting;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import moe.quill.StratumSurvival;
 import moe.quill.Utils.Annotations.Keyable;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;

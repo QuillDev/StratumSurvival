@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -63,13 +63,13 @@ public class ChatNPC {
         chatLines.clear();
         final var data = villager.getPersistentDataContainer();
         final var chatDataBytes = data.get(chatDataKey, PersistentDataType.BYTE_ARRAY);
-        final var deserializedComponentList = StratumSerialization.deserializeComponentList(chatDataBytes);
+        final var deserializedComponentList = StratumSurvival.serializer.deserializeComponentList(chatDataBytes);
         this.chatLines.addAll(deserializedComponentList);
     }
 
     public void updatePersistentChatData() {
         final var data = villager.getPersistentDataContainer();
-        data.set(chatDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponentList(chatLines));
+        data.set(chatDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeComponentList(chatLines));
     }
 
     public ArrayList<Component> getChatLines() {

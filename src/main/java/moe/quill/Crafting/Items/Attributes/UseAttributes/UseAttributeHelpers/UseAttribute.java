@@ -6,7 +6,8 @@ import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
+import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -69,7 +70,7 @@ public abstract class UseAttribute extends Attribute {
 
         //Do cool down calculations
         final var lastTickBytes = heldItemData.get(cooldownKey, PersistentDataType.BYTE_ARRAY);
-        final var lastTick = StratumSerialization.deserializeLong(lastTickBytes);
+        final var lastTick = StratumSurvival.serializer.deserializeLong(lastTickBytes);
         final var curTick = Bukkit.getCurrentTick();
         final var deltaTicks = curTick - lastTick;
 
@@ -99,7 +100,7 @@ public abstract class UseAttribute extends Attribute {
         }
 
         //Write the new cool down to the key
-        heldItemData.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(curTick));
+        heldItemData.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeLong(curTick));
         heldItem.setItemMeta(heldItemMeta);
         return new UseEventData(event, player, action);
     }

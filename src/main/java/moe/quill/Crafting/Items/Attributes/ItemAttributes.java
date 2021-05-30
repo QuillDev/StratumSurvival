@@ -2,6 +2,7 @@ package moe.quill.Crafting.Items.Attributes;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.MiningAttribute;
 import moe.quill.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;

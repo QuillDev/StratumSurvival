@@ -8,8 +8,11 @@ import java.util.ArrayList;
 
 public class BossEffectHelper extends EffectHelper {
 
-    public ArrayList<Player> getNearbyPlayers(LivingEntity boss, double radius){
-        ArrayList<Player> players = new ArrayList<Player>(boss.getLocation().getNearbyPlayers(radius));
-        return players;
+    public ArrayList<Player> getNearbyPlayers(LivingEntity boss, double radius) {
+        return new ArrayList<>(boss.getLocation().getNearbyPlayers(radius));
+    }
+
+    public ArrayList<Player> getNearbyPlayers(LivingEntity boss) {
+        return new ArrayList<>(boss.getLocation().getNearbyPlayers(35));
     }
 }

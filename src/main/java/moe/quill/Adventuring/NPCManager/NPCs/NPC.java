@@ -1,6 +1,7 @@
 package moe.quill.Adventuring.NPCManager.NPCs;
 
-import moe.quill.Utils.Serialization.StratumSerialization;
+
+import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -33,7 +34,7 @@ public class NPC {
 
         //Get the data container
         final var data = villager.getPersistentDataContainer();
-        data.set(key, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        data.set(key, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
     }
 
     public NamespacedKey getKey() {

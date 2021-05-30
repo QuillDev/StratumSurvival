@@ -6,7 +6,8 @@ import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
+import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
@@ -113,8 +114,8 @@ public class TrinketBagHelper {
         final var inventorySizeBytes = heldItemData.get(inventorySizeKey, PersistentDataType.BYTE_ARRAY);
         final var inventoryDataBytes = heldItemData.get(itemDataKey, PersistentDataType.BYTE_ARRAY);
         //Get the values from the bytes
-        final var inventorySize = (int) StratumSerialization.deserializeFloat(inventorySizeBytes);
-        final var inventoryData = StratumSerialization.deserializeItemList(inventoryDataBytes);
+        final var inventorySize = (int) StratumSurvival.serializer.deserializeFloat(inventorySizeBytes);
+        final var inventoryData = StratumSurvival.serializer.deserializeItemList(inventoryDataBytes);
 
         //If the data is bad, return null
         if (inventoryData == null) return null;
@@ -133,7 +134,7 @@ public class TrinketBagHelper {
         final var trinketBagMeta = trinketBag.getItemMeta();
         if (trinketBagMeta == null) return;
         final var trinketBagDataContainer = trinketBagMeta.getPersistentDataContainer();
-        trinketBagDataContainer.set(itemDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeItemList(items));
+        trinketBagDataContainer.set(itemDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeItemList(items));
         trinketBag.setItemMeta(trinketBagMeta);
     }
 

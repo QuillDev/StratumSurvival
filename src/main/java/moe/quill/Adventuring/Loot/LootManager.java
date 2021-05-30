@@ -8,7 +8,7 @@ import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 import moe.quill.StratumSurvival;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -59,8 +59,8 @@ public class LootManager {
         final var spawnLocation = new Location(location.getWorld(), location.getX(), location.getY() - 1.475, location.getZ());
         final var chestStand = (ArmorStand) location.getWorld().spawnEntity(spawnLocation, EntityType.ARMOR_STAND);
         final var chestStandData = chestStand.getPersistentDataContainer();
-        chestStandData.set(lootChestKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
-        chestStandData.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
+        chestStandData.set(lootChestKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
+        chestStandData.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(level));
         chestStand.setAI(false);
         chestStand.setVisible(false);
         chestStand.setArms(false);

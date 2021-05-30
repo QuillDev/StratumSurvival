@@ -2,6 +2,10 @@ package moe.quill.Adventuring.Bosses;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.Adventuring.Bosses.BossAttacks.BossAttack;
+import moe.quill.Adventuring.Bosses.BossAttacks.FlingVerticallyAttack;
+import moe.quill.Adventuring.Bosses.BossAttacks.LevitatePlayersAttack;
+import moe.quill.Adventuring.Bosses.BossAttacks.SpawnZombiesAttack;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.TickHelper;
 import net.kyori.adventure.text.Component;
@@ -21,10 +25,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
-import moe.quill.Utils.Serialization.StratumSerialization;
 
-import java.util.Collection;
-import java.util.HashMap;
+
+import java.util.*;
 
 @Singleton
 public class WorldBossManager {
@@ -47,6 +50,15 @@ public class WorldBossManager {
 
     //Stats during the fight
     private final HashMap<Player, Integer> dpsMap = new HashMap<>();
+
+    //Boss attack scheduling id
+    private int bossAttackScheduleId = -1;
+    //Add attacks to the boss
+    private final ArrayList<BossAttack> bossAttacks = new ArrayList<>(Arrays.asList(
+            new SpawnZombiesAttack(),
+            new LevitatePlayersAttack(),
+            new FlingVerticallyAttack()
+    ));
 
     //TODO: Add Support for multiple world bosses at once (some sort of boss data class)
     @Inject
@@ -95,7 +107,7 @@ public class WorldBossManager {
         //Setup properties of the world boss scaling based on nearby players
         final var boss = (Giant) location.getWorld().spawnEntity(location, EntityType.GIANT);
         final var bossData = boss.getPersistentDataContainer();
-        bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
         this.combatantSize = nearbyPlayers.size();
         boss.setHealth(20f * combatantSize);
 
@@ -111,6 +123,12 @@ public class WorldBossManager {
                 Component.text("A world boss has been summoned!")
                         .color(TextColor.color(0xFF544D))
         );
+
+        bossAttackScheduleId = scheduler.scheduleSyncRepeatingTask(plugin, () -> {
+            final var attack = bossAttacks.get(StratumSurvival.rand.nextInt(bossAttacks.size()));
+            nearbyPlayers.forEach(player -> player.showTitle(Title.title(Component.empty(), attack.getWarningText())));
+            attack.execute(boss);
+        }, TickHelper.secToTick(5), TickHelper.secToTick(2));
 
         //Schedule the de spawn task
         despawnWorldBossId = scheduler.scheduleSyncDelayedTask(plugin, () -> {
@@ -214,11 +232,11 @@ public class WorldBossManager {
         return world;
     }
 
-    public void setDespawnWorldBossId(int despawnWorldBossId) {
-        this.despawnWorldBossId = despawnWorldBossId;
-    }
-
     public int getDespawnWorldBossId() {
         return despawnWorldBossId;
+    }
+
+    public int getBossAttackScheduleId() {
+        return bossAttackScheduleId;
     }
 }

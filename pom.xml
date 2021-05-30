@@ -12,7 +12,7 @@
     <name>stratumsurvival</name>
 
     <properties>
-        <java.version>15</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -79,6 +79,11 @@
             <artifactId>paper-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>moe.quill</groupId>
+            <artifactId>stratum-common-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.mojang</groupId>

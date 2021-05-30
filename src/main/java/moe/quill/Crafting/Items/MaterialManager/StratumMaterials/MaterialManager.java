@@ -5,7 +5,7 @@ import com.google.inject.Singleton;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.*;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -85,7 +85,7 @@ public class MaterialManager {
             registryMaterials.values().forEach(item -> {
                         final var meta = item.getItemMeta();
                         final var data = meta.getPersistentDataContainer();
-                        data.set(registryKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+                        data.set(registryKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
                         item.setItemMeta(meta);
                     }
             );
