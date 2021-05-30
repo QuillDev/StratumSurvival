@@ -55,18 +55,20 @@ import moe.quill.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.Events.ToolEvents.IcePickClimb;
 import moe.quill.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
 import moe.quill.Guice.Binders.PluginBinderModule;
-import moe.quill.Utils.Serialization.StratumSerialization;
-import org.bukkit.NamespacedKey;
+import moe.quill.StratumCommon.Serialization.StratumSerializer;
 import org.bukkit.plugin.java.JavaPlugin;
 import moe.quill.Crafting.StratumCraftingManager;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
 @Singleton
 public final class StratumSurvival extends JavaPlugin {
     public static final Random rand = new Random();
+    private static final Logger logger = LoggerFactory.getLogger(StratumSurvival.class.getSimpleName());
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
 
     @Inject
@@ -98,11 +100,23 @@ public final class StratumSurvival extends JavaPlugin {
     @Inject
     private EnemyManager enemyManager;
 
+    public static StratumSerializer serializer;
+
     @Override
     public void onEnable() {
 
         try {
-            StratumSerialization.init();
+
+            //Get the services manager
+            //TODO: Some sort of services manager?
+            final var serviceManager = getServer().getServicesManager();
+            final var serializeService = serviceManager.getRegistration(StratumSerializer.class);
+            if (serializeService == null) {
+                logger.error("Could not get the serializer service!");
+                throw new Exception("Could not get the serializer service!");
+            }
+            StratumSurvival.serializer = serializeService.getProvider();
+
 
             //DI STUFF
             PluginBinderModule module = new PluginBinderModule(this);
@@ -116,7 +130,7 @@ public final class StratumSurvival extends JavaPlugin {
                     new GenerateItemOnMobDeath(itemGenerator),
                     new InjectChatItemEvent(),
                     new GrindCustomWeaponEvent(keyManager, materialManager),
-                    new InteractCryptologistEvent(npcManager),
+                    new InteractCryptologistEvent(keyManager, itemHelper, npcManager),
                     new InteractBlacksmithEvent(npcManager, materialManager, keyManager, itemHelper),
                     new CraftCustomItemEvent(keyManager, itemGenerator, materialManager),
                     new NPCTransformWitchCancel(),
@@ -134,15 +148,15 @@ public final class StratumSurvival extends JavaPlugin {
 
             commandManager.register(
                     new StratumCommand("generateitem", new GenerateItemCommand(itemGenerator), new GenerateItemTabs()),
-                    new StratumCommand("addchatline", new AddChatLineCommand(chatNpcManager), new AddChatLineTabs(chatNpcManager)),
-                    new StratumCommand("deletechatnpc", new DeleteChatNpcCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
-                    new StratumCommand("removechatline", new RemoveChatLineCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
-                    new StratumCommand("removechatlineraw", new RemoveChatLineRawCommand(chatNpcManager), null),
+//                    new StratumCommand("addchatline", new AddChatLineCommand(chatNpcManager), new AddChatLineTabs(chatNpcManager)),
+//                    new StratumCommand("deletechatnpc", new DeleteChatNpcCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
+//                    new StratumCommand("removechatline", new RemoveChatLineCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
+//                    new StratumCommand("removechatlineraw", new RemoveChatLineRawCommand(chatNpcManager), null),
                     new StratumCommand("obfuscate", new ObfuscateItem(itemHelper), null),
                     new StratumCommand("deobfuscate", new DeobfuscateItem(itemHelper), null),
-                    new StratumCommand("spawnnpc", new SpawnNPCCommand(npcManager), null),
+//                    new StratumCommand("spawnnpc", new SpawnNPCCommand(npcManager), null),
                     new StratumCommand("reroll", new RerollItem(itemHelper), null),
-                    new StratumCommand("spawnchatnpc", new SpawnChatNpcCommand(chatNpcManager), null),
+//                    new StratumCommand("spawnchatnpc", new SpawnChatNpcCommand(chatNpcManager), null),
                     new StratumCommand("spawnworldboss", new SummonWorldBossCommand(worldBossManager), null),
                     new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
                     new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),

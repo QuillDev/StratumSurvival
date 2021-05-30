@@ -3,10 +3,10 @@ package moe.quill.Adventuring.NPCManager.NPCEvents;
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
+import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -14,6 +14,7 @@ import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager
 import moe.quill.Adventuring.NPCManager.NPCManager;
 import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
 import moe.quill.Utils.PlayerHelpers.InventoryHelper;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.persistence.PersistentDataType;
 
 public class InteractBlacksmithEvent implements Listener {
@@ -41,14 +42,14 @@ public class InteractBlacksmithEvent implements Listener {
 
     @EventHandler
     public void reRollHeldItemEvent(PlayerInteractEntityEvent event) {
+        if (event.getHand() != EquipmentSlot.HAND) return;
         final var entity = event.getRightClicked();
-        if (!(entity instanceof Villager)) return;
+        final var entityData = entity.getPersistentDataContainer();
+        if (!(entityData.has(blacksmithKey, PersistentDataType.BYTE_ARRAY))) return;
         final var player = event.getPlayer();
         final var heldItem = player.getInventory().getItemInMainHand();
 
         //Make sure that the target we're interacting with is a cryptologist
-        final var entityData = entity.getPersistentDataContainer();
-        if (!(entityData.has(blacksmithKey, PersistentDataType.BYTE_ARRAY))) return;
         event.setCancelled(true); //cancel interactions if this is a special villages
 
         //Make sure that the item is obfuscated
@@ -58,7 +59,7 @@ public class InteractBlacksmithEvent implements Listener {
         if (itemData.has(obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
         if (!itemData.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
         final var levelBytes = itemData.get(levelKey, PersistentDataType.BYTE_ARRAY);
-        var level = (int) StratumSerialization.deserializeFloat(levelBytes);
+        var level = (int) StratumSurvival.serializer.deserializeFloat(levelBytes);
 
         // Get the corresponding item based on the level
         final var crystalItem = materialManager.getCrystalForLevel(level);

@@ -124,7 +124,7 @@ public class WorldBossListeners implements Listener {
         dpsMap.clear();
         bossManager.setActiveBattle(false);
         Bukkit.getScheduler().cancelTask(bossManager.getDespawnWorldBossId());
-        bossManager.setDespawnWorldBossId(-1);
+        Bukkit.getScheduler().cancelTask(bossManager.getBossAttackScheduleId());
     }
 
 

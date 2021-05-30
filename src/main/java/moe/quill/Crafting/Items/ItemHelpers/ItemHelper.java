@@ -6,7 +6,7 @@ import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.KeyUtils;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -52,11 +52,11 @@ public class ItemHelper {
 
             //Get the level of the item
             final var levelBytes = data.get(levelKey, PersistentDataType.BYTE_ARRAY);
-            var level = (int) StratumSerialization.deserializeFloat(levelBytes);
+            var level = (int) StratumSurvival.serializer.deserializeFloat(levelBytes);
 
             //Get the data and set each key with new values
             final var dataValue = generateDataValue(attr, level);
-            data.set(keyManager.getNsKey(attr.key), PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
+            data.set(keyManager.getNsKey(attr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
             setLoreFromItemKeys(meta);
             item.setItemMeta(meta);
         });
@@ -99,14 +99,14 @@ public class ItemHelper {
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
         final var lore = new ArrayList<Component>();
-        final var level = (int) StratumSerialization.deserializeFloat(data.get(levelKey, PersistentDataType.BYTE_ARRAY));
+        final var level = (int) StratumSurvival.serializer.deserializeFloat(data.get(levelKey, PersistentDataType.BYTE_ARRAY));
         lore.add(ItemRarity.getRarity(level).getName());
         for (final var key : data.getKeys()) {
             final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) continue;
             //Get the value off of the item for the given attribute
             final var valueBytes = data.get(keyManager.getNsKey(attr.key), PersistentDataType.BYTE_ARRAY);
-            final var value = StratumSerialization.deserializeFloat(valueBytes);
+            final var value = StratumSurvival.serializer.deserializeFloat(valueBytes);
             if (Float.isNaN(value)) continue;
             lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
         }
@@ -140,7 +140,7 @@ public class ItemHelper {
         data.remove(obfuscatedKey);
         if (data.has(nameKey, PersistentDataType.BYTE_ARRAY)) {
             final var nameBytes = data.get(nameKey, PersistentDataType.BYTE_ARRAY);
-            final var name = StratumSerialization.deserializeComponent(nameBytes);
+            final var name = StratumSurvival.serializer.deserializeComponent(nameBytes);
             meta.displayName(name);
         }
         itemStack.setItemMeta(meta);
@@ -156,7 +156,7 @@ public class ItemHelper {
         meta.lore(Collections.singletonList(Component.text("????????").decorate(TextDecoration.OBFUSCATED)));
         meta.displayName(Component.text("?????????").decorate(TextDecoration.OBFUSCATED));
         final var data = meta.getPersistentDataContainer();
-        data.set(obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        data.set(obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
         itemStack.setItemMeta(meta);
     }
 

@@ -3,6 +3,7 @@ package moe.quill.Crafting.Items.EventHandler;
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.KeyManager;
+import moe.quill.StratumSurvival;
 import moe.quill.Utils.KeyUtils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,7 +20,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 
 public class HandleAttributeEvents implements Listener {
 
@@ -81,7 +82,7 @@ public class HandleAttributeEvents implements Listener {
             if (attr == null) return;
             final var nsKey = keyManager.getNsKey(attr.key);
             final var modBytes = data.get(nsKey, PersistentDataType.BYTE_ARRAY);
-            final var modifier = StratumSerialization.deserializeFloat(modBytes);
+            final var modifier = StratumSurvival.serializer.deserializeFloat(modBytes);
             attr.execute(event, modifier);
         });
     }

@@ -10,7 +10,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,8 +61,8 @@ public class ChatNPCManager {
     public void spawnNPC(String name, Location location) {
         final var npc = (Villager) location.getWorld().spawnEntity(location, EntityType.VILLAGER);
         final var npcData = npc.getPersistentDataContainer();
-        npcData.set(chatNpcKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
-        npcData.set(npcChatDataKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponentList(new ArrayList<>()));
+        npcData.set(chatNpcKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
+        npcData.set(npcChatDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeComponentList(new ArrayList<>()));
         npc.setInvulnerable(true);
         npc.setCustomName(name);
         npc.setPersistent(true);

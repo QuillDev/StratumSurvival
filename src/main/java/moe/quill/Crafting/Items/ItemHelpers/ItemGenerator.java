@@ -8,7 +8,7 @@ import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.Use
 import moe.quill.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -66,19 +66,19 @@ public class ItemGenerator {
         for (var i = 0; (i < maxIndex); i++) {
             final var curAttr = attributes.get(rand.nextInt(attributes.size()));
             final var dataValue = itemHelper.generateDataValue(curAttr, level);
-            data.set(keyManager.getNsKey(curAttr.key), PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(dataValue));
+            data.set(keyManager.getNsKey(curAttr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
             lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
             attributes.remove(curAttr); //remove the attribute we used
 
             //If the attribute just added was a use attribute, make it so we can't get any more
             if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
-                data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeLong(0L));
+                data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeLong(0L));
                 attributes.removeAll(useAttributes);
             }
         }
-        data.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeFloat(level));
-        data.set(nameKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeComponent(name));
-        data.set(isCustomItemKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
+        data.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(level));
+        data.set(nameKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeComponent(name));
+        data.set(isCustomItemKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;

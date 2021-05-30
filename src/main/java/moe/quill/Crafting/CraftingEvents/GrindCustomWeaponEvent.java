@@ -2,7 +2,8 @@ package moe.quill.Crafting.CraftingEvents;
 
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.Utils.Serialization.StratumSerialization;
+
+import moe.quill.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
@@ -43,7 +44,7 @@ public class GrindCustomWeaponEvent implements Listener {
         if (data.getKeys().size() == 0) return;
         if (!data.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
         final var levelBytes = data.get(levelKey, PersistentDataType.BYTE_ARRAY);
-        var level = (int) StratumSerialization.deserializeFloat(levelBytes);
+        var level = (int) StratumSurvival.serializer.deserializeFloat(levelBytes);
         // Get the corresponding item based on the level
         final var item = materialManager.getFragmentForLevel(level);
         item.setAmount(2 + new Random().nextInt(3));

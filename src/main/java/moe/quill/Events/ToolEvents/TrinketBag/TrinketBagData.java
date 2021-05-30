@@ -1,6 +1,6 @@
 package moe.quill.Events.ToolEvents.TrinketBag;
 
-import moe.quill.Utils.Serialization.StratumSerialization;
+
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
