@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.EventHandler;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.KeyUtils;
 import org.bukkit.Material;
@@ -24,12 +24,12 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class HandleAttributeEvents implements Listener {
 
-    private final KeyManager keyManager;
+    private final IKeyManager keyManager;
     private final NamespacedKey obfuscatedKey;
 
-    public HandleAttributeEvents(KeyManager keyManager) {
+    public HandleAttributeEvents(IKeyManager keyManager) {
         this.keyManager = keyManager;
-        this.obfuscatedKey = keyManager.getNsKey(GlobalKey.OBFUSCATED_KEY);
+        this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
     }
 
     @EventHandler
@@ -80,7 +80,7 @@ public class HandleAttributeEvents implements Listener {
         data.getKeys().forEach(key -> {
             final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) return;
-            final var nsKey = keyManager.getNsKey(attr.key);
+            final var nsKey = keyManager.getKey(attr.key);
             final var modBytes = data.get(nsKey, PersistentDataType.BYTE_ARRAY);
             final var modifier = StratumSurvival.serializer.deserializeFloat(modBytes);
             attr.execute(event, modifier);

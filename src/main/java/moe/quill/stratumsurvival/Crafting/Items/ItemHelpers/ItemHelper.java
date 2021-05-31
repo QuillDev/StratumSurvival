@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.KeyUtils;
 import net.kyori.adventure.text.Component;
@@ -23,18 +23,18 @@ public class ItemHelper {
 
     private static final Random rand = StratumSurvival.rand;
 
-    private final KeyManager keyManager;
+    private final IKeyManager keyManager;
 
     //Keys we'll be working with
     private final NamespacedKey levelKey;
     private final NamespacedKey obfuscatedKey;
     private final NamespacedKey nameKey;
 
-    public ItemHelper(KeyManager keyManager) {
+    public ItemHelper(IKeyManager keyManager) {
         this.keyManager = keyManager;
-        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
-        this.obfuscatedKey = keyManager.getNsKey(GlobalKey.OBFUSCATED_KEY);
-        this.nameKey = keyManager.getNsKey(GlobalKey.NAME_KEY);
+        this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
+        this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
+        this.nameKey = keyManager.getKey(GlobalKey.NAME_KEY);
     }
 
     /**
@@ -55,7 +55,7 @@ public class ItemHelper {
 
             //Get the data and set each key with new values
             final var dataValue = generateDataValue(attr, level);
-            data.set(keyManager.getNsKey(attr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
+            data.set(keyManager.getKey(attr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
             setLoreFromItemKeys(meta);
             item.setItemMeta(meta);
         });
@@ -104,7 +104,7 @@ public class ItemHelper {
             final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) continue;
             //Get the value off of the item for the given attribute
-            final var valueBytes = data.get(keyManager.getNsKey(attr.key), PersistentDataType.BYTE_ARRAY);
+            final var valueBytes = data.get(keyManager.getKey(attr.key), PersistentDataType.BYTE_ARRAY);
             final var value = StratumSurvival.serializer.deserializeFloat(valueBytes);
             if (Float.isNaN(value)) continue;
             lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));

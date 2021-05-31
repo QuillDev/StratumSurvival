@@ -1,16 +1,16 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
 public abstract class MaterialRegistry {
     protected MaterialKey materialKey;
-    protected KeyManager keyManager;
+    protected IKeyManager keyManager;
 
-    public MaterialRegistry(KeyManager keyManager, MaterialKey materialKey) {
+    public MaterialRegistry(IKeyManager keyManager, MaterialKey materialKey) {
         this.keyManager = keyManager;
         this.materialKey = materialKey;
     }

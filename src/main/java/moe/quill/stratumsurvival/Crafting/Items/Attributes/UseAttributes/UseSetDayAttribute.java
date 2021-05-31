@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.TimeSetEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -14,7 +14,7 @@ public class UseSetDayAttribute extends UseAttribute {
 
     TimeSetEffect timeSetEffect = new TimeSetEffect();
 
-    public UseSetDayAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public UseSetDayAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,

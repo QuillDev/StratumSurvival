@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterial
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -29,10 +29,10 @@ public class MaterialManager {
     private static final Logger logger = LoggerFactory.getLogger(MaterialManager.class.getSimpleName());
 
     private final Plugin plugin;
-    private final KeyManager keyManager;
+    private final IKeyManager keyManager;
 
     @Inject
-    public MaterialManager(Plugin plugin, KeyManager keyManager) {
+    public MaterialManager(Plugin plugin, IKeyManager keyManager) {
         this.plugin = plugin;
         this.keyManager = keyManager;
 
@@ -61,7 +61,7 @@ public class MaterialManager {
                 .filter(registryClass -> !Modifier.isAbstract(registryClass.getModifiers()))
                 .forEach(registryClass -> {
                     try {
-                        final var registry = registryClass.getDeclaredConstructor(KeyManager.class).newInstance(keyManager);
+                        final var registry = registryClass.getDeclaredConstructor(IKeyManager.class).newInstance(keyManager);
                         registerAll(registry);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();

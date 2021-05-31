@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
@@ -19,9 +19,9 @@ public class GeodeMaterialRegistry extends MaterialRegistry {
 
     private final NamespacedKey key;
 
-    public GeodeMaterialRegistry(KeyManager keyManager) {
+    public GeodeMaterialRegistry(IKeyManager keyManager) {
         super(keyManager, MaterialKey.GEODE_KEY);
-        this.key = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.key = keyManager.getKey(GlobalKey.LEVEL_KEY);
     }
 
     @Override

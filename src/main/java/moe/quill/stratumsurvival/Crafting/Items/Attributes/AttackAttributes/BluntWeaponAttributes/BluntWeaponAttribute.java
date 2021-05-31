@@ -4,14 +4,14 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.Atta
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 
 public abstract class BluntWeaponAttribute extends AttackAttribute {
     public BluntWeaponAttribute
             (
                     MaterialManager materialManager,
-                    KeyManager keyManager,
+                    IKeyManager keyManager,
                     AttributeKey key,
                     Component lore,
                     float scaleValue,

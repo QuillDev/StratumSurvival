@@ -38,7 +38,6 @@ import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
 import moe.quill.stratumsurvival.Crafting.StratumCraftingManager;
 import moe.quill.stratumsurvival.Events.ChatEvents.ChatBadgeEvent;
 import moe.quill.stratumsurvival.Events.ChatEvents.InjectChatItemEvent;
@@ -50,7 +49,7 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
-import moe.quill.stratumsurvival.Guice.Binders.PluginBinderModule;
+import moe.quill.stratumsurvival.Binders.PluginBinderModule;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,8 +62,6 @@ public final class StratumSurvival extends JavaPlugin {
     private static final Logger logger = LoggerFactory.getLogger(StratumSurvival.class.getSimpleName());
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
 
-    @Inject
-    private KeyManager keyManager;
     @Inject
     private MaterialManager materialManager;
     @Inject
@@ -113,12 +110,11 @@ public final class StratumSurvival extends JavaPlugin {
                 throw new Exception("Could not get the key manager service!");
             }
             StratumSurvival.serializer = serializeService.getProvider();
-            final var keyProvided = keyService.getProvider();
-            keyProvided.loadKeyablesDynamically(this);
-
+            final var keyManager = keyService.getProvider();
+            keyManager.loadKeyablesDynamically(this);
 
             //DI STUFF
-            PluginBinderModule module = new PluginBinderModule(this);
+            PluginBinderModule module = new PluginBinderModule(this, keyManager);
             module.createInjector().injectMembers(this);
 
             //setup dev command

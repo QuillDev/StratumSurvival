@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -15,7 +15,7 @@ public class UseSlowFieldAttribute extends UseAttribute {
 
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
 
-    public UseSlowFieldAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public UseSlowFieldAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,

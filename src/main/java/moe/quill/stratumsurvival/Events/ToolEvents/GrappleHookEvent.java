@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Events.ToolEvents;
 
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,8 +12,8 @@ public class GrappleHookEvent implements Listener {
 
     private final NamespacedKey grappleKey;
 
-    public GrappleHookEvent(KeyManager keyManager) {
-        this.grappleKey = keyManager.getNsKey(MaterialKey.GRAPPLING_HOOK_KEY);
+    public GrappleHookEvent(IKeyManager keyManager) {
+        this.grappleKey = keyManager.getKey(MaterialKey.GRAPPLING_HOOK_KEY);
     }
 
     @EventHandler

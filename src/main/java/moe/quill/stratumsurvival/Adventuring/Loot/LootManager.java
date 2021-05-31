@@ -6,7 +6,7 @@ import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -31,11 +31,11 @@ public class LootManager {
     private final NamespacedKey levelKey;
 
     @Inject
-    public LootManager(KeyManager keyManager, MaterialManager materialManager, LootTables lootTables) {
+    public LootManager(IKeyManager keyManager, MaterialManager materialManager, LootTables lootTables) {
         this.materialManager = materialManager;
         this.lootTables = lootTables;
-        this.lootChestKey = keyManager.getNsKey(MaterialKey.LOOT_CHEST_KEY);
-        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.lootChestKey = keyManager.getKey(MaterialKey.LOOT_CHEST_KEY);
+        this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
     }
 
     /**

@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -29,10 +29,10 @@ public class TrinketBagHelper {
     private final NamespacedKey inventorySizeKey;
     private final NamespacedKey itemDataKey;
 
-    public TrinketBagHelper(KeyManager keyManager, MaterialManager materialManager) {
-        this.trinketBagKey = keyManager.getNsKey(MaterialKey.TRINKET_BAG_KEY);
-        this.inventorySizeKey = keyManager.getNsKey(GlobalKey.INVENTORY_SIZE_KEY);
-        this.itemDataKey = keyManager.getNsKey(GlobalKey.ITEM_DATA_KEY);
+    public TrinketBagHelper(IKeyManager keyManager, MaterialManager materialManager) {
+        this.trinketBagKey = keyManager.getKey(MaterialKey.TRINKET_BAG_KEY);
+        this.inventorySizeKey = keyManager.getKey(GlobalKey.INVENTORY_SIZE_KEY);
+        this.itemDataKey = keyManager.getKey(GlobalKey.ITEM_DATA_KEY);
         this.blockade = materialManager.getItem(StratumMaterial.BLOCKADE);
     }
 

@@ -7,7 +7,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -22,7 +22,7 @@ public class ItemGenerator {
 
     private final static Random rand = StratumSurvival.rand;
     private final ItemHelper itemHelper;
-    private final KeyManager keyManager;
+    private final IKeyManager keyManager;
 
     //Keys for generating Items
     private final NamespacedKey levelKey;
@@ -31,15 +31,15 @@ public class ItemGenerator {
     private final NamespacedKey nameKey;
 
     @Inject
-    public ItemGenerator(KeyManager keyManager, ItemHelper itemHelper) {
+    public ItemGenerator(IKeyManager keyManager, ItemHelper itemHelper) {
         this.keyManager = keyManager;
         this.itemHelper = itemHelper;
 
         //setup keys
-        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
-        this.isCustomItemKey = keyManager.getNsKey(GlobalKey.IS_CUSTOM_KEY);
-        this.cooldownKey = keyManager.getNsKey(GlobalKey.COOLDOWN_KEY);
-        this.nameKey = keyManager.getNsKey(GlobalKey.NAME_KEY);
+        this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
+        this.isCustomItemKey = keyManager.getKey(GlobalKey.IS_CUSTOM_KEY);
+        this.cooldownKey = keyManager.getKey(GlobalKey.COOLDOWN_KEY);
+        this.nameKey = keyManager.getKey(GlobalKey.NAME_KEY);
 
     }
 
@@ -65,7 +65,7 @@ public class ItemGenerator {
         for (var i = 0; (i < maxIndex); i++) {
             final var curAttr = attributes.get(rand.nextInt(attributes.size()));
             final var dataValue = itemHelper.generateDataValue(curAttr, level);
-            data.set(keyManager.getNsKey(curAttr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
+            data.set(keyManager.getKey(curAttr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
             lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
             attributes.remove(curAttr); //remove the attribute we used
 

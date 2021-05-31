@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.Blu
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.SpawnEntityEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.EntityType;
@@ -13,7 +13,7 @@ public class BluntWeaponEvokerStrikeAttribute extends BluntWeaponAttribute {
 
     SpawnEntityEffect evokerFangEffect = new SpawnEntityEffect();
 
-    public BluntWeaponEvokerStrikeAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public BluntWeaponEvokerStrikeAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,

@@ -5,7 +5,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttr
 import moe.quill.stratumsurvival.Crafting.Items.Effects.CloakEffect;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.KnockbackEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -15,7 +15,7 @@ public class UseShadowDodgeAttribute extends UseAttribute {
     public final static CloakEffect cloakEffect = new CloakEffect();
     public final static KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    public UseShadowDodgeAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public UseShadowDodgeAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,

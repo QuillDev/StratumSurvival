@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class CutlassMaterialRegistry extends MaterialRegistry {
 
 
-    public CutlassMaterialRegistry(KeyManager keyManager) {
+    public CutlassMaterialRegistry(IKeyManager keyManager) {
         super(keyManager,MaterialKey.CUTLASS_KEY);
     }
 

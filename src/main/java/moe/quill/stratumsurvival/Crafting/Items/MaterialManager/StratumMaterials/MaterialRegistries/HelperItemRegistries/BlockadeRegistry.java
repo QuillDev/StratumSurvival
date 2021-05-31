@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterial
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 @SuppressWarnings("unused")
 public class BlockadeRegistry extends MaterialRegistry {
-    public BlockadeRegistry(KeyManager keyManager) {
+    public BlockadeRegistry(IKeyManager keyManager) {
         super(keyManager, MaterialKey.BLOCKADE_KEY);
     }
 

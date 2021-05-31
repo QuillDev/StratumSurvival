@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.CraftingEvents;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
@@ -20,10 +20,10 @@ public class CraftCustomItemEvent implements Listener {
 
     private final NamespacedKey shardKey;
 
-    public CraftCustomItemEvent(KeyManager keyManager, ItemGenerator generator, MaterialManager materialManager) {
+    public CraftCustomItemEvent(IKeyManager keyManager, ItemGenerator generator, MaterialManager materialManager) {
         this.generator = generator;
         this.materialManager = materialManager;
-        this.shardKey = keyManager.getNsKey(MaterialKey.SHARD_KEY);
+        this.shardKey = keyManager.getKey(MaterialKey.SHARD_KEY);
     }
 
     @EventHandler

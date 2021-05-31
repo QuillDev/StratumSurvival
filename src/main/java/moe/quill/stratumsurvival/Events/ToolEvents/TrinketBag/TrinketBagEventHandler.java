@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag;
 
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class TrinketBagEventHandler implements Listener {
     private final TrinketBagHelper trinketBagHelper;
 
-    public TrinketBagEventHandler(KeyManager keyManager, MaterialManager materialManager) {
+    public TrinketBagEventHandler(IKeyManager keyManager, MaterialManager materialManager) {
         this.trinketBagHelper = new TrinketBagHelper(keyManager, materialManager);
     }
 

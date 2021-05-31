@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.Blu
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.FlameEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -12,7 +12,7 @@ public class BluntWeaponFlameAttribute extends BluntWeaponAttribute {
 
     private final static FlameEffect flameEffect = new FlameEffect();
 
-    public BluntWeaponFlameAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public BluntWeaponFlameAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,

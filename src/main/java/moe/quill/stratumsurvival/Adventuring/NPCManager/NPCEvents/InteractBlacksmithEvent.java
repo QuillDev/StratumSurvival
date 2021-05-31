@@ -5,7 +5,7 @@ import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCs.NPCType;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;
 import net.kyori.adventure.text.Component;
@@ -30,13 +30,13 @@ public class InteractBlacksmithEvent implements Listener {
     private final NamespacedKey obfuscatedKey;
     private final NamespacedKey levelKey;
 
-    public InteractBlacksmithEvent(NPCManager npcManager, MaterialManager materialManager, KeyManager keyManager, ItemHelper itemHelper) {
+    public InteractBlacksmithEvent(NPCManager npcManager, MaterialManager materialManager, IKeyManager keyManager, ItemHelper itemHelper) {
         this.blacksmithKey = npcManager.getNPCByType(NPCType.BLACKSMITH).getKey();
         this.materialManager = materialManager;
         this.itemHelper = itemHelper;
 
-        this.obfuscatedKey = keyManager.getNsKey(GlobalKey.OBFUSCATED_KEY);
-        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
+        this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
     }
 
     @EventHandler

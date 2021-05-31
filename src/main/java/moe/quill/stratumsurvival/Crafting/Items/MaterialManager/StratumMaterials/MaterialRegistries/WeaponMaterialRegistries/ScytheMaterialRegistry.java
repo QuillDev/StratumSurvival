@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class ScytheMaterialRegistry extends MaterialRegistry {
 
-    public ScytheMaterialRegistry(KeyManager keyManager) {
+    public ScytheMaterialRegistry(IKeyManager keyManager) {
         super(keyManager, MaterialKey.SCYTHE_KEY);
     }
 

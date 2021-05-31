@@ -2,12 +2,12 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 
 public class OnDeathWhisperAttribute extends OnDeathAttribute {
-    public OnDeathWhisperAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public OnDeathWhisperAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,

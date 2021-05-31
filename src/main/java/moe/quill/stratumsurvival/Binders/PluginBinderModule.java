@@ -6,20 +6,20 @@ import com.google.inject.Injector;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.plugin.Plugin;
 
 public class PluginBinderModule extends AbstractModule {
 
     private final Plugin plugin;
-    private final KeyManager keyManager;
+    private final IKeyManager keyManager;
     private final MaterialManager materialManager;
     private final ItemHelper itemHelper;
     private final ItemGenerator itemGenerator;
 
-    public PluginBinderModule(Plugin plugin) {
+    public PluginBinderModule(Plugin plugin, IKeyManager keyManager) {
         this.plugin = plugin;
-        this.keyManager = new KeyManager(plugin);
+        this.keyManager = keyManager;
         this.materialManager = new MaterialManager(plugin, keyManager);
         this.itemHelper = new ItemHelper(keyManager);
         this.itemGenerator = new ItemGenerator(keyManager, itemHelper);
@@ -32,7 +32,7 @@ public class PluginBinderModule extends AbstractModule {
     @Override
     protected void configure() {
         this.bind(Plugin.class).toInstance(this.plugin);
-        this.bind(KeyManager.class).toInstance(this.keyManager);
+        this.bind(IKeyManager.class).toInstance(this.keyManager);
         this.bind(MaterialManager.class).toInstance(this.materialManager);
         this.bind(ItemHelper.class).toInstance(this.itemHelper);
         this.bind(ItemGenerator.class).toInstance(this.itemGenerator);

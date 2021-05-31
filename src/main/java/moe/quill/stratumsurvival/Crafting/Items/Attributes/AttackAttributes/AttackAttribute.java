@@ -5,7 +5,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes.OnDeathAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 public abstract class AttackAttribute extends Attribute {
     public AttackAttribute(
             MaterialManager materialManager,
-            KeyManager keyManager,
+            IKeyManager keyManager,
             AttributeKey key,
             Component lore,
             ArrayList<ItemStack> itemStacks,

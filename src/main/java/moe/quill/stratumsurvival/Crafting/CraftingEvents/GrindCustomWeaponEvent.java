@@ -2,7 +2,7 @@ package moe.quill.stratumsurvival.Crafting.CraftingEvents;
 
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -21,9 +21,9 @@ public class GrindCustomWeaponEvent implements Listener {
     //The level key
     private final NamespacedKey levelKey;
 
-    public GrindCustomWeaponEvent(KeyManager keyManager, MaterialManager materialManager) {
+    public GrindCustomWeaponEvent(IKeyManager keyManager, MaterialManager materialManager) {
         this.materialManager = materialManager;
-        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
 
     }
 

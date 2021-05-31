@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.Blu
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.BonusDamageEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -13,7 +13,7 @@ public class BluntWeaponPercentDamageAttribute extends BluntWeaponAttribute {
 
     private static final BonusDamageEffect bonusDamageEffect = new BonusDamageEffect();
 
-    public BluntWeaponPercentDamageAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public BluntWeaponPercentDamageAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,

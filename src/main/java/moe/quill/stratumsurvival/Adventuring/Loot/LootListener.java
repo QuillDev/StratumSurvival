@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Adventuring.Loot;
 
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -22,10 +22,10 @@ public class LootListener implements Listener {
 
     private final NamespacedKey levelKey;
 
-    public LootListener(LootManager lootManager, KeyManager keyManager) {
+    public LootListener(LootManager lootManager, IKeyManager keyManager) {
         this.lootManager = lootManager;
         this.lootTables = lootManager.getLootTables();
-        this.levelKey = keyManager.getNsKey(GlobalKey.LEVEL_KEY);
+        this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
     }
 
     @EventHandler

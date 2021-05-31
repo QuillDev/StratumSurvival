@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -24,10 +24,10 @@ public abstract class UseAttribute extends Attribute {
     protected long cooldown;
     protected final NamespacedKey cooldownKey;
 
-    public UseAttribute(MaterialManager materialManager, KeyManager keyManager, AttributeKey key, Component lore, float scaleValue, long cooldown) {
+    public UseAttribute(MaterialManager materialManager, IKeyManager keyManager, AttributeKey key, Component lore, float scaleValue, long cooldown) {
         super(materialManager, keyManager, key, lore, new ArrayList<>(), scaleValue, 0, 0, new ArrayList<>());
         this.cooldown = cooldown;
-        this.cooldownKey = keyManager.getNsKey(GlobalKey.COOLDOWN_KEY);
+        this.cooldownKey = keyManager.getKey(GlobalKey.COOLDOWN_KEY);
     }
 
     @Override

@@ -2,14 +2,14 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.Bow
 
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
 
 public class BowWeaponDamageAttribute extends BowWeaponAttribute {
 
-    public BowWeaponDamageAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public BowWeaponDamageAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(materialManager, keyManager, AttributeKey.BOW_WEAPON_DAMAGE_ATTRIBUTE, Component.text("Arrow Damage").color(TextColor.color(0xFF513E)), 1, 1, 6);
     }
 

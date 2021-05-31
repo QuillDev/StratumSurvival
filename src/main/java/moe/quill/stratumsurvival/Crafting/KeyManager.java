@@ -10,6 +10,7 @@ import org.reflections.Reflections;
 import java.util.HashMap;
 
 @Singleton
+@Deprecated
 public class KeyManager {
 
     private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
@@ -30,11 +31,11 @@ public class KeyManager {
                 });
     }
 
-    public NamespacedKey getNsKey(String query) {
+    public NamespacedKey getKey(String query) {
         return keys.get(query);
     }
 
-    public <E extends Enum<E>> NamespacedKey getNsKey(Enum<E> materialKey) {
-        return getNsKey(materialKey.name());
+    public <E extends Enum<E>> NamespacedKey getKey(Enum<E> materialKey) {
+        return getKey(materialKey.name());
     }
 }

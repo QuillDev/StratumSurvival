@@ -8,7 +8,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.Mining
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.inventory.ItemStack;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
@@ -31,11 +31,11 @@ public class ItemAttributes {
     public static final HashMap<String, ItemType> attributeCategories = new HashMap<>();
 
     private final MaterialManager materialManager;
-    private final KeyManager keyManager;
+    private final IKeyManager keyManager;
 
 
     @Inject
-    public ItemAttributes(MaterialManager materialManager, KeyManager keyManager) {
+    public ItemAttributes(MaterialManager materialManager, IKeyManager keyManager) {
         this.materialManager = materialManager;
         this.keyManager = keyManager;
 
@@ -58,7 +58,7 @@ public class ItemAttributes {
                         final var attr = attrClass
                                 .getDeclaredConstructor(
                                         MaterialManager.class,
-                                        KeyManager.class
+                                        IKeyManager.class
                                 )
                                 .newInstance(materialManager, keyManager);
                         ItemAttributes.registerAll(attr);

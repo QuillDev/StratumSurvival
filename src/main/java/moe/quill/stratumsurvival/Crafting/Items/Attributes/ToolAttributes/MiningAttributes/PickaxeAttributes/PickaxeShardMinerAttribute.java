@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.Minin
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -32,7 +32,7 @@ public class PickaxeShardMinerAttribute extends PickaxeAttribute {
         put(Material.EMERALD_ORE, commonOdds);
     }};
 
-    public PickaxeShardMinerAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public PickaxeShardMinerAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(materialManager, keyManager, AttributeKey.PICKAXE_SHARD_MINER_ATTRIBUTE, Component.text("Fragment Finder").color(TextColor.color(0x32A2CB)), .5f, 1, 3);
         this.itemHelper = new ItemHelper(keyManager);
     }

@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterial
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class HammerRegistry extends MaterialRegistry {
-    public HammerRegistry(KeyManager keyManager) {
+    public HammerRegistry(IKeyManager keyManager) {
         super(keyManager, MaterialKey.HAMMER_KEY);
     }
 

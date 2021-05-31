@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Events.ToolEvents;
 
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Utils.ItemGroups;
 import moe.quill.stratumsurvival.Utils.Particles.ParticleFactory;
 import org.bukkit.Color;
@@ -22,8 +22,8 @@ public class IcePickClimb implements Listener {
     private final ParticleFactory particleFactory = new ParticleFactory();
 
 
-    public IcePickClimb(KeyManager keyManager) {
-        this.icepickKey = keyManager.getNsKey(MaterialKey.ICEPICK_KEY);
+    public IcePickClimb(IKeyManager keyManager) {
+        this.icepickKey = keyManager.getKey(MaterialKey.ICEPICK_KEY);
     }
 
     //Enable Climbing using ice picks

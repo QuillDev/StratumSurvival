@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.Minin
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.ToolAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public abstract class MiningAttribute extends ToolAttribute {
     public MiningAttribute(
             MaterialManager materialManager,
-            KeyManager keyManager,
+            IKeyManager keyManager,
             AttributeKey key,
             Component lore,
             ArrayList<ItemStack> materials,

@@ -4,7 +4,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.DropItemStackEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.KeyManager;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -15,7 +15,7 @@ public class OnDeathDropDiamondAttribute extends OnDeathAttribute {
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
-    public OnDeathDropDiamondAttribute(MaterialManager materialManager, KeyManager keyManager) {
+    public OnDeathDropDiamondAttribute(MaterialManager materialManager, IKeyManager keyManager) {
         super(
                 materialManager,
                 keyManager,
