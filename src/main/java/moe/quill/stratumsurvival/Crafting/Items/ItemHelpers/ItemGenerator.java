@@ -101,7 +101,6 @@ public class ItemGenerator {
      */
     public ItemStack generateItem(ItemType itemType, int level) {
         final var materials = getMaterialsFromWeaponType(itemType, level);
-        System.out.println(materials.size());
         final var mat = materials.get(rand.nextInt(materials.size()));
         //Create the item
         final var item = new ItemStack(mat);
