@@ -2,6 +2,8 @@ package moe.quill.stratumsurvival;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Adventuring.Bosses.WorldBossManager;
 import moe.quill.stratumsurvival.Adventuring.Enemies.EnemyManager;
 import moe.quill.stratumsurvival.Adventuring.Loot.LootListener;
@@ -49,7 +51,6 @@ import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
 import moe.quill.stratumsurvival.Guice.Binders.PluginBinderModule;
-import moe.quill.StratumCommon.Serialization.StratumSerializer;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,7 +92,7 @@ public final class StratumSurvival extends JavaPlugin {
     @Inject
     private EnemyManager enemyManager;
 
-    public static StratumSerializer serializer;
+    public static ISerializer serializer;
 
     @Override
     public void onEnable() {
@@ -100,12 +101,20 @@ public final class StratumSurvival extends JavaPlugin {
             //Get the services manager
             //TODO: Some sort of services manager?
             final var serviceManager = getServer().getServicesManager();
-            final var serializeService = serviceManager.getRegistration(StratumSerializer.class);
+            final var serializeService = serviceManager.getRegistration(ISerializer.class);
             if (serializeService == null) {
                 logger.error("Could not get the serializer service!");
                 throw new Exception("Could not get the serializer service!");
             }
+
+            final var keyService = serviceManager.getRegistration(IKeyManager.class);
+            if (keyService == null) {
+                logger.error("Could not get the key manager service!");
+                throw new Exception("Could not get the key manager service!");
+            }
             StratumSurvival.serializer = serializeService.getProvider();
+            final var keyProvided = keyService.getProvider();
+            keyProvided.loadKeyablesDynamically(this);
 
 
             //DI STUFF
