@@ -1,9 +1,9 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.FlameEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;

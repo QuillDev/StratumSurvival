@@ -1,10 +1,10 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;

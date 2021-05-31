@@ -1,8 +1,8 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeHelpers.AttributeFormatter;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;

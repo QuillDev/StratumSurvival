@@ -2,11 +2,11 @@ package moe.quill.stratumsurvival.Adventuring.Loot;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Location;
 import org.bukkit.Material;

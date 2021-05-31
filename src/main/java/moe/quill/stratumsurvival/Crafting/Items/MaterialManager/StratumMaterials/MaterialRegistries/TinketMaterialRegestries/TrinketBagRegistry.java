@@ -1,10 +1,10 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.TinketMaterialRegestries;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;

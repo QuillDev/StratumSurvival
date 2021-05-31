@@ -14,6 +14,7 @@ import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCEvents.InteractBlacks
 import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCEvents.InteractCryptologistEvent;
 import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCEvents.NPCTransformWitchCancel;
 import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCManager;
+import moe.quill.stratumsurvival.Binders.PluginBinderModule;
 import moe.quill.stratumsurvival.Commands.AdventureCommands.WorldBossCommands.SummonWorldBossCommand;
 import moe.quill.stratumsurvival.Commands.AdventureCommands.WorldBossCommands.SummonWorldBossDelayedCommand;
 import moe.quill.stratumsurvival.Commands.AdventureCommands.WorldBossCommands.WorldBossTeleportCommand;
@@ -49,7 +50,6 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
-import moe.quill.stratumsurvival.Binders.PluginBinderModule;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,7 +96,6 @@ public final class StratumSurvival extends JavaPlugin {
         try {
 
             //Get the services manager
-            //TODO: Some sort of services manager?
             final var serviceManager = getServer().getServicesManager();
             final var serializeService = serviceManager.getRegistration(ISerializer.class);
             if (serializeService == null) {

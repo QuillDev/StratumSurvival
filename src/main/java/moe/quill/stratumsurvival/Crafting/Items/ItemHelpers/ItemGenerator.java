@@ -1,13 +1,13 @@
 package moe.quill.stratumsurvival.Crafting.Items.ItemHelpers;
 
 import com.google.inject.Inject;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;

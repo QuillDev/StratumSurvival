@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Events.ToolEvents;
 
-import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

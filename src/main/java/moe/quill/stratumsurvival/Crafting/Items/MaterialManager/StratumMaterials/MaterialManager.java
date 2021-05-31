@@ -2,8 +2,8 @@ package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterial
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

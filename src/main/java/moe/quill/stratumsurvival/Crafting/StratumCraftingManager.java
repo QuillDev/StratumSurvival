@@ -1,9 +1,9 @@
 package moe.quill.stratumsurvival.Crafting;
 
+import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Recipes.Generators.Geodes.RecipeGenerator;
 import moe.quill.stratumsurvival.Crafting.Recipes.StratumRecipe;
-import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;

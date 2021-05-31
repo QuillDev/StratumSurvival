@@ -1,9 +1,9 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.ToolAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;

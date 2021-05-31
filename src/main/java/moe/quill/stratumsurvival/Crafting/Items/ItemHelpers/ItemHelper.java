@@ -1,10 +1,10 @@
 package moe.quill.stratumsurvival.Crafting.Items.ItemHelpers;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.KeyUtils;
 import net.kyori.adventure.text.Component;

@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Events.ToolEvents;
 
-import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;

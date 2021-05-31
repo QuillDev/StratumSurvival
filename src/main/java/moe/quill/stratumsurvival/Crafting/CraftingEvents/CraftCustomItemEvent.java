@@ -1,9 +1,9 @@
 package moe.quill.stratumsurvival.Crafting.CraftingEvents;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;

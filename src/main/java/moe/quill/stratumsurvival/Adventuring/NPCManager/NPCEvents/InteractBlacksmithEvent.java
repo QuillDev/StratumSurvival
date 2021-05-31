@@ -1,11 +1,11 @@
 package moe.quill.stratumsurvival.Adventuring.NPCManager.NPCEvents;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCManager;
 import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCs.NPCType;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;
 import net.kyori.adventure.text.Component;

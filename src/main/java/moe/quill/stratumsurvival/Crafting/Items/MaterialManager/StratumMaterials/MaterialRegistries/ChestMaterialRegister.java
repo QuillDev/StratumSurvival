@@ -1,9 +1,9 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.HeadHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;

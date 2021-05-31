@@ -3,10 +3,10 @@ package moe.quill.stratumsurvival.Binders;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.plugin.Plugin;
 
 public class PluginBinderModule extends AbstractModule {

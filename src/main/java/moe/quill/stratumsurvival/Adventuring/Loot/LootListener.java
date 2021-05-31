@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Adventuring.Loot;
 
-import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;

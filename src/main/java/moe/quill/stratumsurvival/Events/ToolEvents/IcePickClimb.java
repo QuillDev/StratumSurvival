@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Events.ToolEvents;
 
-import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Utils.ItemGroups;
 import moe.quill.stratumsurvival.Utils.Particles.ParticleFactory;
 import org.bukkit.Color;

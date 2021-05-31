@@ -2,13 +2,13 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import org.bukkit.inventory.ItemStack;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
