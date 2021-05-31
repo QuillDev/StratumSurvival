@@ -3,6 +3,7 @@ package moe.quill.stratumsurvival.Binders;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Provides;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
@@ -25,16 +26,12 @@ public class PluginBinderModule extends AbstractModule {
         this.itemGenerator = new ItemGenerator(keyManager, itemHelper);
     }
 
-    public Injector createInjector() {
-        return Guice.createInjector(this);
-    }
-
     @Override
     protected void configure() {
-        this.bind(Plugin.class).toInstance(this.plugin);
-        this.bind(IKeyManager.class).toInstance(this.keyManager);
-        this.bind(MaterialManager.class).toInstance(this.materialManager);
-        this.bind(ItemHelper.class).toInstance(this.itemHelper);
-        this.bind(ItemGenerator.class).toInstance(this.itemGenerator);
+        bind(Plugin.class).toInstance(plugin);
+        bind(IKeyManager.class).toInstance(keyManager);
+        bind(MaterialManager.class).toInstance(materialManager);
+        bind(ItemHelper.class).toInstance(itemHelper);
+        bind(ItemGenerator.class).toInstance(itemGenerator);
     }
 }

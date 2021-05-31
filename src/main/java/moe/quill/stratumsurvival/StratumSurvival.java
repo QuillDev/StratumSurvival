@@ -1,6 +1,8 @@
 package moe.quill.stratumsurvival;
 
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.StratumCommon.Serialization.ISerializer;
@@ -33,6 +35,7 @@ import moe.quill.stratumsurvival.Commands.StratumCommand;
 import moe.quill.stratumsurvival.Commands.StratumCommandManager;
 import moe.quill.stratumsurvival.Crafting.CraftingEvents.CraftCustomItemEvent;
 import moe.quill.stratumsurvival.Crafting.CraftingEvents.GrindCustomWeaponEvent;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.stratumsurvival.Crafting.Items.EventHandler.HandleAttributeEvents;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
@@ -94,7 +97,6 @@ public final class StratumSurvival extends JavaPlugin {
     @Override
     public void onEnable() {
         try {
-
             //Get the services manager
             final var serviceManager = getServer().getServicesManager();
             final var serializeService = serviceManager.getRegistration(ISerializer.class);
@@ -113,11 +115,14 @@ public final class StratumSurvival extends JavaPlugin {
             keyManager.loadKeyablesDynamically(this);
 
             //DI STUFF
-            PluginBinderModule module = new PluginBinderModule(this, keyManager);
-            module.createInjector().injectMembers(this);
+            Injector injector = Guice.createInjector(
+                    new PluginBinderModule(this, keyManager)
+            );
+            injector.injectMembers(this);
 
             //setup dev command
             final var devTool = new DevTool(materialManager, this);
+
             //Register Events
             eventManager.register(
                     new HandleAttributeEvents(keyManager),

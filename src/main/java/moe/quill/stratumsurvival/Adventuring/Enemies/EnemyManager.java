@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Adventuring.Enemies;
 
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.Location;
@@ -20,6 +21,9 @@ public class EnemyManager {
     private final MaterialManager materialManager;
     private static final Logger logger = LoggerFactory.getLogger(EnemyManager.class.getSimpleName());
     private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
+
+    @Inject
+    Injector injector;
 
     @Inject
     public EnemyManager(MaterialManager materialManager) {
