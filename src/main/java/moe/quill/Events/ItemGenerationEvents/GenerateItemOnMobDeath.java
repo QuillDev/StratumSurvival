@@ -1,12 +1,12 @@
 package moe.quill.Events.ItemGenerationEvents;
 
+import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.StratumSurvival;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 
 import java.util.Random;
 

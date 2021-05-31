@@ -7,7 +7,6 @@ import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
-import org.bukkit.NamespacedKey;
 
 import java.util.ArrayList;
 import java.util.Collections;

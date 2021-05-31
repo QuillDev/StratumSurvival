@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.Effects;
 
+import moe.quill.Utils.Particles.ParticleFactory;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -7,7 +8,6 @@ import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 import org.bukkit.util.Vector;
-import moe.quill.Utils.Particles.ParticleFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;

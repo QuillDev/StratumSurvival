@@ -1,7 +1,6 @@
 package moe.quill.Adventuring.Bosses.BossEffects.SummonBasedBossEffect;
 
 import moe.quill.Adventuring.Bosses.BossEffects.BossEffect;
-import net.kyori.adventure.text.Component;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 

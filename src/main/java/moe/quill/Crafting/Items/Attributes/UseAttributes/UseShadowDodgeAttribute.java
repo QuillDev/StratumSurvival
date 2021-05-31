@@ -1,15 +1,14 @@
 package moe.quill.Crafting.Items.Attributes.UseAttributes;
 
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.Crafting.Items.Effects.CloakEffect;
 import moe.quill.Crafting.Items.Effects.KnockbackEffect;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
-import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 
 public class UseShadowDodgeAttribute extends UseAttribute {
 

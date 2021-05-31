@@ -1,9 +1,9 @@
 package moe.quill.Crafting;
 
-import moe.quill.Crafting.Recipes.Generators.Geodes.RecipeGenerator;
-import moe.quill.Utils.Annotations.IgnoreDynamicLoading;
-import moe.quill.Crafting.Recipes.StratumRecipe;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.Recipes.Generators.Geodes.RecipeGenerator;
+import moe.quill.Crafting.Recipes.StratumRecipe;
+import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;

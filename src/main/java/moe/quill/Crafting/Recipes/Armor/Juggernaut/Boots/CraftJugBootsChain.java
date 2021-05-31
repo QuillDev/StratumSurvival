@@ -1,9 +1,9 @@
 package moe.quill.Crafting.Recipes.Armor.Juggernaut.Boots;
 
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.Crafting.Recipes.RecipeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Recipes.Armor.Juggernaut.JugArmorRecipeBase;
+import moe.quill.Crafting.Recipes.RecipeKey;
 
 public class CraftJugBootsChain extends JugArmorRecipeBase {
     public CraftJugBootsChain(MaterialManager materialManager) {

@@ -1,6 +1,6 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials;
 
-import moe.quill.Utils.Annotations.Keyable;
+import moe.quill.StratumCommon.Annotations.Keyable;
 
 @Keyable
 public enum MaterialKey {

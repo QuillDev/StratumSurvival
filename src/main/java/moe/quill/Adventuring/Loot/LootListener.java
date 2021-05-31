@@ -3,7 +3,6 @@ package moe.quill.Adventuring.Loot;
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
-
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.NamespacedKey;

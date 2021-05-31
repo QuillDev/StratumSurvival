@@ -1,5 +1,6 @@
 package moe.quill.Events.SpellEvents;
 
+import moe.quill.Utils.Particles.ParticleFactory;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
@@ -8,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
-import moe.quill.Utils.Particles.ParticleFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;

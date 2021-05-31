@@ -1,12 +1,12 @@
 package moe.quill.Crafting.Recipes.Materials;
 
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Recipes.RecipeKey;
+import moe.quill.Crafting.Recipes.StratumRecipe;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapelessRecipe;
-import moe.quill.Crafting.Recipes.StratumRecipe;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 public abstract class BlockRecipe extends StratumRecipe {
 

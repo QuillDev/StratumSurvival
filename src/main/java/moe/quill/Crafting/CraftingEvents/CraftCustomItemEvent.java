@@ -1,5 +1,8 @@
 package moe.quill.Crafting.CraftingEvents;
 
+import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.PlayerHelpers.InventoryHelper;
 import org.bukkit.NamespacedKey;
@@ -7,9 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.Crafting.Items.ItemHelpers.ItemGenerator;
 
 
 public class CraftCustomItemEvent implements Listener {

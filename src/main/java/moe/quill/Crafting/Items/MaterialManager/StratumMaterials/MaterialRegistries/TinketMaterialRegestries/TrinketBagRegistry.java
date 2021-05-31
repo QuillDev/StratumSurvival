@@ -1,18 +1,15 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.TinketMaterialRegestries;
 
 import moe.quill.Crafting.GlobalKey;
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.KeyManager;
-
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package moe.quill.Crafting.Recipes.Trinkets;
 
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Recipes.RecipeKey;
 import org.bukkit.inventory.RecipeChoice;
 

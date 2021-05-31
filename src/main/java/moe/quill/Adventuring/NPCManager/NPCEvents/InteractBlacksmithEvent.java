@@ -1,19 +1,18 @@
 package moe.quill.Adventuring.NPCManager.NPCEvents;
 
+import moe.quill.Adventuring.NPCManager.NPCManager;
+import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.ItemHelpers.ItemHelper;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
-
 import moe.quill.StratumSurvival;
+import moe.quill.Utils.PlayerHelpers.InventoryHelper;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.Adventuring.NPCManager.NPCManager;
-import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
-import moe.quill.Utils.PlayerHelpers.InventoryHelper;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.persistence.PersistentDataType;
 

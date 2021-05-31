@@ -1,7 +1,6 @@
 package moe.quill.Adventuring.Bosses.BossEffects.VelocityBasedBossEffect;
 
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.util.Vector;
 
 public class FlingVerticallyBossEffect extends VelocityBasedBossEffect {
     public void execute(LivingEntity boss, int magnitude) {

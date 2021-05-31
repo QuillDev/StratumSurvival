@@ -5,9 +5,8 @@ import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.KeyManager;
-import moe.quill.Utils.KeyUtils;
-
 import moe.quill.StratumSurvival;
+import moe.quill.Utils.KeyUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.NamespacedKey;

@@ -1,16 +1,15 @@
 package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
+import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
-import moe.quill.Crafting.Items.Attributes.Attribute;
-import moe.quill.Crafting.Items.Effects.DropItemStackEffect;
 
 public class OnDeathDropIronAttribute extends OnDeathAttribute {
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();

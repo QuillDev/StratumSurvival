@@ -1,13 +1,13 @@
 package moe.quill.Crafting.Recipes.Generators.Geodes;
 
-import moe.quill.Utils.Annotations.IgnoreDynamicLoading;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.Crafting.Recipes.StratumRecipe;
+import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapelessRecipe;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.Crafting.Recipes.StratumRecipe;
 
 @IgnoreDynamicLoading
 public class RecipeGeode extends StratumRecipe {

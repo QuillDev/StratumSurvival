@@ -2,14 +2,12 @@ package moe.quill.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
-import moe.quill.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
-import org.w3c.dom.Attr;
 
 public abstract class OnDeathLingeringPotionAttribute extends OnDeathAttribute {
 

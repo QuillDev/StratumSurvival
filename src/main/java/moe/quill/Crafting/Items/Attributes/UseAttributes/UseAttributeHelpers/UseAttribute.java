@@ -3,10 +3,8 @@ package moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers;
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.Attribute;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
-
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;

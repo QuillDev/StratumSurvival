@@ -1,7 +1,6 @@
 package moe.quill.Adventuring.Bosses.BossEffects.PotionBasedEffect;
 
 import moe.quill.Adventuring.Bosses.BossEffects.BossEffect;
-import net.kyori.adventure.text.Component;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;

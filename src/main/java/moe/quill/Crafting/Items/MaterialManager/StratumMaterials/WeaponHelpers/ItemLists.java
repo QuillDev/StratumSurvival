@@ -1,10 +1,10 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers;
 
 import com.google.inject.Inject;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;

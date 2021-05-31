@@ -1,11 +1,11 @@
 package moe.quill.Crafting.Items.Attributes;
 
+import moe.quill.Crafting.Items.Attributes.AttributeHelpers.AttributeFormatter;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
-import moe.quill.Crafting.Items.Attributes.AttributeHelpers.AttributeFormatter;
 
 import java.util.ArrayList;
 import java.util.Random;

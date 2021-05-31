@@ -1,6 +1,7 @@
 package moe.quill.Crafting.Recipes;
 
-import moe.quill.Utils.Annotations.Keyable;
+
+import moe.quill.StratumCommon.Annotations.Keyable;
 
 @Keyable
 public enum RecipeKey {

@@ -4,7 +4,6 @@ import moe.quill.Adventuring.NPCManager.NPCs.Blacksmith;
 import moe.quill.Adventuring.NPCManager.NPCs.Cryptologist;
 import moe.quill.Adventuring.NPCManager.NPCs.NPC;
 import moe.quill.Adventuring.NPCManager.NPCs.NPCType;
-import moe.quill.StratumSurvival;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 

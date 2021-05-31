@@ -1,9 +1,9 @@
 package moe.quill.Crafting.Recipes.Armor.Juggernaut;
 
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.Crafting.Recipes.RecipeKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Recipes.Armor.ArmorRecipeBase;
+import moe.quill.Crafting.Recipes.RecipeKey;
 import org.bukkit.Material;
 import org.bukkit.inventory.RecipeChoice;
 

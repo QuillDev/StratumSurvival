@@ -6,7 +6,6 @@ import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.ItemGroups;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;

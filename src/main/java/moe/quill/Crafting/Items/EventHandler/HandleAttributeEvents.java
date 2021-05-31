@@ -2,6 +2,7 @@ package moe.quill.Crafting.Items.EventHandler;
 
 import moe.quill.Crafting.GlobalKey;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
+import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.KeyUtils;
@@ -19,7 +20,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 
 
 public class HandleAttributeEvents implements Listener {

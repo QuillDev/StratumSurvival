@@ -1,8 +1,8 @@
 package moe.quill.Crafting.CraftingEvents;
 
 import moe.quill.Crafting.GlobalKey;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
-
 import moe.quill.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -11,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 import java.util.Random;
 

@@ -1,11 +1,11 @@
 package moe.quill.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
+import moe.quill.Crafting.Items.Attributes.AttackAttributes.AttackAttribute;
 import moe.quill.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.Crafting.KeyManager;
 import net.kyori.adventure.text.Component;
-import moe.quill.Crafting.Items.Attributes.AttackAttributes.AttackAttribute;
 
 public abstract class BluntWeaponAttribute extends AttackAttribute {
     public BluntWeaponAttribute

@@ -1,7 +1,6 @@
 package moe.quill.Events.ToolEvents;
 
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.ItemGroups;
 import moe.quill.Utils.Particles.ParticleFactory;

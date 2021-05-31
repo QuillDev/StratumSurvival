@@ -1,12 +1,10 @@
 package moe.quill.Events.ToolEvents.TrinketBag;
 
 import moe.quill.Crafting.GlobalKey;
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.Crafting.KeyManager;
-
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;

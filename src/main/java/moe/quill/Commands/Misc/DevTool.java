@@ -1,5 +1,6 @@
 package moe.quill.Commands.Misc;
 
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 
 public class DevTool implements CommandExecutor, Listener {

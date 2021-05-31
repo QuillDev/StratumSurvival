@@ -1,8 +1,8 @@
 package moe.quill.Crafting.Recipes;
 
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 
 public abstract class StratumRecipe {
 

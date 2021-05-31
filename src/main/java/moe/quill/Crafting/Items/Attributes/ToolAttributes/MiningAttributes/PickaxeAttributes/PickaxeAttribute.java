@@ -8,10 +8,7 @@ import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.I
 import moe.quill.Crafting.KeyManager;
 import moe.quill.Utils.ItemGroups;
 import net.kyori.adventure.text.Component;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.Event;
-
-import java.util.ArrayList;
 
 public abstract class PickaxeAttribute extends MiningAttribute {
     public PickaxeAttribute(MaterialManager materialManager, KeyManager keyManager, AttributeKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {

@@ -9,7 +9,6 @@ import org.bukkit.entity.Villager;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
-
 import java.util.ArrayList;
 import java.util.Random;
 

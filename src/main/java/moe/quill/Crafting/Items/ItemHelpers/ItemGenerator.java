@@ -8,7 +8,6 @@ import moe.quill.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.Use
 import moe.quill.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import moe.quill.Crafting.KeyManager;
-
 import moe.quill.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;

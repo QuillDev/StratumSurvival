@@ -1,7 +1,6 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
 import moe.quill.Crafting.GlobalKey;
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;

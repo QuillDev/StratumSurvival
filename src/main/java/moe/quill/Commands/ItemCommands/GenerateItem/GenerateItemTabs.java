@@ -1,11 +1,11 @@
 package moe.quill.Commands.ItemCommands.GenerateItem;
 
+import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import moe.quill.Crafting.Items.Attributes.ItemAttributes;
 
 import java.util.ArrayList;
 import java.util.List;

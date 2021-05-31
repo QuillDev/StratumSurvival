@@ -1,5 +1,6 @@
 package moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesScythes;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
@@ -8,7 +9,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.inventory.ItemStack;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesScythes;
 
 import java.util.HashMap;
 

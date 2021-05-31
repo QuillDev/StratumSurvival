@@ -1,7 +1,6 @@
 package moe.quill.Events;
 
 import com.google.inject.Inject;
-import moe.quill.StratumSurvival;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;

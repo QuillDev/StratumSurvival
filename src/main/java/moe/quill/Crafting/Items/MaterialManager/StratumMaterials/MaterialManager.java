@@ -2,10 +2,9 @@ package moe.quill.Crafting.Items.MaterialManager.StratumMaterials;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.*;
+import moe.quill.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.Crafting.KeyManager;
 import moe.quill.StratumSurvival;
-
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +16,9 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 @Singleton
 public class MaterialManager {
