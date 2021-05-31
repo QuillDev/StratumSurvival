@@ -1,0 +1,29 @@
+package moe.quill.stratumsurvival.Commands.ItemCommands;
+
+import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
+public class ObfuscateItem implements CommandExecutor {
+
+    public ItemHelper itemHelper;
+
+    public ObfuscateItem(ItemHelper itemHelper) {
+        this.itemHelper = itemHelper;
+    }
+
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (!(sender instanceof Player)) return true;
+        final var player = ((Player) sender).getPlayer();
+        if (player == null) return true;
+        final var item = player.getInventory().getItemInMainHand();
+
+        itemHelper.encryptItem(item);
+
+        return true;
+    }
+}
