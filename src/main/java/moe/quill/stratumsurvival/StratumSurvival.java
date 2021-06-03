@@ -101,6 +101,7 @@ public final class StratumSurvival extends StratumPlugin {
         super(
                 new StratumConfigBuilder()
                         .setUseKeyManager(true)
+                        .setUseSerialization(true)
                         .build()
         );
     }
@@ -108,67 +109,56 @@ public final class StratumSurvival extends StratumPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-        try {
-            //Get the services manager
-            final var serviceManager = getServer().getServicesManager();
-            final var serializeService = serviceManager.getRegistration(ISerializer.class);
-            if (serializeService == null) {
-                logger.error("Could not get the serializer service!");
-                throw new Exception("Could not get the serializer service!");
-            }
 
-            StratumSurvival.serializer = serializeService.getProvider();
-            final var keyManager = getKeyManager();
-            keyManager.loadKeyablesDynamically(this);
+        StratumSurvival.serializer = getSerializer();
+        final var keyManager = getKeyManager();
+        keyManager.loadKeyablesDynamically(this);
 
-            //DI STUFF
-            Injector injector = Guice.createInjector(
-                    new PluginBinderModule(this, keyManager)
-            );
-            injector.injectMembers(this);
+        //DI STUFF
+        Injector injector = Guice.createInjector(
+                new PluginBinderModule(this, keyManager)
+        );
+        injector.injectMembers(this);
 
-            //setup dev command
-            final var devTool = new DevTool(materialManager, this);
+        //setup dev command
+        final var devTool = new DevTool(materialManager, this);
 
 
-            //Register Events
-            eventManager.register(
-                    new HandleAttributeEvents(keyManager),
-                    new GenerateItemOnMobDeath(itemGenerator),
-                    new InjectChatItemEvent(),
-                    new GrindCustomWeaponEvent(keyManager, materialManager),
-                    new InteractCryptologistEvent(keyManager, itemHelper, npcManager),
-                    new InteractBlacksmithEvent(npcManager, materialManager, keyManager, itemHelper),
-                    new CraftCustomItemEvent(keyManager, itemGenerator, materialManager),
-                    new NPCTransformWitchCancel(),
-                    new DaggerBackstabEvent(keyManager),
-                    new DevEvent(),
-                    new ChatBadgeEvent(this),
-                    new IcePickClimb(keyManager),
-                    new GrappleHookEvent(keyManager),
-                    new StopBlockadeClicks(materialManager),
-                    new TrinketBagEventHandler(keyManager, materialManager),
-                    new LootListener(lootManager, keyManager),
-                    devTool
-            );
-            craftingManager.enable(materialManager);
+        //Register Events
+        eventManager.register(
+                new HandleAttributeEvents(keyManager),
+                new GenerateItemOnMobDeath(itemGenerator),
+                new InjectChatItemEvent(),
+                new GrindCustomWeaponEvent(keyManager, materialManager),
+                new InteractCryptologistEvent(keyManager, itemHelper, npcManager),
+                new InteractBlacksmithEvent(npcManager, materialManager, keyManager, itemHelper),
+                new CraftCustomItemEvent(keyManager, itemGenerator, materialManager),
+                new NPCTransformWitchCancel(),
+                new DaggerBackstabEvent(keyManager),
+                new DevEvent(),
+                new ChatBadgeEvent(this),
+                new IcePickClimb(keyManager),
+                new GrappleHookEvent(keyManager),
+                new StopBlockadeClicks(materialManager),
+                new TrinketBagEventHandler(keyManager, materialManager),
+                new LootListener(lootManager, keyManager),
+                devTool
+        );
+        craftingManager.enable(materialManager);
 
-            commandManager.register(
-                    new StratumCommand("generateitem", new GenerateItemCommand(itemGenerator), new GenerateItemTabs()),
-                    new StratumCommand("obfuscate", new ObfuscateItem(itemHelper), null),
-                    new StratumCommand("deobfuscate", new DeobfuscateItem(itemHelper), null),
-                    new StratumCommand("reroll", new RerollItem(itemHelper), null),
-                    new StratumCommand("spawnworldboss", new SummonWorldBossCommand(worldBossManager), null),
-                    new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
-                    new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),
-                    new StratumCommand("spawnenemy", new SpawnEnemy(enemyManager), new SpawnEnemyTabs()),
-                    new StratumCommand("devtool", devTool, null),
-                    new StratumCommand("stratumgive", new GiveStratumItemCommand(materialManager), new GiveStratumItemTabs(materialManager)),
-                    new StratumCommand("listkeys", new ListKeysCommand(), null)
-            );
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        commandManager.register(
+                new StratumCommand("generateitem", new GenerateItemCommand(itemGenerator), new GenerateItemTabs()),
+                new StratumCommand("obfuscate", new ObfuscateItem(itemHelper), null),
+                new StratumCommand("deobfuscate", new DeobfuscateItem(itemHelper), null),
+                new StratumCommand("reroll", new RerollItem(itemHelper), null),
+                new StratumCommand("spawnworldboss", new SummonWorldBossCommand(worldBossManager), null),
+                new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
+                new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),
+                new StratumCommand("spawnenemy", new SpawnEnemy(enemyManager), new SpawnEnemyTabs()),
+                new StratumCommand("devtool", devTool, null),
+                new StratumCommand("stratumgive", new GiveStratumItemCommand(materialManager), new GiveStratumItemTabs(materialManager)),
+                new StratumCommand("listkeys", new ListKeysCommand(), null)
+        );
 
     }
 
