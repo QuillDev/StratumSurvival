@@ -5,6 +5,9 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Plugin.StratumConfig;
+import moe.quill.StratumCommon.Plugin.StratumConfigBuilder;
+import moe.quill.StratumCommon.Plugin.StratumPlugin;
 import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Adventuring.Bosses.WorldBossManager;
 import moe.quill.stratumsurvival.Adventuring.Enemies.EnemyManager;
@@ -60,7 +63,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Random;
 
 @Singleton
-public final class StratumSurvival extends JavaPlugin {
+public final class StratumSurvival extends StratumPlugin {
     public static final Random rand = new Random();
     private static final Logger logger = LoggerFactory.getLogger(StratumSurvival.class.getSimpleName());
     private final StratumCraftingManager craftingManager = new StratumCraftingManager(this);
@@ -94,8 +97,17 @@ public final class StratumSurvival extends JavaPlugin {
 
     public static ISerializer serializer;
 
+    public StratumSurvival() {
+        super(
+                new StratumConfigBuilder()
+                        .setUseKeyManager(true)
+                        .build()
+        );
+    }
+
     @Override
     public void onEnable() {
+        super.onEnable();
         try {
             //Get the services manager
             final var serviceManager = getServer().getServicesManager();
@@ -105,13 +117,8 @@ public final class StratumSurvival extends JavaPlugin {
                 throw new Exception("Could not get the serializer service!");
             }
 
-            final var keyService = serviceManager.getRegistration(IKeyManager.class);
-            if (keyService == null) {
-                logger.error("Could not get the key manager service!");
-                throw new Exception("Could not get the key manager service!");
-            }
             StratumSurvival.serializer = serializeService.getProvider();
-            final var keyManager = keyService.getProvider();
+            final var keyManager = getKeyManager();
             keyManager.loadKeyablesDynamically(this);
 
             //DI STUFF
@@ -122,6 +129,7 @@ public final class StratumSurvival extends JavaPlugin {
 
             //setup dev command
             final var devTool = new DevTool(materialManager, this);
+
 
             //Register Events
             eventManager.register(
@@ -147,15 +155,9 @@ public final class StratumSurvival extends JavaPlugin {
 
             commandManager.register(
                     new StratumCommand("generateitem", new GenerateItemCommand(itemGenerator), new GenerateItemTabs()),
-//                    new StratumCommand("addchatline", new AddChatLineCommand(chatNpcManager), new AddChatLineTabs(chatNpcManager)),
-//                    new StratumCommand("deletechatnpc", new DeleteChatNpcCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
-//                    new StratumCommand("removechatline", new RemoveChatLineCommand(chatNpcManager), new DeleteChatNpcTabs(chatNpcManager)),
-//                    new StratumCommand("removechatlineraw", new RemoveChatLineRawCommand(chatNpcManager), null),
                     new StratumCommand("obfuscate", new ObfuscateItem(itemHelper), null),
                     new StratumCommand("deobfuscate", new DeobfuscateItem(itemHelper), null),
-//                    new StratumCommand("spawnnpc", new SpawnNPCCommand(npcManager), null),
                     new StratumCommand("reroll", new RerollItem(itemHelper), null),
-//                    new StratumCommand("spawnchatnpc", new SpawnChatNpcCommand(chatNpcManager), null),
                     new StratumCommand("spawnworldboss", new SummonWorldBossCommand(worldBossManager), null),
                     new StratumCommand("spawnworldbossdelayed", new SummonWorldBossDelayedCommand(worldBossManager), null),
                     new StratumCommand("worldbosstp", new WorldBossTeleportCommand(worldBossManager), null),
@@ -176,6 +178,7 @@ public final class StratumSurvival extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        super.onDisable();
         craftingManager.disable();
     }
 }
