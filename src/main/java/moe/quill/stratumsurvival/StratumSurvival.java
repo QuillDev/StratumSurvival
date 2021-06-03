@@ -4,8 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.StratumCommon.Plugin.StratumConfig;
+import moe.quill.StratumCommon.Commands.StratumCommand;
 import moe.quill.StratumCommon.Plugin.StratumConfigBuilder;
 import moe.quill.StratumCommon.Plugin.StratumPlugin;
 import moe.quill.StratumCommon.Serialization.ISerializer;
@@ -34,7 +33,6 @@ import moe.quill.stratumsurvival.Commands.ItemCommands.ListKeysCommand;
 import moe.quill.stratumsurvival.Commands.ItemCommands.ObfuscateItem;
 import moe.quill.stratumsurvival.Commands.ItemCommands.RerollItem;
 import moe.quill.stratumsurvival.Commands.Misc.DevTool;
-import moe.quill.stratumsurvival.Commands.StratumCommand;
 import moe.quill.stratumsurvival.Commands.StratumCommandManager;
 import moe.quill.stratumsurvival.Crafting.CraftingEvents.CraftCustomItemEvent;
 import moe.quill.stratumsurvival.Crafting.CraftingEvents.GrindCustomWeaponEvent;
@@ -123,9 +121,7 @@ public final class StratumSurvival extends StratumPlugin {
         //setup dev command
         final var devTool = new DevTool(materialManager, this);
 
-
-        //Register Events
-        eventManager.register(
+        registerEvent(
                 new HandleAttributeEvents(keyManager),
                 new GenerateItemOnMobDeath(itemGenerator),
                 new InjectChatItemEvent(),
@@ -144,9 +140,10 @@ public final class StratumSurvival extends StratumPlugin {
                 new LootListener(lootManager, keyManager),
                 devTool
         );
+
         craftingManager.enable(materialManager);
 
-        commandManager.register(
+        registerCommand(
                 new StratumCommand("generateitem", new GenerateItemCommand(itemGenerator), new GenerateItemTabs()),
                 new StratumCommand("obfuscate", new ObfuscateItem(itemHelper), null),
                 new StratumCommand("deobfuscate", new DeobfuscateItem(itemHelper), null),
