@@ -1,8 +1,8 @@
 name: StratumSurvival
 version: ${project.version}
-main: moe.quill.StratumSurvival
+main: moe.quill.stratumsurvival.StratumSurvival
 api-version: 1.16
-
+depend: [StratumCommon]
 commands:
   dev:
     usage: /<command>
@@ -41,26 +41,6 @@ commands:
   spawnworldbossdelayed:
     usage: /<command>
     permission: stratumsurvival.bosses.summon
-
-  #NPC Permissions
-  addchatline:
-    usage: /<command> <npcname> <line>
-    permission: stratumsurvival.npcs.addchatline
-  spawnchatnpc:
-    usage: /<command> <npcname>
-    permission: stratumsurvival.npcs.spawnchatnpc
-  spawnnpc:
-    usage: /<command> <type>
-    permission: stratumsurvival.npcs.spawnnpc
-  deletechatnpc:
-    usage: /<command> <npcname>
-    permission: stratumsurvival.npcs.deletechatnpc
-  removechatline:
-    usage: /<command>
-    permission: stratumsurvival.npcs.removechatline
-  removechatlineraw:
-    usage: /<command> <index>
-    permission: stratumsurvival.npcs.removechatline
 
   #Custom Enemies
   spawnenemy:
