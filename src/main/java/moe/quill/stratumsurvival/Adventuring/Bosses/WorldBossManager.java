@@ -2,11 +2,6 @@ package moe.quill.stratumsurvival.Adventuring.Bosses;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-<<<<<<< HEAD:src/main/java/moe/quill/Adventuring/Bosses/WorldBossManager.java
-import moe.quill.Crafting.Items.MaterialManager.HeadHelper;
-import moe.quill.StratumSurvival;
-import moe.quill.Utils.TickHelper;
-=======
 import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.BossAttack;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.FlingVerticallyAttack;
@@ -14,7 +9,6 @@ import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.LevitatePlayersA
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.SpawnZombiesAttack;
 import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.TickHelper;
->>>>>>> cddf2c255f264b8e5cad3c2cce9aeb843a65d5a7:src/main/java/moe/quill/stratumsurvival/Adventuring/Bosses/WorldBossManager.java
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.TextColor;
@@ -119,12 +113,6 @@ public class WorldBossManager {
         //Setup properties of the world boss scaling based on nearby players
         final var boss = (Giant) location.getWorld().spawnEntity(location, EntityType.GIANT);
         final var bossData = boss.getPersistentDataContainer();
-<<<<<<< HEAD:src/main/java/moe/quill/Adventuring/Bosses/WorldBossManager.java
-
-        bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
-=======
-        bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
->>>>>>> cddf2c255f264b8e5cad3c2cce9aeb843a65d5a7:src/main/java/moe/quill/stratumsurvival/Adventuring/Bosses/WorldBossManager.java
         this.combatantSize = nearbyPlayers.size();
         boss.setHealth(20f * combatantSize);
 
