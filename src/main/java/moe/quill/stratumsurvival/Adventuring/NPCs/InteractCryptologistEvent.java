@@ -22,7 +22,7 @@ public class InteractCryptologistEvent implements Listener {
 
     @Inject
     public InteractCryptologistEvent(IKeyManager keyManager, ItemHelper itemHelper) {
-        this.cryptoKey = keyManager.getKey(NPCKey.CRYPTOLOGIST);
+        this.cryptoKey = keyManager.getKey(GlobalKey.CRYPTOLOGIST);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.itemHelper = itemHelper;
     }

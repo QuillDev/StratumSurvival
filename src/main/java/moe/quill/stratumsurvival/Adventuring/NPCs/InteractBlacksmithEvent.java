@@ -40,7 +40,7 @@ public class InteractBlacksmithEvent implements Listener {
         this.materialManager = materialManager;
         this.itemHelper = itemHelper;
         this.serializer = serializer;
-        this.blacksmithKey = keyManager.getKey(NPCKey.BLACKSMITH);
+        this.blacksmithKey = keyManager.getKey(GlobalKey.BLACKSMITH);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
     }

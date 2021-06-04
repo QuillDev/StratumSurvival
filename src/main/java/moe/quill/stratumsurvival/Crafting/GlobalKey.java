@@ -11,4 +11,6 @@ public enum GlobalKey {
     INVENTORY_SIZE_KEY,
     ITEM_DATA_KEY,
     COOLDOWN_KEY,
+    CRYPTOLOGIST,
+    BLACKSMITH
 }
