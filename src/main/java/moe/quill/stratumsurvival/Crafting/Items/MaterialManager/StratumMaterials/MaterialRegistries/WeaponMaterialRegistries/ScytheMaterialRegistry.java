@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesScythes;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
@@ -14,8 +15,8 @@ import java.util.HashMap;
 
 public class ScytheMaterialRegistry extends MaterialRegistry {
 
-    public ScytheMaterialRegistry(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.SCYTHE_KEY);
+    public ScytheMaterialRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.SCYTHE_KEY);
     }
 
     @Override

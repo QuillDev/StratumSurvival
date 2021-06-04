@@ -1,6 +1,8 @@
 package moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,8 +13,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class TrinketBagEventHandler implements Listener {
     private final TrinketBagHelper trinketBagHelper;
 
-    public TrinketBagEventHandler(IKeyManager keyManager, MaterialManager materialManager) {
-        this.trinketBagHelper = new TrinketBagHelper(keyManager, materialManager);
+    //TODO: Make this a service maybe?
+    @Inject
+    public TrinketBagEventHandler(IKeyManager keyManager, MaterialManager materialManager, ISerializer serializer) {
+        this.trinketBagHelper = new TrinketBagHelper(keyManager, materialManager, serializer);
     }
 
     //Render the trinket bag when the player right clicks it

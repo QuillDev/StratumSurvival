@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.ToolMaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
@@ -13,8 +14,8 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class IcepickRegistry extends MaterialRegistry {
-    public IcepickRegistry(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.ICEPICK_KEY);
+    public IcepickRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.ICEPICK_KEY);
     }
 
     @Override

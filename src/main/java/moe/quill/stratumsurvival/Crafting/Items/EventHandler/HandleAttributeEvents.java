@@ -1,6 +1,8 @@
 package moe.quill.stratumsurvival.Crafting.Items.EventHandler;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
@@ -26,10 +28,13 @@ public class HandleAttributeEvents implements Listener {
 
     private final IKeyManager keyManager;
     private final NamespacedKey obfuscatedKey;
+    private final ISerializer serializer;
 
-    public HandleAttributeEvents(IKeyManager keyManager) {
+    @Inject
+    public HandleAttributeEvents(IKeyManager keyManager, ISerializer serializer) {
         this.keyManager = keyManager;
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
+        this.serializer = serializer;
     }
 
     @EventHandler
@@ -82,7 +87,7 @@ public class HandleAttributeEvents implements Listener {
             if (attr == null) return;
             final var nsKey = keyManager.getKey(attr.key);
             final var modBytes = data.get(nsKey, PersistentDataType.BYTE_ARRAY);
-            final var modifier = StratumSurvival.serializer.deserializeFloat(modBytes);
+            final var modifier = serializer.deserializeFloat(modBytes);
             attr.execute(event, modifier);
         });
     }

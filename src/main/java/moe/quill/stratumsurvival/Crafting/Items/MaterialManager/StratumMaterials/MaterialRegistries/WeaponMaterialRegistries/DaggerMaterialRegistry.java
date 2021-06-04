@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesDaggers;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
@@ -13,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class DaggerMaterialRegistry extends MaterialRegistry {
-    public DaggerMaterialRegistry(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.DAGGER_KEY);
+    public DaggerMaterialRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.DAGGER_KEY);
     }
 
     @Override

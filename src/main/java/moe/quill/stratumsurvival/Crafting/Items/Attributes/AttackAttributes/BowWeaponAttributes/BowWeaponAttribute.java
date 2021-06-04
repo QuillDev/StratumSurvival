@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BowWeaponAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes.OnDeathAttribute;
@@ -15,9 +16,28 @@ public abstract class BowWeaponAttribute extends Attribute {
 
     protected final BowAttributeMethods bowAttributeMethods = new BowAttributeMethods();
 
-    public BowWeaponAttribute(MaterialManager materialManager, IKeyManager keyManager, AttributeKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
-        super(materialManager, keyManager, key, lore, ItemLists.WEAPONS_BOW, scaleValue, minRoll, maxRoll, new ArrayList<>(
-                Collections.singletonList(OnDeathAttribute.class)
-        ));
+    public BowWeaponAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists,
+            AttributeKey key,
+            Component lore,
+            float scaleValue,
+            float minRoll,
+            float maxRoll
+    ) {
+        super(materialManager,
+                keyManager,
+                serializer,
+                itemLists,
+                key,
+                lore,
+                itemLists.getBowWeapons(),
+                scaleValue,
+                minRoll,
+                maxRoll,
+                new ArrayList<>(Collections.singletonList(OnDeathAttribute.class)
+                ));
     }
 }

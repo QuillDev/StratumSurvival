@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.MiningAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.MiningEventData;
@@ -11,13 +12,24 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 
 public abstract class PickaxeAttribute extends MiningAttribute {
-    public PickaxeAttribute(MaterialManager materialManager, IKeyManager keyManager, AttributeKey key, Component lore, float scaleValue, float minRoll, float maxRoll) {
+    public PickaxeAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists,
+            AttributeKey key,
+            Component lore,
+            float scaleValue,
+            float minRoll,
+            float maxRoll) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 key,
                 lore,
-                ItemLists.TOOLS_PICKAXE,
+                itemLists.getPickaxeItems(),
                 scaleValue,
                 minRoll,
                 maxRoll

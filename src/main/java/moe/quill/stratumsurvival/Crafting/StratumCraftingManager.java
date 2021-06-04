@@ -1,6 +1,9 @@
 package moe.quill.stratumsurvival.Crafting;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Recipes.Generators.Geodes.RecipeGenerator;
 import moe.quill.stratumsurvival.Crafting.Recipes.StratumRecipe;
@@ -15,29 +18,29 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 
+@Singleton
 public class StratumCraftingManager {
 
     private final Plugin plugin;
     private final Server server;
+    private final MaterialManager materialManager;
     private final HashMap<String, NamespacedKey> recipeKeys = new HashMap<>();
     private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
     private static final Logger logger = LoggerFactory.getLogger(StratumCraftingManager.class.getSimpleName());
 
-    public StratumCraftingManager(Plugin plugin) {
+    @Inject
+    public StratumCraftingManager(Plugin plugin, MaterialManager materialManager) {
         this.plugin = plugin;
+        this.materialManager = materialManager;
         this.server = plugin.getServer();
     }
 
-    public void enable(MaterialManager materialManager) {
-        this.loadRecipesDynamically(plugin, materialManager);
-    }
 
     /**
      * Attempt do dynamically load attributes based on their extension from the attribute class
-     *
-     * @param plugin to create namespaced keys for
      */
-    private void loadRecipesDynamically(Plugin plugin, MaterialManager materialManager) {
+    public void loadRecipesDynamically() {
+
         reflections
                 .getSubTypesOf(StratumRecipe.class)
                 .stream()
@@ -45,7 +48,9 @@ public class StratumCraftingManager {
                 .filter(recipeClass -> !recipeClass.isAnnotationPresent(IgnoreDynamicLoading.class))
                 .forEach(attrClass -> {
                     try {
-                        final var recipe = attrClass.getDeclaredConstructor(MaterialManager.class).newInstance(materialManager);
+                        final var recipe = attrClass
+                                .getDeclaredConstructor(MaterialManager.class)
+                                .newInstance(materialManager);
                         registerStratumRecipe(recipe);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();

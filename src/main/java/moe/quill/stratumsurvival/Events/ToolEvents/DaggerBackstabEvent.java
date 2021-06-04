@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Events.ToolEvents;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import net.kyori.adventure.text.Component;
@@ -17,6 +18,7 @@ public class DaggerBackstabEvent implements Listener {
 
     private final IKeyManager keyManager;
 
+    @Inject
     public DaggerBackstabEvent(IKeyManager keyManager) {
         this.keyManager = keyManager;
     }

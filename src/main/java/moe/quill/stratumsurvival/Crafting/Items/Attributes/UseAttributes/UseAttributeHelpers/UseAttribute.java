@@ -1,10 +1,12 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -24,8 +26,29 @@ public abstract class UseAttribute extends Attribute {
     protected long cooldown;
     protected final NamespacedKey cooldownKey;
 
-    public UseAttribute(MaterialManager materialManager, IKeyManager keyManager, AttributeKey key, Component lore, float scaleValue, long cooldown) {
-        super(materialManager, keyManager, key, lore, new ArrayList<>(), scaleValue, 0, 0, new ArrayList<>());
+    public UseAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists,
+            AttributeKey key,
+            Component lore,
+            float scaleValue,
+            long cooldown
+    ) {
+        super(
+                materialManager,
+                keyManager,
+                serializer,
+                itemLists,
+                key,
+                lore,
+                new ArrayList<>(),
+                scaleValue,
+                0,
+                0,
+                new ArrayList<>()
+        );
         this.cooldown = cooldown;
         this.cooldownKey = keyManager.getKey(GlobalKey.COOLDOWN_KEY);
     }
@@ -68,7 +91,7 @@ public abstract class UseAttribute extends Attribute {
 
         //Do cool down calculations
         final var lastTickBytes = heldItemData.get(cooldownKey, PersistentDataType.BYTE_ARRAY);
-        final var lastTick = StratumSurvival.serializer.deserializeLong(lastTickBytes);
+        final var lastTick = serializer.deserializeLong(lastTickBytes);
         final var curTick = Bukkit.getCurrentTick();
         final var deltaTicks = curTick - lastTick;
 
@@ -98,7 +121,7 @@ public abstract class UseAttribute extends Attribute {
         }
 
         //Write the new cool down to the key
-        heldItemData.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeLong(curTick));
+        heldItemData.set(cooldownKey, PersistentDataType.BYTE_ARRAY, serializer.serializeLong(curTick));
         heldItem.setItemMeta(heldItemMeta);
         return new UseEventData(event, player, action);
     }

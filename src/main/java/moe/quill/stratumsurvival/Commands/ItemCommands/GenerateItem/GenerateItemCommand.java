@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Commands.ItemCommands.GenerateItem;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import org.bukkit.command.Command;
@@ -13,6 +14,7 @@ public class GenerateItemCommand implements CommandExecutor {
 
     private final ItemGenerator itemGenerator;
 
+    @Inject
     public GenerateItemCommand(ItemGenerator itemGenerator) {
         this.itemGenerator = itemGenerator;
     }

@@ -2,6 +2,7 @@ package moe.quill.stratumsurvival.Crafting.Items.ItemHelpers;
 
 import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
@@ -23,6 +24,7 @@ public class ItemGenerator {
     private final static Random rand = StratumSurvival.rand;
     private final ItemHelper itemHelper;
     private final IKeyManager keyManager;
+    private final ISerializer serializer;
 
     //Keys for generating Items
     private final NamespacedKey levelKey;
@@ -30,10 +32,12 @@ public class ItemGenerator {
     private final NamespacedKey cooldownKey;
     private final NamespacedKey nameKey;
 
+
     @Inject
-    public ItemGenerator(IKeyManager keyManager, ItemHelper itemHelper) {
+    public ItemGenerator(IKeyManager keyManager, ItemHelper itemHelper, ISerializer serializer) {
         this.keyManager = keyManager;
         this.itemHelper = itemHelper;
+        this.serializer = serializer;
 
         //setup keys
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
@@ -65,19 +69,19 @@ public class ItemGenerator {
         for (var i = 0; (i < maxIndex); i++) {
             final var curAttr = attributes.get(rand.nextInt(attributes.size()));
             final var dataValue = itemHelper.generateDataValue(curAttr, level);
-            data.set(keyManager.getKey(curAttr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
+            data.set(keyManager.getKey(curAttr.key), PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(dataValue));
             lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
             attributes.remove(curAttr); //remove the attribute we used
 
             //If the attribute just added was a use attribute, make it so we can't get any more
             if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
-                data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeLong(0L));
+                data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, serializer.serializeLong(0L));
                 attributes.removeAll(useAttributes);
             }
         }
-        data.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(level));
-        data.set(nameKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeComponent(name));
-        data.set(isCustomItemKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
+        data.set(levelKey, PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(level));
+        data.set(nameKey, PersistentDataType.BYTE_ARRAY, serializer.serializeComponent(name));
+        data.set(isCustomItemKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;

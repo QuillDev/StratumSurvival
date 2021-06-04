@@ -1,16 +1,25 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 
 public class PickaxeDoubleDropsAttribute extends PickaxeAttribute {
-    public PickaxeDoubleDropsAttribute(MaterialManager materialManager, IKeyManager keyManager) {
+    public PickaxeDoubleDropsAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 AttributeKey.PICKAXE_DOUBLE_DROP_ATTRIBUTE,
                 Component.text("Double Drops"),
                 .2f,

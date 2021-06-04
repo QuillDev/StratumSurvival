@@ -1,11 +1,13 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes.OnDeathAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -20,6 +22,8 @@ public abstract class AttackAttribute extends Attribute {
     public AttackAttribute(
             MaterialManager materialManager,
             IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists,
             AttributeKey key,
             Component lore,
             ArrayList<ItemStack> itemStacks,
@@ -30,6 +34,8 @@ public abstract class AttackAttribute extends Attribute {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 key,
                 lore,
                 itemStacks,

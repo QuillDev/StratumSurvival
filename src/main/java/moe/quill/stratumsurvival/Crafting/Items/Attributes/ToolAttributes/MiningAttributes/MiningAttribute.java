@@ -1,9 +1,11 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.ToolAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -15,6 +17,8 @@ public abstract class MiningAttribute extends ToolAttribute {
     public MiningAttribute(
             MaterialManager materialManager,
             IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists,
             AttributeKey key,
             Component lore,
             ArrayList<ItemStack> materials,
@@ -25,6 +29,8 @@ public abstract class MiningAttribute extends ToolAttribute {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 key,
                 lore,
                 materials,

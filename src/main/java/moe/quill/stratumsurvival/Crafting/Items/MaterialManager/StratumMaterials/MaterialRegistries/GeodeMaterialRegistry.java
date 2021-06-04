@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemRarity;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
@@ -19,8 +20,8 @@ public class GeodeMaterialRegistry extends MaterialRegistry {
 
     private final NamespacedKey key;
 
-    public GeodeMaterialRegistry(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.GEODE_KEY);
+    public GeodeMaterialRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.GEODE_KEY);
         this.key = keyManager.getKey(GlobalKey.LEVEL_KEY);
     }
 

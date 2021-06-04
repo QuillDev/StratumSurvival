@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Commands.ItemCommands;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class DeobfuscateItem implements CommandExecutor {
     private final ItemHelper itemHelper;
 
+    @Inject
     public DeobfuscateItem(ItemHelper itemHelper) {
         this.itemHelper = itemHelper;
     }

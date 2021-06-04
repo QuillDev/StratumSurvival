@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Commands.EnemyCommands;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Adventuring.Enemies.EnemyManager;
 import moe.quill.stratumsurvival.Adventuring.Enemies.EnemyType;
 import moe.quill.stratumsurvival.Commands.PlayerCommand;
@@ -12,6 +13,7 @@ public class SpawnEnemy implements CommandExecutor, PlayerCommand {
 
     private final EnemyManager enemyManager;
 
+    @Inject
     public SpawnEnemy(EnemyManager enemyManager) {
         this.enemyManager = enemyManager;
     }

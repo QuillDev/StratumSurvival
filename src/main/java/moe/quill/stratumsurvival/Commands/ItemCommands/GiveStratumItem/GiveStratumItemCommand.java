@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Commands.ItemCommands.GiveStratumItem;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Commands.PlayerCommand;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.command.Command;
@@ -12,6 +13,7 @@ public class GiveStratumItemCommand implements CommandExecutor, PlayerCommand {
 
     private final MaterialManager materialManager;
 
+    @Inject
     public GiveStratumItemCommand(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }

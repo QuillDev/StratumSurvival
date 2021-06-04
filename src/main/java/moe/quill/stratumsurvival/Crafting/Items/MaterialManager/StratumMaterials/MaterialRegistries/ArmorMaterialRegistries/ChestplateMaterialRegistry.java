@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.ArmorMaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.BaseArmorAttributes.BaseAttributesChestplates;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
@@ -13,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class ChestplateMaterialRegistry extends MaterialRegistry {
-    public ChestplateMaterialRegistry(IKeyManager keyManager) {
-        super(keyManager,MaterialKey.ARMOR_KEY);
+    public ChestplateMaterialRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.ARMOR_KEY);
     }
 
     @Override
@@ -161,7 +162,7 @@ public class ChestplateMaterialRegistry extends MaterialRegistry {
             CHESTPLATE_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_ARMOR, BaseAttributesChestplates.ARMOR_NETHERITE_JUG);
             CHESTPLATE_NETHERITE_JUG_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, BaseAttributesChestplates.HEALTH_NETHERITE_JUG);
             CHESTPLATE_NETHERITE_JUG.setItemMeta(CHESTPLATE_NETHERITE_JUG_META);
-            
+
             //ADDING TO LIST
             put(StratumMaterial.CHESTPLATE_LEATHER_LIGHT.name(), CHESTPLATE_LEATHER_LIGHT);
             put(StratumMaterial.CHESTPLATE_GOLDEN_LIGHT.name(), CHESTPLATE_GOLDEN_LIGHT);

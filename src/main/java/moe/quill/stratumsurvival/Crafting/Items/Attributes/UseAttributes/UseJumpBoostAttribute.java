@@ -1,10 +1,12 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -14,10 +16,17 @@ import org.bukkit.potion.PotionEffectType;
 public class UseJumpBoostAttribute extends UseAttribute {
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
 
-    public UseJumpBoostAttribute(MaterialManager materialManager, IKeyManager keyManager) {
+    public UseJumpBoostAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 AttributeKey.USE_JUMP_BOOST_ATTRIBUTE,
                 Component.text("Acrobatic Field").color(TextColor.color(0x53CB35)),
                 0f,

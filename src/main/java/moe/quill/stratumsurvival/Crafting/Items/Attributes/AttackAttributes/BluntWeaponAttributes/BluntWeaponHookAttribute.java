@@ -1,9 +1,11 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.KnockbackEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -12,10 +14,17 @@ public class BluntWeaponHookAttribute extends BluntWeaponAttribute {
 
     public final static KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    public BluntWeaponHookAttribute(MaterialManager materialManager, IKeyManager keyManager) {
+    public BluntWeaponHookAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 AttributeKey.BLUNT_WEAPON_HOOK_ATTRIBUTE,
                 Component.text("Pulling Slash").color(TextColor.color(0x2BCBC6)),
                 0f,

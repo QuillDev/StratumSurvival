@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class TrinketBagHelper {
 
     private final ItemStack blockade;
+    private final ISerializer serializer;
     private final static int maxBagSize = 9;
 
     //Item Keys
@@ -29,11 +31,12 @@ public class TrinketBagHelper {
     private final NamespacedKey inventorySizeKey;
     private final NamespacedKey itemDataKey;
 
-    public TrinketBagHelper(IKeyManager keyManager, MaterialManager materialManager) {
+    public TrinketBagHelper(IKeyManager keyManager, MaterialManager materialManager, ISerializer serializer) {
         this.trinketBagKey = keyManager.getKey(MaterialKey.TRINKET_BAG_KEY);
         this.inventorySizeKey = keyManager.getKey(GlobalKey.INVENTORY_SIZE_KEY);
         this.itemDataKey = keyManager.getKey(GlobalKey.ITEM_DATA_KEY);
         this.blockade = materialManager.getItem(StratumMaterial.BLOCKADE);
+        this.serializer = serializer;
     }
 
     /**
@@ -112,8 +115,8 @@ public class TrinketBagHelper {
         final var inventorySizeBytes = heldItemData.get(inventorySizeKey, PersistentDataType.BYTE_ARRAY);
         final var inventoryDataBytes = heldItemData.get(itemDataKey, PersistentDataType.BYTE_ARRAY);
         //Get the values from the bytes
-        final var inventorySize = (int) StratumSurvival.serializer.deserializeFloat(inventorySizeBytes);
-        final var inventoryData = StratumSurvival.serializer.deserializeItemList(inventoryDataBytes);
+        final var inventorySize = (int) serializer.deserializeFloat(inventorySizeBytes);
+        final var inventoryData = serializer.deserializeItemList(inventoryDataBytes);
 
         //If the data is bad, return null
         if (inventoryData == null) return null;
@@ -132,7 +135,7 @@ public class TrinketBagHelper {
         final var trinketBagMeta = trinketBag.getItemMeta();
         if (trinketBagMeta == null) return;
         final var trinketBagDataContainer = trinketBagMeta.getPersistentDataContainer();
-        trinketBagDataContainer.set(itemDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeItemList(items));
+        trinketBagDataContainer.set(itemDataKey, PersistentDataType.BYTE_ARRAY, serializer.serializeItemList(items));
         trinketBag.setItemMeta(trinketBagMeta);
     }
 

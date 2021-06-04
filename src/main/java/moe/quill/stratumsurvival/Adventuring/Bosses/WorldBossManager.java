@@ -2,6 +2,7 @@ package moe.quill.stratumsurvival.Adventuring.Bosses;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.BossAttack;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.FlingVerticallyAttack;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.LevitatePlayersAttack;
@@ -39,6 +40,7 @@ public class WorldBossManager {
 
     private final BukkitScheduler scheduler;
     private final NamespacedKey worldBossKey;
+    private final ISerializer serializer;
 
     //World that we handle world bosses in
     private final World world = Bukkit.getWorld("worldbossworld");
@@ -64,11 +66,13 @@ public class WorldBossManager {
 
     //TODO: Add Support for multiple world bosses at once (some sort of boss data class)
     @Inject
-    public WorldBossManager(Plugin plugin) {
+    public WorldBossManager(Plugin plugin, ISerializer serializer) {
         this.plugin = plugin;
         this.worldBossKey = new NamespacedKey(plugin, "mob_world_boss");
         this.bossBar = Bukkit.createBossBar("", BarColor.RED, BarStyle.SOLID);
         this.scheduler = Bukkit.getScheduler();
+        this.serializer = serializer;
+
         //Register the world boss listeners
         plugin.getServer().getPluginManager().registerEvents(new WorldBossListeners(this), plugin);
         startWorldBossSchedule();
@@ -109,7 +113,7 @@ public class WorldBossManager {
         //Setup properties of the world boss scaling based on nearby players
         final var boss = (Giant) location.getWorld().spawnEntity(location, EntityType.GIANT);
         final var bossData = boss.getPersistentDataContainer();
-        bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
+        bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
         this.combatantSize = nearbyPlayers.size();
         boss.setHealth(20f * combatantSize);
 
