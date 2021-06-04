@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.AttackAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
@@ -12,12 +13,25 @@ public abstract class BluntWeaponAttribute extends AttackAttribute {
             (
                     MaterialManager materialManager,
                     IKeyManager keyManager,
+                    ISerializer serializer,
+                    ItemLists itemLists,
                     AttributeKey key,
                     Component lore,
                     float scaleValue,
                     float minRoll,
                     float maxRoll
             ) {
-        super(materialManager, keyManager, key, lore, ItemLists.WEAPONS_BLUNT, scaleValue, minRoll, maxRoll);
+        super(
+                materialManager,
+                keyManager,
+                serializer,
+                itemLists,
+                key,
+                lore,
+                itemLists.getBluntWeapons(),
+                scaleValue,
+                minRoll,
+                maxRoll
+        );
     }
 }

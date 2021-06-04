@@ -24,6 +24,7 @@ public class GeodeRecipeGenerator extends RecipeGenerator {
         return new HashSet<>() {{
             for (final var key : attributeLists.keySet()) {
                 final var entry = attributeLists.get(key);
+                if (entry.itemStacks.size() == 0) continue;
                 final var choice = new RecipeChoice.ExactChoice(entry.itemStacks);
 
                 add(new RecipeGeode(

@@ -1,8 +1,10 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.Utils.ItemGroups;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -15,8 +17,23 @@ import java.util.Collections;
 
 @SuppressWarnings("unused")
 public class PickaxeVeinMine extends PickaxeAttribute {
-    public PickaxeVeinMine(MaterialManager materialManager, IKeyManager keyManager) {
-        super(materialManager, keyManager, AttributeKey.PICKAXE_VEIN_MINER_ATTRIBUTE, Component.text("Vein Miner"), 1.5f, 3, 8);
+    public PickaxeVeinMine(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
+        super(
+                materialManager,
+                keyManager,
+                serializer,
+                itemLists,
+                AttributeKey.PICKAXE_VEIN_MINER_ATTRIBUTE,
+                Component.text("Vein Miner"),
+                1.5f,
+                3,
+                8
+        );
     }
 
     @Override

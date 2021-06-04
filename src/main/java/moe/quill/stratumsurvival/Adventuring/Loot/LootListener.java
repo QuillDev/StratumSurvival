@@ -1,6 +1,8 @@
 package moe.quill.stratumsurvival.Adventuring.Loot;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
@@ -19,13 +21,15 @@ public class LootListener implements Listener {
 
     private final LootManager lootManager;
     private final LootTables lootTables;
-
+    private final ISerializer serializer;
     private final NamespacedKey levelKey;
 
-    public LootListener(LootManager lootManager, IKeyManager keyManager) {
+    @Inject
+    public LootListener(LootManager lootManager, IKeyManager keyManager, ISerializer serializer) {
         this.lootManager = lootManager;
         this.lootTables = lootManager.getLootTables();
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
+        this.serializer = serializer;
     }
 
     @EventHandler
@@ -46,7 +50,7 @@ public class LootListener implements Listener {
         final var targetData = target.getPersistentDataContainer();
         if (!targetData.has(lootManager.getLootChestKey(), PersistentDataType.BYTE_ARRAY)) return;
         if (!targetData.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
-        final var level = (int) StratumSurvival.serializer.deserializeFloat(targetData.get(levelKey, PersistentDataType.BYTE_ARRAY));
+        final var level = (int) serializer.deserializeFloat(targetData.get(levelKey, PersistentDataType.BYTE_ARRAY));
         event.setCancelled(true); //cancel the right click event
         final var player = event.getPlayer();
         player.sendMessage(String.format("Opened tier %s loot", level));

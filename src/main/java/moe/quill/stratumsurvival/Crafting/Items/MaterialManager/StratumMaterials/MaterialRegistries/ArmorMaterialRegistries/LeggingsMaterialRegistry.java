@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.ArmorMaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.BaseArmorAttributes.BaseAttributesLeggings;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
@@ -13,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class LeggingsMaterialRegistry extends MaterialRegistry {
-    public LeggingsMaterialRegistry(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.ARMOR_KEY);
+    public LeggingsMaterialRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.ARMOR_KEY);
     }
 
     @Override

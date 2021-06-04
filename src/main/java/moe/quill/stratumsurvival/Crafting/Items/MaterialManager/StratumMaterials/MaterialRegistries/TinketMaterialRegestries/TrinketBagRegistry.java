@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.TinketMaterialRegestries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
@@ -20,8 +21,8 @@ public class TrinketBagRegistry extends MaterialRegistry {
     private final NamespacedKey inventorySizeKey;
     private final NamespacedKey itemDataKey;
 
-    public TrinketBagRegistry(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.TRINKET_BAG_KEY);
+    public TrinketBagRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.TRINKET_BAG_KEY);
         this.inventorySizeKey = keyManager.getKey(GlobalKey.INVENTORY_SIZE_KEY);
         this.itemDataKey = keyManager.getKey(GlobalKey.ITEM_DATA_KEY);
     }
@@ -38,8 +39,8 @@ public class TrinketBagRegistry extends MaterialRegistry {
             TRINKET_BAG_SMALL_META.displayName(Component.text("Small Trinket Bag"));
             TRINKET_BAG_SMALL_META.setLocalizedName("Small Trinket Bag");
             TRINKET_BAG_SMALL_META.setCustomModelData(1);
-            TRINKET_BAG_SMALL_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(3));
-            TRINKET_BAG_SMALL_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeItemList(emptyItemList));
+            TRINKET_BAG_SMALL_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(3));
+            TRINKET_BAG_SMALL_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, serializer.serializeItemList(emptyItemList));
             TRINKET_BAG_SMALL.setItemMeta(TRINKET_BAG_SMALL_META);
 
             final var TRINKET_BAG_MEDIUM = new ItemStack(Material.RABBIT_HIDE);
@@ -48,8 +49,8 @@ public class TrinketBagRegistry extends MaterialRegistry {
             TRINKET_BAG_MEDIUM_META.displayName(Component.text("Medium Trinket Bag"));
             TRINKET_BAG_MEDIUM_META.setLocalizedName("Medium Trinket Bag");
             TRINKET_BAG_MEDIUM_META.setCustomModelData(2);
-            TRINKET_BAG_MEDIUM_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(5));
-            TRINKET_BAG_MEDIUM_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeItemList(emptyItemList));
+            TRINKET_BAG_MEDIUM_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(5));
+            TRINKET_BAG_MEDIUM_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, serializer.serializeItemList(emptyItemList));
             TRINKET_BAG_MEDIUM.setItemMeta(TRINKET_BAG_MEDIUM_META);
 
             final var TRINKET_BAG_LARGE = new ItemStack(Material.RABBIT_HIDE);
@@ -58,8 +59,8 @@ public class TrinketBagRegistry extends MaterialRegistry {
             TRINKET_BAG_LARGE_META.displayName(Component.text("Large Trinket Bag"));
             TRINKET_BAG_LARGE_META.setLocalizedName("Large Trinket Bag");
             TRINKET_BAG_LARGE_META.setCustomModelData(3);
-            TRINKET_BAG_LARGE_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(7));
-            TRINKET_BAG_LARGE_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeItemList(emptyItemList));
+            TRINKET_BAG_LARGE_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(7));
+            TRINKET_BAG_LARGE_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, serializer.serializeItemList(emptyItemList));
             TRINKET_BAG_LARGE.setItemMeta(TRINKET_BAG_LARGE_META);
 
             final var TRINKET_BAG_HUGE = new ItemStack(Material.RABBIT_HIDE);
@@ -68,8 +69,8 @@ public class TrinketBagRegistry extends MaterialRegistry {
             TRINKET_BAG_HUGE_META.displayName(Component.text("Huge Trinket Bag"));
             TRINKET_BAG_HUGE_META.setLocalizedName("Huge Trinket Bag");
             TRINKET_BAG_HUGE_META.setCustomModelData(4);
-            TRINKET_BAG_HUGE_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(9));
-            TRINKET_BAG_HUGE_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeItemList(emptyItemList));
+            TRINKET_BAG_HUGE_DATA.set(inventorySizeKey, PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(9));
+            TRINKET_BAG_HUGE_DATA.set(itemDataKey, PersistentDataType.BYTE_ARRAY, serializer.serializeItemList(emptyItemList));
             TRINKET_BAG_HUGE.setItemMeta(TRINKET_BAG_HUGE_META);
 
             put(StratumMaterial.TRINKET_BAG_SMALL.name(), TRINKET_BAG_SMALL);

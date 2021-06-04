@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.ItemHelpers;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
@@ -24,17 +25,19 @@ public class ItemHelper {
     private static final Random rand = StratumSurvival.rand;
 
     private final IKeyManager keyManager;
-
+    private final ISerializer serializer;
     //Keys we'll be working with
     private final NamespacedKey levelKey;
     private final NamespacedKey obfuscatedKey;
     private final NamespacedKey nameKey;
 
-    public ItemHelper(IKeyManager keyManager) {
+    public ItemHelper(IKeyManager keyManager, ISerializer serializer) {
         this.keyManager = keyManager;
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.nameKey = keyManager.getKey(GlobalKey.NAME_KEY);
+        this.serializer = serializer;
+
     }
 
     /**
@@ -51,11 +54,11 @@ public class ItemHelper {
 
             //Get the level of the item
             final var levelBytes = data.get(levelKey, PersistentDataType.BYTE_ARRAY);
-            var level = (int) StratumSurvival.serializer.deserializeFloat(levelBytes);
+            var level = (int) serializer.deserializeFloat(levelBytes);
 
             //Get the data and set each key with new values
             final var dataValue = generateDataValue(attr, level);
-            data.set(keyManager.getKey(attr.key), PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(dataValue));
+            data.set(keyManager.getKey(attr.key), PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(dataValue));
             setLoreFromItemKeys(meta);
             item.setItemMeta(meta);
         });
@@ -98,14 +101,14 @@ public class ItemHelper {
         final var data = meta.getPersistentDataContainer();
         if (data.getKeys().size() == 0) return;
         final var lore = new ArrayList<Component>();
-        final var level = (int) StratumSurvival.serializer.deserializeFloat(data.get(levelKey, PersistentDataType.BYTE_ARRAY));
+        final var level = (int) serializer.deserializeFloat(data.get(levelKey, PersistentDataType.BYTE_ARRAY));
         lore.add(ItemRarity.getRarity(level).getName());
         for (final var key : data.getKeys()) {
             final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) continue;
             //Get the value off of the item for the given attribute
             final var valueBytes = data.get(keyManager.getKey(attr.key), PersistentDataType.BYTE_ARRAY);
-            final var value = StratumSurvival.serializer.deserializeFloat(valueBytes);
+            final var value = serializer.deserializeFloat(valueBytes);
             if (Float.isNaN(value)) continue;
             lore.add(attr.lore.append(Component.text(attr.dataFormat(value))));
         }
@@ -139,7 +142,7 @@ public class ItemHelper {
         data.remove(obfuscatedKey);
         if (data.has(nameKey, PersistentDataType.BYTE_ARRAY)) {
             final var nameBytes = data.get(nameKey, PersistentDataType.BYTE_ARRAY);
-            final var name = StratumSurvival.serializer.deserializeComponent(nameBytes);
+            final var name = serializer.deserializeComponent(nameBytes);
             meta.displayName(name);
         }
         itemStack.setItemMeta(meta);
@@ -155,7 +158,7 @@ public class ItemHelper {
         meta.lore(Collections.singletonList(Component.text("????????").decorate(TextDecoration.OBFUSCATED)));
         meta.displayName(Component.text("?????????").decorate(TextDecoration.OBFUSCATED));
         final var data = meta.getPersistentDataContainer();
-        data.set(obfuscatedKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
+        data.set(obfuscatedKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
         itemStack.setItemMeta(meta);
     }
 

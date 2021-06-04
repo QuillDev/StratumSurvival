@@ -1,9 +1,10 @@
 package moe.quill.stratumsurvival.Crafting.CraftingEvents;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
@@ -20,10 +21,13 @@ public class GrindCustomWeaponEvent implements Listener {
 
     //The level key
     private final NamespacedKey levelKey;
+    private final ISerializer serializer;
 
-    public GrindCustomWeaponEvent(IKeyManager keyManager, MaterialManager materialManager) {
+    @Inject
+    public GrindCustomWeaponEvent(IKeyManager keyManager, MaterialManager materialManager, ISerializer serializer) {
         this.materialManager = materialManager;
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
+        this.serializer = serializer;
 
     }
 
@@ -43,7 +47,7 @@ public class GrindCustomWeaponEvent implements Listener {
         if (data.getKeys().size() == 0) return;
         if (!data.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
         final var levelBytes = data.get(levelKey, PersistentDataType.BYTE_ARRAY);
-        var level = (int) StratumSurvival.serializer.deserializeFloat(levelBytes);
+        var level = (int) serializer.deserializeFloat(levelBytes);
         // Get the corresponding item based on the level
         final var item = materialManager.getFragmentForLevel(level);
         item.setAmount(2 + new Random().nextInt(3));

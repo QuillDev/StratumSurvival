@@ -1,8 +1,7 @@
-package moe.quill.stratumsurvival.Adventuring.NPCManager.NPCEvents;
+package moe.quill.stratumsurvival.Adventuring.NPCs;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCManager;
-import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCs.NPCType;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;
@@ -21,8 +20,9 @@ public class InteractCryptologistEvent implements Listener {
     private final ItemHelper itemHelper;
     private final NamespacedKey obfuscatedKey;
 
-    public InteractCryptologistEvent(IKeyManager keyManager, ItemHelper itemHelper, NPCManager npcManager) {
-        this.cryptoKey = npcManager.getNPCByType(NPCType.CRYPTOLOGIST).getKey();
+    @Inject
+    public InteractCryptologistEvent(IKeyManager keyManager, ItemHelper itemHelper) {
+        this.cryptoKey = keyManager.getKey(NPCKey.CRYPTOLOGIST);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.itemHelper = itemHelper;
     }

@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Events.InventoryEvents;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import org.bukkit.event.EventHandler;
@@ -12,6 +13,7 @@ public class StopBlockadeClicks implements Listener {
 
     private final ItemStack blockade;
 
+    @Inject
     public StopBlockadeClicks(MaterialManager materialManager) {
         this.blockade = materialManager.getItem(StratumMaterial.BLOCKADE);
     }

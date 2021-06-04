@@ -1,11 +1,13 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.CloakEffect;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.KnockbackEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -15,10 +17,17 @@ public class UseShadowDodgeAttribute extends UseAttribute {
     public final static CloakEffect cloakEffect = new CloakEffect();
     public final static KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    public UseShadowDodgeAttribute(MaterialManager materialManager, IKeyManager keyManager) {
+    public UseShadowDodgeAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 AttributeKey.USE_SHADOW_DODGE_ATTRIBUTE,
                 Component.text("Shadow Dodge").color(TextColor.color(0x3F0BCB)),
                 0f,

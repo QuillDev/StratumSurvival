@@ -15,7 +15,7 @@ public class BowAttributeMethods {
      * @param sourceEvent to get data from
      * @return required data to execute the event
      */
-    public BowEventData getEventData(Event sourceEvent) {
+    public BowEventData getEventData(Event sourceEvent, ItemLists itemLists) {
         if (!(sourceEvent instanceof EntityDamageByEntityEvent)) return null; //if it's not a damage event, return
         final var event = (EntityDamageByEntityEvent) sourceEvent;
         if (!((event.getDamager()) instanceof Arrow)) return null; //if the damager is not an arrow, return
@@ -27,7 +27,7 @@ public class BowAttributeMethods {
 
         //Make sure the held item is a bow
         var match = false;
-        for (final var weapon : ItemLists.WEAPONS_BOW) {
+        for (final var weapon : itemLists.getBowWeapons()) {
             if (weapon.getType().equals(bow.getType())) {
                 match = true;
                 break;

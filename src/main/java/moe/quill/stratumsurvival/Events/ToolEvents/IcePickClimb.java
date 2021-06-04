@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Events.ToolEvents;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Utils.ItemGroups;
@@ -21,7 +22,7 @@ public class IcePickClimb implements Listener {
     private final NamespacedKey icepickKey;
     private final ParticleFactory particleFactory = new ParticleFactory();
 
-
+    @Inject
     public IcePickClimb(IKeyManager keyManager) {
         this.icepickKey = keyManager.getKey(MaterialKey.ICEPICK_KEY);
     }

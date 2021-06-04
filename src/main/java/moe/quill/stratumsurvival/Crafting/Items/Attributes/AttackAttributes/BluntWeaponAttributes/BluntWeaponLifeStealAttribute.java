@@ -1,9 +1,11 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.HealPlayerEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -13,10 +15,17 @@ public class BluntWeaponLifeStealAttribute extends BluntWeaponAttribute {
 
     public static final HealPlayerEffect healPlayerEffect = new HealPlayerEffect();
 
-    public BluntWeaponLifeStealAttribute(MaterialManager materialManager, IKeyManager keyManager) {
+    public BluntWeaponLifeStealAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 AttributeKey.BLUNT_WEAPON_LIFE_STEAL_ATTRIBUTE,
                 Component.text("Life Steal").color(TextColor.color(0xf75134)),
                 .08f,

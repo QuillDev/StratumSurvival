@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesCutlasses;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
@@ -15,8 +16,8 @@ import java.util.HashMap;
 public class CutlassMaterialRegistry extends MaterialRegistry {
 
 
-    public CutlassMaterialRegistry(IKeyManager keyManager) {
-        super(keyManager,MaterialKey.CUTLASS_KEY);
+    public CutlassMaterialRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.CUTLASS_KEY);
     }
 
     @Override

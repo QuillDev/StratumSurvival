@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Commands.ItemCommands.GiveStratumItem;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,6 +17,7 @@ public class GiveStratumItemTabs implements TabCompleter {
 
     private final MaterialManager materialManager;
 
+    @Inject
     public GiveStratumItemTabs(MaterialManager materialManager) {
         this.materialManager = materialManager;
     }

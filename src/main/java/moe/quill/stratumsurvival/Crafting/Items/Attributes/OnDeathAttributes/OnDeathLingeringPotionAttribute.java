@@ -1,10 +1,12 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
@@ -20,6 +22,8 @@ public abstract class OnDeathLingeringPotionAttribute extends OnDeathAttribute {
     public OnDeathLingeringPotionAttribute
             (MaterialManager materialManager,
              IKeyManager keyManager,
+             ISerializer serializer,
+             ItemLists itemLists,
              AttributeKey key,
              PotionEffect potionEffect,
              Component displayName,
@@ -30,6 +34,8 @@ public abstract class OnDeathLingeringPotionAttribute extends OnDeathAttribute {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 key,
                 displayName,
                 .2f,

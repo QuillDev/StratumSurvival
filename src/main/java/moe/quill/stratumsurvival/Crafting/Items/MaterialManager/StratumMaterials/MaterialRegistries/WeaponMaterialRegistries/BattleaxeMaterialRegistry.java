@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.WeaponMaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.BaseWeaponAttributes.BaseAttributesBattleaxes;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
@@ -13,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class BattleaxeMaterialRegistry extends MaterialRegistry {
-    public BattleaxeMaterialRegistry(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.BATTLEAXE_KEY);
+    public BattleaxeMaterialRegistry(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.BATTLEAXE_KEY);
     }
 
     @Override

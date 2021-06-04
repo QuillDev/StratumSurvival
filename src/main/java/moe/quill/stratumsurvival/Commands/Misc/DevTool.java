@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Commands.Misc;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -17,6 +18,7 @@ public class DevTool implements CommandExecutor, Listener {
     private final NamespacedKey lootChestKey;
     private final MaterialManager materialManager;
 
+    @Inject
     public DevTool(MaterialManager materialManager, Plugin plugin) {
         this.plugin = plugin;
         this.lootChestKey = new NamespacedKey(plugin, "loot_chest_key");

@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Events.ItemGenerationEvents;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.entity.Entity;
@@ -22,6 +23,7 @@ public class GenerateItemOnMobDeath implements Listener {
      *
      * @param generator to use
      */
+    @Inject
     public GenerateItemOnMobDeath(ItemGenerator generator) {
         this.generator = generator;
     }

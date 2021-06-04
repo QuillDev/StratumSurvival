@@ -1,10 +1,12 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.EffectHelpers.EffectHelper;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.PotionBasedEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -16,10 +18,17 @@ public class BluntWeaponSpeedStealAttribute extends BluntWeaponAttribute {
 
     EffectHelper helper = new EffectHelper();
 
-    public BluntWeaponSpeedStealAttribute(MaterialManager materialManager, IKeyManager keyManager) {
+    public BluntWeaponSpeedStealAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 AttributeKey.BLUNT_WEAPON_SPEED_STEAL_ATTRIBUTE,
                 Component.text("Speed Leach").color(TextColor.color(0x1C6FF7)),
                 0,

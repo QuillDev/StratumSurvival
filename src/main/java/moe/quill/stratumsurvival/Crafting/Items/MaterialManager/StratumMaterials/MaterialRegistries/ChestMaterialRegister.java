@@ -1,6 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.HeadHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
@@ -11,8 +12,8 @@ import java.util.HashMap;
 public class ChestMaterialRegister extends MaterialRegistry {
 
 
-    public ChestMaterialRegister(IKeyManager keyManager) {
-        super(keyManager, MaterialKey.LOOT_CHEST_KEY);
+    public ChestMaterialRegister(IKeyManager keyManager, ISerializer serializer) {
+        super(keyManager, serializer, MaterialKey.LOOT_CHEST_KEY);
     }
 
     @Override

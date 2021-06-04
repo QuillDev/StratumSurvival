@@ -12,9 +12,9 @@ import java.util.Arrays;
 public class ItemLists {
 
 
-    public static final ArrayList<ItemStack> WEAPONS_BLUNT = new ArrayList<>();
-    public static final ArrayList<ItemStack> WEAPONS_BOW = new ArrayList<>();
-    public static final ArrayList<ItemStack> TOOLS_PICKAXE = new ArrayList<>();
+    private final ArrayList<ItemStack> bluntWeapons = new ArrayList<>();
+    private final ArrayList<ItemStack> bowWeapons = new ArrayList<>();
+    private final ArrayList<ItemStack> pickaxeItems = new ArrayList<>();
     private final MaterialManager materialManager;
 
     @Inject
@@ -26,7 +26,7 @@ public class ItemLists {
     }
 
     private void registerMiningTools() {
-        TOOLS_PICKAXE.addAll(Arrays.asList(
+        pickaxeItems.addAll(Arrays.asList(
                 materialManager.getItem(Material.WOODEN_PICKAXE),
                 materialManager.getItem(Material.STONE_PICKAXE),
                 materialManager.getItem(Material.GOLDEN_PICKAXE),
@@ -49,7 +49,7 @@ public class ItemLists {
     }
 
     private void registerBluntWeapons() {
-        WEAPONS_BLUNT.addAll(Arrays.asList(
+        bluntWeapons.addAll(Arrays.asList(
                 materialManager.getItem(StratumMaterial.SCYTHE_WOODEN),
                 materialManager.getItem(StratumMaterial.SCYTHE_STONE),
                 materialManager.getItem(StratumMaterial.SCYTHE_IRON),
@@ -85,9 +85,22 @@ public class ItemLists {
     }
 
     private void registerBowWeapons() {
-        WEAPONS_BOW.addAll(Arrays.asList(
+        bowWeapons.addAll(Arrays.asList(
                 materialManager.getItem(Material.BOW),
                 materialManager.getItem(Material.CROSSBOW)
         ));
     }
+
+    public ArrayList<ItemStack> getPickaxeItems() {
+        return pickaxeItems;
+    }
+
+    public ArrayList<ItemStack> getBluntWeapons() {
+        return bluntWeapons;
+    }
+
+    public ArrayList<ItemStack> getBowWeapons() {
+        return bowWeapons;
+    }
+
 }

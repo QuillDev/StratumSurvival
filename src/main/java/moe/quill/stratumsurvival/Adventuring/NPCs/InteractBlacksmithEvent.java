@@ -1,12 +1,11 @@
-package moe.quill.stratumsurvival.Adventuring.NPCManager.NPCEvents;
+package moe.quill.stratumsurvival.Adventuring.NPCs;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCManager;
-import moe.quill.stratumsurvival.Adventuring.NPCManager.NPCs.NPCType;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -20,6 +19,7 @@ public class InteractBlacksmithEvent implements Listener {
 
     //Instantiated Vars
     private final InventoryHelper inventoryHelper = new InventoryHelper();
+    private final ISerializer serializer;
 
     //Instanced Vars
     private final NamespacedKey blacksmithKey;
@@ -30,11 +30,17 @@ public class InteractBlacksmithEvent implements Listener {
     private final NamespacedKey obfuscatedKey;
     private final NamespacedKey levelKey;
 
-    public InteractBlacksmithEvent(NPCManager npcManager, MaterialManager materialManager, IKeyManager keyManager, ItemHelper itemHelper) {
-        this.blacksmithKey = npcManager.getNPCByType(NPCType.BLACKSMITH).getKey();
+    @Inject
+    public InteractBlacksmithEvent(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ItemHelper itemHelper,
+            ISerializer serializer
+    ) {
         this.materialManager = materialManager;
         this.itemHelper = itemHelper;
-
+        this.serializer = serializer;
+        this.blacksmithKey = keyManager.getKey(NPCKey.BLACKSMITH);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
     }
@@ -58,7 +64,7 @@ public class InteractBlacksmithEvent implements Listener {
         if (itemData.has(obfuscatedKey, PersistentDataType.BYTE_ARRAY)) return;
         if (!itemData.has(levelKey, PersistentDataType.BYTE_ARRAY)) return;
         final var levelBytes = itemData.get(levelKey, PersistentDataType.BYTE_ARRAY);
-        var level = (int) StratumSurvival.serializer.deserializeFloat(levelBytes);
+        var level = (int) serializer.deserializeFloat(levelBytes);
 
         // Get the corresponding item based on the level
         final var crystalItem = materialManager.getCrystalForLevel(level);

@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Commands.AdventureCommands.WorldBossCommands;
 
+import com.google.inject.Inject;
 import moe.quill.stratumsurvival.Adventuring.Bosses.WorldBossManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,6 +13,7 @@ public class SummonWorldBossCommand implements CommandExecutor, Listener {
 
     private final WorldBossManager bossManager;
 
+    @Inject
     public SummonWorldBossCommand(WorldBossManager bossManager) {
         this.bossManager = bossManager;
     }

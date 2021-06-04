@@ -1,9 +1,11 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -14,7 +16,10 @@ public abstract class OnDeathAttribute extends Attribute {
 
     public OnDeathAttribute(
             MaterialManager materialManager,
-            IKeyManager keyManager, AttributeKey key,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists,
+            AttributeKey key,
             Component lore,
             float scaleValue,
             float minRoll,
@@ -23,7 +28,10 @@ public abstract class OnDeathAttribute extends Attribute {
         super(
                 materialManager,
                 keyManager,
-                key, lore,
+                serializer,
+                itemLists,
+                key,
+                lore,
                 //Weapons this attribute can be applied to
                 new ArrayList<>(),
                 scaleValue,

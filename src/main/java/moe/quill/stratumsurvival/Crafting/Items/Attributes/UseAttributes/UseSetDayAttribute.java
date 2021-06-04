@@ -1,10 +1,12 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.TimeSetEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
@@ -14,10 +16,17 @@ public class UseSetDayAttribute extends UseAttribute {
 
     TimeSetEffect timeSetEffect = new TimeSetEffect();
 
-    public UseSetDayAttribute(MaterialManager materialManager, IKeyManager keyManager) {
+    public UseSetDayAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         super(
                 materialManager,
                 keyManager,
+                serializer,
+                itemLists,
                 AttributeKey.USE_SET_DAY_ATTRIBUTE,
                 Component.text("Daniel's Bane").color(TextColor.color(0x214A2A)),
                 0f,

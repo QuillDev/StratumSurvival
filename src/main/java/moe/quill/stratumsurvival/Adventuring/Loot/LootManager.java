@@ -3,6 +3,7 @@ package moe.quill.stratumsurvival.Adventuring.Loot;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
@@ -22,20 +23,22 @@ import java.util.Random;
 @Singleton
 public class LootManager {
 
+    private final Random rand = StratumSurvival.rand;
     private final MaterialManager materialManager;
     private final LootTables lootTables;
-    private final Random rand = StratumSurvival.rand;
+    private final ISerializer serializer;
 
     //NS Keys
     private final NamespacedKey lootChestKey;
     private final NamespacedKey levelKey;
 
     @Inject
-    public LootManager(IKeyManager keyManager, MaterialManager materialManager, LootTables lootTables) {
+    public LootManager(IKeyManager keyManager, MaterialManager materialManager, LootTables lootTables, ISerializer serializer) {
         this.materialManager = materialManager;
         this.lootTables = lootTables;
         this.lootChestKey = keyManager.getKey(MaterialKey.LOOT_CHEST_KEY);
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
+        this.serializer = serializer;
     }
 
     /**
@@ -57,8 +60,8 @@ public class LootManager {
         final var spawnLocation = new Location(location.getWorld(), location.getX(), location.getY() - 1.475, location.getZ());
         final var chestStand = (ArmorStand) location.getWorld().spawnEntity(spawnLocation, EntityType.ARMOR_STAND);
         final var chestStandData = chestStand.getPersistentDataContainer();
-        chestStandData.set(lootChestKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
-        chestStandData.set(levelKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeFloat(level));
+        chestStandData.set(lootChestKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
+        chestStandData.set(levelKey, PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(level));
         chestStand.setAI(false);
         chestStand.setVisible(false);
         chestStand.setArms(false);

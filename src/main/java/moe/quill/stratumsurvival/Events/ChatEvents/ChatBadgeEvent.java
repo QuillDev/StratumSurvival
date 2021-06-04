@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Events.ChatEvents;
 
+import com.google.inject.Inject;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -14,11 +15,12 @@ public class ChatBadgeEvent implements Listener {
 
     private final Plugin plugin;
 
+    @Inject
     public ChatBadgeEvent(Plugin plugin) {
         this.plugin = plugin;
     }
 
-    private HashMap<Player, ChatBubbleManager> chatQueues = new HashMap<>();
+    private final HashMap<Player, ChatBubbleManager> chatQueues = new HashMap<>();
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void playerTextOnChatEvent(AsyncChatEvent event) {

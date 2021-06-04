@@ -3,22 +3,33 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import org.bukkit.inventory.ItemStack;
+import org.burningwave.core.assembler.ComponentContainer;
+import org.burningwave.core.assembler.ComponentSupplier;
+import org.burningwave.core.classes.CacheableSearchConfig;
+import org.burningwave.core.classes.ClassCriteria;
+import org.burningwave.core.classes.ClassHunter;
+import org.burningwave.core.classes.SearchConfig;
+import org.burningwave.core.io.PathHelper;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Attr;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @Singleton
 public class ItemAttributes {
@@ -32,16 +43,24 @@ public class ItemAttributes {
 
     private final MaterialManager materialManager;
     private final IKeyManager keyManager;
-
+    private final ISerializer serializer;
+    private final ItemLists itemLists;
 
     @Inject
-    public ItemAttributes(MaterialManager materialManager, IKeyManager keyManager) {
+    public ItemAttributes(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
         this.materialManager = materialManager;
         this.keyManager = keyManager;
+        this.serializer = serializer;
+        this.itemLists = itemLists;
 
-        attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(ItemLists.WEAPONS_BLUNT, BluntWeaponAttribute.class));
-        attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(ItemLists.WEAPONS_BOW, BowWeaponAttribute.class));
-        attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(ItemLists.TOOLS_PICKAXE, PickaxeAttribute.class));
+        attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(itemLists.getBluntWeapons(), BluntWeaponAttribute.class));
+        attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(itemLists.getBowWeapons(), BowWeaponAttribute.class));
+        attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(itemLists.getPickaxeItems(), PickaxeAttribute.class));
         dynamicallyLoadAttributes();
     }
 
@@ -58,9 +77,11 @@ public class ItemAttributes {
                         final var attr = attrClass
                                 .getDeclaredConstructor(
                                         MaterialManager.class,
-                                        IKeyManager.class
+                                        IKeyManager.class,
+                                        ISerializer.class,
+                                        ItemLists.class
                                 )
-                                .newInstance(materialManager, keyManager);
+                                .newInstance(materialManager, keyManager, serializer, itemLists);
                         ItemAttributes.registerAll(attr);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();

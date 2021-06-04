@@ -1,9 +1,11 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -32,9 +34,24 @@ public class PickaxeShardMinerAttribute extends PickaxeAttribute {
         put(Material.EMERALD_ORE, commonOdds);
     }};
 
-    public PickaxeShardMinerAttribute(MaterialManager materialManager, IKeyManager keyManager) {
-        super(materialManager, keyManager, AttributeKey.PICKAXE_SHARD_MINER_ATTRIBUTE, Component.text("Fragment Finder").color(TextColor.color(0x32A2CB)), .5f, 1, 3);
-        this.itemHelper = new ItemHelper(keyManager);
+    public PickaxeShardMinerAttribute(
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
+    ) {
+        super(
+                materialManager,
+                keyManager,
+                serializer,
+                itemLists,
+                AttributeKey.PICKAXE_SHARD_MINER_ATTRIBUTE,
+                Component.text("Fragment Finder").color(TextColor.color(0x32A2CB)),
+                .5f,
+                1
+                , 3
+        );
+        this.itemHelper = new ItemHelper(keyManager, serializer); //TODO: NOT GOOD, HERE WE GO AGAIN?
     }
 
     @Override

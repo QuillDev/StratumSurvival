@@ -3,39 +3,51 @@ package moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterial
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommon.Serialization.ISerializer;
+import moe.quill.stratumsurvival.Adventuring.Enemies.Enemy;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
-import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import org.burningwave.core.assembler.ComponentContainer;
+import org.burningwave.core.assembler.ComponentSupplier;
+import org.burningwave.core.classes.*;
+import org.burningwave.core.io.PathHelper;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.net.ssl.KeyManager;
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @Singleton
 public class MaterialManager {
 
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
     private final ArrayList<ItemStack> geodeMaterials = new ArrayList<>();
-    private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
+
     private static final Logger logger = LoggerFactory.getLogger(MaterialManager.class.getSimpleName());
+    private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
 
     private final Plugin plugin;
     private final IKeyManager keyManager;
+    private final ISerializer serializer;
 
     @Inject
-    public MaterialManager(Plugin plugin, IKeyManager keyManager) {
+    public MaterialManager(Plugin plugin, IKeyManager keyManager, ISerializer serializer) {
         this.plugin = plugin;
         this.keyManager = keyManager;
+        this.serializer = serializer;
 
+        System.out.println();
         //Register all of the material types
         registerMaterialsDynamically();
 
@@ -58,10 +70,13 @@ public class MaterialManager {
         reflections
                 .getSubTypesOf(MaterialRegistry.class)
                 .stream()
-                .filter(registryClass -> !Modifier.isAbstract(registryClass.getModifiers()))
+                .filter(enemyClass -> !Modifier.isAbstract(enemyClass.getModifiers()))
                 .forEach(registryClass -> {
                     try {
-                        final var registry = registryClass.getDeclaredConstructor(IKeyManager.class).newInstance(keyManager);
+                        final var registry = registryClass.getDeclaredConstructor(
+                                IKeyManager.class,
+                                ISerializer.class
+                        ).newInstance(keyManager, serializer);
                         registerAll(registry);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
@@ -78,15 +93,17 @@ public class MaterialManager {
         for (final var registry : registries) {
 
             final var registryKey = new NamespacedKey(plugin, registry.getMaterialKey().name());
-            final var materialKey = registry.getMaterialKey();
             final var registryMaterials = registry.getMaterials(); //get the material list
-            registryMaterials.forEach(stratumMaterials::putIfAbsent); //add all of them to stratum materials
+            registryMaterials.forEach((key, itm) -> {
+                stratumMaterials.putIfAbsent(key, itm);
+                logger.info(String.format("Created material -> %s", key));
+            }); //add all of them to stratum materials
 
             //Set that items key for each item in the map
             registryMaterials.values().forEach(item -> {
                         final var meta = item.getItemMeta();
                         final var data = meta.getPersistentDataContainer();
-                        data.set(registryKey, PersistentDataType.BYTE_ARRAY, StratumSurvival.serializer.serializeBoolean(true));
+                        data.set(registryKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
                         item.setItemMeta(meta);
                     }
             );

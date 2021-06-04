@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Crafting.CraftingEvents;
 
+import com.google.inject.Inject;
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
@@ -20,6 +21,7 @@ public class CraftCustomItemEvent implements Listener {
 
     private final NamespacedKey shardKey;
 
+    @Inject
     public CraftCustomItemEvent(IKeyManager keyManager, ItemGenerator generator, MaterialManager materialManager) {
         this.generator = generator;
         this.materialManager = materialManager;
