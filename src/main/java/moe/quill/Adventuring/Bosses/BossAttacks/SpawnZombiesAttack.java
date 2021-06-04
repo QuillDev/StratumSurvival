@@ -1,6 +1,5 @@
 package moe.quill.Adventuring.Bosses.BossAttacks;
 
-import moe.quill.Adventuring.Bosses.BossEffects.PotionBasedBossEffect;
 import moe.quill.Adventuring.Bosses.BossEffects.SpawnEnemiesBossEffect;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;

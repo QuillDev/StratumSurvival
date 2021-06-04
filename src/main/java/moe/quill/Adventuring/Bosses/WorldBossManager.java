@@ -2,6 +2,7 @@ package moe.quill.Adventuring.Bosses;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.Crafting.Items.MaterialManager.HeadHelper;
 import moe.quill.StratumSurvival;
 import moe.quill.Utils.TickHelper;
 import net.kyori.adventure.text.Component;
@@ -95,6 +96,7 @@ public class WorldBossManager {
         //Setup properties of the world boss scaling based on nearby players
         final var boss = (Giant) location.getWorld().spawnEntity(location, EntityType.GIANT);
         final var bossData = boss.getPersistentDataContainer();
+
         bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, StratumSerialization.serializeBoolean(true));
         this.combatantSize = nearbyPlayers.size();
         boss.setHealth(20f * combatantSize);
