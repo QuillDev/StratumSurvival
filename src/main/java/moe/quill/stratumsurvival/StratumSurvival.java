@@ -4,9 +4,12 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
+import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
+import moe.quill.StratumCommon.Annotations.Keyable;
 import moe.quill.StratumCommon.Commands.StratumCommand;
 import moe.quill.StratumCommon.Plugin.StratumConfigBuilder;
 import moe.quill.StratumCommon.Plugin.StratumPlugin;
+import moe.quill.StratumCommon.Utils.PackageUtils;
 import moe.quill.stratumsurvival.Adventuring.Loot.LootListener;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractBlacksmithEvent;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractCryptologistEvent;
@@ -37,6 +40,8 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
+import org.bukkit.NamespacedKey;
+import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -125,7 +130,22 @@ public final class StratumSurvival extends StratumPlugin {
         super.onEnable();
 
         final var keyManager = getKeyManager();
-        keyManager.loadKeyablesDynamically(this);
+        final var name = PackageUtils.getReflectivePackageName(this.getClass());
+        final var reflector = new Reflections(name);
+
+        final var keyableClasses = reflector.getTypesAnnotatedWith(Keyable.class);
+
+        //Iterate through the keyable classes we found
+        for (final var keyableClass : keyableClasses) {
+            //If the class wants to skip dynamic loading, skip it
+            if (keyableClass.isAnnotationPresent(IgnoreDynamicLoading.class)) continue;
+
+            //Iterate through the enum keys and create keys for them
+            final var enumKeys = (Enum<?>[]) keyableClass.getEnumConstants();
+            for (final var enumKey : enumKeys) {
+                keyManager.getKeyMap().put(enumKey.name(), new NamespacedKey(this, enumKey.name()));
+            }
+        }
 
         //DI STUFF
         Injector injector = Guice.createInjector(
