@@ -54,7 +54,6 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
