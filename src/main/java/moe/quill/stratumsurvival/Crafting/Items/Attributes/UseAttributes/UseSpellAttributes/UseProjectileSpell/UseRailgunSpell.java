@@ -3,7 +3,7 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpe
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
-import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseSpellAttributes;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseSpellAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.SpellEffects.ProjectileEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
@@ -13,7 +13,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-public class UseRailgunSpell extends UseSpellAttributes {
+public class UseRailgunSpell extends UseSpellAttribute {
 
     private final ProjectileEffect effect = new ProjectileEffect();
 

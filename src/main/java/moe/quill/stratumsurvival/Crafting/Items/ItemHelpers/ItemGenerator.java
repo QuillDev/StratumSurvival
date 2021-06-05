@@ -6,8 +6,10 @@ import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.SpellAttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseSpellAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import moe.quill.stratumsurvival.StratumSurvival;
@@ -52,7 +54,7 @@ public class ItemGenerator {
 
     //TODO: Re-add generateItem
     public ItemStack generateItem(ItemStack item, int level) {
-        final var weaponType = ItemAttributes.getWeaponTypeFromItemStack(item);
+        final var weaponType = itemAttributes.getWeaponTypeFromItemStack(item);
         if (weaponType == null) return null;
 
         final var attributes = getEligibleAttributes(itemAttributes.getAttributesOfType(weaponType.type), level);
@@ -67,21 +69,40 @@ public class ItemGenerator {
         meta.displayName(name);
         lore.add(rarity.getName());
 
-        //Add item attributes to the item
-        final var maxIndex = Math.min(attributes.size(), level);
-        for (var i = 0; (i < maxIndex); i++) {
-            final var curAttr = attributes.get(rand.nextInt(attributes.size()));
-            final var dataValue = itemHelper.generateDataValue(curAttr, level);
-            data.set(keyManager.getKey(curAttr.key), PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(dataValue));
-            lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
-            attributes.remove(curAttr); //remove the attribute we used
+        //If we're generating a spell, use some custom generation stuff
+        if (weaponType.type.equals(UseSpellAttribute.class)) {
+            final var spellType = attributes.get(rand.nextInt(attributes.size()));
+            data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, serializer.serializeLong(0L));
+            data.set(keyManager.getKey(spellType.key), PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(0f));
 
-            //If the attribute just added was a use attribute, make it so we can't get any more
-            if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
-                data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, serializer.serializeLong(0L));
-                attributes.removeAll(useAttributes);
+            final var potency = Math.max(.01f, rand.nextFloat());
+            //Determine the spell potency
+            data.set(keyManager.getKey(
+                    SpellAttributeKey.SPELL_POTENCY),
+                    PersistentDataType.BYTE_ARRAY,
+                    serializer.serializeFloat(potency)
+            );
+            lore.add(spellType.lore); // add lore to the item
+            lore.add(SpellAttributeKey.SPELL_POTENCY.lore.append(
+                    Component.text(spellType.dataFormat(potency))));
+        } else {
+            //Add item attributes to the item
+            final var maxIndex = Math.min(attributes.size(), level);
+            for (var i = 0; (i < maxIndex); i++) {
+                final var curAttr = attributes.get(rand.nextInt(attributes.size()));
+                final var dataValue = itemHelper.generateDataValue(curAttr, level);
+                data.set(keyManager.getKey(curAttr.key), PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(dataValue));
+                lore.add(curAttr.lore.append(Component.text(curAttr.dataFormat(dataValue)))); // add lore to the item
+                attributes.remove(curAttr); //remove the attribute we used
+
+                //If the attribute just added was a use attribute, make it so we can't get any more
+                if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
+                    data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, serializer.serializeLong(0L));
+                    attributes.removeAll(useAttributes);
+                }
             }
         }
+
         data.set(levelKey, PersistentDataType.BYTE_ARRAY, serializer.serializeFloat(level));
         data.set(nameKey, PersistentDataType.BYTE_ARRAY, serializer.serializeComponent(name));
         data.set(isCustomItemKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));

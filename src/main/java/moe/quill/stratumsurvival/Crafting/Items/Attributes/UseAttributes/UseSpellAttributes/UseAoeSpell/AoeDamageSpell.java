@@ -34,9 +34,12 @@ public class AoeDamageSpell extends UseAoeSpell {
         final var range = 5;
         final var eventData = getEventData(sourceEvent, true, true, range, true);
         if (eventData == null) return;
-        eventData.getNearbyEntities().forEach(ent -> ent.damage(100));
+
+        final float damage = 15 * (1 + (eventData.getPotency()));
+        System.out.println("dmg: " + damage);
+        eventData.getNearbyEntities().forEach(ent -> ent.damage(damage));
         particleFactory.constructParticleGeometry(
-                particleFactory.createConcentricCircleGeometry(eventData.getPlayer().getLocation(), 5, 12, range / 2, new Vector()),
+                particleFactory.createConcentricCircleGeometry(eventData.getPlayer().getLocation(), range, 12, (int) (range / 2), new Vector()),
                 Color.RED,
                 eventData.getPlayer().getWorld()
         );

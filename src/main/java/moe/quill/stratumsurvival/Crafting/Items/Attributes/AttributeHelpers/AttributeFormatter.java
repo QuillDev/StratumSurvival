@@ -13,7 +13,18 @@ public class AttributeFormatter {
     }
 
     /**
+     * Format the items value as a % increase
+     *
+     * @param value to format
+     * @return the formatted value
+     */
+    public String formatBonusPercent(float value) {
+        return ": +" + Math.round(value * 100) + "%";
+    }
+
+    /**
      * Format the item as a float with 1 decimal
+     *
      * @param value to format
      * @return the formatted value
      */

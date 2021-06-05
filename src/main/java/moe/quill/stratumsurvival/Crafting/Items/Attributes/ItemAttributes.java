@@ -7,30 +7,20 @@ import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
-import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseSpellAttributes;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseSpellAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import org.bukkit.inventory.ItemStack;
-import org.burningwave.core.assembler.ComponentContainer;
-import org.burningwave.core.assembler.ComponentSupplier;
-import org.burningwave.core.classes.CacheableSearchConfig;
-import org.burningwave.core.classes.ClassCriteria;
-import org.burningwave.core.classes.ClassHunter;
-import org.burningwave.core.classes.SearchConfig;
-import org.burningwave.core.io.PathHelper;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Attr;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 @Singleton
 public class ItemAttributes {
@@ -62,7 +52,7 @@ public class ItemAttributes {
         attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(itemLists.getBluntWeapons(), BluntWeaponAttribute.class));
         attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(itemLists.getBowWeapons(), BowWeaponAttribute.class));
         attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(itemLists.getPickaxeItems(), PickaxeAttribute.class));
-        attributeCategories.putIfAbsent("WEAPON_SPELL", new ItemType(itemLists.getSpellWeapons(), UseSpellAttributes.class));
+        attributeCategories.putIfAbsent("WEAPON_SPELL", new ItemType(itemLists.getSpellWeapons(), UseSpellAttribute.class));
         dynamicallyLoadAttributes();
     }
 
@@ -161,7 +151,7 @@ public class ItemAttributes {
         return attributeCategories.get(key);
     }
 
-    public static ItemType getWeaponTypeFromItemStack(ItemStack queryStack) {
+    public ItemType getWeaponTypeFromItemStack(ItemStack queryStack) {
 
         for (final var key : attributeCategories.keySet()) {
             //Get the current entry
