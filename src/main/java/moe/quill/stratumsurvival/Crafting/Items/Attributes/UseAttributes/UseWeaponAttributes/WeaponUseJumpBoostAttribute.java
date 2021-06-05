@@ -1,9 +1,9 @@
-package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes;
+package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseWeaponAttributes;
 
 import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
-import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.SpawnLingeringPotionCloudEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
@@ -13,10 +13,10 @@ import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class UseJumpBoostAttribute extends UseAttribute {
+public class WeaponUseJumpBoostAttribute extends WeaponUseAttribute {
     SpawnLingeringPotionCloudEffect spawnLingeringPotionCloudEffect = new SpawnLingeringPotionCloudEffect();
 
-    public UseJumpBoostAttribute(
+    public WeaponUseJumpBoostAttribute(
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,

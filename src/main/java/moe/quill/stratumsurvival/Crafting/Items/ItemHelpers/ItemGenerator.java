@@ -6,7 +6,7 @@ import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
-import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import moe.quill.stratumsurvival.StratumSurvival;
@@ -74,7 +74,7 @@ public class ItemGenerator {
             attributes.remove(curAttr); //remove the attribute we used
 
             //If the attribute just added was a use attribute, make it so we can't get any more
-            if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
+            if (WeaponUseAttribute.class.isAssignableFrom(curAttr.getClass())) {
                 data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, serializer.serializeLong(0L));
                 attributes.removeAll(useAttributes);
             }
@@ -150,7 +150,7 @@ public class ItemGenerator {
     public ArrayList<Attribute> getUseAttributes(ArrayList<Attribute> attributes) {
         return attributes
                 .stream()
-                .filter(attr -> UseAttribute.class.isAssignableFrom(attr.getClass()))
+                .filter(attr -> WeaponUseAttribute.class.isAssignableFrom(attr.getClass()))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 

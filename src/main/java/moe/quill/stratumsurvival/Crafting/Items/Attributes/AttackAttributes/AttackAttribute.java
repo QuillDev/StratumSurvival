@@ -5,7 +5,7 @@ import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes.OnDeathAttribute;
-import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
@@ -43,7 +43,7 @@ public abstract class AttackAttribute extends Attribute {
                 minRoll,
                 maxRoll,
                 new ArrayList<>(Arrays.asList(
-                        UseAttribute.class,
+                        WeaponUseAttribute.class,
                         OnDeathAttribute.class
                 )));
     }

@@ -7,6 +7,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -21,18 +22,18 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class UseAttribute extends Attribute {
+public abstract class WeaponUseAttribute extends UseAttribute {
+
     protected long cooldown;
     protected final NamespacedKey cooldownKey;
 
-    public UseAttribute(
+    public WeaponUseAttribute(
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists,
             AttributeKey key,
             Component lore,
-            ArrayList<ItemStack> items,
             float scaleValue,
             long cooldown
     ) {
@@ -43,11 +44,9 @@ public abstract class UseAttribute extends Attribute {
                 itemLists,
                 key,
                 lore,
-                items,
+                new ArrayList<>(),
                 scaleValue,
-                0,
-                0,
-                new ArrayList<>()
+                0
         );
         this.cooldown = cooldown;
         this.cooldownKey = keyManager.getKey(GlobalKey.COOLDOWN_KEY);

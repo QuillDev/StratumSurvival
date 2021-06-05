@@ -15,6 +15,7 @@ public class ItemLists {
     private final ArrayList<ItemStack> bluntWeapons = new ArrayList<>();
     private final ArrayList<ItemStack> bowWeapons = new ArrayList<>();
     private final ArrayList<ItemStack> pickaxeItems = new ArrayList<>();
+    private final ArrayList<ItemStack> spellWeapons = new ArrayList<>();
     private final MaterialManager materialManager;
 
     @Inject
@@ -23,6 +24,7 @@ public class ItemLists {
         this.registerBluntWeapons();
         this.registerBowWeapons();
         this.registerMiningTools();
+        this.registerSpellWeapons();
     }
 
     private void registerMiningTools() {
@@ -45,6 +47,12 @@ public class ItemLists {
                 materialManager.getItem(StratumMaterial.HAMMER_IRON),
                 materialManager.getItem(StratumMaterial.HAMMER_DIAMOND),
                 materialManager.getItem(StratumMaterial.HAMMER_NETHERITE)
+        ));
+    }
+
+    private void registerSpellWeapons() {
+        spellWeapons.addAll(Arrays.asList(
+                materialManager.getItem(Material.BOOK)
         ));
     }
 
@@ -103,4 +111,7 @@ public class ItemLists {
         return bowWeapons;
     }
 
+    public ArrayList<ItemStack> getSpellWeapons() {
+        return spellWeapons;
+    }
 }
