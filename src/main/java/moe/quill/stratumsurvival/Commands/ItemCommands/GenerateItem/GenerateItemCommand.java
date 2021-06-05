@@ -13,10 +13,12 @@ import org.jetbrains.annotations.NotNull;
 public class GenerateItemCommand implements CommandExecutor {
 
     private final ItemGenerator itemGenerator;
+    private final ItemAttributes itemAttributes;
 
     @Inject
-    public GenerateItemCommand(ItemGenerator itemGenerator) {
+    public GenerateItemCommand(ItemGenerator itemGenerator, ItemAttributes itemAttributes) {
         this.itemGenerator = itemGenerator;
+        this.itemAttributes = itemAttributes;
     }
 
     @Override
@@ -31,12 +33,12 @@ public class GenerateItemCommand implements CommandExecutor {
             item = itemGenerator.generateItem();
         }
         if (args.length == 1) {
-            final var category = ItemAttributes.getWeaponCategory(args[0]);
+            final var category = itemAttributes.getWeaponCategory(args[0]);
             item = itemGenerator.generateItem(category);
         }
 
         if (args.length == 2) {
-            final var category = ItemAttributes.getWeaponCategory(args[0]);
+            final var category = itemAttributes.getWeaponCategory(args[0]);
             int itemCount;
             try {
                 itemCount = Integer.parseInt(args[1]);

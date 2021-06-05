@@ -4,40 +4,41 @@ import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
-import moe.quill.stratumsurvival.Crafting.Items.Effects.TimeSetEffect;
+import moe.quill.stratumsurvival.Crafting.Items.Effects.PotionBasedEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
+import org.bukkit.potion.PotionEffectType;
 
-public class WeaponUseSetNightAttribute extends WeaponUseAttribute {
+public class WeaponUseGlideAttribute extends WeaponUseAttribute {
+    private final PotionBasedEffect potionBasedEffect = new PotionBasedEffect();
 
-    TimeSetEffect timeSetEffect = new TimeSetEffect();
-
-    public WeaponUseSetNightAttribute(
-            MaterialManager materialManager,
-            IKeyManager keyManager,
-            ISerializer serializer,
-            ItemLists itemLists
+    public WeaponUseGlideAttribute(MaterialManager materialManager,
+                                   IKeyManager keyManager,
+                                   ISerializer serializer,
+                                   ItemLists itemLists
     ) {
         super(
                 materialManager,
                 keyManager,
                 serializer,
                 itemLists,
-                AttributeKey.USE_SET_NIGHT_ATTRIBUTE,
-                Component.text("Daniel's Blessing").color(TextColor.color(0xCB8D)),
+                AttributeKey.USE_HOLD_SLOW_FALL_ATTRIBUTE,
+                Component.text("Glide").color(TextColor.color(0x88ABDA)),
                 0f,
-                3600 * 20);
+                0 * 20
+        );
     }
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-        final var eventData = getEventData(sourceEvent, true, true);
-        if (eventData == null) return;
-        var player = eventData.getPlayer();
+        final var useEventData = getEventData(sourceEvent, true, true);
+        if (useEventData == null) return;
 
-        timeSetEffect.execute(player.getLocation(), 13000);
+        var player = useEventData.getPlayer();
+
+        potionBasedEffect.execute(sourceEvent, PotionEffectType.SLOW_FALLING, player, 10);
     }
 }

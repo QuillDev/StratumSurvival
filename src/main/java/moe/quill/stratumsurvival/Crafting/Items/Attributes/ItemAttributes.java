@@ -7,6 +7,7 @@ import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BluntWeaponAttributes.BluntWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttackAttributes.BowWeaponAttributes.BowWeaponAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes.PickaxeAttribute;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseSpellAttributes;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
@@ -61,6 +62,7 @@ public class ItemAttributes {
         attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(itemLists.getBluntWeapons(), BluntWeaponAttribute.class));
         attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(itemLists.getBowWeapons(), BowWeaponAttribute.class));
         attributeCategories.putIfAbsent("TOOLS_PICKAXE", new ItemType(itemLists.getPickaxeItems(), PickaxeAttribute.class));
+        attributeCategories.putIfAbsent("WEAPON_SPELL", new ItemType(itemLists.getSpellWeapons(), UseSpellAttributes.class));
         dynamicallyLoadAttributes();
     }
 
@@ -108,7 +110,7 @@ public class ItemAttributes {
      * @param type of attributes to get.
      * @return an arraylist of attributes matching the given type
      */
-    public static ArrayList<Attribute> getAttributesOfType(Class<?> type) {
+    public ArrayList<Attribute> getAttributesOfType(Class<?> type) {
         final var attributeList = new ArrayList<Attribute>();
         final var uniqueList = new ArrayList<Attribute>();
         //Get all attributes and their children that are eligible to be added from this class
@@ -149,7 +151,7 @@ public class ItemAttributes {
      * @param query to match with the category
      * @return the weapon category for the given string
      */
-    public static ItemType getWeaponCategory(String query) {
+    public ItemType getWeaponCategory(String query) {
         final var key = attributeCategories
                 .keySet()
                 .stream()

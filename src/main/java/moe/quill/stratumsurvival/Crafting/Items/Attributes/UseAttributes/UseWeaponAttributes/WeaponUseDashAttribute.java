@@ -4,41 +4,40 @@ import moe.quill.StratumCommon.KeyManager.IKeyManager;
 import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
-import moe.quill.stratumsurvival.Crafting.Items.Effects.TimeSetEffect;
+import moe.quill.stratumsurvival.Crafting.Items.Effects.KnockbackEffect;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
 
-@SuppressWarnings("unused")
-public class WeaponUseSetDayAttribute extends WeaponUseAttribute {
+public class WeaponUseDashAttribute extends WeaponUseAttribute {
+    private final KnockbackEffect knockbackEffect = new KnockbackEffect();
 
-    TimeSetEffect timeSetEffect = new TimeSetEffect();
-
-    public WeaponUseSetDayAttribute(
-            MaterialManager materialManager,
-            IKeyManager keyManager,
-            ISerializer serializer,
-            ItemLists itemLists
+    public WeaponUseDashAttribute(MaterialManager materialManager,
+                                  IKeyManager keyManager,
+                                  ISerializer serializer,
+                                  ItemLists itemLists
     ) {
         super(
                 materialManager,
                 keyManager,
                 serializer,
                 itemLists,
-                AttributeKey.USE_SET_DAY_ATTRIBUTE,
-                Component.text("Daniel's Bane").color(TextColor.color(0x214A2A)),
+                AttributeKey.USE_DASH_ATTRIBUTE,
+                Component.text("Dash").color(TextColor.color(0x53CB35)),
                 0f,
-                3600 * 20);
+                15 * 20
+        );
     }
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-        final var eventData = getEventData(sourceEvent, true, true);
-        if (eventData == null) return;
-        var player = eventData.getPlayer();
+        final var useEventData = getEventData(sourceEvent, true, true);
+        if (useEventData == null) return;
 
-        timeSetEffect.execute(player.getLocation(), 1000);
+        var player = useEventData.getPlayer();
+
+        knockbackEffect.execute(useEventData.getEvent(), player, -1.5f);
     }
 }

@@ -10,13 +10,12 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.event.Event;
-import org.bukkit.event.player.PlayerInteractEvent;
 
-public class UseRailgunSpell extends UseSpellAttributes {
+public class UseBulletSpell extends UseSpellAttributes {
 
-    private final ProjectileEffect effect = new ProjectileEffect();
+    private final ProjectileEffect projectileEffect = new ProjectileEffect();
 
-    public UseRailgunSpell(
+    public UseBulletSpell(
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -27,25 +26,18 @@ public class UseRailgunSpell extends UseSpellAttributes {
                 keyManager,
                 serializer,
                 itemLists,
-                AttributeKey.SPELL_RAILGUN_ATTRIBUTE,
-                Component.text("Railgun"),
+                AttributeKey.SPELL_BULLET_ATTRIBUTE,
+                Component.text("Bullet"),
                 0,
-                (long) (.5 * 20)
+                10
         );
     }
 
     @Override
     public void execute(Event sourceEvent, float modifier) {
-        if (!(sourceEvent instanceof PlayerInteractEvent)) return;
-
-        //Get data about the event
         final var eventData = getEventData(sourceEvent, true, true);
         if (eventData == null) return;
         final var event = eventData.getEvent();
-
-        //Create the locations for the ray we're going to shoot
-        final var player = event.getPlayer();
-
-        effect.execute(player, 15, 7, true, Color.fromRGB(253, 78, 54));
+        projectileEffect.execute(event.getPlayer(), 10, 10, false, Color.BLACK);
     }
 }

@@ -8,9 +8,6 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.Particles.ParticleFactory;
 import net.kyori.adventure.text.Component;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
 
 public abstract class UseSpellAttributes extends UseAttribute {
 
@@ -36,5 +33,10 @@ public abstract class UseSpellAttributes extends UseAttribute {
                 itemLists.getSpellWeapons(),
                 scaleValue,
                 cooldown);
+    }
+
+    @Override
+    public int getMinLevel() {
+        return 0;
     }
 }

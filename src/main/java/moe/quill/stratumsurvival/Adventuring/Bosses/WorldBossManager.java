@@ -113,7 +113,6 @@ public class WorldBossManager {
         //Setup properties of the world boss scaling based on nearby players
         final var boss = (Giant) location.getWorld().spawnEntity(location, EntityType.GIANT);
         final var bossData = boss.getPersistentDataContainer();
-        bossData.set(worldBossKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
         this.combatantSize = nearbyPlayers.size();
         boss.setHealth(20f * combatantSize);
 

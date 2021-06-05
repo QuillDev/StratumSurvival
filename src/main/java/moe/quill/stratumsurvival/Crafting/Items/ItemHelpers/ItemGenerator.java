@@ -6,6 +6,7 @@ import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
+import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
@@ -25,6 +26,7 @@ public class ItemGenerator {
     private final ItemHelper itemHelper;
     private final IKeyManager keyManager;
     private final ISerializer serializer;
+    private final ItemAttributes itemAttributes;
 
     //Keys for generating Items
     private final NamespacedKey levelKey;
@@ -34,10 +36,11 @@ public class ItemGenerator {
 
 
     @Inject
-    public ItemGenerator(IKeyManager keyManager, ItemHelper itemHelper, ISerializer serializer) {
+    public ItemGenerator(IKeyManager keyManager, ItemHelper itemHelper, ItemAttributes itemAttributes, ISerializer serializer) {
         this.keyManager = keyManager;
         this.itemHelper = itemHelper;
         this.serializer = serializer;
+        this.itemAttributes = itemAttributes;
 
         //setup keys
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
@@ -52,7 +55,7 @@ public class ItemGenerator {
         final var weaponType = ItemAttributes.getWeaponTypeFromItemStack(item);
         if (weaponType == null) return null;
 
-        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(weaponType.type), level);
+        final var attributes = getEligibleAttributes(itemAttributes.getAttributesOfType(weaponType.type), level);
         final var useAttributes = getUseAttributes(attributes);
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
@@ -74,7 +77,7 @@ public class ItemGenerator {
             attributes.remove(curAttr); //remove the attribute we used
 
             //If the attribute just added was a use attribute, make it so we can't get any more
-            if (WeaponUseAttribute.class.isAssignableFrom(curAttr.getClass())) {
+            if (UseAttribute.class.isAssignableFrom(curAttr.getClass())) {
                 data.set(cooldownKey, PersistentDataType.BYTE_ARRAY, serializer.serializeLong(0L));
                 attributes.removeAll(useAttributes);
             }
@@ -112,7 +115,7 @@ public class ItemGenerator {
     }
 
     public ArrayList<ItemStack> getMaterialsFromWeaponType(ItemType itemType, int level) {
-        final var attributes = getEligibleAttributes(ItemAttributes.getAttributesOfType(itemType.type), level);
+        final var attributes = getEligibleAttributes(itemAttributes.getAttributesOfType(itemType.type), level);
         return getEligibleItems(attributes);
     }
 

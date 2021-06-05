@@ -44,7 +44,7 @@ public class PluginBinderModule extends AbstractModule {
         this.craftingManager = new StratumCraftingManager(plugin, materialManager);
         this.lootTables = new LootTables(materialManager);
         this.enemyManager = new EnemyManager(materialManager);
-        this.itemGenerator = new ItemGenerator(keyManager, itemHelper, serializer);
+        this.itemGenerator = new ItemGenerator(keyManager, itemHelper, itemAttributes, serializer);
         this.lootManager = new LootManager(keyManager, materialManager, lootTables, serializer);
 
     }

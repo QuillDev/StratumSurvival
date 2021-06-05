@@ -52,7 +52,7 @@ public class ItemLists {
 
     private void registerSpellWeapons() {
         spellWeapons.addAll(Arrays.asList(
-                materialManager.getItem(Material.BOOK)
+                new ItemStack(Material.BOOK)
         ));
     }
 
