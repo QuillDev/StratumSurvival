@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.Effects.SpellEffects;
 
 import moe.quill.stratumsurvival.Crafting.Items.Effects.Effect;
-import moe.quill.stratumsurvival.Particles.ParticleFactory;
+import moe.quill.stratumsurvival.Utils.Particles.ParticleFactory;
 import org.bukkit.Color;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

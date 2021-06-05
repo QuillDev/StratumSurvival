@@ -36,6 +36,22 @@ public class ParticleFactory {
         return smath3d.convertVectorsToLocations(world, points, new Vector());
     }
 
+    public ArrayList<Location> createCircleGeometry(Location center, float radius, int resolution, Vector offset) {
+        final var points = smath3d.constructCircle(center.toVector(), radius, resolution);
+        return smath3d.convertVectorsToLocations(center.getWorld(), points, offset);
+    }
+
+    public ArrayList<Location> createConcentricCircleGeometry(Location center, float maxRadius, int resolution, int rings, Vector offset) {
+        final var points = new ArrayList<Location>();
+
+        //Create evenly spaced concentric rings
+        for (int ring = 0; ring < rings; ring++) {
+            points.addAll(createCircleGeometry(center, maxRadius / (float) (ring + 1), resolution, offset));
+        }
+
+        return points;
+    }
+
     /**
      * Construct the given particle geometry from the given points
      *

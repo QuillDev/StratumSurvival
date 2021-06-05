@@ -36,7 +36,6 @@ import moe.quill.stratumsurvival.Events.ChatEvents.InjectChatItemEvent;
 import moe.quill.stratumsurvival.Events.DevEvent;
 import moe.quill.stratumsurvival.Events.InventoryEvents.StopBlockadeClicks;
 import moe.quill.stratumsurvival.Events.ItemGenerationEvents.GenerateItemOnMobDeath;
-import moe.quill.stratumsurvival.Events.SpellEvents.UseRailgun;
 import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
@@ -86,8 +85,6 @@ public final class StratumSurvival extends StratumPlugin {
     TrinketBagEventHandler trinketBagEventHandler;
     @Inject
     LootListener lootListener;
-    @Inject
-    UseRailgun railgun;
     //Commands / Listeners
     @Inject
     GenerateItemCommand generateItemCommand;
@@ -172,8 +169,7 @@ public final class StratumSurvival extends StratumPlugin {
                 grappleHookEvent,
                 trinketBagEventHandler,
                 lootListener,
-                stopBlockadeClicks,
-                railgun //TODO: REMOVE WHEN ON LIVE FTLOG
+                stopBlockadeClicks
         );
 
 

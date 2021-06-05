@@ -13,6 +13,19 @@ import java.util.stream.Collectors;
 
 public class StratumMath3d {
 
+    public ArrayList<Vector> constructCircle(Vector center, float radius, int resolution) {
+        final var points = new ArrayList<Vector>();
+
+        for (int i = 0; i < resolution; i++) {
+            final var theta = 360f * i / resolution;
+            final var x = radius * Math.cos(theta);
+            final var z = radius * Math.sin(theta);
+            points.add(new Vector(center.getX() + x, center.getY(), center.getZ() + z));
+        }
+
+        return points;
+    }
+
     /**
      * Construct a line with N subdivisions
      *

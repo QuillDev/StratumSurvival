@@ -7,6 +7,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.Attribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.stratumsurvival.Utils.Particles.ParticleFactory;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -24,6 +25,7 @@ import java.util.Arrays;
 public abstract class UseAttribute extends Attribute {
     protected long cooldown;
     protected final NamespacedKey cooldownKey;
+    private final ParticleFactory particleFactory = new ParticleFactory();
 
     public UseAttribute(
             MaterialManager materialManager,
