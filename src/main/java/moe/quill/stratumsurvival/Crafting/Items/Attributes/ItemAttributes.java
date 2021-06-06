@@ -12,6 +12,7 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ public class ItemAttributes {
     //Attribute categories
     public static final HashMap<String, ItemType> attributeCategories = new HashMap<>();
 
+    private final Plugin plugin;
     private final MaterialManager materialManager;
     private final IKeyManager keyManager;
     private final ISerializer serializer;
@@ -39,11 +41,13 @@ public class ItemAttributes {
 
     @Inject
     public ItemAttributes(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
+        this.plugin = plugin;
         this.materialManager = materialManager;
         this.keyManager = keyManager;
         this.serializer = serializer;
@@ -68,12 +72,13 @@ public class ItemAttributes {
                     try {
                         final var attr = attrClass
                                 .getDeclaredConstructor(
+                                        Plugin.class,
                                         MaterialManager.class,
                                         IKeyManager.class,
                                         ISerializer.class,
                                         ItemLists.class
                                 )
-                                .newInstance(materialManager, keyManager, serializer, itemLists);
+                                .newInstance(plugin, materialManager, keyManager, serializer, itemLists);
                         ItemAttributes.registerAll(attr);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();

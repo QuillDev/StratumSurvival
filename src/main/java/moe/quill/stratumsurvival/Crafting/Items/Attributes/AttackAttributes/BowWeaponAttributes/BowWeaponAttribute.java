@@ -8,6 +8,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.OnDeathAttributes.OnD
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +18,7 @@ public abstract class BowWeaponAttribute extends Attribute {
     protected final BowAttributeMethods bowAttributeMethods = new BowAttributeMethods();
 
     public BowWeaponAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -27,7 +29,9 @@ public abstract class BowWeaponAttribute extends Attribute {
             float minRoll,
             float maxRoll
     ) {
-        super(materialManager,
+        super(
+                plugin,
+                materialManager,
                 keyManager,
                 serializer,
                 itemLists,

@@ -10,18 +10,21 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 
 public class BluntWeaponCritAttribute extends BluntWeaponAttribute {
 
     private final static CritDamageEffect critDamageEffect = new CritDamageEffect();
 
     public BluntWeaponCritAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

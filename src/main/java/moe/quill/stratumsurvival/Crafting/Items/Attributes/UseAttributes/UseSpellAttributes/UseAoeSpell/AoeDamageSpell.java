@@ -8,16 +8,19 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 public class AoeDamageSpell extends UseAoeSpell {
     public AoeDamageSpell(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

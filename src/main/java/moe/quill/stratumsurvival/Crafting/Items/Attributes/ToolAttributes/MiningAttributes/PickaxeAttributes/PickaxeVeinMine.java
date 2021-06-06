@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,12 +19,14 @@ import java.util.Collections;
 @SuppressWarnings("unused")
 public class PickaxeVeinMine extends PickaxeAttribute {
     public PickaxeVeinMine(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

@@ -15,8 +15,8 @@ public class ProjectileEffect extends Effect {
     private final ParticleFactory particleFactory = new ParticleFactory();
 
     public void execute(Player player, int range, double damage, boolean pierce, Color color) {
-        final var targetLoc = player.getTargetBlock(range);
-        if (targetLoc == null) return;
+        final var targetBlock = player.getTargetBlock(range);
+        if (targetBlock == null) return;
 
         //Get player location + world information
         final var playerLocation = player.getEyeLocation();
@@ -25,8 +25,7 @@ public class ProjectileEffect extends Effect {
         //The radius of hit boxes on the later
         final var radius = .6;
         //create the ray between the player & their target
-        final var ray = particleFactory.createParticleLine(playerLocation, targetLoc.getLocation(), range / 2, new Vector(0, 0, 0));
-
+        final var ray = particleFactory.createParticleLine(playerLocation, targetBlock.getLocation(), 4, new Vector(0, 0, 0));
         //Get nearby living entities
         var targets = playerLocation.getNearbyEntitiesByType(LivingEntity.class, 5);
         targets.remove(player);
@@ -35,7 +34,7 @@ public class ProjectileEffect extends Effect {
                     .filter(entity -> !(entity instanceof Player))
                     .collect(Collectors.toList());
         }
-
+        System.out.println(targets.size());
 
         //Draw the particles
         particleFactory.constructParticleGeometry(
@@ -61,13 +60,12 @@ public class ProjectileEffect extends Effect {
                 if (!target.getBoundingBox().overlaps(hitBox)) continue;
                 target.damage(damage, player);
 
+                System.out.println("check");
                 //If we don't have a piercing gun
                 if (!pierce) {
                     return;
                 }
             }
         }
-
-
     }
 }

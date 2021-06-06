@@ -10,18 +10,21 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 
 public class UseBulletSpell extends UseSpellAttribute {
 
     private final ProjectileEffect projectileEffect = new ProjectileEffect();
 
     public UseBulletSpell(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

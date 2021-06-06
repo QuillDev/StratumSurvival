@@ -10,11 +10,13 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 
 public abstract class MiningAttribute extends ToolAttribute {
     public MiningAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -27,6 +29,7 @@ public abstract class MiningAttribute extends ToolAttribute {
             float maxRoll
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

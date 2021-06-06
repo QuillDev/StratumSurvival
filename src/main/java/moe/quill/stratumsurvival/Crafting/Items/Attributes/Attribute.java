@@ -8,6 +8,7 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,7 +19,7 @@ public abstract class Attribute {
     protected static final AttributeFormatter attributeFormatter = new AttributeFormatter();
 
     // Item Data Attributes
-
+    protected final Plugin plugin;
     protected final MaterialManager materialManager;
     protected final IKeyManager keyManager;
     protected final ISerializer serializer;
@@ -36,6 +37,7 @@ public abstract class Attribute {
     public float scaleValue;
 
     public Attribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -48,6 +50,7 @@ public abstract class Attribute {
             float maxRoll,
             ArrayList<Class<?>> childAttributes
     ) {
+        this.plugin = plugin;
         this.materialManager = materialManager;
         this.keyManager = keyManager;
         this.serializer = serializer;

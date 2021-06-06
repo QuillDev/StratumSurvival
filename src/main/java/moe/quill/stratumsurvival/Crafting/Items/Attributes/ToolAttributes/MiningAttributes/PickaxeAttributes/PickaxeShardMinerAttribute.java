@@ -10,6 +10,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 
@@ -35,12 +36,14 @@ public class PickaxeShardMinerAttribute extends PickaxeAttribute {
     }};
 
     public PickaxeShardMinerAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

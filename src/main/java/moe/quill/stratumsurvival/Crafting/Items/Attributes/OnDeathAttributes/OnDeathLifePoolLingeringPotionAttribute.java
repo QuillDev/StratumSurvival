@@ -7,17 +7,20 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class OnDeathLifePoolLingeringPotionAttribute extends OnDeathLingeringPotionAttribute {
     public OnDeathLifePoolLingeringPotionAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

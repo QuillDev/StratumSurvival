@@ -11,6 +11,7 @@ import moe.quill.stratumsurvival.Utils.Particles.ParticleFactory;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.Plugin;
 
 import java.nio.channels.FileLock;
 
@@ -19,6 +20,7 @@ public abstract class UseSpellAttribute extends UseAttribute {
     protected final ParticleFactory particleFactory = new ParticleFactory();
 
     public UseSpellAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -29,6 +31,7 @@ public abstract class UseSpellAttribute extends UseAttribute {
             long cooldown
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

@@ -14,12 +14,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class AttackAttribute extends Attribute {
     public AttackAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -32,6 +34,7 @@ public abstract class AttackAttribute extends Attribute {
             float maxRoll
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

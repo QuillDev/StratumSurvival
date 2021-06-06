@@ -1,6 +1,5 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseAoeSpell;
 
-import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.UseEventData;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.SpellEventData;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

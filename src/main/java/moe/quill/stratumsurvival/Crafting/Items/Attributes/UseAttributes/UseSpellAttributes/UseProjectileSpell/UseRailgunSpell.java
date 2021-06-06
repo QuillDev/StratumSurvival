@@ -11,6 +11,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 public class UseRailgunSpell extends UseSpellAttribute {
@@ -18,12 +19,14 @@ public class UseRailgunSpell extends UseSpellAttribute {
     private final ProjectileEffect effect = new ProjectileEffect();
 
     public UseRailgunSpell(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,
@@ -47,11 +50,5 @@ public class UseRailgunSpell extends UseSpellAttribute {
         //Create the locations for the ray we're going to shoot
         final var player = event.getPlayer();
         effect.execute(player, 15, 7, true, Color.fromRGB(253, 78, 54));
-
-        particleFactory.constructParticleGeometry(
-                particleFactory.createConcentricCircleGeometry(player.getLocation(), 2, 12, 3, new Vector()),
-                Color.GREEN,
-                player.getWorld()
-        );
     }
 }

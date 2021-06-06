@@ -9,6 +9,7 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 
 public abstract class OnDeathLingeringPotionAttribute extends OnDeathAttribute {
@@ -20,18 +21,21 @@ public abstract class OnDeathLingeringPotionAttribute extends OnDeathAttribute {
     int durationOnUse;
 
     public OnDeathLingeringPotionAttribute
-            (MaterialManager materialManager,
-             IKeyManager keyManager,
-             ISerializer serializer,
-             ItemLists itemLists,
-             AttributeKey key,
-             PotionEffect potionEffect,
-             Component displayName,
-             float radius,
-             int duration,
-             int durationOnUse
+            (
+                    Plugin plugin,
+                    MaterialManager materialManager,
+                    IKeyManager keyManager,
+                    ISerializer serializer,
+                    ItemLists itemLists,
+                    AttributeKey key,
+                    PotionEffect potionEffect,
+                    Component displayName,
+                    float radius,
+                    int duration,
+                    int durationOnUse
             ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

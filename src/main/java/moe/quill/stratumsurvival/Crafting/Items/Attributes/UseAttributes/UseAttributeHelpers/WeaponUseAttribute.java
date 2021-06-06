@@ -18,6 +18,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,7 @@ public abstract class WeaponUseAttribute extends UseAttribute {
     protected final NamespacedKey cooldownKey;
 
     public WeaponUseAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -38,6 +40,7 @@ public abstract class WeaponUseAttribute extends UseAttribute {
             long cooldown
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

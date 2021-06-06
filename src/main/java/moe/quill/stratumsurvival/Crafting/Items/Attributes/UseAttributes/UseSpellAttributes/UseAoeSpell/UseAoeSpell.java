@@ -8,9 +8,11 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 
 public abstract class UseAoeSpell extends UseSpellAttribute {
     public UseAoeSpell(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -20,7 +22,17 @@ public abstract class UseAoeSpell extends UseSpellAttribute {
             float scaleValue,
             long cooldown
     ) {
-        super(materialManager, keyManager, serializer, itemLists, key, lore, scaleValue, cooldown);
+        super(
+                plugin,
+                materialManager,
+                keyManager,
+                serializer,
+                itemLists,
+                key,
+                lore,
+                scaleValue,
+                cooldown
+        );
     }
 
     protected AoeSpellEventData getEventData(Event sourceEvent, boolean allowAirClicks, boolean blacklistBlocks, float range, boolean pvp) {

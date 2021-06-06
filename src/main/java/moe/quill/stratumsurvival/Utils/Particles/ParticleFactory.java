@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Utils.Particles;
 
+import com.mojang.datafixers.util.Pair;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -8,6 +9,8 @@ import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class ParticleFactory {
     private static final StratumMath3d smath3d = new StratumMath3d();
@@ -24,6 +27,13 @@ public class ParticleFactory {
     public ArrayList<Location> createParticleLine(Location locA, Location locB, int resolution, Vector offset) {
         final var linePoints = smath3d.constructLine(locA.toVector(), locB.toVector(), resolution);
         return smath3d.convertVectorsToLocations(locA.getWorld(), linePoints, offset);
+    }
+
+    public Collection<Pair<Location, Location>> createLineSegmentList(Location start, Location end, int divisions) {
+        final var vecSegments = smath3d.createLineSegments(start.toVector(), end.toVector(), divisions);
+        return vecSegments.stream()
+                .map(segment -> new Pair<>(segment.getFirst().toLocation(start.getWorld()), segment.getSecond().toLocation(start.getWorld())))
+                .collect(Collectors.toList());
     }
 
     /**

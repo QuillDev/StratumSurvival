@@ -10,9 +10,11 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import moe.quill.stratumsurvival.Utils.ItemGroups;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 
 public abstract class PickaxeAttribute extends MiningAttribute {
     public PickaxeAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -23,6 +25,7 @@ public abstract class PickaxeAttribute extends MiningAttribute {
             float minRoll,
             float maxRoll) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

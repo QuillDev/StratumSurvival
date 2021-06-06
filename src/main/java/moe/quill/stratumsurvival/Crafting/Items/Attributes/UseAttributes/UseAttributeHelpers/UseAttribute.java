@@ -18,6 +18,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,7 @@ public abstract class UseAttribute extends Attribute {
     private final ParticleFactory particleFactory = new ParticleFactory();
 
     public UseAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -39,6 +41,7 @@ public abstract class UseAttribute extends Attribute {
             long cooldown
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

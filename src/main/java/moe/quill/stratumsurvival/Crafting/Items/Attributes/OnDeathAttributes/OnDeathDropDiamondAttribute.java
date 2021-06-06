@@ -12,18 +12,21 @@ import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 public class OnDeathDropDiamondAttribute extends OnDeathAttribute {
     DropItemStackEffect dropItemStackEffect = new DropItemStackEffect();
 
 
     public OnDeathDropDiamondAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
             ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

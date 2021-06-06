@@ -9,12 +9,14 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 
 public abstract class OnDeathAttribute extends Attribute {
 
     public OnDeathAttribute(
+            Plugin plugin,
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
@@ -26,6 +28,7 @@ public abstract class OnDeathAttribute extends Attribute {
             float maxRoll
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,

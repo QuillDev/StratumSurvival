@@ -40,9 +40,21 @@ public class StratumMath3d {
             return new ArrayList<>(Arrays.asList(pointA, pointB));
         }
 
-        var pairs = new ArrayList<>(Collections.singletonList(new Pair<>(pointA, pointB)));
+        //get all points
+        final var points = new ArrayList<Vector>();
 
-        for (var i = 0; i < resolution; i++) {
+        //Map the pairs to an arraylist
+        createLineSegments(pointA, pointB, resolution).forEach(pair -> {
+            points.addAll(Arrays.asList(pair.getSecond(), pair.getFirst()));
+        });
+
+        return removeDuplicates(points);
+    }
+
+    public ArrayList<Pair<Vector, Vector>> createLineSegments(Vector start, Vector end, int divisions) {
+        var pairs = new ArrayList<>(Collections.singletonList(new Pair<>(start, end)));
+
+        for (var i = 0; i < divisions; i++) {
             var newPairs = new ArrayList<Pair<Vector, Vector>>();
 
             pairs.forEach(p -> {
@@ -57,15 +69,7 @@ public class StratumMath3d {
             pairs = newPairs;
         }
 
-        //get all points
-        final var points = new ArrayList<Vector>();
-
-        //Map the pairs to an arraylist
-        pairs.forEach(pair -> {
-            points.addAll(Arrays.asList(pair.getSecond(), pair.getFirst()));
-        });
-
-        return removeDuplicates(points);
+        return pairs;
     }
 
     public ArrayList<Vector> constructBoundingBox(BoundingBox box, int resolution) {

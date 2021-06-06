@@ -10,17 +10,21 @@ import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 
 public class WeaponUseGlideAttribute extends WeaponUseAttribute {
     private final PotionBasedEffect potionBasedEffect = new PotionBasedEffect();
 
-    public WeaponUseGlideAttribute(MaterialManager materialManager,
-                                   IKeyManager keyManager,
-                                   ISerializer serializer,
-                                   ItemLists itemLists
+    public WeaponUseGlideAttribute(
+            Plugin plugin,
+            MaterialManager materialManager,
+            IKeyManager keyManager,
+            ISerializer serializer,
+            ItemLists itemLists
     ) {
         super(
+                plugin,
                 materialManager,
                 keyManager,
                 serializer,
