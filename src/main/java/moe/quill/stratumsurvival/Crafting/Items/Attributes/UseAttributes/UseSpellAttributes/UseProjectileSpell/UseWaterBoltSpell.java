@@ -49,17 +49,20 @@ public class UseWaterBoltSpell extends UseSpellAttribute {
         final var eventData = getEventData(sourceEvent, true, true);
         if (eventData == null) return;
 
+        //Calculate the properties of the spell
         final var range = 10 * (1 + eventData.getPotency());
         final var damage = 10 * (1 + eventData.getPotency());
         final var player = eventData.getPlayer();
         final var playerLoc = player.getLocation();
         final var endBlock = player.getTargetBlock((int) range);
         if (endBlock == null) return;
-        final var endLoc = endBlock.getLocation();
 
+        //Get locations + segments etc
+        final var endLoc = endBlock.getLocation();
         final var divisions = range / 5f;
         final var segments = particleFactory.createLineSegmentList(player.getEyeLocation(), endLoc, (int) divisions);
 
+        //Sort the segments
         final var linePairs = segments.stream().sorted((a, b) -> {
             final var firstA = a.getFirst();
             final var firstB = b.getFirst();
@@ -110,8 +113,6 @@ public class UseWaterBoltSpell extends UseSpellAttribute {
                         player.getWorld()
                 );
             }, idx);
-
         }
-
     }
 }
