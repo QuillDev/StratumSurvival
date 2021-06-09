@@ -21,7 +21,8 @@ and misc other things!
 ## Screenshots
 
 ![CustomAttributes](./images/CustomAttributes.png)
-![Stratum](./images/Stratum.png)
+![WorldView](./images/WorldView.png)
+
 
 # Requirements
 
