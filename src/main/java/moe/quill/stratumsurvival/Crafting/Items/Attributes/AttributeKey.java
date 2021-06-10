@@ -47,6 +47,7 @@ public enum AttributeKey {
     USE_SLOW_FIELD_ATTRIBUTE,
     USE_DASH_ATTRIBUTE,
     USE_HOLD_SLOW_FALL_ATTRIBUTE,
+    USE_SWAP_ATTRIBUTE,
     /**
      * TOOL ATTRIBUTES
      */
