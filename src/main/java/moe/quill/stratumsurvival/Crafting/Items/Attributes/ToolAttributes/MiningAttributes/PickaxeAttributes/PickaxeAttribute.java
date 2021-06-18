@@ -23,7 +23,8 @@ public abstract class PickaxeAttribute extends MiningAttribute {
             Component lore,
             float scaleValue,
             float minRoll,
-            float maxRoll) {
+            float maxRoll
+    ) {
         super(
                 plugin,
                 materialManager,
