@@ -126,9 +126,9 @@ public final class StratumSurvival extends StratumPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-
+        logger.info("Got all required pre-requisites, loading stratum survival.");
         final var keyManager = getKeyManager();
-        final var name = PackageUtils.getReflectivePackageName(this.getClass());
+        final var name = "moe.quill.stratumsurvival";//PackageUtils.getReflectivePackageName(this.getClass());
         final var reflector = new Reflections(name);
 
         final var keyableClasses = reflector.getTypesAnnotatedWith(Keyable.class);

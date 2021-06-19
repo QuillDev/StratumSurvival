@@ -8,13 +8,6 @@ import moe.quill.StratumCommon.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import org.bukkit.Location;
-import org.burningwave.core.assembler.ComponentContainer;
-import org.burningwave.core.assembler.ComponentSupplier;
-import org.burningwave.core.classes.CacheableSearchConfig;
-import org.burningwave.core.classes.ClassCriteria;
-import org.burningwave.core.classes.ClassHunter;
-import org.burningwave.core.classes.SearchConfig;
-import org.burningwave.core.io.PathHelper;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 @Singleton
 public class EnemyManager {
