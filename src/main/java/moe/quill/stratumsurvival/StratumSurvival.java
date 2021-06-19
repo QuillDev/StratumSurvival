@@ -192,6 +192,11 @@ public final class StratumSurvival extends StratumPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
-        craftingManager.disable();
+
+        //if the crafting manager is not null, just return out
+        if (craftingManager != null) {
+            craftingManager.disable();
+        }
+
     }
 }
