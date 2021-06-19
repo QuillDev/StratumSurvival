@@ -1,7 +1,7 @@
 name: StratumSurvival
 version: ${project.version}
 main: moe.quill.stratumsurvival.StratumSurvival
-api-version: 1.16
+api-version: 1.17
 depend: [StratumCommon]
 commands:
   dev:
