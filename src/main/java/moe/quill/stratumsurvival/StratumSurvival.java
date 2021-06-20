@@ -6,12 +6,12 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommonApi.Annotations.IgnoreDynamicLoading;
 import moe.quill.StratumCommonApi.Annotations.Keyable;
-import moe.quill.StratumCommonApi.Commands.StratumCommand;
-import moe.quill.StratumCommonApi.Database.IDatabaseService;
+import moe.quill.StratumCommonApi.Debug.IDebugService;
 import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
-import moe.quill.StratumCommonApi.Plugin.StratumConfigBuilder;
-import moe.quill.StratumCommonApi.Plugin.StratumPlugin;
-import moe.quill.StratumCommonApi.Utils.PackageUtils;
+import moe.quill.stratumcommonutils.Commands.StratumCommand;
+import moe.quill.stratumcommonutils.Plugin.Configuration.StratumConfigBuilder;
+import moe.quill.stratumcommonutils.Plugin.StratumPlugin;
+import moe.quill.stratumcommonutils.Utils.PackageUtils;
 import moe.quill.stratumsurvival.Adventuring.Loot.LootListener;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractBlacksmithEvent;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractCryptologistEvent;
@@ -42,14 +42,13 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
-import org.bukkit.Bukkit;
+
 import org.bukkit.NamespacedKey;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.net.ssl.KeyManager;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Random;
 
 @Singleton
@@ -130,20 +129,10 @@ public final class StratumSurvival extends StratumPlugin {
 
     @Override
     public void onEnable() {
-//        super.onEnable();
-
-
-        final var services = getServer().getServicesManager();
-
-        final var stratumCommon = getServer().getPluginManager().getPlugin("StratumCommon");
-        assert stratumCommon != null;
-
-        logger.info(String.valueOf(services.isProvidedFor(IKeyManager.class)));
-        System.out.println(Bukkit.getServicesManager().isProvidedFor(IKeyManager.class));
+        super.onEnable();
         final var keyManager = getKeyManager();
         final var name = PackageUtils.getReflectivePackageName(this.getClass());
         final var reflector = new Reflections(name);
-
 
         final var keyableClasses = reflector.getTypesAnnotatedWith(Keyable.class);
 
