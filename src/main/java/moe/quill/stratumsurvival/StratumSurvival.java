@@ -42,11 +42,13 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.net.ssl.KeyManager;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -128,8 +130,16 @@ public final class StratumSurvival extends StratumPlugin {
 
     @Override
     public void onEnable() {
-        super.onEnable();
+//        super.onEnable();
 
+
+        final var services = getServer().getServicesManager();
+
+        final var stratumCommon = getServer().getPluginManager().getPlugin("StratumCommon");
+        assert stratumCommon != null;
+
+        logger.info(String.valueOf(services.isProvidedFor(IKeyManager.class)));
+        System.out.println(Bukkit.getServicesManager().isProvidedFor(IKeyManager.class));
         final var keyManager = getKeyManager();
         final var name = PackageUtils.getReflectivePackageName(this.getClass());
         final var reflector = new Reflections(name);
