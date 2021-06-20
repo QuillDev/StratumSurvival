@@ -2,6 +2,7 @@ package moe.quill.stratumsurvival.Commands;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import moe.quill.StratumCommonApi.Commands.StratumCommand;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;

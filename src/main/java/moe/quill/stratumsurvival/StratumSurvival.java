@@ -4,12 +4,14 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
-import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
-import moe.quill.StratumCommon.Annotations.Keyable;
-import moe.quill.StratumCommon.Commands.StratumCommand;
-import moe.quill.StratumCommon.Plugin.StratumConfigBuilder;
-import moe.quill.StratumCommon.Plugin.StratumPlugin;
-import moe.quill.StratumCommon.Utils.PackageUtils;
+import moe.quill.StratumCommonApi.Annotations.IgnoreDynamicLoading;
+import moe.quill.StratumCommonApi.Annotations.Keyable;
+import moe.quill.StratumCommonApi.Commands.StratumCommand;
+import moe.quill.StratumCommonApi.Database.IDatabaseService;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.Plugin.StratumConfigBuilder;
+import moe.quill.StratumCommonApi.Plugin.StratumPlugin;
+import moe.quill.StratumCommonApi.Utils.PackageUtils;
 import moe.quill.stratumsurvival.Adventuring.Loot.LootListener;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractBlacksmithEvent;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractCryptologistEvent;
@@ -45,6 +47,7 @@ import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.Random;
 
 @Singleton
@@ -126,10 +129,11 @@ public final class StratumSurvival extends StratumPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-        logger.info("Got all required pre-requisites, loading stratum survival.");
+
         final var keyManager = getKeyManager();
-        final var name = "moe.quill.stratumsurvival";//PackageUtils.getReflectivePackageName(this.getClass());
+        final var name = PackageUtils.getReflectivePackageName(this.getClass());
         final var reflector = new Reflections(name);
+
 
         final var keyableClasses = reflector.getTypesAnnotatedWith(Keyable.class);
 
@@ -186,7 +190,6 @@ public final class StratumSurvival extends StratumPlugin {
                 new StratumCommand("stratumgive", giveStratumItemCommand, giveStratumItemTabs),
                 new StratumCommand("listkeys", listKeysCommand, null)
         );
-
     }
 
     @Override

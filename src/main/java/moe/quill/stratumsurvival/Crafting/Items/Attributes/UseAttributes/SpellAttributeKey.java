@@ -1,6 +1,6 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes;
 
-import moe.quill.StratumCommon.Annotations.Keyable;
+import moe.quill.StratumCommonApi.Annotations.Keyable;
 import net.kyori.adventure.text.Component;
 
 @Keyable

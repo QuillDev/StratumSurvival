@@ -2,7 +2,7 @@ package moe.quill.stratumsurvival.Adventuring.Bosses;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import moe.quill.StratumCommon.Serialization.ISerializer;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.BossAttack;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.FlingVerticallyAttack;
 import moe.quill.stratumsurvival.Adventuring.Bosses.BossAttacks.LevitatePlayersAttack;

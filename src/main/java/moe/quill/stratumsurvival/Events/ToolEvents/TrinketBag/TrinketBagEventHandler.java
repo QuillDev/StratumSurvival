@@ -1,8 +1,8 @@
 package moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag;
 
 import com.google.inject.Inject;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.StratumCommon.Serialization.ISerializer;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

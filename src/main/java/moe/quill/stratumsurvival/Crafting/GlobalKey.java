@@ -1,6 +1,6 @@
 package moe.quill.stratumsurvival.Crafting;
 
-import moe.quill.StratumCommon.Annotations.Keyable;
+import moe.quill.StratumCommonApi.Annotations.Keyable;
 
 @Keyable
 public enum GlobalKey {
