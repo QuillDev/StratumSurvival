@@ -81,6 +81,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--Stratum Common-->
         <dependency>
             <groupId>moe.quill</groupId>
             <artifactId>stratum-common-utils</artifactId>
@@ -88,6 +89,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--Mojang Stuff-->
         <dependency>
             <groupId>com.mojang</groupId>
             <artifactId>datafixerupper</artifactId>

@@ -12,5 +12,6 @@ public enum GlobalKey {
     ITEM_DATA_KEY,
     COOLDOWN_KEY,
     CRYPTOLOGIST,
-    BLACKSMITH
+    BLACKSMITH,
+    IS_TRINKET
 }
