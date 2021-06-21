@@ -12,7 +12,6 @@ import org.bukkit.Color;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.util.Vector;
 
 public class UseRailgunSpell extends UseSpellAttribute {
 

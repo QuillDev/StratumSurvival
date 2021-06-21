@@ -13,8 +13,6 @@ import org.bukkit.event.Event;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
-import java.nio.channels.FileLock;
-
 public abstract class UseSpellAttribute extends UseAttribute {
 
     protected final ParticleFactory particleFactory = new ParticleFactory();

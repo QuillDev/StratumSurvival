@@ -6,8 +6,6 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommonApi.Annotations.IgnoreDynamicLoading;
 import moe.quill.StratumCommonApi.Annotations.Keyable;
-import moe.quill.StratumCommonApi.Debug.IDebugService;
-import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
 import moe.quill.stratumcommonutils.Commands.StratumCommand;
 import moe.quill.stratumcommonutils.Plugin.Configuration.StratumConfigBuilder;
 import moe.quill.stratumcommonutils.Plugin.StratumPlugin;
@@ -42,13 +40,11 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
-
 import org.bukkit.NamespacedKey;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 @Singleton

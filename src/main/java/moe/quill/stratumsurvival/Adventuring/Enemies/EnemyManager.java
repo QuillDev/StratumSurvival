@@ -1,12 +1,8 @@
 package moe.quill.stratumsurvival.Adventuring.Enemies;
 
 import com.google.inject.Inject;
-import com.google.inject.Injector;
 import com.google.inject.Singleton;
-import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
-import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
-import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import org.bukkit.Location;
 import org.reflections.Reflections;
 import org.slf4j.Logger;

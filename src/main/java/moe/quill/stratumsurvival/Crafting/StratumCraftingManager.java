@@ -3,7 +3,6 @@ package moe.quill.stratumsurvival.Crafting;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommonApi.Annotations.IgnoreDynamicLoading;
-import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Recipes.Generators.Geodes.RecipeGenerator;
 import moe.quill.stratumsurvival.Crafting.Recipes.StratumRecipe;

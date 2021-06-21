@@ -4,29 +4,19 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
 import moe.quill.StratumCommonApi.Serialization.ISerializer;
-import moe.quill.stratumsurvival.Adventuring.Enemies.Enemy;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialRegistries.MaterialRegistry;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-import org.burningwave.core.assembler.ComponentContainer;
-import org.burningwave.core.assembler.ComponentSupplier;
-import org.burningwave.core.classes.*;
-import org.burningwave.core.io.PathHelper;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.net.ssl.KeyManager;
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 @Singleton
 public class MaterialManager {

@@ -10,14 +10,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.potion.Potion;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 

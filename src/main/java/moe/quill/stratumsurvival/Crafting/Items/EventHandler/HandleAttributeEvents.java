@@ -6,7 +6,6 @@ import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ItemAttributes;
-import moe.quill.stratumsurvival.StratumSurvival;
 import moe.quill.stratumsurvival.Utils.KeyUtils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

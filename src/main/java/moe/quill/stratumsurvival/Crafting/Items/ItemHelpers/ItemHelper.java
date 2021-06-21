@@ -1,6 +1,5 @@
 package moe.quill.stratumsurvival.Crafting.Items.ItemHelpers;
 
-import moe.quill.StratumCommonApi.Annotations.Keyable;
 import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
 import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
