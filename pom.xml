@@ -23,8 +23,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -54,7 +54,7 @@
 
     <repositories>
         <repository>
-            <id>papermc-repo</id>
+            <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
         <repository>
@@ -75,16 +75,21 @@
     <dependencies>
         <!-- Minecraft -->
         <dependency>
-            <groupId>com.destroystokyo.paper</groupId>
+            <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <version>1.17-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+
+        <!--Stratum Common-->
         <dependency>
             <groupId>moe.quill</groupId>
-            <artifactId>stratum-common-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>stratum-common-utils</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
+
+        <!--Mojang Stuff-->
         <dependency>
             <groupId>com.mojang</groupId>
             <artifactId>datafixerupper</artifactId>
@@ -95,12 +100,6 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.12</version>
-        </dependency>
-        <!-- Serialization -->
-        <dependency>
-            <groupId>com.esotericsoftware</groupId>
-            <artifactId>kryo</artifactId>
-            <version>5.1.1</version>
         </dependency>
         <!-- Dependency Injection -->
         <dependency>
@@ -113,12 +112,16 @@
             <artifactId>core</artifactId>
             <version>8.21.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.joml/joml -->
-        <dependency>
-            <groupId>org.joml</groupId>
-            <artifactId>joml</artifactId>
-            <version>1.10.1</version>
-        </dependency>
 
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.7</version>
+        </dependency>
     </dependencies>
 </project>

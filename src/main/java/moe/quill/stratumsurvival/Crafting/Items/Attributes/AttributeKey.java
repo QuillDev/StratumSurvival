@@ -1,6 +1,6 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes;
 
-import moe.quill.StratumCommon.Annotations.Keyable;
+import moe.quill.StratumCommonApi.Annotations.Keyable;
 
 @Keyable
 public enum AttributeKey {

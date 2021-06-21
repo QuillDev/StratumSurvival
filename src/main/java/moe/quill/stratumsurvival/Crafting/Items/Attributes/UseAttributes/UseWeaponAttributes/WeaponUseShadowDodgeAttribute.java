@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseWeaponAttributes;
 
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.StratumCommon.Serialization.ISerializer;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttributeHelpers.WeaponUseAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Effects.CloakEffect;

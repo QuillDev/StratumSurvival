@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Adventuring.NPCs;
 
 import com.google.inject.Inject;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;

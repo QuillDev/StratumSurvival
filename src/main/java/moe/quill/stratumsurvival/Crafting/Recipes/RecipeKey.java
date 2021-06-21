@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Recipes;
 
 
-import moe.quill.StratumCommon.Annotations.Keyable;
+import moe.quill.StratumCommonApi.Annotations.Keyable;
 
 @Keyable
 public enum RecipeKey {

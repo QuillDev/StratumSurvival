@@ -1,6 +1,6 @@
 package moe.quill.stratumsurvival.Crafting.Recipes.Generators.Geodes;
 
-import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
+import moe.quill.StratumCommonApi.Annotations.IgnoreDynamicLoading;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
 import moe.quill.stratumsurvival.Crafting.Recipes.StratumRecipe;

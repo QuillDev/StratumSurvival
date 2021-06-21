@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes;
 
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.StratumCommon.Serialization.ISerializer;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeHelpers.AttributeFormatter;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;

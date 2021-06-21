@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.CraftingEvents;
 
 import com.google.inject.Inject;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemGenerator;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;

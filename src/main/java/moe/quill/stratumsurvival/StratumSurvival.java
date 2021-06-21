@@ -4,12 +4,14 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
-import moe.quill.StratumCommon.Annotations.IgnoreDynamicLoading;
-import moe.quill.StratumCommon.Annotations.Keyable;
-import moe.quill.StratumCommon.Commands.StratumCommand;
-import moe.quill.StratumCommon.Plugin.StratumConfigBuilder;
-import moe.quill.StratumCommon.Plugin.StratumPlugin;
-import moe.quill.StratumCommon.Utils.PackageUtils;
+import moe.quill.StratumCommonApi.Annotations.IgnoreDynamicLoading;
+import moe.quill.StratumCommonApi.Annotations.Keyable;
+import moe.quill.StratumCommonApi.Debug.IDebugService;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.stratumcommonutils.Commands.StratumCommand;
+import moe.quill.stratumcommonutils.Plugin.Configuration.StratumConfigBuilder;
+import moe.quill.stratumcommonutils.Plugin.StratumPlugin;
+import moe.quill.stratumcommonutils.Utils.PackageUtils;
 import moe.quill.stratumsurvival.Adventuring.Loot.LootListener;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractBlacksmithEvent;
 import moe.quill.stratumsurvival.Adventuring.NPCs.InteractCryptologistEvent;
@@ -40,11 +42,13 @@ import moe.quill.stratumsurvival.Events.ToolEvents.DaggerBackstabEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.GrappleHookEvent;
 import moe.quill.stratumsurvival.Events.ToolEvents.IcePickClimb;
 import moe.quill.stratumsurvival.Events.ToolEvents.TrinketBag.TrinketBagEventHandler;
+
 import org.bukkit.NamespacedKey;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 @Singleton
@@ -126,7 +130,6 @@ public final class StratumSurvival extends StratumPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-
         final var keyManager = getKeyManager();
         final var name = PackageUtils.getReflectivePackageName(this.getClass());
         final var reflector = new Reflections(name);
@@ -186,12 +189,16 @@ public final class StratumSurvival extends StratumPlugin {
                 new StratumCommand("stratumgive", giveStratumItemCommand, giveStratumItemTabs),
                 new StratumCommand("listkeys", listKeysCommand, null)
         );
-
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
-        craftingManager.disable();
+
+        //if the crafting manager is not null, just return out
+        if (craftingManager != null) {
+            craftingManager.disable();
+        }
+
     }
 }

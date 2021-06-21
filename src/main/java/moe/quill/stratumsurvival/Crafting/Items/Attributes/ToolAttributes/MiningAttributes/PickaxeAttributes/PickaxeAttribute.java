@@ -1,7 +1,7 @@
 package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.PickaxeAttributes;
 
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.StratumCommon.Serialization.ISerializer;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.MiningAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.MiningAttributes.MiningEventData;
@@ -23,7 +23,8 @@ public abstract class PickaxeAttribute extends MiningAttribute {
             Component lore,
             float scaleValue,
             float minRoll,
-            float maxRoll) {
+            float maxRoll
+    ) {
         super(
                 plugin,
                 materialManager,

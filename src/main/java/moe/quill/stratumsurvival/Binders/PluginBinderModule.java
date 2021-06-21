@@ -1,9 +1,12 @@
 package moe.quill.stratumsurvival.Binders;
 
 import com.google.inject.AbstractModule;
-import moe.quill.StratumCommon.KeyManager.IKeyManager;
-import moe.quill.StratumCommon.Plugin.StratumPlugin;
-import moe.quill.StratumCommon.Serialization.ISerializer;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.stratumcommonutils.Plugin.StratumPlugin;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.stratumcommonutils.Plugin.StratumPlugin;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Adventuring.Bosses.WorldBossManager;
 import moe.quill.stratumsurvival.Adventuring.Enemies.EnemyManager;
 import moe.quill.stratumsurvival.Adventuring.Loot.LootManager;
