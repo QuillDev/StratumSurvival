@@ -19,4 +19,7 @@ public enum MaterialKey {
     GRAPPLING_HOOK_KEY,
     TRINKET_BAG_KEY,
     BLOCKADE_KEY,
+
+    //Trinket Types
+    TSUBASA_TRINKET_KEY
 }

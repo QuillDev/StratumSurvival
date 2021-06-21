@@ -92,21 +92,22 @@ public class MaterialManager {
     public void registerAll(MaterialRegistry... registries) {
         for (final var registry : registries) {
 
-            final var registryKey = new NamespacedKey(plugin, registry.getMaterialKey().name());
             final var registryMaterials = registry.getMaterials(); //get the material list
+            registry.applyMarkerKeys(registryMaterials); //apply the marker keys to each material
+
             registryMaterials.forEach((key, itm) -> {
                 stratumMaterials.putIfAbsent(key, itm);
                 logger.info(String.format("Created material -> %s", key));
             }); //add all of them to stratum materials
 
             //Set that items key for each item in the map
-            registryMaterials.values().forEach(item -> {
-                        final var meta = item.getItemMeta();
-                        final var data = meta.getPersistentDataContainer();
-                        data.set(registryKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
-                        item.setItemMeta(meta);
-                    }
-            );
+//            registryMaterials.values().forEach(item -> {
+//                        final var meta = item.getItemMeta();
+//                        final var data = meta.getPersistentDataContainer();
+//                        data.set(registryKey, PersistentDataType.BYTE_ARRAY, serializer.serializeBoolean(true));
+//                        item.setItemMeta(meta);
+//                    }
+//            );
         }
     }
 

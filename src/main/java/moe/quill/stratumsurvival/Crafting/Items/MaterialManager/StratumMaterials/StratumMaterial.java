@@ -173,4 +173,7 @@ public enum StratumMaterial {
 
     //Inventory item Helper
     BLOCKADE,
+
+    //DEV TRINKETS
+    TSUBASA_TRINKET
 }

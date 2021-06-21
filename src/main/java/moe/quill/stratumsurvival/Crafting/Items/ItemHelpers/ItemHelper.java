@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Crafting.Items.ItemHelpers;
 
+import moe.quill.StratumCommonApi.Annotations.Keyable;
 import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
 import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.GlobalKey;
@@ -146,6 +147,21 @@ public class ItemHelper {
             meta.displayName(name);
         }
         itemStack.setItemMeta(meta);
+    }
+
+    /**
+     * Check if the item has the given key
+     *
+     * @param item    to check if it has the key
+     * @param enumKey to check if the item has it
+     * @return whether the item has the key
+     */
+    public boolean hasKey(ItemStack item, Enum<?> enumKey) {
+        final var key = keyManager.getKey(enumKey);
+        if (key == null) return false;
+        final var meta = item.getItemMeta();
+        if (meta == null) return false;
+        return meta.getPersistentDataContainer().has(key, PersistentDataType.BYTE_ARRAY);
     }
 
     /**
