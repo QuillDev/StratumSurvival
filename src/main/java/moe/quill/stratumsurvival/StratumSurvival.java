@@ -85,6 +85,7 @@ public final class StratumSurvival extends StratumPlugin {
     TrinketBagEventHandler trinketBagEventHandler;
     @Inject
     LootListener lootListener;
+
     //Commands / Listeners
     @Inject
     GenerateItemCommand generateItemCommand;
