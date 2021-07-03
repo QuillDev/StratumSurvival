@@ -1,11 +1,18 @@
 package moe.quill.stratumsurvival.Utils.PlayerHelpers;
 
+import com.google.inject.Inject;
+import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
+import moe.quill.StratumCommonApi.Serialization.ISerializer;
+import moe.quill.stratumsurvival.Crafting.GlobalKey;
+import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
+import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +21,49 @@ import java.util.stream.Collectors;
 
 public class InventoryHelper {
 
+    private final ISerializer serializer;
+    private final IKeyManager keyManager;
+    private final ItemHelper itemHelper;
 
+    @Inject
+    public InventoryHelper(IKeyManager keyManager, ISerializer serializer, ItemHelper itemHelper) {
+        this.serializer = serializer;
+        this.keyManager = keyManager;
+        this.itemHelper = itemHelper;
+    }
+
+    public ArrayList<ItemStack> getTrinkets(Player player) {
+        final var inventory = player.getInventory();
+
+        //List for storing any trinkets we find in
+        final var trinkets = new ArrayList<ItemStack>();
+
+        ItemStack trinketBag = null;
+        //get the first trinket bag in the players inventory
+        for (final var item : inventory.getContents()) {
+            if (item == null) continue;
+            if (!itemHelper.itemHasKey(item, MaterialKey.TRINKET_BAG_KEY, GlobalKey.INVENTORY_SIZE_KEY, GlobalKey.INVENTORY_DATA_KEY)) {
+                continue; //if it doesn't have all required keys just continue
+            }
+            trinketBag = item;
+            break;
+        }
+
+        //if the trinket bag is still null return the empty list of trinkets
+        if (trinketBag == null) return trinkets;
+
+        //try to get all of the trinkets from the trinket bag
+        final var trinketBagData = trinketBag.getItemMeta().getPersistentDataContainer();
+        final var inventoryBytes = trinketBagData.get(keyManager.getKey(GlobalKey.INVENTORY_DATA_KEY), PersistentDataType.BYTE_ARRAY);
+        return serializer.deserializeItemList(inventoryBytes);
+    }
+
+    /**
+     * Get items from the crafting matrix
+     *
+     * @param inventory to get items from
+     * @return the list of items in that matrix
+     */
     public ArrayList<ItemStack> getItemsFromMatrix(CraftingInventory inventory) {
         final var matrix = inventory.getMatrix();
         return Arrays.stream(matrix)

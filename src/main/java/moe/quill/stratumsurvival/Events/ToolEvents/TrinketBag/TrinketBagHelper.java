@@ -33,7 +33,7 @@ public class TrinketBagHelper {
     public TrinketBagHelper(IKeyManager keyManager, MaterialManager materialManager, ISerializer serializer) {
         this.trinketBagKey = keyManager.getKey(MaterialKey.TRINKET_BAG_KEY);
         this.inventorySizeKey = keyManager.getKey(GlobalKey.INVENTORY_SIZE_KEY);
-        this.itemDataKey = keyManager.getKey(GlobalKey.ITEM_DATA_KEY);
+        this.itemDataKey = keyManager.getKey(GlobalKey.INVENTORY_DATA_KEY);
         this.blockade = materialManager.getItem(StratumMaterial.BLOCKADE);
         this.serializer = serializer;
     }

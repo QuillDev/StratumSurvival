@@ -2,14 +2,23 @@ name: StratumSurvival
 version: ${project.version}
 main: moe.quill.stratumsurvival.StratumSurvival
 api-version: 1.17
-depend: [StratumCommon]
+depend: [ StratumCommon ]
 commands:
+
+
+  # Management Commands
   dev:
     usage: /<command>
     permission: stratumsurvival.developer.dev
   devtool:
     usage: /<command>
     permission: stratumsurvival.developer.devtool
+  listkeys:
+    usage: /<command>
+    permission: stratumsurvival.items.listkeys
+  trinkets:
+    usage: /<command> <?target>
+    permission: stratumsurvival.admin.trinkets
 
   #Item Permissions
   generateitem:
@@ -27,9 +36,6 @@ commands:
   stratumgive:
     usage: /<command> <itemtype>
     permission: stratumsurvival.items.give
-  listkeys:
-    usage: /<command>
-    permission: stratumsurvival.items.listkeys
 
   #Bosses
   worldbosstp:
@@ -47,7 +53,7 @@ commands:
     usage: /<command>
     permission: stratumsurvival.enemies.spawnenemy
 
-  #Test COmmand
+  #Test Command
   test:
     usage: /<command>
     permission: stratumsurvival.dev.test

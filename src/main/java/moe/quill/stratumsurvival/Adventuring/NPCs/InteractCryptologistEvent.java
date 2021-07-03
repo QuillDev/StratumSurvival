@@ -16,15 +16,16 @@ import org.bukkit.persistence.PersistentDataType;
 public class InteractCryptologistEvent implements Listener {
 
     private final NamespacedKey cryptoKey;
-    private final InventoryHelper inventoryHelper = new InventoryHelper();
+    private final InventoryHelper inventoryHelper;
     private final ItemHelper itemHelper;
     private final NamespacedKey obfuscatedKey;
 
     @Inject
-    public InteractCryptologistEvent(IKeyManager keyManager, ItemHelper itemHelper) {
+    public InteractCryptologistEvent(IKeyManager keyManager, ItemHelper itemHelper, InventoryHelper inventoryHelper) {
         this.cryptoKey = keyManager.getKey(GlobalKey.CRYPTOLOGIST);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.itemHelper = itemHelper;
+        this.inventoryHelper = inventoryHelper;
     }
 
     //TODO: Redo item decryption

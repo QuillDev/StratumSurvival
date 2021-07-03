@@ -12,6 +12,7 @@ import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseAttr
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.UseAttributes.UseSpellAttributes.UseSpellAttribute;
 import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemNames.ItemAdjectives;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemType;
+import moe.quill.stratumsurvival.Expiramental.LevelTool;
 import moe.quill.stratumsurvival.StratumSurvival;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class ItemGenerator {
+public class ItemGenerator implements LevelTool {
 
     private final static Random rand = StratumSurvival.rand;
     private final ItemHelper itemHelper;
@@ -118,7 +119,7 @@ public class ItemGenerator {
      * @return the random weapon type
      */
     public ItemStack generateItem(ItemType itemType) {
-        return generateItem(itemType, itemHelper.getRandomLevel(.45f, 6));
+        return generateItem(itemType, getRandomLevel(.45f, 6));
     }
 
     /**

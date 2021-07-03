@@ -18,7 +18,7 @@ import org.bukkit.persistence.PersistentDataType;
 public class InteractBlacksmithEvent implements Listener {
 
     //Instantiated Vars
-    private final InventoryHelper inventoryHelper = new InventoryHelper();
+    private final InventoryHelper inventoryHelper;
     private final ISerializer serializer;
 
     //Instanced Vars
@@ -35,7 +35,8 @@ public class InteractBlacksmithEvent implements Listener {
             MaterialManager materialManager,
             IKeyManager keyManager,
             ItemHelper itemHelper,
-            ISerializer serializer
+            ISerializer serializer,
+            InventoryHelper inventoryHelper
     ) {
         this.materialManager = materialManager;
         this.itemHelper = itemHelper;
@@ -43,6 +44,7 @@ public class InteractBlacksmithEvent implements Listener {
         this.blacksmithKey = keyManager.getKey(GlobalKey.BLACKSMITH);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
+        this.inventoryHelper = inventoryHelper;
     }
 
     @EventHandler

@@ -15,15 +15,17 @@ import java.util.HashMap;
 @Singleton
 public class EnemyManager {
 
+    private static final Logger logger = LoggerFactory.getLogger(EnemyManager.class.getSimpleName());
 
     private final HashMap<EnemyType, Enemy> enemyMap = new HashMap<>();
     private final MaterialManager materialManager;
-    private static final Logger logger = LoggerFactory.getLogger(EnemyManager.class.getSimpleName());
-    private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
+
+    private final Reflections reflections;
 
     @Inject
-    public EnemyManager(MaterialManager materialManager) {
+    public EnemyManager(MaterialManager materialManager, Reflections reflections) {
         this.materialManager = materialManager;
+        this.reflections = reflections;
         registerEnemiesDynamically();
     }
 

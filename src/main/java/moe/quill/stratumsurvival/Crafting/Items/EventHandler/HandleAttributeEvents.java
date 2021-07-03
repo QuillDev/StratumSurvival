@@ -28,12 +28,13 @@ public class HandleAttributeEvents implements Listener {
     private final IKeyManager keyManager;
     private final NamespacedKey obfuscatedKey;
     private final ISerializer serializer;
-
+    private final ItemAttributes itemAttributes;
     @Inject
-    public HandleAttributeEvents(IKeyManager keyManager, ISerializer serializer) {
+    public HandleAttributeEvents(IKeyManager keyManager, ISerializer serializer, ItemAttributes itemAttributes) {
         this.keyManager = keyManager;
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.serializer = serializer;
+        this.itemAttributes = itemAttributes;
     }
 
     @EventHandler
@@ -82,7 +83,7 @@ public class HandleAttributeEvents implements Listener {
 
         // Run the event over all keys on this item and see if any match
         data.getKeys().forEach(key -> {
-            final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
+            final var attr = itemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) return;
             final var nsKey = keyManager.getKey(attr.key);
             final var modBytes = data.get(nsKey, PersistentDataType.BYTE_ARRAY);

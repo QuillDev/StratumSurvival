@@ -8,6 +8,7 @@ import moe.quill.stratumsurvival.Crafting.GlobalKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialKey;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.StratumMaterial;
+import moe.quill.stratumsurvival.Expiramental.LevelTool;
 import moe.quill.stratumsurvival.StratumSurvival;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,9 +22,8 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.Random;
 
 @Singleton
-public class LootManager {
+public class LootManager implements LevelTool {
 
-    private final Random rand = StratumSurvival.rand;
     private final MaterialManager materialManager;
     private final LootTables lootTables;
     private final ISerializer serializer;
@@ -47,7 +47,7 @@ public class LootManager {
      * @param location to spawn loot at
      */
     public void spawnLoot(Location location) {
-        spawnLoot(location, getRandomLevel());
+        spawnLoot(location, getRandomLevel(6, .38f));
     }
 
     /**
@@ -71,23 +71,7 @@ public class LootManager {
     }
 
     /**
-     * Get a random loot level
-     *
-     * @return a random loot level
-     */
-    private int getRandomLevel() {
-        int level = 1;
-        for (; level < 6; level++) {
-            if (.38 < rand.nextFloat()) {
-                break;
-            }
-        }
-
-        return level;
-    }
-
-    /**
-     * Get the chest itemstack for the given level
+     * Get the chest item stack for the given level
      *
      * @param level of the chest
      * @return the chest stack

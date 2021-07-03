@@ -1,5 +1,6 @@
 package moe.quill.stratumsurvival.Events.ChatEvents;
 
+import com.google.inject.Inject;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import moe.quill.stratumsurvival.Utils.PlayerHelpers.InventoryHelper;
 import net.kyori.adventure.text.Component;
@@ -15,11 +16,16 @@ import java.util.stream.Collectors;
 
 public class InjectChatItemEvent implements Listener {
 
-    private final static InventoryHelper inventoryHelper = new InventoryHelper();
+    private final InventoryHelper inventoryHelper;
 
     //Patterns for parsing text chat data
     private final static Pattern numberPattern = Pattern.compile("[1-9]");
     private final static Pattern itemNodePattern = Pattern.compile("(\\{item[1-9]})");
+
+    @Inject
+    public InjectChatItemEvent(InventoryHelper inventoryHelper) {
+        this.inventoryHelper = inventoryHelper;
+    }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void injectOnChatEvent(AsyncChatEvent event) {

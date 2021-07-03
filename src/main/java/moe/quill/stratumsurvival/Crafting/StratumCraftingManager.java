@@ -20,18 +20,22 @@ import java.util.HashMap;
 @Singleton
 public class StratumCraftingManager {
 
+    private static final Logger logger = LoggerFactory.getLogger(StratumCraftingManager.class.getSimpleName());
+
     private final Plugin plugin;
     private final Server server;
     private final MaterialManager materialManager;
     private final HashMap<String, NamespacedKey> recipeKeys = new HashMap<>();
-    private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
-    private static final Logger logger = LoggerFactory.getLogger(StratumCraftingManager.class.getSimpleName());
+    private final Reflections reflections;
+
 
     @Inject
-    public StratumCraftingManager(Plugin plugin, MaterialManager materialManager) {
+    public StratumCraftingManager(Plugin plugin, MaterialManager materialManager, Reflections reflections) {
         this.plugin = plugin;
         this.materialManager = materialManager;
+        this.reflections = reflections;
         this.server = plugin.getServer();
+
     }
 
 

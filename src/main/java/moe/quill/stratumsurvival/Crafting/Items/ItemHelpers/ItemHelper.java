@@ -27,16 +27,21 @@ public class ItemHelper {
     private final IKeyManager keyManager;
     private final ISerializer serializer;
     //Keys we'll be working with
+
+    private final ItemAttributes itemAttributes;
+
     private final NamespacedKey levelKey;
     private final NamespacedKey obfuscatedKey;
     private final NamespacedKey nameKey;
 
-    public ItemHelper(IKeyManager keyManager, ISerializer serializer) {
+
+    public ItemHelper(IKeyManager keyManager, ISerializer serializer, ItemAttributes itemAttributes) {
         this.keyManager = keyManager;
         this.levelKey = keyManager.getKey(GlobalKey.LEVEL_KEY);
         this.obfuscatedKey = keyManager.getKey(GlobalKey.OBFUSCATED_KEY);
         this.nameKey = keyManager.getKey(GlobalKey.NAME_KEY);
         this.serializer = serializer;
+        this.itemAttributes = itemAttributes;
 
     }
 
@@ -49,7 +54,7 @@ public class ItemHelper {
         final var meta = item.getItemMeta();
         final var data = meta.getPersistentDataContainer();
         data.getKeys().forEach((key) -> {
-            final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
+            final var attr = itemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) return;
 
             //Get the level of the item
@@ -62,6 +67,26 @@ public class ItemHelper {
             setLoreFromItemKeys(meta);
             item.setItemMeta(meta);
         });
+    }
+
+    /**
+     * Check if the item has the given key
+     *
+     * @param itemStack the stack to check if it has the given key
+     * @param enumKeys  keys to check
+     * @return whether the item has that key
+     */
+    public boolean itemHasKey(ItemStack itemStack, Enum<?>... enumKeys) {
+        final var itemData = itemStack.getItemMeta().getPersistentDataContainer();
+        for (final var enumKey : enumKeys) {
+            final var key = keyManager.getKey(enumKey);
+            if (key == null) return false;
+            if (!itemData.has(key, PersistentDataType.BYTE_ARRAY)) {
+                return false; //if the item doesn't have the key return false
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -79,19 +104,6 @@ public class ItemHelper {
     }
 
     /**
-     * Get a random level for the item
-     *
-     * @return the level for the item
-     */
-    public int getRandomLevel(float levelRate, float maxLevel) {
-        var level = 1;
-        for (; level < maxLevel; level++) {
-            if (levelRate < rand.nextFloat()) return level;
-        }
-        return level;
-    }
-
-    /**
      * Set lore of the item from the keys on that item
      *
      * @param meta of the item to set the lore of
@@ -104,7 +116,7 @@ public class ItemHelper {
         final var level = (int) serializer.deserializeFloat(data.get(levelKey, PersistentDataType.BYTE_ARRAY));
         lore.add(ItemRarity.getRarity(level).getName());
         for (final var key : data.getKeys()) {
-            final var attr = ItemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
+            final var attr = itemAttributes.getAttribute(KeyUtils.getAttributeKey(AttributeKey.class, key));
             if (attr == null) continue;
             //Get the value off of the item for the given attribute
             final var valueBytes = data.get(keyManager.getKey(attr.key), PersistentDataType.BYTE_ARRAY);

@@ -17,15 +17,16 @@ public class CraftCustomItemEvent implements Listener {
 
     private final ItemGenerator generator;
     private final MaterialManager materialManager;
-    private final InventoryHelper inventoryHelper = new InventoryHelper();
+    private final InventoryHelper inventoryHelper;
 
     private final NamespacedKey shardKey;
 
     @Inject
-    public CraftCustomItemEvent(IKeyManager keyManager, ItemGenerator generator, MaterialManager materialManager) {
+    public CraftCustomItemEvent(IKeyManager keyManager, ItemGenerator generator, MaterialManager materialManager, InventoryHelper inventoryHelper) {
         this.generator = generator;
         this.materialManager = materialManager;
         this.shardKey = keyManager.getKey(MaterialKey.SHARD_KEY);
+        this.inventoryHelper = inventoryHelper;
     }
 
     @EventHandler

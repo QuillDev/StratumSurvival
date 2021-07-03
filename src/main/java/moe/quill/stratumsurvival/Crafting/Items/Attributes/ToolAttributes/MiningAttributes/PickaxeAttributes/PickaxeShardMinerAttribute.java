@@ -3,9 +3,9 @@ package moe.quill.stratumsurvival.Crafting.Items.Attributes.ToolAttributes.Minin
 import moe.quill.StratumCommonApi.KeyManager.IKeyManager;
 import moe.quill.StratumCommonApi.Serialization.ISerializer;
 import moe.quill.stratumsurvival.Crafting.Items.Attributes.AttributeKey;
-import moe.quill.stratumsurvival.Crafting.Items.ItemHelpers.ItemHelper;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.MaterialManager;
 import moe.quill.stratumsurvival.Crafting.Items.MaterialManager.StratumMaterials.WeaponHelpers.ItemLists;
+import moe.quill.stratumsurvival.Expiramental.LevelTool;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -15,8 +15,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.HashMap;
 
 @SuppressWarnings("unused")
-public class PickaxeShardMinerAttribute extends PickaxeAttribute {
-    private final ItemHelper itemHelper;
+public class PickaxeShardMinerAttribute extends PickaxeAttribute implements LevelTool {
 
     private final static float rareOdds = 1 / 300f;
     private final static float normalOdds = 1 / 100f;
@@ -54,7 +53,6 @@ public class PickaxeShardMinerAttribute extends PickaxeAttribute {
                 1
                 , 3
         );
-        this.itemHelper = new ItemHelper(keyManager, serializer); //TODO: NOT GOOD, HERE WE GO AGAIN?
     }
 
     @Override
@@ -65,7 +63,7 @@ public class PickaxeShardMinerAttribute extends PickaxeAttribute {
         final var block = eventData.getBlock();
 
         //Get the level of the block
-        final var level = itemHelper.getRandomLevel(.38f, 6);
+        final var level = getRandomLevel(.38f, 6);
         final var odds = oreOdds.get(block.getType());
         if (odds == null) return;
 

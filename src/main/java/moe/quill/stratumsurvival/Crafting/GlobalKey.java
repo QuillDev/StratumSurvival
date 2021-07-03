@@ -20,7 +20,7 @@ public enum GlobalKey {
     IS_STRATUM_ITEM,
     IS_TRINKET,
     INVENTORY_SIZE_KEY,
-    ITEM_DATA_KEY,
+    INVENTORY_DATA_KEY,
 
 
 }

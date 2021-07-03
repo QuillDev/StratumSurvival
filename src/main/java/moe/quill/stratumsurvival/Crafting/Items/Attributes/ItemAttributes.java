@@ -26,8 +26,8 @@ import java.util.HashMap;
 @Singleton
 public class ItemAttributes {
     //list of attributes
-    private static final ArrayList<Attribute> attributes = new ArrayList<>();
-    private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
+    private final ArrayList<Attribute> attributes = new ArrayList<>();
+    private final Reflections reflections;
     private static final Logger logger = LoggerFactory.getLogger(ItemAttributes.class.getSimpleName());
 
     //Attribute categories
@@ -45,13 +45,15 @@ public class ItemAttributes {
             MaterialManager materialManager,
             IKeyManager keyManager,
             ISerializer serializer,
-            ItemLists itemLists
+            ItemLists itemLists,
+            Reflections reflections
     ) {
         this.plugin = plugin;
         this.materialManager = materialManager;
         this.keyManager = keyManager;
         this.serializer = serializer;
         this.itemLists = itemLists;
+        this.reflections = reflections;
 
         attributeCategories.putIfAbsent("WEAPON_BLUNT", new ItemType(itemLists.getBluntWeapons(), BluntWeaponAttribute.class));
         attributeCategories.putIfAbsent("WEAPON_BOW", new ItemType(itemLists.getBowWeapons(), BowWeaponAttribute.class));
@@ -79,7 +81,7 @@ public class ItemAttributes {
                                         ItemLists.class
                                 )
                                 .newInstance(plugin, materialManager, keyManager, serializer, itemLists);
-                        ItemAttributes.registerAll(attr);
+                        registerAll(attr);
                     } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
@@ -91,7 +93,7 @@ public class ItemAttributes {
      *
      * @param newAttributes the new attributes to add
      */
-    public static void registerAll(Attribute... newAttributes) {
+    public void registerAll(Attribute... newAttributes) {
         attributes.addAll(Arrays.asList(newAttributes));
         //Log the attributes that we just loaded
         Arrays.stream(newAttributes).forEach(attr -> {
@@ -132,7 +134,7 @@ public class ItemAttributes {
      * @param query to search for attributes that match it
      * @return a matching attribute
      */
-    public static Attribute getAttribute(AttributeKey query) {
+    public Attribute getAttribute(AttributeKey query) {
         return attributes
                 .stream()
                 .filter(attr -> attr.key.equals(query))

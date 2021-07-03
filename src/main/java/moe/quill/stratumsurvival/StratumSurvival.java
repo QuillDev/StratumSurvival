@@ -26,6 +26,7 @@ import moe.quill.stratumsurvival.Commands.ItemCommands.GiveStratumItem.GiveStrat
 import moe.quill.stratumsurvival.Commands.ItemCommands.ListKeysCommand;
 import moe.quill.stratumsurvival.Commands.ItemCommands.ObfuscateItem;
 import moe.quill.stratumsurvival.Commands.ItemCommands.RerollItem;
+import moe.quill.stratumsurvival.Commands.Management.TrinketsCommand;
 import moe.quill.stratumsurvival.Commands.Misc.DevTool;
 import moe.quill.stratumsurvival.Crafting.CraftingEvents.CraftCustomItemEvent;
 import moe.quill.stratumsurvival.Crafting.CraftingEvents.GrindCustomWeaponEvent;
@@ -112,6 +113,8 @@ public final class StratumSurvival extends StratumPlugin {
     @Inject
     ListKeysCommand listKeysCommand;
     @Inject
+    TrinketsCommand trinketsCommand;
+    @Inject
     DevTool devTool;
 
 
@@ -129,9 +132,10 @@ public final class StratumSurvival extends StratumPlugin {
         super.onEnable();
         final var keyManager = getKeyManager();
         final var name = PackageUtils.getReflectivePackageName(this.getClass());
-        final var reflector = new Reflections(name);
+        final var reflections = new Reflections(name);
 
-        final var keyableClasses = reflector.getTypesAnnotatedWith(Keyable.class);
+        //TODO: Add this to the super implementation maybe... common use case in multiple projects
+        final var keyableClasses = reflections.getTypesAnnotatedWith(Keyable.class);
 
         //Iterate through the keyable classes we found
         for (final var keyableClass : keyableClasses) {
@@ -147,7 +151,7 @@ public final class StratumSurvival extends StratumPlugin {
 
         //DI STUFF
         Injector injector = Guice.createInjector(
-                new PluginBinderModule(this, keyManager, getSerializer())
+                new PluginBinderModule(this, keyManager, getSerializer(), reflections)
         );
         injector.injectMembers(this);
 
@@ -184,7 +188,8 @@ public final class StratumSurvival extends StratumPlugin {
                 new StratumCommand("spawnenemy", spawnEnemy, spawnEnemyTabs),
                 new StratumCommand("devtool", devTool, null),
                 new StratumCommand("stratumgive", giveStratumItemCommand, giveStratumItemTabs),
-                new StratumCommand("listkeys", listKeysCommand, null)
+                new StratumCommand("listkeys", listKeysCommand, null),
+                new StratumCommand("trinkets", trinketsCommand, null)
         );
     }
 

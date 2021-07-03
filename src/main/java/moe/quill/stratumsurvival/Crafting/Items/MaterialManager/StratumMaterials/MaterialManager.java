@@ -21,23 +21,25 @@ import java.util.HashMap;
 @Singleton
 public class MaterialManager {
 
+    private static final Logger logger = LoggerFactory.getLogger(MaterialManager.class.getSimpleName());
+
     private final HashMap<String, ItemStack> stratumMaterials = new HashMap<>();
     private final ArrayList<ItemStack> geodeMaterials = new ArrayList<>();
 
-    private static final Logger logger = LoggerFactory.getLogger(MaterialManager.class.getSimpleName());
-    private static final Reflections reflections = new Reflections("moe.quill.stratumsurvival");
+
+    private final Reflections reflections;
 
     private final Plugin plugin;
     private final IKeyManager keyManager;
     private final ISerializer serializer;
 
     @Inject
-    public MaterialManager(Plugin plugin, IKeyManager keyManager, ISerializer serializer) {
+    public MaterialManager(Plugin plugin, IKeyManager keyManager, ISerializer serializer, Reflections reflections) {
         this.plugin = plugin;
         this.keyManager = keyManager;
         this.serializer = serializer;
+        this.reflections = reflections;
 
-        System.out.println();
         //Register all of the material types
         registerMaterialsDynamically();
 
